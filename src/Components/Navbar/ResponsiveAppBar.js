@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-import account from '../../img/icons/account.png'
+import account from '../../img/icons/logo192.png'
 
 const pages = ['Home', 'About', 'Education', 'Skills', 'Projects', 'Achievements'];
 const settings = ['Linkedin', 'Github', 'Blog'];
@@ -38,14 +38,20 @@ const ResponsiveAppBar = () => {
 	};
 
 	return (
-		<AppBar position="static">
+		<AppBar position="static"
+			sx={{
+				bgcolor: (theme) =>
+					theme.palette.mode === 'dark' ? 'primary.900' : 'black',
+				color: (theme) =>
+					theme.palette.mode === 'dark' ? '#fff' : 'yellow',
+			}}>
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Typography
 						variant="h6"
 						noWrap
 						component="div"
-						sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}
+						sx={{ mr: 5, display: { xs: 'none', md: 'flex' }, fontFamily: 'Cinzel Decorative' }}
 					>
 						Mohammed Abdullah
 					</Typography>
@@ -109,7 +115,7 @@ const ResponsiveAppBar = () => {
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Contact Me">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-								<Avatar alt="Contact" src={account} />
+								<Avatar alt="Contact" src={account} variant="square" />
 							</IconButton>
 						</Tooltip>
 						<Menu
