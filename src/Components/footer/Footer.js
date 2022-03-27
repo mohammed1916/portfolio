@@ -15,7 +15,8 @@ export default function Footer() {
             bgcolor={'slateblue'}
             color={'white'} >
             <Container sx={{ width: '100%' }}>
-                <Grid container spacing={5} >
+                <Divider pt={{ xs: 1, sm: 2 }}><Chip label="Mohammed Abdullah" /></Divider>
+                <Grid container spacing={5} pt={{ xs: 2, sm: 4 }}>
                     <Grid item xs={12} sm={6} pb={{ xs: 2, sm: 4 }}>
                         <Box borderBottom={2}>Useful Links</Box>
                         <Box pt={{ xs: 2, sm: 4 }}>
@@ -30,22 +31,22 @@ export default function Footer() {
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <Box borderBottom={2}>Useful Links</Box>
+                        <Box borderBottom={2}>Contact</Box>
                         <Box pt={{ xs: 2, sm: 4 }}>
                             <Link href="#" color="inherit" underline="hover">
-                                College
+                                Linkedin
                             </Link>
                         </Box>
                         <Box pt={{ xs: 2, sm: 4 }}>
                             <Link href="#" color="inherit" underline="hover">
-                                School
+                                Github
                             </Link>
                         </Box>
                     </Grid>
 
                 </Grid>
-                <Divider ><Chip label="&copy;" /></Divider>
-                <Typography textAlign="center" color={'white'} pt={{ xs: 1, sm: 2 }}><Link href="#" color="inherit" underline="hover">Created with Portfolio Template</Link></Typography>
+                <Divider />
+                <Typography textAlign="center" color={'white'} pt={{ xs: 1, sm: 2 }}><Link href="#" color="inherit" underline="hover">Powered by Portfolio Template</Link></Typography>
             </Container>
         </Box >
     );
