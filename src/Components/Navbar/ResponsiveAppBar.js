@@ -12,11 +12,11 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
+import { data } from '../../data'
+
 import account from '../../img/icons/logo192.png'
 
-const pages = ['Home', 'About', 'Education', 'Skills', 'Projects', 'Achievements'];
-const settings = ['Linkedin', 'Github', 'Blog'];
-const links = ['https://www.linkedin.com/in/mohammed-abdullah-a103311a6/', 'https://github.com/mohammed1916/', 'https://comprehendingknowledge.blogspot.com/']
+const pages = ['Home', 'About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work', 'Contact'];
 
 const ResponsiveAppBar = () => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -87,7 +87,7 @@ const ResponsiveAppBar = () => {
 						>
 							{pages.map((page) => (
 								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<Typography textAlign="center">{page}</Typography>
+									<Typography textAlign="center"><a href={page}>{page}</a></Typography>
 								</MenuItem>
 							))}
 						</Menu>
@@ -107,7 +107,7 @@ const ResponsiveAppBar = () => {
 								onClick={handleCloseNavMenu}
 								sx={{ my: 2, color: 'white', display: 'block' }}
 							>
-								{page}
+								<a href={page}>{page}</a>
 							</Button>
 						))}
 					</Box>
@@ -134,9 +134,9 @@ const ResponsiveAppBar = () => {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							{settings.map((contact, index) => (
-								<MenuItem key={contact} onClick={handleCloseUserMenu}>
-									<Typography textAlign="center"><a href={links[index]}>{contact}</a></Typography>
+							{data.information.profiles.map((object) => (
+								<MenuItem key={object.media} onClick={handleCloseUserMenu}>
+									<Typography textAlign="center"><a href={object.url}>{object.media}</a></Typography>
 								</MenuItem>
 							))}
 						</Menu>

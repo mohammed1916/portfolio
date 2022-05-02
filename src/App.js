@@ -1,3 +1,10 @@
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+
 import About from './Components/About/About';
 import Work from './Components/Work/Work';
 import Certifications from './Components/Certifications/Certifications';
@@ -10,17 +17,19 @@ import Projects from './Components/Projects/Projects';
 
 function App() {
   return (
-    <>
+    <Router>
       <ResponsiveAppBar />
-      <About />
-      <Education />
-      <Skills />
-      <Projects />
-      <Certifications />
-      <Work />
-      <Contact />
+      <Routes>
+        <Route path='/about' element={<About />} />
+        <Route path='/education' element={<Education />} />
+        <Route path='/skills' element={<Skills />} />
+        <Route path='/projects' element={<Projects />} />
+        <Route path='/certifications' element={<Certifications />} />
+        <Route path='/work' element={<Work />} />
+        <Route path='/contact' element={<Contact />} />
+      </Routes>
       <Footer />
-    </>
+    </Router>
   );
 }
 

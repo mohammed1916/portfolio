@@ -8,11 +8,11 @@ export const data = {
         "location": "Chennai",
         "profiles": [
             {
-                "media": "github",
+                "media": "Github",
                 "url": "https://github.com/mohammed1916/"
             },
             {
-                "media": "linkedin",
+                "media": "Linkedin",
                 "url": "https://www.linkedin.com/in/mohammed-abdullah-a103311a6/"
             },
             {
@@ -23,22 +23,22 @@ export const data = {
     },
     "education": [
         {
-            "institution": "Unity Public School, Chennai",
-            "type": "10th Standard",
-            "yop": "2017",
-            "grade": "10 C.G.P.A"
+            "Institution": "Unity Public School, Chennai",
+            "Type": "10th Standard",
+            "Year of Passing": "2017",
+            "Grade": "10 C.G.P.A"
         },
         {
-            "institution": "Unity Public School, Chennai",
-            "type": "12th Standard",
-            "yop": "2019",
-            "grade": "87.3%"
+            "Institution": "Unity Public School, Chennai",
+            "Type": "12th Standard",
+            "Year of Passing": "2019",
+            "Grade": "87.3%"
         },
         {
-            "institution": "Panimalar Engineering College, Chennai",
-            "type": "Undergraduate - Computer Science and Engineering",
-            "yop": "2023",
-            "grade": "9.48"
+            "Institution": "Panimalar Engineering College, Chennai",
+            "Type": "Undergraduate - Computer Science and Engineering",
+            "Year of Passing": "2023",
+            "Grade": "9.48 C.G.P.A"
         }
     ],
     "work": [
