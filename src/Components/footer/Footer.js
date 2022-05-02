@@ -6,6 +6,8 @@ import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 
+import { data } from '../../data'
+
 export default function Footer() {
 
     return (
@@ -46,7 +48,8 @@ export default function Footer() {
 
                 </Grid>
                 <Divider />
-                <Typography textAlign="center" color={'white'} pt={{ xs: 1, sm: 2 }}><Link href="#" color="inherit" underline="hover">Powered by Portfolio Template</Link></Typography>
+                <Typography textAlign="center" color={'white'} pt={{ xs: 1, sm: 2 }}><Link href="#" color="inherit" underline="hover">Copyright {new Date().getFullYear()} by {data.information.name}. All Rights Reserved</Link></Typography>
+                <Typography textAlign="center" color={'white'} pt={{ xs: 1, sm: 2 }}>This template is powered from <a href="https://github.com/mohammed1916/portfolio">here</a></Typography>
             </Container>
         </Box >
     );
