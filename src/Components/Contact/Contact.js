@@ -13,7 +13,7 @@ export default function Contact() {
     return (
         <>
             <Divider sx={{ margin: "20px" }} />
-            <Box marginBottom={'20px'} display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly'>
+            <Box marginBottom={'20px'} display={'flex'} flexWrap={'wrap'} justifyContent='center'>
                 {data.information.profiles.map((object, index) => (
                     <Box margin={'10px'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         <CardHeader
