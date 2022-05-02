@@ -5,6 +5,8 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
 
 import { data } from '../../data'
 
@@ -52,26 +54,38 @@ export default function Education() {
     };
 
     return (
-        <div>
-            {data.education.map((object, index) => (
-                <Accordion expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
-                    <AccordionSummary aria-controls={`panel${index}d-content`} id={`panel${index}d-header`}>
-                        <Typography>{data.education[index].Type}</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>
-                            {`Institution: ${data.education[index].Institution}`}
-                        </Typography>
-                        <Typography>
-                            {`Grade: ${data.education[index].Grade}`}
-                        </Typography>
-                        <Typography>
-                            {`Year of Passing: ${data.education[index]['Year of Passing']}`}
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
-            ))}
+        <>
+            <Box
+                px={{ xs: 3, sm: 10 }}
+                py={{ xs: 5, sm: 10 }}
+                bgcolor={'white'}
+                color={'white'} >
+                <Container sx={{ width: '100%' }}>
+                    <Typography textAlign="center" fontFamily={'Righteous'} fontSize={'40px'} color={'black'} pt={{ xs: 1, sm: 2 }}>Education</Typography>
+                    <Box bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
+                        {data.education.map((object, index) => (
+                            <Accordion expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
+                                <AccordionSummary aria-controls={`panel${index}d-content`} id={`panel${index}d-header`}>
+                                    <Typography>{object.Type}</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography>
+                                        {`Institution: ${object.Institution}`}
+                                    </Typography>
+                                    <Typography>
+                                        {`Grade: ${object.Grade}`}
+                                    </Typography>
+                                    <Typography>
+                                        {`Year of Passing: ${object['Year of Passing']}`}
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
+                        ))}
+                    </Box>
+                </Container>
+            </Box>
+        </>
 
-        </div>
+
     );
 }

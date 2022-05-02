@@ -9,15 +9,18 @@ export const data = {
         "profiles": [
             {
                 "media": "Github",
-                "url": "https://github.com/mohammed1916/"
+                "url": "https://github.com/mohammed1916/",
+                "icon": require('./img/icons/media/github.png')
             },
             {
                 "media": "Linkedin",
-                "url": "https://www.linkedin.com/in/mohammed-abdullah-a103311a6/"
+                "url": "https://www.linkedin.com/in/mohammed-abdullah-a103311a6/",
+                "icon": require('./img/icons/media/linkedin.png')
             },
             {
                 "media": "Blogs",
-                "url": "https://comprehendingknowledge.blogspot.com/"
+                "url": "https://comprehendingknowledge.blogspot.com/",
+                "icon": require('./img/icons/media/post-outline.png')
             }
         ]
     },

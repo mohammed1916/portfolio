@@ -16,7 +16,7 @@ import { data } from '../../data'
 
 import account from '../../img/icons/logo192.png'
 
-const pages = ['Home', 'About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work', 'Contact'];
+const pages = ['Home', 'About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work'];
 
 const ResponsiveAppBar = () => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -53,7 +53,7 @@ const ResponsiveAppBar = () => {
 						component="div"
 						sx={{ mr: 5, display: { xs: 'none', md: 'flex' }, fontFamily: 'Cinzel Decorative' }}
 					>
-						Mohammed Abdullah
+						{data.information.name}
 					</Typography>
 
 					<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -98,7 +98,7 @@ const ResponsiveAppBar = () => {
 						component="div"
 						sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
 					>
-						Mohammed Abdullah
+						{data.information.name}
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						{pages.map((page) => (
