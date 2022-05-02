@@ -1,10 +1,11 @@
 export const data = {
     "information": {
         "name": "Mohammed Abdullah",
-        "about": "FrontEnd and Mobile Application Developer",
-        "image": "",
+        "domain": "Front End and Mobile Application Developer",
+        "image": require('./img/Design/design.png'),
         "email": "curiousabdullah@gmail.com",
-        "description": "HI, I am Mohammed Abdullah. An aspiring front end developer who likes to learn explore new front end frameworks.",
+        "whoami": "I am Mohammed Abdullah. An aspiring front end developer who likes to learn explore new front end frameworks.",
+        "description": "Currently I am pursuing my bachelor's degree in Computer Science and Engineering. I love creating user-centric applications. I have explored the domain of mobile application development and created apps for native android and also a hybrid mobile application using flutter. I have also worked with Godot engine, using which I designed a memory game for android.",
         "location": "Chennai",
         "profiles": [
             {
