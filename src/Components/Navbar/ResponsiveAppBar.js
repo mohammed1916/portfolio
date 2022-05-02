@@ -16,7 +16,7 @@ import { data } from '../../data'
 
 import account from '../../img/icons/logo192.png'
 
-const pages = ['Home', 'About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work'];
+const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work'];
 
 const ResponsiveAppBar = () => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
