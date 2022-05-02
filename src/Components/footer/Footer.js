@@ -21,29 +21,24 @@ export default function Footer() {
                 <Grid container spacing={5} pt={{ xs: 2, sm: 4 }}>
                     <Grid item xs={12} sm={6} pb={{ xs: 2, sm: 4 }}>
                         <Box borderBottom={2}>Useful Links</Box>
-                        <Box pt={{ xs: 2, sm: 4 }}>
-                            <Link href="#" color="inherit" underline="hover">
-                                College
-                            </Link>
-                        </Box>
-                        <Box pt={{ xs: 2, sm: 4 }}>
-                            <Link href="#" color="inherit" underline="hover">
-                                School
-                            </Link>
-                        </Box>
+                        {data.education.map((object) => (
+                            <Box pt={{ xs: 2, sm: 4 }}>
+                                <Link href={object.website} color="inherit" underline="hover">
+                                    {object.Type}
+                                </Link>
+                            </Box>
+                        ))}
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Box borderBottom={2}>Contact</Box>
-                        <Box pt={{ xs: 2, sm: 4 }}>
-                            <Link href="#" color="inherit" underline="hover">
-                                Linkedin
-                            </Link>
-                        </Box>
-                        <Box pt={{ xs: 2, sm: 4 }}>
-                            <Link href="#" color="inherit" underline="hover">
-                                Github
-                            </Link>
-                        </Box>
+                        {data.information.profiles.map((object) => (
+                            <Box pt={{ xs: 2, sm: 4 }}>
+                                <Link href={object.url} color="inherit" underline="hover">
+                                    {object.media}
+                                </Link>
+                            </Box>
+                        ))}
+
                     </Grid>
 
                 </Grid>

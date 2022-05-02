@@ -29,19 +29,22 @@ export const data = {
             "Institution": "Unity Public School, Chennai",
             "Type": "10th Standard",
             "Year of Passing": "2017",
-            "Grade": "10 C.G.P.A"
+            "Grade": "10 C.G.P.A",
+            "website": "http://www.unitypublicschool.com/"
         },
         {
             "Institution": "Unity Public School, Chennai",
             "Type": "12th Standard",
             "Year of Passing": "2019",
-            "Grade": "87.3%"
+            "Grade": "87.3%",
+            "website": "http://www.unitypublicschool.com/"
         },
         {
             "Institution": "Panimalar Engineering College, Chennai",
             "Type": "Undergraduate - Computer Science and Engineering",
             "Year of Passing": "2023",
-            "Grade": "9.48 C.G.P.A"
+            "Grade": "9.48 C.G.P.A",
+            "website": "https://panimalar.ac.in/"
         }
     ],
     "work": [
