@@ -55,7 +55,7 @@ export const data = {
             "title": "Intern",
             "thumbnail": require('./Components/Certifications/Images/Internship~The Sparks Foundation~Hybrid Mobile App.png'),
             "dates": "Sept - Oct 2021",
-            "highlights": "Worked on creating a Hybrid Mobile App using Flutter.\nCreated several models in databse.\nPerformed CRUD oprations"
+            "description": "Worked on creating a Hybrid Mobile App using Flutter.\nCreated several models in databse.\nPerformed CRUD oprations"
         }
     ],
     "skills": [
