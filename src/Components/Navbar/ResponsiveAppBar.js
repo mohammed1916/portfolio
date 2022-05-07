@@ -17,6 +17,7 @@ import { data } from '../../data'
 import account from '../../img/icons/logo192.png'
 
 const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work'];
+const pages_link = ['/About', '/Education', '/Skills', '/Projects', '/Certifications', '/Work'];
 
 const ResponsiveAppBar = () => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -51,8 +52,7 @@ const ResponsiveAppBar = () => {
 						variant="h6"
 						noWrap
 						component="div"
-						sx={{ mr: 5, display: { xs: 'none', md: 'flex' }, fontFamily: 'Cinzel Decorative' }}
-					>
+						sx={{ mr: 5, display: { xs: 'none', md: 'flex' }, fontFamily: 'Cinzel Decorative' }}>
 						{data.information.name}
 					</Typography>
 
@@ -63,8 +63,7 @@ const ResponsiveAppBar = () => {
 							aria-controls="menu-appbar"
 							aria-haspopup="true"
 							onClick={handleOpenNavMenu}
-							color="inherit"
-						>
+							color="inherit">
 							<MenuIcon />
 						</IconButton>
 						<Menu
@@ -83,11 +82,10 @@ const ResponsiveAppBar = () => {
 							onClose={handleCloseNavMenu}
 							sx={{
 								display: { xs: 'block', md: 'none' },
-							}}
-						>
-							{pages.map((page) => (
+							}}>
+							{pages.map((page, index) => (
 								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<Typography textAlign="center"><a href={page}>{page}</a></Typography>
+									<Typography textAlign="center"><a href={pages_link[index]}>{page}</a></Typography>
 								</MenuItem>
 							))}
 						</Menu>
@@ -96,19 +94,19 @@ const ResponsiveAppBar = () => {
 						variant="p"
 						noWrap
 						component="div"
-						sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-					>
+						sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 						{data.information.name}
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-						{pages.map((page) => (
-							<Button
-								key={page}
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: 'white', display: 'block' }}
-							>
-								<a href={page}>{page}</a>
-							</Button>
+						{pages.map((page, index) => (
+							<a href={pages_link[index]}>
+								<Button
+									key={page}
+									onClick={handleCloseNavMenu}
+									sx={{ my: 2, color: 'white', display: 'block' }}>
+									{page}
+								</Button>
+							</a>
 						))}
 					</Box>
 
@@ -132,8 +130,7 @@ const ResponsiveAppBar = () => {
 								horizontal: 'right',
 							}}
 							open={Boolean(anchorElUser)}
-							onClose={handleCloseUserMenu}
-						>
+							onClose={handleCloseUserMenu}>
 							{data.information.profiles.map((object) => (
 								<MenuItem key={object.media} onClick={handleCloseUserMenu}>
 									<Typography textAlign="center"><a href={object.url}>{object.media}</a></Typography>
