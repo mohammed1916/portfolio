@@ -16,7 +16,7 @@ import { data } from '../../data'
 
 import account from '../../img/icons/logo192.png'
 
-const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work'];
+const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work Experience'];
 const pages_link = ['/', '/Education', '/Skills', '/Projects', '/Certifications', '/Work'];
 
 const ResponsiveAppBar = () => {
