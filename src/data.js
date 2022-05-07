@@ -78,13 +78,26 @@ export const data = {
         {
             "title": "Memory Game",
             "type": "Android",
-            "thumbnail": require('./Components/Projects/Images/3.jpeg'),
+            "thumbnail": require('./Components/Projects/Images/1/3.jpeg'),
             "link": "https://play.google.com/store/apps/details?id=org.greenelite.memorize",
             "description": "Train yourself to memorize and remember by matching color pairs.",
             "gallery": [
-                require('./Components/Projects/Images/1.jpeg'),
-                require('./Components/Projects/Images/2.jpeg'),
-                require('./Components/Projects/Images/3.jpeg')
+                require('./Components/Projects/Images/1/1.jpeg'),
+                require('./Components/Projects/Images/1/2.jpeg'),
+                require('./Components/Projects/Images/1/3.jpeg')
+            ]
+        },
+        {
+            "title": "Portfolio",
+            "type": "Website",
+            "thumbnail": require('./Components/Projects/Images/2/1.jpeg'),
+            "link": "https://mohammedabdullah.pages.dev/",
+            "description": "Made a portfolio template using reactjs library.",
+            "gallery": [
+                require('./Components/Projects/Images/2/1.jpeg'),
+                require('./Components/Projects/Images/2/2.jpeg'),
+                require('./Components/Projects/Images/2/3.jpeg')
+
             ]
         }
     ],
