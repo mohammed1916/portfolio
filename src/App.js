@@ -14,6 +14,7 @@ import ResponsiveAppBar from './Components/Navbar/ResponsiveAppBar';
 import Skills from './Components/Skills/Skills';
 import Projects from './Components/Projects/Projects';
 import CertificatePage from "./Components/Certifications/CertificatePage";
+import ProjectPage from "./Components/Projects/ProjectPage";
 
 function App() {
   return (
@@ -26,8 +27,8 @@ function App() {
         <Route path='/projects' element={<Projects />} />
         <Route path='/certifications' element={<Certifications />} />
         <Route path='/work' element={<Work />} />
-        <Route path="certificatepage/:i" element={<CertificatePage />}
-        />
+        <Route path="projectpage/:i" element={<ProjectPage />} />
+        <Route path="certificatepage/:i" element={<CertificatePage />} />
       </Routes>
       <Contact />
       <Footer />
