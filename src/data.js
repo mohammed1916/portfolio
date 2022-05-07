@@ -60,20 +60,26 @@ export const data = {
     ],
     "skills": [
         {
-            "Programming Languages": [
-                {
-                    "C": 5,
-                    "Python": 3,
-                    "C++": 3,
-                    "JAVA": 3
-                }
-            ],
-            "Framworks And Libraries": {
-                "Reactjs": 3,
-                "Flutter": 4
-            }
+            "type": "Programming Languages",
+            "Knowledge in Advance Topics": "JAVA, C",
+            "Knowledge in Main Concepts": "python, python3, godot",
+            "Beginner": "C++, javascript"
         }
-    ],
+        ,
+        {
+            "type": "Framworks And Libraries",
+            "Knowledge in Advance Topics": "Flutter",
+            "Knowledge in Main Concepts": "Reactjs",
+            "Beginner": "Gatsby, Django",
+        },
+        {
+            "type": "Tools and IDE's",
+            "Knowledge in Advance Topics": "Inkscape, VS code",
+            "Knowledge in Main Concepts": "Github, Godot Game Engine, Android Studio",
+            "Beginner": "Gimp",
+        }
+    ]
+    ,
     "projects": [
         {
             "title": "Memory Game",
