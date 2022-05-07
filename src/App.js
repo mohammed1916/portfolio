@@ -1,8 +1,7 @@
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 import About from './Components/About/About';
@@ -14,6 +13,7 @@ import Footer from './Components/footer/Footer';
 import ResponsiveAppBar from './Components/Navbar/ResponsiveAppBar';
 import Skills from './Components/Skills/Skills';
 import Projects from './Components/Projects/Projects';
+import CertificatePage from "./Components/Certifications/CertificatePage";
 
 function App() {
   return (
@@ -26,6 +26,8 @@ function App() {
         <Route path='/projects' element={<Projects />} />
         <Route path='/certifications' element={<Certifications />} />
         <Route path='/work' element={<Work />} />
+        <Route path="certificatepage/:i" element={<CertificatePage />}
+        />
       </Routes>
       <Contact />
       <Footer />
