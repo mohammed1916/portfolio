@@ -20,7 +20,7 @@ function App() {
     <Router>
       <ResponsiveAppBar />
       <Routes>
-        <Route path='/about' element={<About />} />
+        <Route path='/' element={<About />} />
         <Route path='/education' element={<Education />} />
         <Route path='/skills' element={<Skills />} />
         <Route path='/projects' element={<Projects />} />
