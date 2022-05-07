@@ -1,8 +1,5 @@
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import { red, blue } from '@mui/material/colors';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Box from '@mui/material/Box'
 
 import { data } from '../../data'

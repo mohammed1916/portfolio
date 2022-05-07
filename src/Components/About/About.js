@@ -1,5 +1,4 @@
-import { Image } from "@mui/icons-material";
-import { Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { data } from "../../data";
 

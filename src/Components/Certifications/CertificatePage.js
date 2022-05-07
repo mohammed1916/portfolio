@@ -1,13 +1,8 @@
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box'
 import { data } from '../../data'
 
-import { Image } from '@mui/icons-material';
 import { useParams } from "react-router-dom";
 
 
