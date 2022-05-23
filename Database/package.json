@@ -1,0 +1,12 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "Candidate Information (Portfolio) Database Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Mohammed Abdullah",
+  "license": "UNLICENSED",
+  "private": "true"
+}
