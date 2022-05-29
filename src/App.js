@@ -80,17 +80,6 @@ function App() {
         }
       })
 
-    // createUserWithEmailAndPassword(authentication, email, password)
-    //   .then((response) => {
-    //     navigate('/work')
-    //     sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-    //   })
-    //   .catch((error) => {
-    //     if (error.code === 'auth/email-already-in-use') {
-    //       setOpen(true)
-    //     }
-    //   })
-
   }
 
   useEffect(() => {
@@ -112,16 +101,6 @@ function App() {
           element={
             <SignIn
               title="Login"
-              setEmail={setEmail}
-              setPassword={setPassword}
-              handleSubmit={handleSubmit}
-            />}
-        />
-        <Route
-          path='/register'
-          element={
-            <SignIn
-              title="Register"
               setEmail={setEmail}
               setPassword={setPassword}
               handleSubmit={handleSubmit}
