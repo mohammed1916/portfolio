@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,6 +13,21 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
+import { app } from '../../firebase-config';
+import {
+	getAuth,
+	onAuthStateChanged,
+	GoogleAuthProvider,
+	signInWithPopup,
+	signOut,
+} from 'firebase/auth';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	useNavigate
+} from "react-router-dom";
+
 import { data } from '../../data'
 
 import account from '../../img/icons/logo192.png'
@@ -20,6 +36,7 @@ const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Wo
 const pages_link = ['/', '/Education', '/Skills', '/Projects', '/Certifications', '/Work'];
 
 const ResponsiveAppBar = () => {
+	let navigate = useNavigate();
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -37,6 +54,13 @@ const ResponsiveAppBar = () => {
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
+
+	function signOutUser() {
+		signOut(getAuth());
+		sessionStorage.removeItem('Auth Token');
+		console.log("signout ...");
+		navigate('/login')
+	}
 
 	return (
 		<AppBar position="static"
@@ -131,11 +155,11 @@ const ResponsiveAppBar = () => {
 							}}
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}>
-							{data.information.profiles.map((object) => (
-								<MenuItem key={object.media} onClick={handleCloseUserMenu}>
-									<Typography textAlign="center"><a href={object.url}>{object.media}</a></Typography>
-								</MenuItem>
-							))}
+
+							<MenuItem key={"signin"} onClick={handleCloseUserMenu}>
+								<Typography textAlign="center" onClick={() => signOutUser()}>Sign Out</Typography>
+							</MenuItem>
+
 						</Menu>
 					</Box>
 				</Toolbar>

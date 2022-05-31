@@ -7,7 +7,7 @@ import {
   useNavigate
 } from "react-router-dom";
 import { app } from './firebase-config';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import About from './Components/About/About';
 import Work from './Components/Work/Work';
@@ -27,6 +27,7 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import Home from './Components/Home/Home';
 
 function App() {
   //Handle Snackbar
@@ -66,7 +67,7 @@ function App() {
 
     signInWithEmailAndPassword(authentication, email, password)
       .then((response) => {
-        navigate('/work')
+        navigate('/home')
         console.log("signin ....")
         sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
       })
@@ -79,23 +80,26 @@ function App() {
           setOpen(true)
         }
       })
-
   }
 
   useEffect(() => {
+    //Get elements
+
     let authToken = sessionStorage.getItem('Auth Token')
 
     if (authToken) {
-      navigate('/work')
+      navigate('/home')
+      console.log(authToken);
+    } else {
+      navigate('/login')
     }
+
   }, [])
 
 
   return (
     <>
-      <ResponsiveAppBar />
       <Routes>
-        <Route path='/' element={<About />} />
         <Route
           path='/login'
           element={
@@ -103,21 +107,13 @@ function App() {
               title="Login"
               setEmail={setEmail}
               setPassword={setPassword}
-              handleSubmit={handleSubmit}
+              handleSubmit={() => handleSubmit()}
             />}
         />
-        <Route path='/education' element={<Education />} />
-        <Route path='/skills' element={<Skills />} />
-        <Route path='/projects' element={<Projects />} />
-        <Route path='/certifications' element={<Certifications />} />
-        <Route path='/work' element={<Work />} />
-        <Route path="projectpage/:i" element={<WorkPage />} />
-        <Route path="projectpage/:i" element={<ProjectPage />} />
-        <Route path="certificatepage/:i" element={<CertificatePage />} />
+        <Route
+          path='/home/*'
+          element={<Home />} />
       </Routes>
-      <Contact />
-      <Footer />
-      <DownloadFooter />
       <Snackbar
         open={open}
         autoHideDuration={6000}
