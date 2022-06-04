@@ -1,28 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   useNavigate
 } from "react-router-dom";
-import { app } from './firebase-config';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
-import About from './Components/About/About';
-import Work from './Components/Work/Work';
-import Certifications from './Components/Certifications/Certifications';
-import Contact from './Components/Contact/Contact';
-import Education from './Components/Education/Education';
-import Footer from './Components/footer/Footer';
-import ResponsiveAppBar from './Components/Navbar/ResponsiveAppBar';
-import Skills from './Components/Skills/Skills';
-import Projects from './Components/Projects/Projects';
-import CertificatePage from "./Components/Certifications/CertificatePage";
-import ProjectPage from "./Components/Projects/ProjectPage";
-import WorkPage from "./Components/Work/WorkPage";
 import SignIn from "./Components/SignIn/SignIn";
-import DownloadFooter from "./Components/footer/Download/DownloadFooter";
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
@@ -37,7 +22,7 @@ function App() {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen(true);
+    setOpen(false);
   };
 
   const action = (
@@ -61,7 +46,7 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
+  function handleSubmit() {
     const authentication = getAuth();
     console.log(1);
 
@@ -88,7 +73,6 @@ function App() {
     let authToken = sessionStorage.getItem('Auth Token')
 
     if (authToken) {
-      navigate('/home')
       console.log(authToken);
     } else {
       navigate('/login')
@@ -107,7 +91,7 @@ function App() {
               title="Login"
               setEmail={setEmail}
               setPassword={setPassword}
-              handleSubmit={() => handleSubmit()}
+              handleSubmit={handleSubmit}
             />}
         />
         <Route
