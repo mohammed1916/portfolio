@@ -1,8 +1,30 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { data } from "../../data";
+import { getDatabase, ref, child, get } from "firebase/database";
+import * as React from 'react';
 
 export default function About() {
+
+    const [imagePlaceHolder, setImagePlaceholder] = React.useState();
+    const [whoamiPlaceHolder, setWhoamiPlaceholder] = React.useState();
+    const [domainPlaceHolder, setDomainPlaceholder] = React.useState();
+    const [descriptionPlaceHolder, setDescriptionPlaceholder] = React.useState();
+    const dbRef = ref(getDatabase());
+
+    get(child(dbRef, `information/`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            // console.log("val ...", snapshot.val());
+            setImagePlaceholder(snapshot.child("image/").val());
+            setWhoamiPlaceholder(snapshot.child("whoami/").val());
+            setDomainPlaceholder(snapshot.child("domain/").val());
+            setDescriptionPlaceholder(snapshot.child("description/").val());
+            // console.log("namePlaceHolder ...", namePlaceHolder);
+        } else {
+            console.log("No data available in About.js");
+        }
+    }).catch((error) => {
+        console.error("error ...", error);
+    });
 
     return (
         <>
@@ -14,7 +36,8 @@ export default function About() {
                 display={'flex'} flexWrap={'wrap'} flexDirection={'row'} justifyContent='space-evenly'
             >
                 <Box padding={'10px'} alignItems={'center'}>
-                    <img src={data.information.image} />
+
+                    <img src={imagePlaceHolder} />
                 </Box>
 
                 <Box maxWidth={'500px'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
@@ -22,13 +45,13 @@ export default function About() {
                         Hello There!
                     </Typography>
                     <Typography paddingBottom={'10px'}>
-                        {data.information.whoami}
+                        {whoamiPlaceHolder}
                     </Typography>
                     <Typography paddingBottom={'10px'}>
-                        {`Domain: ${data.information.domain}`}
+                        {`Domain: ${domainPlaceHolder}`}
                     </Typography>
                     <Typography paddingBottom={'10px'}>
-                        {data.information.description}
+                        {descriptionPlaceHolder}
                     </Typography>
                 </Box>
             </Box >
