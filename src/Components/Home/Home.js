@@ -5,7 +5,6 @@ import {
     Route,
     useNavigate
 } from "react-router-dom";
-import { useState, useEffect } from 'react';
 import About from '../About/About';
 import CertificatePage from '../Certifications/CertificatePage';
 import Certifications from '../Certifications/Certifications';
@@ -32,7 +31,7 @@ function Home() {
                 <Route path='/projects' element={<Projects />} />
                 <Route path='/certifications' element={<Certifications />} />
                 <Route path='/work' element={<Work />} />
-                <Route path="projectpage/:i" element={<WorkPage />} />
+                <Route path="workpage/:i" element={<WorkPage />} />
                 <Route path="projectpage/:i" element={<ProjectPage />} />
                 <Route path="certificatepage/:i" element={<CertificatePage />} />
             </Routes>

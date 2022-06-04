@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,19 +11,13 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-
-import { app } from '../../firebase-config';
+import { database } from '../../firebase-config';
+import { getDatabase, ref, child, get } from "firebase/database";
 import {
 	getAuth,
-	onAuthStateChanged,
-	GoogleAuthProvider,
-	signInWithPopup,
 	signOut,
 } from 'firebase/auth';
 import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
 	useNavigate
 } from "react-router-dom";
 
@@ -33,7 +26,7 @@ import { data } from '../../data'
 import account from '../../img/icons/logo192.png'
 
 const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work Experience'];
-const pages_link = ['/', '/Education', '/Skills', '/Projects', '/Certifications', '/Work'];
+const pages_link = ['/home', '/home/Education', '/home/Skills', '/home/Projects', '/home/Certifications', '/home/Work'];
 
 const ResponsiveAppBar = () => {
 	let navigate = useNavigate();
@@ -62,6 +55,23 @@ const ResponsiveAppBar = () => {
 		navigate('/login')
 	}
 
+	const [namePlaceHolder, setNamePlaceholder] = React.useState();
+	const dbRef = ref(getDatabase());
+
+	get(child(dbRef, `information/`)).then((snapshot) => {
+		if (snapshot.exists()) {
+			// console.log("val ...", snapshot.val());
+			setNamePlaceholder(snapshot.child("name/").val());
+			// console.log("namePlaceHolder ...", namePlaceHolder);
+		} else {
+			console.log("No data available");
+		}
+	}).catch((error) => {
+		console.error("error ...", error);
+	});
+
+
+
 	return (
 		<AppBar position="static"
 			sx={{
@@ -77,7 +87,7 @@ const ResponsiveAppBar = () => {
 						noWrap
 						component="div"
 						sx={{ mr: 5, display: { xs: 'none', md: 'flex' }, fontFamily: 'Cinzel Decorative' }}>
-						{data.information.name}
+						{namePlaceHolder}
 					</Typography>
 
 					<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -119,7 +129,7 @@ const ResponsiveAppBar = () => {
 						noWrap
 						component="div"
 						sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-						{data.information.name}
+						{namePlaceHolder}
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						{pages.map((page, index) => (

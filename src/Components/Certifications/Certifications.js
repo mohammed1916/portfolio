@@ -17,7 +17,7 @@ import {
 export default function Certifications() {
     let navigate = useNavigate();
     const nav = (index) => {
-        navigate(`/certificatepage/${index}`)
+        navigate(`/home/certificatepage/${index}`)
     }
 
     return (

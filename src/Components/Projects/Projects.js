@@ -15,7 +15,7 @@ import {
 export default function Projects() {
     let navigate = useNavigate();
     const nav = (index) => {
-        navigate(`/projectpage/${index}`)
+        navigate(`/home/projectpage/${index}`)
     }
 
     return (
