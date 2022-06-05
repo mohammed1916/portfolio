@@ -26,9 +26,9 @@ import { data } from '../../data'
 import account from '../../img/icons/logo192.png'
 
 const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work Experience'];
-const pages_link = ['/home', '/home/Education', '/home/Skills', '/home/Projects', '/home/Certifications', '/home/Work'];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ username }) => {
+	const pages_link = [`${username}/home`, `${username}/home/Education`, `${username}/home/Skills`, `${username}/home/Projects`, `${username}/home/Certifications`, `${username}/home/Work`];
 	let navigate = useNavigate();
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);

@@ -7,6 +7,7 @@ import { Button } from '@mui/material';
 
 
 export default function DownloadFooter() {
+
     return (
 
         <Box
@@ -21,10 +22,10 @@ export default function DownloadFooter() {
         >
             <Container maxWidth="sm" style={{ display: 'flex', flexDirection: 'row', flexWrap: 'true', justifyContent: "center", alignItems: "center", backgroundColor: "white", borderRadius: 10, padding: "7px", opacity: 1 }}>
                 <Typography variant="body1" paddingRight={"5px"} >
-                    Download Build Files to be deployed in hosting server
+                    Fill all details to
                 </Typography>
-                <Button href='http://localhost:3000/' download style={{ backgroundColor: "purple", color: "white", borderRadius: 6 }}>
-                    Here
+                <Button href='home' style={{ backgroundColor: "purple", color: "white", borderRadius: 6 }}>
+                    Preview website
                 </Button>
             </Container>
         </Box >

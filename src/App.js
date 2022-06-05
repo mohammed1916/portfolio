@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 import {
   Routes,
   Route,
-  useNavigate
+  useNavigate,
+  useParams
 } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 import SignIn from "./Components/SignIn/SignIn";
 import Button from '@mui/material/Button';
@@ -13,10 +14,13 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Home from './Components/Home/Home';
+import Form from './Components/Form/Form';
+import Register from './Components/Register/Register';
 
 function App() {
   //Handle Snackbar
   const [open, setOpen] = React.useState(false);
+  const params = useParams();
   let navigate = useNavigate();
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -41,19 +45,26 @@ function App() {
     </React.Fragment>
   );
 
+  function getUsername(name) {
+    const n = email.indexOf('.');
+    return (n != -1) ? email.substring(0, n) : email
+  }
 
   //Handle Form Events
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleSubmit() {
+  function loginHandleSubmit() {
     const authentication = getAuth();
-    console.log(1);
-
+    console.log(0);
     signInWithEmailAndPassword(authentication, email, password)
       .then((response) => {
-        navigate('/home')
+        setUsername(getUsername(email))
+        navigate(`${username}/home`)
         console.log("signin ....")
+        console.log(username)
+        console.log(email)
         sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
       })
       .catch((error) => {
@@ -65,6 +76,27 @@ function App() {
           setOpen(true)
         }
       })
+  }
+
+  function registerHandleSubmit() {
+    console.log(1);
+    createUserWithEmailAndPassword(email, password)
+      .then((response) => {
+        setUsername(getUsername(email))
+        navigate(':username/home')
+        console.log("register ....")
+        sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+      })
+      .catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
   }
 
   useEffect(() => {
@@ -91,12 +123,29 @@ function App() {
               title="Login"
               setEmail={setEmail}
               setPassword={setPassword}
-              handleSubmit={handleSubmit}
+              loginHandleSubmit={loginHandleSubmit}
             />}
         />
         <Route
-          path='/home/*'
-          element={<Home />} />
+          path='/register'
+          element={
+            <Register
+              title="Register"
+              setEmail={setEmail}
+              setPassword={setPassword}
+              registerHandleSubmit={registerHandleSubmit}
+            />}
+        />
+        <Route
+          path=':username/home/*'
+          element={
+            <Home
+              userID={username}
+            />} />
+        <Route path=':username/form' element={
+          <Form
+          />} />
+
       </Routes>
       <Snackbar
         open={open}

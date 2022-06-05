@@ -20,20 +20,21 @@ import Work from '../Work/Work';
 import WorkPage from '../Work/WorkPage';
 
 
-function Home() {
+function Home({ username }) {
     return (
         <>
-            <ResponsiveAppBar />
+            <ResponsiveAppBar
+                userID={username} />
             <Routes>
-                <Route path='/' element={<About />} />
-                <Route path='/education' element={<Education />} />
-                <Route path='/skills' element={<Skills />} />
-                <Route path='/projects' element={<Projects />} />
-                <Route path='/certifications' element={<Certifications />} />
-                <Route path='/work' element={<Work />} />
-                <Route path="workpage/:i" element={<WorkPage />} />
-                <Route path="projectpage/:i" element={<ProjectPage />} />
-                <Route path="certificatepage/:i" element={<CertificatePage />} />
+                <Route path=':username/' element={<About userID={username} />} />
+                <Route path=':username/education' element={<Education />} />
+                <Route path=':username/skills' element={<Skills />} />
+                <Route path=':username/projects' element={<Projects />} />
+                <Route path=':username/certifications' element={<Certifications />} />
+                <Route path=':username/work' element={<Work />} />
+                <Route path=":usernameworkpage/:i" element={<WorkPage />} />
+                <Route path=":usernameprojectpage/:i" element={<ProjectPage />} />
+                <Route path=":usernamecertificatepage/:i" element={<CertificatePage />} />
             </Routes>
             <Contact />
             <Footer />

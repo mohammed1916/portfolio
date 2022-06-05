@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import { getDatabase, ref, child, get } from "firebase/database";
 import * as React from 'react';
 
-export default function About() {
+export default function About({ userID }) {
 
     const [imagePlaceHolder, setImagePlaceholder] = React.useState();
     const [whoamiPlaceHolder, setWhoamiPlaceholder] = React.useState();
@@ -11,14 +11,14 @@ export default function About() {
     const [descriptionPlaceHolder, setDescriptionPlaceholder] = React.useState();
     const dbRef = ref(getDatabase());
 
-    get(child(dbRef, `information/`)).then((snapshot) => {
+    get(child(dbRef, `userID`)).then((snapshot) => {
         if (snapshot.exists()) {
-            // console.log("val ...", snapshot.val());
+            console.log("val ...", snapshot.val());
             setImagePlaceholder(snapshot.child("image/").val());
             setWhoamiPlaceholder(snapshot.child("whoami/").val());
             setDomainPlaceholder(snapshot.child("domain/").val());
             setDescriptionPlaceholder(snapshot.child("description/").val());
-            // console.log("namePlaceHolder ...", namePlaceHolder);
+            console.log("whoamiPlaceHolder ...", whoamiPlaceHolder);
         } else {
             console.log("No data available in About.js");
         }

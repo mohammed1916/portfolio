@@ -9,12 +9,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Grid } from '@mui/material';
 
 
 const theme = createTheme();
 
-export default function SignIn({ title, setPassword, setEmail, loginHandleSubmit }) {
+export default function Register({ title, setPassword, setEmail, registerHandleSubmit }) {
 
     return (
         <ThemeProvider theme={theme}>
@@ -62,17 +61,10 @@ export default function SignIn({ title, setPassword, setEmail, loginHandleSubmit
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
-                            onClick={() => loginHandleSubmit()}
+                            onClick={() => registerHandleSubmit()}
                         >
                             {title}
                         </Button>
-                        <Grid container>
-                            <Grid item>
-                                <Link href="/register" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
                     </Box>
                 </Box>
             </Container>
