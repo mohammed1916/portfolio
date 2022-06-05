@@ -6,7 +6,11 @@ import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+
 import { data } from '../../data'
+
+
 
 export default function Footer() {
 
@@ -31,6 +35,15 @@ export default function Footer() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Box borderBottom={2}>Contact</Box>
+                        <Box pt={{ xs: 2, sm: 4 }}>
+                            <Link href={`mailto:${data.information.email}`} color="inherit" underline="hover" style={{
+                                alignItems: "center",
+                                display: "flex"
+                            }}>
+                                <MailOutlineIcon style={{ paddingRight: "3px" }} />
+                                {data.information.email}
+                            </Link>
+                        </Box>
                         {data.information.profiles.map((object) => (
                             <Box pt={{ xs: 2, sm: 4 }}>
                                 <Link href={object.url} color="inherit" underline="hover">
