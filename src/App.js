@@ -1,10 +1,9 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Routes,
   Route,
   useNavigate,
-  useParams
 } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -20,7 +19,6 @@ import Register from './Components/Register/Register';
 function App() {
   //Handle Snackbar
   const [open, setOpen] = React.useState(false);
-  const params = useParams();
   let navigate = useNavigate();
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -57,11 +55,12 @@ function App() {
 
   function loginHandleSubmit() {
     const authentication = getAuth();
-    console.log(0);
+    console.log("loginHandleSubmit function");
     signInWithEmailAndPassword(authentication, email, password)
       .then((response) => {
         setUsername(getUsername(email))
-        navigate(`${username}/home`)
+        //sometimes username takes more time to get defined, so temporarily a function call is being used.
+        navigate(`${getUsername(email)}/form`)
         console.log("signin ....")
         console.log(username)
         console.log(email)
@@ -80,12 +79,14 @@ function App() {
 
   function registerHandleSubmit() {
     console.log(1);
-    createUserWithEmailAndPassword(email, password)
+    const authentication = getAuth();
+    console.log("registerHandleSubmit function");
+    createUserWithEmailAndPassword(authentication, email, password)
       .then((response) => {
-        setUsername(getUsername(email))
-        navigate(':username/home')
-        console.log("register ....")
-        sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+        setUsername(getUsername(email));
+        navigate(`${getUsername(email)}/form`);
+        console.log("register ....");
+        sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
       })
       .catch(function (error) {
         var errorCode = error.code;
@@ -98,20 +99,6 @@ function App() {
         console.log(error);
       });
   }
-
-  useEffect(() => {
-    //Get elements
-
-    let authToken = sessionStorage.getItem('Auth Token')
-
-    if (authToken) {
-      console.log(authToken);
-    } else {
-      navigate('/login')
-    }
-
-  }, [])
-
 
   return (
     <>
@@ -144,7 +131,9 @@ function App() {
             />} />
         <Route path=':username/form' element={
           <Form
-          />} />
+            userID={username}
+          />}
+        />
 
       </Routes>
       <Snackbar

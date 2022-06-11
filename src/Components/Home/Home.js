@@ -26,15 +26,15 @@ function Home({ username }) {
             <ResponsiveAppBar
                 userID={username} />
             <Routes>
-                <Route path=':username/' element={<About userID={username} />} />
-                <Route path=':username/education' element={<Education />} />
-                <Route path=':username/skills' element={<Skills />} />
-                <Route path=':username/projects' element={<Projects />} />
-                <Route path=':username/certifications' element={<Certifications />} />
-                <Route path=':username/work' element={<Work />} />
-                <Route path=":usernameworkpage/:i" element={<WorkPage />} />
-                <Route path=":usernameprojectpage/:i" element={<ProjectPage />} />
-                <Route path=":usernamecertificatepage/:i" element={<CertificatePage />} />
+                <Route path='/:username/home/' element={<About userID={username} />} />
+                <Route path='/:username/home/education' element={<Education />} />
+                <Route path='/:username/home/skills' element={<Skills />} />
+                <Route path='/:username/home/projects' element={<Projects />} />
+                <Route path='/:username/home/certifications' element={<Certifications />} />
+                <Route path='/:username/home/work' element={<Work />} />
+                <Route path="/:username/home/workpage/:i" element={<WorkPage />} />
+                <Route path="/:username/home/projectpage/:i" element={<ProjectPage />} />
+                <Route path=":username/home/certificatepage/:i" element={<CertificatePage />} />
             </Routes>
             <Contact />
             <Footer />

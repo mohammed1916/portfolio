@@ -1,4 +1,4 @@
-export const schema = {
+export const informationschema = {
     "type": "object",
     "properties": {
         "name": {
@@ -15,7 +15,7 @@ export const schema = {
             "description": "Please enter a link to google photos"
         },
         "email": {
-            "type": "string",
+            "type": "string"
         },
         "whoami": {
             "title": "Short Description",
@@ -24,40 +24,16 @@ export const schema = {
         },
         "description": {
             "type": "string",
-            options: {
-                multi: true
+            "options": {
+                "multi": true
             }
         },
         "location": {
             "type": "string",
             "description": "Please enter city name"
-        },
-        "profiles": {
-            "type": "array",
-            "title": "Profiles",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "media": {
-                        "type": "string",
-                        "description": "Please enter Social Media Site"
-                    },
-                    "url": {
-                        "type": "string",
-                        "description": "Please enter Social Media Site URL"
-                    },
-                    "icon": {
-                        "type": "string",
-                        "description": "Please enter Social Media Site icon"
-                    }
-                }
-            }
-
         }
     },
     "required": [
-
-
         "name",
         "domain",
         "whoami",
@@ -67,12 +43,12 @@ export const schema = {
     ]
 }
 
-export const uischema = {
-    "type": "VerticalLayout",
+export const informationuischema = {
+    "type": "Group",
     "elements": [
         {
             "type": "Label",
-            "text": "Personal Data",
+            "text": "Personal Data"
         },
         {
             "type": "Control",
@@ -90,35 +66,6 @@ export const uischema = {
             "type": "Control",
             "scope": "#/properties/email"
         },
-
-        {
-            "type": "VerticalLayout",
-            "elements": [
-                {
-                    "type": "Control",
-                    "scope": "#/properties/profiles",
-                    "options": {
-                        "elementLabelProp": "name",
-                        "detail": {
-                            "type": "VerticalLayout",
-                            "elements": [
-                                {
-                                    "type": "Control",
-                                    "scope": "#/properties/media"
-                                },
-                                {
-                                    "type": "Control",
-                                    "scope": "#/properties/url"
-                                },
-                                {
-                                    "type": "Control",
-                                    "scope": "#/properties/icon"
-                                }
-                            ]
-                        }
-                    }
-                },]
-        },
         {
             "type": "Control",
             "scope": "#/properties/whoami"
@@ -129,13 +76,12 @@ export const uischema = {
         },
         {
             "type": "Control",
-            "scope": "#/properties/location",
-        }
-
+            "scope": "#/properties/location"
+        },
     ]
 }
 
-export const initialdata = {
+export const informationinitialdata = {
     "name": "Mohammed Abdullah",
     "domain": "Front End and Mobile Application Developer",
     "image": "https://lh3.googleusercontent.com/zKBJCdMsOnBuLrT8lht-_sED6IgCwjI6vEV3rMB_MhTOAuhKnoGP0vwE7HXt0f1u5e2LNmCmyYz5mUiFleRY7SIhKldKHeVR47mfviGKzkgipGgyV9s4aT8NZ7pIGk6GMt2FqeU=w300-h282-p-k",
@@ -160,4 +106,4 @@ export const initialdata = {
             "icon": "../../img/icons/media/post-outline.png"
         }
     ]
-}
+};

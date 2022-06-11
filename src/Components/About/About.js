@@ -1,17 +1,20 @@
+import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { getDatabase, ref, child, get } from "firebase/database";
 import * as React from 'react';
 
 export default function About({ userID }) {
-
+    const params = useParams();
+    var user = params.username;
     const [imagePlaceHolder, setImagePlaceholder] = React.useState();
     const [whoamiPlaceHolder, setWhoamiPlaceholder] = React.useState();
     const [domainPlaceHolder, setDomainPlaceholder] = React.useState();
     const [descriptionPlaceHolder, setDescriptionPlaceholder] = React.useState();
     const dbRef = ref(getDatabase());
 
-    get(child(dbRef, `userID`)).then((snapshot) => {
+    get(child(dbRef, `${user}/information`)).then((snapshot) => {
+        console.log("UserID", params.username);
         if (snapshot.exists()) {
             console.log("val ...", snapshot.val());
             setImagePlaceholder(snapshot.child("image/").val());

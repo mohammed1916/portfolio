@@ -25,8 +25,8 @@ export default function Footer() {
                 <Grid container spacing={5} pt={{ xs: 2, sm: 4 }}>
                     <Grid item xs={12} sm={6} pb={{ xs: 2, sm: 4 }}>
                         <Box borderBottom={2}>Useful Links</Box>
-                        {data.education.map((object) => (
-                            <Box pt={{ xs: 2, sm: 4 }}>
+                        {data.education.map((object, i) => (
+                            <Box key={object['Year of Passing'] + i} pt={{ xs: 2, sm: 4 }}>
                                 <Link href={object.website} color="inherit" underline="hover">
                                     {object.Type}
                                 </Link>
@@ -44,8 +44,8 @@ export default function Footer() {
                                 {data.information.email}
                             </Link>
                         </Box>
-                        {data.information.profiles.map((object) => (
-                            <Box pt={{ xs: 2, sm: 4 }}>
+                        {data.information.profiles.map((object, i) => (
+                            <Box key={object.media + i} pt={{ xs: 2, sm: 4 }}>
                                 <Link href={object.url} color="inherit" underline="hover">
                                     {object.media}
                                 </Link>

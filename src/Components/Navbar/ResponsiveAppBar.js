@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useParams } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -28,7 +29,9 @@ import account from '../../img/icons/logo192.png'
 const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work Experience'];
 
 const ResponsiveAppBar = ({ username }) => {
-	const pages_link = [`${username}/home`, `${username}/home/Education`, `${username}/home/Skills`, `${username}/home/Projects`, `${username}/home/Certifications`, `${username}/home/Work`];
+	const params = useParams();
+	var user = params.username;
+	const pages_link = [`/${user}/home/`, `/${user}/home/Education`, `/${user}/home/Skills`, `/${user}/home/Projects`, `/${user}/home/Certifications`, `/${user}/home/Work`];
 	let navigate = useNavigate();
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -58,7 +61,7 @@ const ResponsiveAppBar = ({ username }) => {
 	const [namePlaceHolder, setNamePlaceholder] = React.useState();
 	const dbRef = ref(getDatabase());
 
-	get(child(dbRef, `information/`)).then((snapshot) => {
+	get(child(dbRef, `${user}/information/`)).then((snapshot) => {
 		if (snapshot.exists()) {
 			// console.log("val ...", snapshot.val());
 			setNamePlaceholder(snapshot.child("name/").val());
@@ -133,7 +136,7 @@ const ResponsiveAppBar = ({ username }) => {
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						{pages.map((page, index) => (
-							<a href={pages_link[index]}>
+							<a key={page} href={pages_link[index]}>
 								<Button
 									key={page}
 									onClick={handleCloseNavMenu}
@@ -145,7 +148,7 @@ const ResponsiveAppBar = ({ username }) => {
 					</Box>
 
 					<Box sx={{ flexGrow: 0 }}>
-						<Tooltip title="Contact Me">
+						<Tooltip title="Sign Out">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 								<Avatar alt="Contact" src={account} variant="square" />
 							</IconButton>
