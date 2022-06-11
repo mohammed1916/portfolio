@@ -20,26 +20,27 @@ import Work from '../Work/Work';
 import WorkPage from '../Work/WorkPage';
 
 
-function Home({ username }) {
-    return (
-        <>
-            <ResponsiveAppBar
-                userID={username} />
-            <Routes>
-                <Route path='/:username/home/' element={<About userID={username} />} />
-                <Route path='/:username/home/education' element={<Education />} />
-                <Route path='/:username/home/skills' element={<Skills />} />
-                <Route path='/:username/home/projects' element={<Projects />} />
-                <Route path='/:username/home/certifications' element={<Certifications />} />
-                <Route path='/:username/home/work' element={<Work />} />
-                <Route path="/:username/home/workpage/:i" element={<WorkPage />} />
-                <Route path="/:username/home/projectpage/:i" element={<ProjectPage />} />
-                <Route path=":username/home/certificatepage/:i" element={<CertificatePage />} />
-            </Routes>
-            <Contact />
-            <Footer />
-            <DownloadFooter />
-        </>
-    );
+export default class Home extends React.Component {
+    render() {
+        return (
+            <>
+                <ResponsiveAppBar
+                    userID={this.props.userID} />
+                <Routes>
+                    <Route path='/' element={<About userID={this.props.userID} />} />
+                    <Route path='/education' element={<Education />} />
+                    <Route path='/skills' element={<Skills />} />
+                    <Route path='/projects' element={<Projects />} />
+                    <Route path='/certifications' element={<Certifications />} />
+                    <Route path='/work' element={<Work />} />
+                    <Route path="/workpage/:i" element={<WorkPage />} />
+                    <Route path="/projectpage/:i" element={<ProjectPage />} />
+                    <Route path="/certificatepage/:i" element={<CertificatePage />} />
+                </Routes>
+                <Contact />
+                <Footer />
+                <DownloadFooter />
+            </>
+        );
+    }
 }
-export default Home;

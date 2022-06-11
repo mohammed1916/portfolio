@@ -124,12 +124,12 @@ function App() {
             />}
         />
         <Route
-          path=':username/home/*'
+          path='/:username/home/*'
           element={
             <Home
               userID={username}
             />} />
-        <Route path=':username/form' element={
+        <Route path='/:username/form' element={
           <Form
             userID={username}
           />}

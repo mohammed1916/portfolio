@@ -31,7 +31,7 @@ const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Wo
 const ResponsiveAppBar = ({ username }) => {
 	const params = useParams();
 	var user = params.username;
-	const pages_link = [`/${user}/home/`, `/${user}/home/Education`, `/${user}/home/Skills`, `/${user}/home/Projects`, `/${user}/home/Certifications`, `/${user}/home/Work`];
+	const pages_link = [`/${user}/home`, `/${user}/home/Education`, `/${user}/home/Skills`, `/${user}/home/Projects`, `/${user}/home/Certifications`, `/${user}/home/Work`];
 	let navigate = useNavigate();
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
