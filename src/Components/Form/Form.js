@@ -11,14 +11,10 @@ import {
     materialRenderers,
     materialCells,
 } from '@jsonforms/material-renderers';
-import {
-    useParams
-} from "react-router-dom";
-import { Button, Grid, Paper, Typography } from '@mui/material';
-import { getDatabase, ref, child, get, set, update } from "firebase/database";
+import { Button, Grid, Paper } from '@mui/material';
+import { getDatabase, ref, set } from "firebase/database";
 import DownloadFooter from '../footer/Download/DownloadFooter';
 import FormNav from '../Navbar/FormNav';
-import { render } from '@testing-library/react';
 
 class Form extends React.Component {
 
@@ -55,60 +51,33 @@ class Form extends React.Component {
         });
         console.log(this.state.socialprofilesdata.profiles.length);
         console.log(this.state.socialprofilesdata.profiles[0]["media"]);
-        for (var i = 0; i < this.state.socialprofilesdata.profiles.length; i++) {
-            set(ref(db, `${this.props.userID}/socialprofiles`), {
-                media: this.state.socialprofilesdata.profiles[i]["media"],
-                url: this.state.socialprofilesdata.profiles[i]["url"],
-                icon: this.state.socialprofilesdata.profiles[i]["icon"],
-            });
-        };
-        console.log(this.state.educationdata.education.length);
-        for (var i = 0; i < this.state.educationdata.education.length; i++) {
-            set(ref(db, `${this.props.userID}/education`), {
-                Institution: this.state.educationdata.education[i]["Institution"],
-                Program: this.state.educationdata.education[i]["Program"],
-                YearOfPassing: this.state.educationdata.education[i]["YearOfPassing"],
-                Grade: this.state.educationdata.education[i]["Grade"],
-                website: this.state.educationdata.education[i]["website"],
-            });
-        };
-        for (var i = 0; i < this.state.workdata.work.length; i++) {
-            set(ref(db, `${this.props.userID}/work`), {
-                company: this.state.workdata.work[i]["company"],
-                location: this.state.workdata.work[i]["location"],
-                title: this.state.workdata.work[i]["title"],
-                thumbnail: this.state.workdata.work[i]["thumbnail"],
-                dates: this.state.workdata.work[i]["dates"],
-                description: this.state.workdata.work[i]["description"],
-            });
-        }
-        for (var i = 0; i < this.state.skillsdata.skills.length; i++) {
-            set(ref(db, `${this.props.userID}/skills`), {
-                type: this.state.skillsdata.skills[i]["type"],
-                KnowledgeInAdvanceTopics: this.state.skillsdata.skills[i]["KnowledgeInAdvanceTopics"],
-                KnowledgeInMainConcepts: this.state.skillsdata.skills[i]["KnowledgeInMainConcepts"],
-                Beginner: this.state.skillsdata.skills[i]["Beginner"],
-            });
-        }
-        for (var i = 0; i < this.state.projectsdata.projects.length; i++) {
-            set(ref(db, `${this.props.userID}/projects`), {
-                title: this.state.projectsdata.projects[i]["title"],
-                type: this.state.projectsdata.projects[i]["type"],
-                thumbnail: this.state.projectsdata.projects[i]["thumbnail"],
-                link: this.state.projectsdata.projects[i]["link"],
-                description: this.state.projectsdata.projects[i]["description"],
-                gallery: this.state.projectsdata.projects[i]["gallery"],
-            });
-        }
-        for (var i = 0; i < this.state.certificatesdata.certificates.length; i++) {
-            set(ref(db, `${this.props.userID}/certificates`), {
-                title: this.state.certificatesdata.certificates[i]["title"],
-                date: this.state.certificatesdata.certificates[i]["date"],
-                institution: this.state.certificatesdata.certificates[i]["institution"],
-                thumbnail: this.state.certificatesdata.certificates[i]["thumbnail"],
-                description: this.state.certificatesdata.certificates[i]["description"],
-            });
-        }
+        set(ref(db, `${this.props.userID}/socialmediaprofilesinfo`), {
+            profiles: this.state.socialprofilesdata["profiles"],
+        });
+        set(ref(db, `${this.props.userID}/educationinfo`), {
+            education: this.state.educationdata["education"],
+        });
+
+
+        set(ref(db, `${this.props.userID}/workinfo`), {
+            work: this.state.workdata["work"],
+
+        });
+
+        set(ref(db, `${this.props.userID}/skillsinfo`), {
+            skills: this.state.skillsdata["skills"],
+        });
+
+
+        set(ref(db, `${this.props.userID}/projectsinfo`), {
+            projects: this.state.projectsdata["projects"],
+        });
+
+
+        set(ref(db, `${this.props.userID}/certificatesinfo`), {
+            certificates: this.state.certificatesdata["certificates"],
+        });
+
     }
 
     render() {

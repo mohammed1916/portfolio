@@ -56,7 +56,7 @@ export default function Footer() {
 
                 </Grid>
                 <Divider />
-                <Typography textAlign="center" color={'white'} pt={{ xs: 1, sm: 2 }}><Link href="#" color="inherit" underline="hover">Copyright {new Date().getFullYear()} by {data.information.name}. All Rights Reserved</Link></Typography>
+                <Typography textAlign="center" color={'white'} pt={{ xs: 1, sm: 2 }}>Copyright {new Date().getFullYear()} by {data.information.name}. All Rights Reserved</Typography>
             </Container>
         </Box >
     );

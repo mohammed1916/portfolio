@@ -28,7 +28,7 @@ export default class Home extends React.Component {
                     userID={this.props.userID} />
                 <Routes>
                     <Route path='/' element={<About userID={this.props.userID} />} />
-                    <Route path='/education' element={<Education />} />
+                    <Route path='/education' element={<Education userID={this.props.userID} />} />
                     <Route path='/skills' element={<Skills />} />
                     <Route path='/projects' element={<Projects />} />
                     <Route path='/certifications' element={<Certifications />} />

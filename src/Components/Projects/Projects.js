@@ -1,4 +1,4 @@
-
+import { useParams } from "react-router-dom";
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
@@ -13,9 +13,11 @@ import {
 } from "react-router-dom";
 
 export default function Projects() {
+    const params = useParams();
+    var user = params.username;
     let navigate = useNavigate();
     const nav = (index) => {
-        navigate(`/home/projectpage/${index}`)
+        navigate(`/${user}/home/projectpage/${index}`)
     }
 
     return (
@@ -29,22 +31,20 @@ export default function Projects() {
                     <Typography textAlign="center" fontFamily={'Righteous'} fontSize={'40px'} color={'black'} pt={{ xs: 1, sm: 2 }}>Projects</Typography>
                     <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         {data.projects.map((item, index) => (
-                            <Button onClick={() => nav(index)}>
-                                <Card key={index} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3)" }}  >
-                                    <CardActionArea>
-                                        <CardMedia
-                                            component="img"
-                                            height="200"
-                                            image={item.thumbnail}
-                                        />
-                                        <CardContent>
-                                            <Typography color={'black'} gutterBottom variant="h6" component="div" textAlign={'center'}>
-                                                {item.title}
-                                            </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            </Button>
+                            <Card key={index + index} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3)" }} onClick={() => nav(index)} >
+                                <CardActionArea>
+                                    <CardMedia
+                                        component="img"
+                                        height="200"
+                                        image={item.thumbnail}
+                                    />
+                                    <CardContent>
+                                        <Typography color={'black'} gutterBottom variant="h6" component="div" textAlign={'center'}>
+                                            {item.title}
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
                         ))}
                     </Box>
                 </Container>
