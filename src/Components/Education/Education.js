@@ -106,54 +106,24 @@ export default function Education() {
                 <Container sx={{ width: '100%' }}>
                     <Typography textAlign="center" fontFamily={'Righteous'} fontSize={'40px'} color={'black'} pt={{ xs: 1, sm: 2 }}>Education</Typography>
                     <Box bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
-                        <Accordion key={0} expanded={expanded === `panel${0}`} onChange={handleChange(`panel${0}`)}>
-                            <AccordionSummary aria-controls={`panel${0}d-content`} id={`panel${0}d-header`}>
-                                <Typography>{ProgramPlaceHolder[0]}</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    {`Institution: ${InstitutionPlaceHolder[0]}`}
-                                </Typography>
-                                <Typography>
-                                    {`Grade: ${GradePlaceHolder[0]}`}
-                                </Typography>
-                                <Typography>
-                                    {`Year of Passing: ${YearOfPassingPlaceHolder[0]}`}
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion key={1} expanded={expanded === `panel${1}`} onChange={handleChange(`panel${1}`)}>
-                            <AccordionSummary aria-controls={`panel${1}d-content`} id={`panel${1}d-header`}>
-                                <Typography>{ProgramPlaceHolder[1]}</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    {`Institution: ${InstitutionPlaceHolder[1]}`}
-                                </Typography>
-                                <Typography>
-                                    {`Grade: ${GradePlaceHolder[1]}`}
-                                </Typography>
-                                <Typography>
-                                    {`Year of Passing: ${YearOfPassingPlaceHolder[1]}`}
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion key={2} expanded={expanded === `panel${2}`} onChange={handleChange(`panel${2}`)}>
-                            <AccordionSummary aria-controls={`panel${2}d-content`} id={`panel${2}d-header`}>
-                                <Typography>{ProgramPlaceHolder[2]}</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    {`Institution: ${InstitutionPlaceHolder[2]}`}
-                                </Typography>
-                                <Typography>
-                                    {`Grade: ${GradePlaceHolder[2]}`}
-                                </Typography>
-                                <Typography>
-                                    {`Year of Passing: ${YearOfPassingPlaceHolder[2]}`}
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
+                        {educationItems.map((item, index) => (
+                            <Accordion key={index} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
+                                <AccordionSummary aria-controls={`panel${index}d-content`} id={`panel${index}d-header`}>
+                                    <Typography>{item.Program}</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography>
+                                        {`Institution: ${item.Institution}`}
+                                    </Typography>
+                                    <Typography>
+                                        {`Grade: ${item.Grade}`}
+                                    </Typography>
+                                    <Typography>
+                                        {`Year of Passing: ${item.YearOfPassing}`}
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
+                        ))}
                     </Box>
                 </Container>
             </Box>
