@@ -23,5 +23,10 @@
         ]
       }
     ]
+  },
+  "functions": {
+    "predeploy": [
+      "npm ci"
+    ]
   }
 }
