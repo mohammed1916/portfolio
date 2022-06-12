@@ -11,8 +11,6 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import { getDatabase, ref, child, get } from "firebase/database";
 
-import { data } from '../../data'
-
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -58,23 +56,7 @@ export default function Education() {
     const [YearOfPassingPlaceHolder, setYearOfPassingPlaceholder] = React.useState([]);
     const [GradePlaceHolder, setGradePlaceholder] = React.useState([]);
     const [websitePlaceHolder, setwebsitePlaceholder] = React.useState([]);
-    var data;
-    // get(child(dbRef, `${user}/educationinfo`)).then((snapshot) => {
-    //     console.log("UserID", user);
-    //     if (snapshot.exists()) {
-    //         console.log("val ...", snapshot.val());
-    //         setInstitutionPlaceholder(snapshot.child("/education/Institution").val());
-    //         setProgramPlaceholder(snapshot.child("/education/Program").val());
-    //         setYearOfPassingPlaceholder(snapshot.child("/education/YearOfPassing").val());
-    //         setGradePlaceholder(snapshot.child("/education/Grade").val());
-    //         setwebsitePlaceholder(snapshot.child("/education/website").val());
-    //         console.log("InstitutionPlaceHolder", InstitutionPlaceHolder);
-    //     } else {
-    //         console.log("No data available in Education.js");
-    //     }
-    // }).catch((error) => {
-    //     console.error("error ...", error);
-    // });
+
     useEffect(() => {
         get(child(dbRef, `${user}/educationinfo/education`)).then((snapshot) => {
             console.log("UserID", user);
@@ -99,12 +81,6 @@ export default function Education() {
         });
     }, []);
 
-    const loop = (times, callback) => {
-        for (let i = 0; i < times; i++) {
-            callback(i);
-        }
-    };
-
     function setValues(i) {
         setInstitutionPlaceholder(oldArray => [...oldArray, educationItems[i]["Institution"]]);
         setProgramPlaceholder(oldArray => [...oldArray, educationItems[i]["Program"]]);
@@ -114,13 +90,6 @@ export default function Education() {
         // console.log(InstitutionPlaceHolder[i]);
     }
 
-    // var ref = firebase.database().ref().child('/scenes/' + projId);
-    // ref.once('value', function (snap) {
-    //     snap.forEach(function (item) {
-    //         var itemVal = item.val();
-    //         keys.push(itemVal);
-    //     });
-    // });
 
     const [expanded, setExpanded] = React.useState('panel1');
     const handleChange = (panel) => (event, newExpanded) => {
