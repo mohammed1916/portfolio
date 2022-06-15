@@ -15,6 +15,7 @@ import {
 } from "react-router-dom";
 
 var projectItems = [];
+var projectItemsLength = 0;
 export default function Projects() {
     const params = useParams();
     var user = params.username;
@@ -32,32 +33,33 @@ export default function Projects() {
     const [galleryPlaceHolder, setgalleryPlaceholder] = React.useState([]);
 
     useEffect(() => {
-        let isMounted = true;
-        if (isMounted) {
-            get(child(dbRef, `${user}/projectsinfo/projects/`)).then((snapshot) => {
-                console.log("UserID", user);
-                if (snapshot.exists()) {
-                    snapshot.forEach(function (item) {
-                        var itemVal = item.val();
-                        projectItems.push(itemVal);
-                        // console.log("val ...", itemVal);
-                    });
-                    // console.log("projectItems[0][type]", projectItems[0]["type"]);
-                    console.log("projectItems", projectItems.length);
-                    projectItems.map(
-                        (object, index) => (
-                            setValues(index)
-                        )
-                    );
-                } else {
-                    console.log("No data available in Education.js");
-                }
-            }).catch((error) => {
-                console.error("error ...", error);
-            });
-        }
-        return () => { isMounted = false };
+        fetch();
     }, []);
+
+    function fetch() {
+        get(child(dbRef, `${user}/projectsinfo/projects/`)).then((snapshot) => {
+            console.log("UserID", user);
+            if (snapshot.exists() && projectItemsLength == 0) {
+                snapshot.forEach(function (item) {
+                    var itemVal = item.val();
+                    projectItems.push(itemVal);
+                    // console.log("val ...", itemVal);
+                });
+                // console.log("projectItems[0][type]", projectItems[0]["type"]);
+                console.log("projectItems", projectItems.length);
+                projectItemsLength = projectItems.length;
+                projectItems.map(
+                    (object, index) => (
+                        setValues(index)
+                    )
+                );
+            } else {
+                console.log("No data available in Education.js");
+            }
+        }).catch((error) => {
+            console.error("error ...", error);
+        });
+    }
 
     function setValues(i) {
         settitlePlaceholder(oldArray => [...oldArray, projectItems[i]["title"]]);

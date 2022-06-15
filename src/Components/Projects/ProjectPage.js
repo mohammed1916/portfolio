@@ -7,12 +7,15 @@ import Box from '@mui/material/Box'
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { getDatabase, ref, child, get } from "firebase/database";
-
+import { useNavigate } from 'react-router-dom';
 
 var projectItems = [];
+var fetchData = false;
 export default function ProjectPage() {
     const params = useParams();
     var user = params.username;
+
+    const navigation = useNavigate();
 
     const dbRef = ref(getDatabase());
     const [titlePlaceHolder, settitlePlaceholder] = React.useState([]);
@@ -23,6 +26,10 @@ export default function ProjectPage() {
     const [galleryPlaceHolder, setgalleryPlaceholder] = React.useState([[]]);
 
     useEffect(() => {
+        fetch();
+    }, []);
+
+    function fetch() {
         get(child(dbRef, `${user}/projectsinfo/projects/`)).then((snapshot) => {
             console.log("UserID", user);
             if (snapshot.exists()) {
@@ -39,12 +46,12 @@ export default function ProjectPage() {
                     )
                 );
             } else {
-                console.log("No data available in Education.js");
+                console.log("No data available in ProjectPage.js");
             }
         }).catch((error) => {
             console.error("error ...", error);
         });
-    }, []);
+    }
 
     function setValues(i) {
         settitlePlaceholder(oldArray => [...oldArray, projectItems[i]["title"]]);
