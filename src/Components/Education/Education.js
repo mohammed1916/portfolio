@@ -95,7 +95,6 @@ export default function Education() {
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
-    console.log(InstitutionPlaceHolder[0]);
     return (
         <>
             <Box

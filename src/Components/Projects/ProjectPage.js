@@ -1,15 +1,60 @@
+import * as React from 'react';
+import { useParams } from "react-router-dom";
+import { useEffect } from 'react';
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box'
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { data } from '../../data'
-
-import { useParams } from "react-router-dom";
+import { getDatabase, ref, child, get } from "firebase/database";
 
 
+var projectItems = [];
 export default function ProjectPage() {
-    let params = useParams();
+    const params = useParams();
+    var user = params.username;
+
+    const dbRef = ref(getDatabase());
+    const [titlePlaceHolder, settitlePlaceholder] = React.useState([]);
+    const [typePlaceHolder, settypePlaceholder] = React.useState([]);
+    const [linkPlaceHolder, setlinkPlaceholder] = React.useState([]);
+    const [thumbnailPlaceHolder, setthumbnailPlaceholder] = React.useState([]);
+    const [descriptionPlaceHolder, setdescriptionPlaceholder] = React.useState([]);
+    const [galleryPlaceHolder, setgalleryPlaceholder] = React.useState([[]]);
+
+    useEffect(() => {
+        get(child(dbRef, `${user}/projectsinfo/projects/`)).then((snapshot) => {
+            console.log("UserID", user);
+            if (snapshot.exists()) {
+                snapshot.forEach(function (item) {
+                    var itemVal = item.val();
+                    projectItems.push(itemVal);
+                    // console.log("val ...", itemVal);
+                });
+                // console.log("projectItems[0][type]", projectItems[0]["type"]);
+                console.log("projectItems", projectItems.length);
+                projectItems.map(
+                    (object, index) => (
+                        setValues(index)
+                    )
+                );
+            } else {
+                console.log("No data available in Education.js");
+            }
+        }).catch((error) => {
+            console.error("error ...", error);
+        });
+    }, []);
+
+    function setValues(i) {
+        settitlePlaceholder(oldArray => [...oldArray, projectItems[i]["title"]]);
+        settypePlaceholder(oldArray => [...oldArray, projectItems[i]["type"]]);
+        setlinkPlaceholder(oldArray => [...oldArray, projectItems[i]["link"]]);
+        setthumbnailPlaceholder(oldArray => [...oldArray, projectItems[i]["thumbnail"]]);
+        setdescriptionPlaceholder(oldArray => [...oldArray, projectItems[i]["description"]]);
+        setgalleryPlaceholder(oldArray => [...oldArray, projectItems[i]["gallery"]]);
+        // console.log(titlePlaceHolder[i]);
+    }
 
     return (
         <>
@@ -22,7 +67,7 @@ export default function ProjectPage() {
                     <Typography textAlign="center" fontFamily={'Righteous'} fontSize={'40px'} color={'black'} pt={{ xs: 1, sm: 2 }}>Project</Typography>
                     <Box display={'flex'} flexDirection={'column'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         <Typography color={'black'} gutterBottom variant="h5" component="div" textAlign={'center'} paddingBottom={'8px'}>
-                            {data.projects[params.i].title}
+                            {titlePlaceHolder[params.i]}
                         </Typography>
 
                         <Box display={'flex'} flexDirection={'row'} >
@@ -30,16 +75,16 @@ export default function ProjectPage() {
                                 {`Application Type:`}
                             </Typography>
                             <Typography color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${data.projects[params.i].type}`}
+                                {`${typePlaceHolder[params.i]}`}
                             </Typography>
                         </Box>
                         <Box display={'flex'} flexDirection={'row'} >
                             <Typography color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {`Link: `}
                             </Typography>
-                            <a href={data.projects[params.i].link}>
+                            <a href={linkPlaceHolder[params.i]}>
                                 <Typography color={'black'} gutterBottom variant="h6" component="div"  >
-                                    {`${data.projects[params.i].link}`}
+                                    {`${linkPlaceHolder[params.i]}`}
                                 </Typography>
                             </a>
                         </Box>
@@ -48,22 +93,23 @@ export default function ProjectPage() {
                                 {`Description: `}
                             </Typography>
                             <Typography color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${data.projects[params.i].description}`}
+                                {`${descriptionPlaceHolder[params.i]}`}
                             </Typography>
                         </Box>
                         <Typography color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                             Sample Images:
                         </Typography>
-                        <ImageList variant="masonry" cols={3} gap={8} display={'flex'} aligncontents={'center'}>
-                            {data.projects[params.i].gallery.map((item) => (
-                                <ImageListItem key={item}>
-                                    <img
-                                        src={`${item}?w=248&fit=crop&auto=format`}
-                                        srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                        loading="lazy"
-                                    />
-                                </ImageListItem>
-                            ))}
+                        <ImageList variant="masonry" cols={3} gap={8} >
+
+                            <ImageListItem display={'flex'} >
+                                <img
+                                    src={`${thumbnailPlaceHolder[params.i]}?w=248&fit=crop&auto=format`}
+                                    srcSet={`${thumbnailPlaceHolder[params.i]}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                    loading="lazy"
+                                    alt='image'
+                                    style={{ "alignSelf": 'center' }}
+                                />
+                            </ImageListItem>
                         </ImageList>
 
                     </Box>

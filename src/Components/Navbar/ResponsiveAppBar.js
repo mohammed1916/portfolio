@@ -55,7 +55,7 @@ const ResponsiveAppBar = ({ username }) => {
 		signOut(getAuth());
 		sessionStorage.removeItem('Auth Token');
 		console.log("signout ...");
-		navigate('/login')
+		navigate('/')
 	}
 
 	const [namePlaceHolder, setNamePlaceholder] = React.useState();

@@ -20,7 +20,7 @@ class Form extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log("this.props.userID", this.props);
+        console.log("this.props.userID", this.props.userID);
         this.state = {
             informationdata: informationinitialdata,
             socialprofilesdata: socialprofilesinitialdata,
@@ -30,13 +30,14 @@ class Form extends React.Component {
             certificatesdata: certificatesinitialdata,
             projectsdata: projectsinitialdata
         };
+
     }
     update() {
         let authToken = sessionStorage.getItem('Auth Token')
         if (authToken) {
             console.log(authToken);
         } else {
-            this.navigate('/login')
+            this.props.navigate('/login')
         }
         const db = getDatabase();
         console.log(this.props.userID);

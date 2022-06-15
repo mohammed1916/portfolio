@@ -16,6 +16,7 @@ import Home from './Components/Home/Home';
 import Form from './Components/Form/Form';
 import Register from './Components/Register/Register';
 
+var emailOfUser = '';
 function App() {
   //Handle Snackbar
   const [open, setOpen] = React.useState(false);
@@ -58,8 +59,8 @@ function App() {
     console.log("loginHandleSubmit function");
     signInWithEmailAndPassword(authentication, email, password)
       .then((response) => {
+        emailOfUser = getUsername(email)
         setUsername(getUsername(email))
-        //sometimes username takes more time to get defined, so temporarily a function call is being used.
         navigate(`${getUsername(email)}/form`)
         console.log("signin ....")
         console.log(username)
@@ -78,14 +79,16 @@ function App() {
   }
 
   function registerHandleSubmit() {
-    console.log(1);
     const authentication = getAuth();
     console.log("registerHandleSubmit function");
     createUserWithEmailAndPassword(authentication, email, password)
       .then((response) => {
+        emailOfUser = getUsername(email)
         setUsername(getUsername(email));
         navigate(`${getUsername(email)}/form`);
         console.log("register ....");
+        console.log(username)
+        console.log(email)
         sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken);
       })
       .catch(function (error) {
@@ -104,7 +107,7 @@ function App() {
     <>
       <Routes>
         <Route
-          path='/login'
+          path='/'
           element={
             <SignIn
               title="Login"
@@ -127,11 +130,12 @@ function App() {
           path='/:username/home/*'
           element={
             <Home
-              userID={username}
+              userID={emailOfUser}
             />} />
         <Route path='/:username/form' element={
           <Form
-            userID={username}
+            userID={emailOfUser}
+            navigate={navigate}
           />}
         />
 

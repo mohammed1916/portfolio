@@ -1,13 +1,57 @@
+import * as React from 'react';
+import { useParams } from "react-router-dom";
+import { useEffect } from 'react';
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box'
-import { data } from '../../data'
+import { getDatabase, ref, child, get } from "firebase/database";
 
-import { useParams } from "react-router-dom";
-
-
+var certificateItems = [];
 export default function CertificatePage() {
-    let params = useParams();
+    const params = useParams();
+    var user = params.username;
+
+    const dbRef = ref(getDatabase());
+    const [titlePlaceHolder, settitlePlaceholder] = React.useState([]);
+    const [datePlaceHolder, setdatePlaceholder] = React.useState([]);
+    const [institutionPlaceHolder, setinstitutionPlaceholder] = React.useState([]);
+    const [thumbnailPlaceHolder, setthumbnailPlaceholder] = React.useState([]);
+    const [descriptionPlaceHolder, setdescriptionPlaceholder] = React.useState([]);
+
+    useEffect(() => {
+        get(child(dbRef, `${user}/certificatesinfo/certificates/`)).then((snapshot) => {
+            console.log("UserID", user);
+            if (snapshot.exists()) {
+                snapshot.forEach(function (item) {
+                    var itemVal = item.val();
+                    certificateItems.push(itemVal);
+                    // console.log("val ...", itemVal);
+                });
+                // console.log("certificateItems[0][date]", certificateItems[0]["date"]);
+                console.log("certificateItems", certificateItems.length);
+                certificateItems.map(
+                    (object, index) => (
+                        setValues(index)
+                    )
+                );
+            } else {
+                console.log("No data available in Education.js");
+            }
+        }).catch((error) => {
+            console.error("error ...", error);
+        });
+    }, []);
+
+    function setValues(i) {
+        settitlePlaceholder(oldArray => [...oldArray, certificateItems[i]["title"]]);
+        setdatePlaceholder(oldArray => [...oldArray, certificateItems[i]["date"]]);
+        setinstitutionPlaceholder(oldArray => [...oldArray, certificateItems[i]["institution"]]);
+        setthumbnailPlaceholder(oldArray => [...oldArray, certificateItems[i]["thumbnail"]]);
+        setdescriptionPlaceholder(oldArray => [...oldArray, certificateItems[i]["description"]]);
+        // console.log(titlePlaceHolder[i]);
+    }
+
+
 
     return (
         <>
@@ -23,15 +67,15 @@ export default function CertificatePage() {
 
 
                         <Typography color={'black'} gutterBottom variant="h5" component="div" textAlign={'center'} paddingBottom={'8px'}>
-                            {data.certifications[params.i].title}
+                            {titlePlaceHolder[params.i]}
                         </Typography>
-                        <img src={data.certifications[params.i].thumbnail} />
+                        <img src={thumbnailPlaceHolder[params.i]} />
                         <Box display={'flex'} flexDirection={'row'} >
                             <Typography color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {"Date: "}
                             </Typography>
                             <Typography color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${data.certifications[params.i].date}`}
+                                {`${datePlaceHolder[params.i]}`}
                             </Typography>
                         </Box>
 
@@ -40,7 +84,7 @@ export default function CertificatePage() {
                                 {`Institution:`}
                             </Typography>
                             <Typography color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${data.certifications[params.i].Institution}`}
+                                {`${institutionPlaceHolder[params.i]}`}
                             </Typography>
                         </Box>
                         <Box display={'flex'} flexDirection={'row'} >
@@ -48,7 +92,7 @@ export default function CertificatePage() {
                                 {`Description: `}
                             </Typography>
                             <Typography color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${data.certifications[params.i].description}`}
+                                {`${descriptionPlaceHolder[params.i]}`}
                             </Typography>
                         </Box>
                     </Box>
