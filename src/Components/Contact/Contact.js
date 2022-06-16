@@ -2,25 +2,69 @@ import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box'
 
+import { getDatabase, ref, child, get } from "firebase/database";
+import { useParams } from "react-router-dom";
+import * as React from 'react';
+import { useEffect } from 'react';
+
+
 import { data } from '../../data'
 import { Divider } from '@mui/material';
 
+var mediaItems = [];
 export default function Contact() {
+    const params = useParams();
+    var user = params.username;
+    const [mediaPlaceHolder, setmediaPlaceholder] = React.useState([]);
+    const [urlPlaceHolder, seturlPlaceholder] = React.useState([]);
+    const [iconPlaceHolder, seticonPlaceholder] = React.useState([]);
+    const dbRef = ref(getDatabase());
+
+    useEffect(() => {
+        get(child(dbRef, `${user}/socialmediaprofilesinfo/profiles`)).then((snapshot) => {
+            console.log("UserID", user);
+            if (snapshot.exists()) {
+                snapshot.forEach(function (item) {
+                    var itemVal = item.val();
+                    mediaItems.push(itemVal);
+                    // console.log("val ...", itemVal);
+                });
+                // console.log("mediaItems[0][date]", mediaItems[0]["date"]);
+                console.log("mediaItems", mediaItems.length);
+                mediaItems.map(
+                    (object, index) => (
+                        setValues(index)
+                    )
+                );
+            } else {
+                console.log("No data available in Education.js");
+            }
+        }).catch((error) => {
+            console.error("error ...", error);
+        });
+    }, []);
+
+    function setValues(i) {
+        setmediaPlaceholder(oldArray => [...oldArray, mediaItems[i]["media"]]);
+        seturlPlaceholder(oldArray => [...oldArray, mediaItems[i]["url"]]);
+        seticonPlaceholder(oldArray => [...oldArray, mediaItems[i]["icon"]]);
+        // console.log(titlePlaceHolder[i]);
+    }
 
     return (
         <>
             <Divider sx={{ margin: "20px" }} />
             <Box marginBottom={'20px'} display={'flex'} flexWrap={'wrap'} justifyContent='center'>
-                {data.information.profiles.map((object, index) => (
-                    <Box key={object.url} margin={'10px'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
-                        <a href={object.url}>
+                {mediaItems.map((object, index) => (
+                    <Box key={urlPlaceHolder[index]} margin={'10px'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
+                        <a href={urlPlaceHolder[index]} >
                             <CardHeader
                                 avatar={
-                                    <Avatar src={object.icon} />
+                                    <Avatar src={iconPlaceHolder[index]} />
 
                                 }
-                                title={object.media}
-                                subheader={object.url}
+                                title={mediaPlaceHolder[index]}
+                                subheader={urlPlaceHolder[index]}
                             />
                         </a>
                     </Box>
