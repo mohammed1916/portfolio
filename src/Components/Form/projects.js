@@ -6,14 +6,14 @@ export const projectsschema = {
         "properties": {
             "title": {
                 "type": "string",
-                "description": "Please enter type of Skill"
+                "description": "Please enter title for this project"
             },
             "type": {
-                "title": "Knowledge In Advance Topics",
+                "title": "Domain of Project",
                 "type": "string",
             },
             "thumbnail": {
-                "title": "Knowledge In Main Concepts",
+                "title": "Thumbnail",
                 "type": "string",
             },
             "link": {
@@ -23,7 +23,7 @@ export const projectsschema = {
                 "type": "string",
             },
             "gallery": {
-                "type": "string",
+                "type": "array",
             },
         },
         "required": [

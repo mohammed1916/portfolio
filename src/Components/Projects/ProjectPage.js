@@ -4,13 +4,20 @@ import { useEffect } from 'react';
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box'
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import { getDatabase, ref, child, get } from "firebase/database";
+import { getDatabase, ref, child, get, increment } from "firebase/database";
 import { useNavigate } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { Button, CardActionArea } from '@mui/material';
 
 var projectItems = [];
-var fetchData = false;
+var projectGalleryItems = [];
+var gallery = [
+    require('../../Components/Projects/Images/0/1.jpeg'),
+    require('../../Components/Projects/Images/0/2.jpeg'),
+    require('../../Components/Projects/Images/0/3.jpeg')
+];
 export default function ProjectPage() {
     const params = useParams();
     var user = params.username;
@@ -23,7 +30,7 @@ export default function ProjectPage() {
     const [linkPlaceHolder, setlinkPlaceholder] = React.useState([]);
     const [thumbnailPlaceHolder, setthumbnailPlaceholder] = React.useState([]);
     const [descriptionPlaceHolder, setdescriptionPlaceholder] = React.useState([]);
-    const [galleryPlaceHolder, setgalleryPlaceholder] = React.useState([[]]);
+    const [galleryPlaceHolder, setgalleryPlaceholder] = React.useState([]);
 
     useEffect(() => {
         fetch();
@@ -38,11 +45,38 @@ export default function ProjectPage() {
                     projectItems.push(itemVal);
                     // console.log("val ...", itemVal);
                 });
-                // console.log("projectItems[0][type]", projectItems[0]["type"]);
-                console.log("projectItems", projectItems.length);
+                // console.log("projectItems[0][gallery]", projectItems[0]["gallery"]);
+                // console.log("projectItems", projectItems.length);
                 projectItems.map(
                     (object, index) => (
                         setValues(index)
+                    )
+                );
+            } else {
+                console.log("No data available in ProjectPage.js");
+            }
+        }).catch((error) => {
+            console.error("error ...", error);
+        });
+        var increment = 0
+        get(child(dbRef, `${user}/galleryinfo/gallery/`)).then((snapshot) => {
+            console.log("UserID", user);
+            if (snapshot.exists()) {
+                snapshot.forEach(function (item, index) {
+                    var itemVal = item.val();
+                    console.log("Increment", increment);
+                    if (increment == params.i) {
+                        projectGalleryItems.push(itemVal);
+                    }
+                    increment += 1;
+
+                    console.log("val g...", itemVal);
+                });
+                // console.log("projectItems[0][gallery]", projectItems[0]["gallery"]);
+                // console.log("projectGalleryItems", projectGalleryItems.length);
+                projectGalleryItems.map(
+                    (object, index) => (
+                        setGalleryValues(index)
                     )
                 );
             } else {
@@ -60,8 +94,12 @@ export default function ProjectPage() {
         setthumbnailPlaceholder(oldArray => [...oldArray, projectItems[i]["thumbnail"]]);
         setdescriptionPlaceholder(oldArray => [...oldArray, projectItems[i]["description"]]);
         setgalleryPlaceholder(oldArray => [...oldArray, projectItems[i]["gallery"]]);
-        // console.log(titlePlaceHolder[i]);
     }
+    function setGalleryValues(i) {
+        setgalleryPlaceholder(oldArray => [...oldArray, projectGalleryItems[i][i]]);
+        console.log("projectGalleryItems[i]] ", projectGalleryItems[i][i]);
+    }
+
 
     return (
         <>
@@ -106,18 +144,39 @@ export default function ProjectPage() {
                         <Typography color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                             Sample Images:
                         </Typography>
-                        <ImageList variant="masonry" cols={3} gap={8} >
-
-                            <ImageListItem display={'flex'} >
-                                <img
-                                    src={`${thumbnailPlaceHolder[params.i]}?w=248&fit=crop&auto=format`}
-                                    srcSet={`${thumbnailPlaceHolder[params.i]}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                    loading="lazy"
-                                    alt='image'
-                                    style={{ "alignSelf": 'center' }}
-                                />
-                            </ImageListItem>
-                        </ImageList>
+                        <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
+                            {projectGalleryItems.map((item, index) => (
+                                <Box display={'flex'} flexWrap={'wrap'} justifyContent='center' >
+                                    <Card key={index} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3) " }} >
+                                        <CardActionArea>
+                                            <CardMedia
+                                                component="img"
+                                                height="480"
+                                                image={item[0]}
+                                            />
+                                        </CardActionArea>
+                                    </Card>
+                                    <Card key={index} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3) " }} >
+                                        <CardActionArea>
+                                            <CardMedia
+                                                component="img"
+                                                height="480"
+                                                image={item[1]}
+                                            />
+                                        </CardActionArea>
+                                    </Card>
+                                    <Card key={index} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3) " }} >
+                                        <CardActionArea>
+                                            <CardMedia
+                                                component="img"
+                                                height="480"
+                                                image={item[2]}
+                                            />
+                                        </CardActionArea>
+                                    </Card>
+                                </Box>
+                            ))}
+                        </Box>
 
                     </Box>
                 </Container>
