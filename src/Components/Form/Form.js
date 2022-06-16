@@ -7,6 +7,7 @@ import { workschema, workuischema, workinitialdata } from './work';
 import { skillsschema, skillsuischema, skillsinitialdata } from './skills';
 import { certificatesschema, certificatesuischema, certificatesinitialdata } from './certificates';
 import { projectsschema, projectsuischema, projectsinitialdata } from './projects';
+import { galleryschema, galleryuischema, galleryinitialdata } from './gallery';
 import {
     materialRenderers,
     materialCells,
@@ -28,7 +29,8 @@ class Form extends React.Component {
             workdata: workinitialdata,
             skillsdata: skillsinitialdata,
             certificatesdata: certificatesinitialdata,
-            projectsdata: projectsinitialdata
+            projectsdata: projectsinitialdata,
+            gallerydata: galleryinitialdata
         };
 
     }
@@ -74,6 +76,10 @@ class Form extends React.Component {
 
         set(ref(db, `${this.props.userID}/projectsinfo`), {
             projects: this.state.projectsdata["projects"],
+        });
+
+        set(ref(db, `${this.props.userID}/galleryinfo`), {
+            gallery: this.state.gallerydata["gallery"],
         });
 
 
@@ -255,6 +261,26 @@ class Form extends React.Component {
                                                 projectsdata: data
                                             })
                                             console.log("projectsdata", this.state.projectsdata);
+                                        }}
+                                    />
+                                </div >
+                                <div
+                                    className='Form'
+                                    style={{
+                                        margin: 'auto',
+                                        padding: '10px',
+                                    }} >
+                                    <JsonForms
+                                        schema={galleryschema}
+                                        uischema={galleryuischema}
+                                        data={this.state.gallerydata}
+                                        renderers={materialRenderers}
+                                        cells={materialCells}
+                                        onChange={({ _errors, data }) => {
+                                            this.setState({
+                                                gallerydata: data
+                                            })
+                                            console.log("gallerydata", this.state.gallerydata);
                                         }}
                                     />
                                 </div >
