@@ -22,7 +22,6 @@ import {
 	useNavigate
 } from "react-router-dom";
 
-import { data } from '../../data'
 
 import account from '../../img/icons/logo192.png'
 

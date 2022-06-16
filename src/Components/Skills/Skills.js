@@ -11,8 +11,6 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import { getDatabase, ref, child, get } from "firebase/database";
 
-import { data } from '../../data'
-
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
