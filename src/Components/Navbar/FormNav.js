@@ -11,7 +11,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { database } from '../../firebase-config';
 import { getDatabase, ref, child, get } from "firebase/database";
 import {
     getAuth,
@@ -20,8 +19,6 @@ import {
 import {
     useNavigate
 } from "react-router-dom";
-
-import { data } from '../../data'
 
 import account from '../../img/icons/logo192.png'
 
@@ -52,7 +49,7 @@ const FormNav = () => {
         signOut(getAuth());
         sessionStorage.removeItem('Auth Token');
         console.log("signout ...");
-        navigate('/login')
+        navigate('/')
     }
 
     const [namePlaceHolder, setNamePlaceholder] = React.useState();
