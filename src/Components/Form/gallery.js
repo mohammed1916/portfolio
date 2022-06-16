@@ -1,39 +1,55 @@
 export const galleryschema = {
-    "type": "object",
-    "properties": {
-        "gallery": {
-            "title": "Projects Sample Photos",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "0": {
-                        "title": "Sample Image 1",
-                        "type": "string",
-                    },
-                    "1": {
-                        "title": "Sample Image 2",
-                        "type": "string",
-                    },
-                    "2": {
-                        "title": "Sample Image 3",
-                        "type": "string",
-                    }
-                }
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "0": {
+                "title": "Sample Image 1",
+                "type": "string",
+                "description": "Please enter link to the image"
+            },
+            "1": {
+                "title": "Sample Image 1",
+                "type": "string",
+            },
+            "2": {
+                "title": "Sample Image 2",
+                "type": "string",
             }
-        }
-    },
-    "required": [
-        "gallery",
-    ]
+        },
+        "required": [
+            "0",
+            "1",
+            "2"
+        ]
+    }
 }
 
 export const galleryuischema = {
-    "type": "VerticalLayout",
+    "type": "Group",
     "elements": [
         {
             "type": "Control",
-            "scope": "#/properties/gallery"
+            "scope": "#/properties/gallery",
+            "options": {
+                "detail": {
+                    "type": "VerticalLayout",
+                    "elements": [
+                        {
+                            "type": "Control",
+                            "scope": "#/properties/0"
+                        },
+                        {
+                            "type": "Control",
+                            "scope": "#/properties/1"
+                        },
+                        {
+                            "type": "Control",
+                            "scope": "#/properties/2"
+                        }
+                    ]
+                }
+            }
         }
     ]
 }
