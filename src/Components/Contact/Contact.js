@@ -51,12 +51,11 @@ export default function Contact() {
             <Divider sx={{ margin: "20px" }} />
             <Box marginBottom={'20px'} display={'flex'} flexWrap={'wrap'} justifyContent='center'>
                 {mediaItems.map((object, index) => (
-                    <Box key={urlPlaceHolder[index]} margin={'10px'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
+                    <Box key={index + object} margin={'10px'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         <a href={urlPlaceHolder[index]} >
                             <CardHeader
                                 avatar={
                                     <Avatar src={iconPlaceHolder[index]} />
-
                                 }
                                 title={mediaPlaceHolder[index]}
                                 subheader={urlPlaceHolder[index]}
