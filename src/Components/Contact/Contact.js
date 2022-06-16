@@ -1,4 +1,5 @@
 import CardHeader from '@mui/material/CardHeader';
+import { Divider } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box'
 
@@ -7,9 +8,6 @@ import { useParams } from "react-router-dom";
 import * as React from 'react';
 import { useEffect } from 'react';
 
-
-import { data } from '../../data'
-import { Divider } from '@mui/material';
 
 var mediaItems = [];
 export default function Contact() {
@@ -27,9 +25,7 @@ export default function Contact() {
                 snapshot.forEach(function (item) {
                     var itemVal = item.val();
                     mediaItems.push(itemVal);
-                    // console.log("val ...", itemVal);
                 });
-                // console.log("mediaItems[0][date]", mediaItems[0]["date"]);
                 console.log("mediaItems", mediaItems.length);
                 mediaItems.map(
                     (object, index) => (
@@ -48,7 +44,6 @@ export default function Contact() {
         setmediaPlaceholder(oldArray => [...oldArray, mediaItems[i]["media"]]);
         seturlPlaceholder(oldArray => [...oldArray, mediaItems[i]["url"]]);
         seticonPlaceholder(oldArray => [...oldArray, mediaItems[i]["icon"]]);
-        // console.log(titlePlaceHolder[i]);
     }
 
     return (
