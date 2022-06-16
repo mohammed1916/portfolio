@@ -37,7 +37,9 @@ class Form extends React.Component {
         if (authToken) {
             console.log(authToken);
         } else {
-            this.props.navigate('/login')
+            alert('Please login first.');
+            this.props.navigate('/')
+            return;
         }
         const db = getDatabase();
         console.log(this.props.userID);
@@ -78,7 +80,7 @@ class Form extends React.Component {
         set(ref(db, `${this.props.userID}/certificatesinfo`), {
             certificates: this.state.certificatesdata["certificates"],
         });
-
+        alert("Submitted details successfully");
     }
 
     render() {
