@@ -13,11 +13,6 @@ import { Button, CardActionArea } from '@mui/material';
 
 var projectItems = [];
 var projectGalleryItems = [];
-var gallery = [
-    require('../../Components/Projects/Images/0/1.jpeg'),
-    require('../../Components/Projects/Images/0/2.jpeg'),
-    require('../../Components/Projects/Images/0/3.jpeg')
-];
 export default function ProjectPage() {
     const params = useParams();
     var user = params.username;
