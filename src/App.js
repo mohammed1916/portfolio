@@ -28,7 +28,7 @@ function App() {
         <Route path='/projects' element={<Projects />} />
         <Route path='/certifications' element={<Certifications />} />
         <Route path='/work' element={<Work />} />
-        <Route path="projectpage/:i" element={<WorkPage />} />
+        <Route path="workpage/:i" element={<WorkPage />} />
         <Route path="projectpage/:i" element={<ProjectPage />} />
         <Route path="certificatepage/:i" element={<CertificatePage />} />
       </Routes>
