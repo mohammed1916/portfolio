@@ -16,21 +16,27 @@ export default function ProjectPage() {
 
     return (
         <>
+            <Typography textAlign="center" fontFamily={'Be Vietnam Pro'} fontSize={'40px'} color={'black'} pt={{ xs: 1, sm: 2 }}>PROJECT</Typography>
             <Box
-                px={{ xs: 3, sm: 10 }}
-                py={{ xs: 5, sm: 10 }}
-                bgcolor={'white'}
-                color={'white'} >
-                <Container sx={{ width: '100%' }} fontFamily={'ZCOOL XiaoWei'} >
-                    <Typography textAlign="center" fontFamily={'Be Vietnam Pro'} fontSize={'40px'} color={'black'} pt={{ xs: 1, sm: 2 }}>PROJECT</Typography>
-                    <Box display={'flex'} flexDirection={'column'} bgcolor={'#333'} borderRadius={'20px'} padding={'10px'} boxShadow={10}>
+                mx={{ xs: 1, sm: 2, lg: 5, xl: 10 }}
+                my={{ xs: 2, sm: 5, lg: 5, xl: 10 }}
+                py={{ xs: 2, sm: 5, lg: 5, xl: 10 }}
+                px={{ xs: 1, sm: 2, lg: 5, xl: 10 }}
+                // bgcolor={'#333333'}
+                color={'white'}
+                borderRadius={5}
+                className="bgimg"
+            >
+                <Container className='w-full boxShadow'>
+                    <Box className="mt-8 rounded-t-2xl flex flex-col flex-wrap justify-center" boxShadow={10} padding={{ xs: 1, lg: 2 }} paddingBottom={'30px'} bgcolor={'#540033ff'}>
+
                         <Typography fontFamily={'ZCOOL XiaoWei'} gutterBottom variant="h3" component="div" textAlign={'center'} paddingBottom={'8px'}>
                             {data.projects[params.i].title}
                         </Typography>
 
                         <Box display={'flex'} flexDirection={'row'} >
                             <Typography gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
-                                {`Application Type:`}
+                                {`APPLICATION TYPE:`}
                             </Typography>
                             <Typography gutterBottom variant="h6" component="div"  >
                                 {`${data.projects[params.i].type}`}
@@ -38,7 +44,7 @@ export default function ProjectPage() {
                         </Box>
                         <Box display={'flex'} flexDirection={'row'} >
                             <Typography gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
-                                {`Link: `}
+                                {`LINK: `}
                             </Typography>
                             <a href={data.projects[params.i].link}>
                                 <Typography color={'white'} gutterBottom variant="h6" component="div"  >
@@ -48,27 +54,20 @@ export default function ProjectPage() {
                         </Box>
                         <Box display={'flex'} flexDirection={'row'} >
                             <Typography gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
-                                {`Description: `}
+                                {`DESCRIPTION: `}
                             </Typography>
                             <Typography gutterBottom variant="h6" component="div"  >
                                 {`${data.projects[params.i].description}`}
                             </Typography>
                         </Box>
+                    </Box>
+                    <Box className="mt-8 rounded-t-2xl flex flex-col flex-wrap justify-center" boxShadow={10} padding={{ xs: 1, lg: 2 }} paddingBottom={'30px'} bgcolor={'#540033ff'}>
                         <Typography gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
-                            Sample Images:
+                            SAMPLE IMAGES:
                         </Typography>
-                        {/* <ImageList variant="masonry" cols={3} gap={8} display={'flex'} aligncontents={'center'}>
-                            {data.projects[params.i].gallery.map((item) => (
-                                <ImageListItem key={item}>
-                                    <img
-                                        src={`${item}?w=248&fit=crop&auto=format`}
-                                        srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                        loading="lazy"
-                                    />
-                                </ImageListItem>
-                            ))}
-                        </ImageList> */}
-                        <Box bgcolor={'eee'} borderRadius={'20px'} padding={'10px'}>
+                    </Box>
+                    <Box className="rounded-b-2xl p-7 bg-white w-full">
+                        <Box padding={'20px'}>
                             <ImageGallery items={data.projects[params.i].gallery} />
                         </Box>
                     </Box>
