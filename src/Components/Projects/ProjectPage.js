@@ -46,7 +46,7 @@ export default function ProjectPage() {
                             <Typography gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {`LINK: `}
                             </Typography>
-                            <a href={data.projects[params.i].link}>
+                            <a href={data.projects[params.i].link} className='link'>
                                 <Typography color={'white'} gutterBottom variant="h6" component="div"  >
                                     {`${data.projects[params.i].link}`}
                                 </Typography>
