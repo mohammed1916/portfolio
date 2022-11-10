@@ -61,16 +61,16 @@ export const data = {
     "skills": [
         {
             "type": "Programming Languages",
-            "Knowledge in Advance Topics": "JAVA, C",
-            "Knowledge in Main Concepts": "python, python3, godot",
-            "Beginner": "C++, javascript"
+            "Knowledge in Advance Topics": "Python, C",
+            "Knowledge in Main Concepts": "Java",
+            "Beginner": "C++, Javascript, GDScript"
         }
         ,
         {
             "type": "Framworks And Libraries",
-            "Knowledge in Advance Topics": "Flutter",
-            "Knowledge in Main Concepts": "Reactjs",
-            "Beginner": "Gatsby, Django",
+            "Knowledge in Advance Topics": "Reactjs",
+            "Knowledge in Main Concepts": "Flutter",
+            "Beginner": "Flask",
         },
         {
             "type": "Tools and IDE's",
