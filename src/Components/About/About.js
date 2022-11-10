@@ -19,7 +19,7 @@ export default function About() {
 
                 <Box maxWidth={'500px'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                     <Typography paddingBottom={'10px'}>
-                        Hello There!
+                        Hi There!
                     </Typography>
                     <Typography paddingBottom={'10px'}>
                         {data.information.whoami}
