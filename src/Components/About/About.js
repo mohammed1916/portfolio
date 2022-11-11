@@ -14,7 +14,7 @@ export default function About() {
                 display={'flex'} flexWrap={'wrap'} flexDirection={'row'} justifyContent='space-evenly'
             >
                 <Box padding={'10px'} alignItems={'center'}>
-                    <img src={data.information.image} />
+                    <img src={data.information.image} alt="" />
                 </Box>
 
                 <Box maxWidth={'500px'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
