@@ -14,12 +14,21 @@ import MenuItem from '@mui/material/MenuItem';
 
 import { data } from '../../data'
 
+import {
+	useNavigate
+} from "react-router-dom";
+
 import account from '../../img/icons/logo192.png'
 
 const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work Experience'];
 const pages_link = ['/', '/Education', '/Skills', '/Projects', '/Certifications', '/Work'];
 
 const ResponsiveAppBar = () => {
+	let navigate = useNavigate();
+	const nav = (index) => {
+		navigate(`${index}`)
+	}
+
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -30,7 +39,8 @@ const ResponsiveAppBar = () => {
 		setAnchorElUser(event.currentTarget);
 	};
 
-	const handleCloseNavMenu = () => {
+	const handleCloseNavMenu = (index) => {
+		nav(index)
 		setAnchorElNav(null);
 	};
 
@@ -84,8 +94,8 @@ const ResponsiveAppBar = () => {
 								display: { xs: 'block', md: 'none' },
 							}}>
 							{pages.map((page, index) => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<Typography textAlign="center"><a href={pages_link[index]}>{page}</a></Typography>
+								<MenuItem key={page} onClick={() => handleCloseNavMenu(pages_link[index])}>
+									<Typography textAlign="center">{page}</Typography>
 								</MenuItem>
 							))}
 						</Menu>
@@ -99,13 +109,11 @@ const ResponsiveAppBar = () => {
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						{pages.map((page, index) => (
-							<a key={page} href={pages_link[index]}>
-								<Button
-									onClick={handleCloseNavMenu}
-									sx={{ my: 2, color: 'white', display: 'block' }}>
-									{page}
-								</Button>
-							</a>
+							<Button key={page + index * index}
+								onClick={() => handleCloseNavMenu(pages_link[index])}
+								sx={{ my: 2, color: 'white', display: 'block' }}>
+								{page}
+							</Button>
 						))}
 					</Box>
 
@@ -131,9 +139,11 @@ const ResponsiveAppBar = () => {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}>
 							{data.information.profiles.map((object) => (
-								<MenuItem key={object.media} onClick={handleCloseUserMenu}>
-									<Typography textAlign="center"><a href={object.url}>{object.media}</a></Typography>
-								</MenuItem>
+								<a key={object.media} href={object.url} className='link' onClick={handleCloseUserMenu}>
+									<MenuItem  >
+										<Typography textAlign="center">{object.media}</Typography>
+									</MenuItem>
+								</a>
 							))}
 						</Menu>
 					</Box>
