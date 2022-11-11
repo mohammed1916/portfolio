@@ -64,7 +64,7 @@ export default function Education() {
                     <Typography textAlign="center" fontFamily={'Righteous'} fontSize={'40px'} color={'black'} pt={{ xs: 1, sm: 2 }}>Education</Typography>
                     <Box bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         {data.education.map((object, index) => (
-                            <Accordion expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
+                            <Accordion key={object + index * 5} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
                                 <AccordionSummary aria-controls={`panel${index}d-content`} id={`panel${index}d-header`}>
                                     <Typography>{object.Type}</Typography>
                                 </AccordionSummary>
