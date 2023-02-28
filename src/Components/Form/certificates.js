@@ -118,3 +118,14 @@ export const certificatesinitialdata = {
         }
     ]
 }
+export const originalcertificatesinitialdata = {
+    "certificates": [
+        {
+            "title": "",
+            "date": "",
+            "institution": "",
+            "thumbnail": '',
+            "description": ""
+        },
+    ]
+}

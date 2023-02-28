@@ -107,3 +107,19 @@ export const informationinitialdata = {
         }
     ]
 };
+export const originalinformationinitialdata = {
+    "name": "Full Name",
+    "domain": "",
+    "image": "",
+    "email": "",
+    "whoami": "",
+    "description": "",
+    "location": "",
+    "profiles": [
+        {
+            "media": "Linkedin",
+            "url": "https://www.linkedin.com/in/",
+            "icon": "../../img/icons/media/linkedin.png"
+        },
+    ]
+};

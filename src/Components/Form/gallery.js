@@ -68,3 +68,12 @@ export const galleryinitialdata = {
         },
     ]
 }
+export const originalgalleryinitialdata = {
+    "gallery": [
+        {
+            "0": '',
+            "1": '',
+            "2": ''
+        },
+    ]
+}

@@ -108,3 +108,19 @@ export const projectsinitialdata = {
         }
     ]
 }
+export const originalprojectsinitialdata = {
+    "projects": [
+        {
+            "title": "",
+            "type": "",
+            "thumbnail": '',
+            "link": "",
+            "description": "",
+            "gallery": [
+                '',
+                '',
+                ''
+            ]
+        },
+    ]
+}

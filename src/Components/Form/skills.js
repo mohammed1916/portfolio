@@ -86,3 +86,13 @@ export const skillsinitialdata = {
         }
     ]
 }
+export const originalskillsinitialdata = {
+    "skills": [
+        {
+            "type": "",
+            "KnowledgeInAdvanceTopics": "",
+            "KnowledgeInMainConcepts": "",
+            "Beginner": ""
+        }
+    ]
+}

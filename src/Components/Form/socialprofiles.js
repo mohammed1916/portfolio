@@ -87,3 +87,12 @@ export const socialprofilesinitialdata = {
         }
     ]
 };
+export const originalsocialprofilesinitialdata = {
+    "profiles": [
+        {
+            "media": "Linkedin",
+            "url": "https://www.linkedin.com/in/",
+            "icon": "../../img/icons/media/linkedin.png"
+        },
+    ]
+};

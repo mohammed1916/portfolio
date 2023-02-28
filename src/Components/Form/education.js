@@ -98,3 +98,14 @@ export const educationinitialdata = {
         }
     ]
 }
+export const originaleducationinitialdata = {
+    "education": [
+        {
+            "Institution": "",
+            "Program": "",
+            "YearOfPassing": "",
+            "Grade": "",
+            "website": ""
+        }
+    ]
+}

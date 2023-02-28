@@ -88,3 +88,15 @@ export const workinitialdata = {
         }
     ]
 }
+export const originalworkinitialdata = {
+    "work": [
+        {
+            "company": "",
+            "location": "",
+            "title": "",
+            "thumbnail": "",
+            "dates": "",
+            "description": ""
+        }
+    ]
+}
