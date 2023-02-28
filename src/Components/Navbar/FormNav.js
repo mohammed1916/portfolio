@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { getDatabase, ref, child, get } from "firebase/database";
+import { ref, child, get } from "firebase/database";
 import {
     getAuth,
     signOut,
@@ -21,6 +21,7 @@ import {
 } from "react-router-dom";
 
 import account from '../../img/icons/logo192.png'
+import { database } from '../../firebase-config';
 
 const pages = [''];
 
@@ -53,7 +54,7 @@ const FormNav = () => {
     }
 
     const [namePlaceHolder, setNamePlaceholder] = React.useState();
-    const dbRef = ref(getDatabase());
+    const dbRef = ref(database);
 
     get(child(dbRef, `information/`)).then((snapshot) => {
         if (snapshot.exists()) {

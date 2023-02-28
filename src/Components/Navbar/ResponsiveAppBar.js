@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { database } from '../../firebase-config';
-import { getDatabase, ref, child, get } from "firebase/database";
+import { ref, child, get } from "firebase/database";
 import {
 	getAuth,
 	signOut,
@@ -58,7 +58,7 @@ const ResponsiveAppBar = ({ username }) => {
 	}
 
 	const [namePlaceHolder, setNamePlaceholder] = React.useState();
-	const dbRef = ref(getDatabase());
+	const dbRef = ref(database);
 
 	get(child(dbRef, `${user}/information/`)).then((snapshot) => {
 		if (snapshot.exists()) {

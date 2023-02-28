@@ -3,10 +3,11 @@ import { Divider } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box'
 
-import { getDatabase, ref, child, get } from "firebase/database";
+import { ref, child, get } from "firebase/database";
 import { useParams } from "react-router-dom";
 import * as React from 'react';
 import { useEffect } from 'react';
+import { database } from '../../firebase-config';
 
 
 var mediaItems = [];
@@ -16,7 +17,7 @@ export default function Contact() {
     const [mediaPlaceHolder, setmediaPlaceholder] = React.useState([]);
     const [urlPlaceHolder, seturlPlaceholder] = React.useState([]);
     const [iconPlaceHolder, seticonPlaceholder] = React.useState([]);
-    const dbRef = ref(getDatabase());
+    const dbRef = ref(database);
 
     useEffect(() => {
         get(child(dbRef, `${user}/socialmediaprofilesinfo/profiles`)).then((snapshot) => {

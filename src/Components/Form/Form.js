@@ -13,10 +13,11 @@ import {
     materialCells,
 } from '@jsonforms/material-renderers';
 import { Button, Grid, Paper, Typography } from '@mui/material';
-import { getDatabase, child, ref, set, get } from "firebase/database";
+import { child, ref, set, get } from "firebase/database";
 import DownloadFooter from '../footer/Download/DownloadFooter';
 import FormNav from '../Navbar/FormNav';
 import { setReadonly } from '@jsonforms/core';
+import { database } from '../../firebase-config';
 
 var originalinformationinitialdata = undefined;
 var originalsocialprofilesinitialdata = undefined;
@@ -52,17 +53,18 @@ class Form extends React.Component {
         super(props);
         console.log("this.props.userID", this.props.userID);
         user = this.props.userID;
+        this.initializeData = this.initializeData.bind()
         this.initializeData();
         this.state = {
-            // informationdata: (originalinformationinitialdata != undefined) ? originalinformationinitialdata : informationinitialdata,
-            // socialprofilesdata: (originalsocialprofilesinitialdata != undefined) ? originalsocialprofilesinitialdata : socialprofilesinitialdata,
-            // educationdata: (originaleducationinitialdata != undefined) ? originaleducationinitialdata : educationinitialdata,
-            // workdata: (originalworkinitialdata != undefined) ? originalworkinitialdata : workinitialdata,
-            // skillsdata: (originalskillsinitialdata != undefined) ? originalskillsinitialdata : skillsinitialdata,
-            // certificatesdata: (originalcertificatesinitialdata != undefined) ? originalcertificatesinitialdata : certificatesinitialdata,
-            // projectsdata: (originalprojectsinitialdata != undefined) ? originalprojectsinitialdata : projectsinitialdata,
-            // gallerydata: (originalgalleryinitialdata != undefined) ? originalgalleryinitialdata : galleryinitialdata,
-            // read: false
+            informationdata: (originalinformationinitialdata != undefined) ? originalinformationinitialdata : informationinitialdata,
+            socialprofilesdata: (originalsocialprofilesinitialdata != undefined) ? originalsocialprofilesinitialdata : socialprofilesinitialdata,
+            educationdata: (originaleducationinitialdata != undefined) ? originaleducationinitialdata : educationinitialdata,
+            workdata: (originalworkinitialdata != undefined) ? originalworkinitialdata : workinitialdata,
+            skillsdata: (originalskillsinitialdata != undefined) ? originalskillsinitialdata : skillsinitialdata,
+            certificatesdata: (originalcertificatesinitialdata != undefined) ? originalcertificatesinitialdata : certificatesinitialdata,
+            projectsdata: (originalprojectsinitialdata != undefined) ? originalprojectsinitialdata : projectsinitialdata,
+            gallerydata: (originalgalleryinitialdata != undefined) ? originalgalleryinitialdata : galleryinitialdata,
+            read: false
         };
     }
 
@@ -70,7 +72,7 @@ class Form extends React.Component {
     initializeData() {
         // console.log('Initialize data');
 
-        const dbRef = ref(getDatabase());
+        const dbRef = ref(database);
         get(child(dbRef, `${user}/information/`)).then((snapshot) => {
             // console.log("infoBegin", snapshot);
             if (snapshot.exists()) {
@@ -139,7 +141,7 @@ class Form extends React.Component {
             if (authToken) {
                 console.log(authToken);
             }
-            const db = getDatabase();
+            const db = database;
             console.log("this.props.userID", this.props.userID);
             set(ref(db, `${this.props.userID}/information`), {
                 name: this.state.informationdata["name"],

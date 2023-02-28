@@ -24,7 +24,7 @@ export default function DownloadFooter() {
                 <Typography variant="body1" paddingRight={"5px"} >
                     Fill all details to
                 </Typography>
-                <Button href='home' style={{ backgroundColor: "purple", color: "white", borderRadius: 6 }}>
+                <Button href='home' target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "purple", color: "white", borderRadius: 6 }}>
                     Preview website
                 </Button>
             </Container>

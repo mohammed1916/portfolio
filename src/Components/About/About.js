@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { getDatabase, ref, child, get } from "firebase/database";
+import { ref, child, get } from "firebase/database";
 import * as React from 'react';
+import { database } from "../../firebase-config";
 
 export default function About({ userID }) {
     const params = useParams();
@@ -11,7 +12,7 @@ export default function About({ userID }) {
     const [whoamiPlaceHolder, setWhoamiPlaceholder] = React.useState();
     const [domainPlaceHolder, setDomainPlaceholder] = React.useState();
     const [descriptionPlaceHolder, setDescriptionPlaceholder] = React.useState();
-    const dbRef = ref(getDatabase());
+    const dbRef = ref(database);
 
     get(child(dbRef, `${user}/information`)).then((snapshot) => {
         console.log("UserID", params.username);

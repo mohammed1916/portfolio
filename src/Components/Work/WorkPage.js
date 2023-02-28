@@ -4,10 +4,11 @@ import Box from '@mui/material/Box'
 import {
     useNavigate
 } from "react-router-dom";
-import { getDatabase, ref, child, get } from "firebase/database";
+import { ref, child, get } from "firebase/database";
 import * as React from 'react';
 import { useParams } from "react-router-dom";
 import { useEffect } from 'react';
+import { database } from '../../firebase-config';
 
 var workItems = [];
 export default function WorkPage() {
@@ -19,7 +20,7 @@ export default function WorkPage() {
         navigate(`/${user}/home/workpage/${index}`)
     }
 
-    const dbRef = ref(getDatabase());
+    const dbRef = ref(database);
     const [companyPlaceHolder, setcompanyPlaceholder] = React.useState([]);
     const [locationPlaceHolder, setlocationPlaceholder] = React.useState([]);
     const [titlePlaceHolder, settitlePlaceholder] = React.useState([]);

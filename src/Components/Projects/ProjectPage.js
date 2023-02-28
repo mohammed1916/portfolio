@@ -4,12 +4,13 @@ import { useEffect } from 'react';
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box'
-import { getDatabase, ref, child, get, increment } from "firebase/database";
+import { ref, child, get, increment } from "firebase/database";
 import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Button, CardActionArea } from '@mui/material';
+import { database } from '../../firebase-config';
 
 var projectItems = [];
 var projectGalleryItems = [];
@@ -19,7 +20,7 @@ export default function ProjectPage() {
 
     const navigation = useNavigate();
 
-    const dbRef = ref(getDatabase());
+    const dbRef = ref(database);
     const [titlePlaceHolder, settitlePlaceholder] = React.useState([]);
     const [typePlaceHolder, settypePlaceholder] = React.useState([]);
     const [linkPlaceHolder, setlinkPlaceholder] = React.useState([]);

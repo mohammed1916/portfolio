@@ -8,11 +8,12 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Button, CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box'
-import { getDatabase, ref, child, get } from "firebase/database";
+import { ref, child, get } from "firebase/database";
 
 import {
     useNavigate
 } from "react-router-dom";
+import { database } from '../../firebase-config';
 
 var projectItems = [];
 var projectItemsLength = 0;
@@ -24,7 +25,7 @@ export default function Projects() {
         navigate(`/${user}/home/projectpage/${index}`)
     }
 
-    const dbRef = ref(getDatabase());
+    const dbRef = ref(database);
     const [titlePlaceHolder, settitlePlaceholder] = React.useState([]);
     const [typePlaceHolder, settypePlaceholder] = React.useState([]);
     const [linkPlaceHolder, setlinkPlaceholder] = React.useState([]);

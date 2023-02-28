@@ -9,7 +9,8 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
-import { getDatabase, ref, child, get } from "firebase/database";
+import { ref, child, get } from "firebase/database";
+import { database } from '../../firebase-config';
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -50,7 +51,7 @@ var educationItems = [];
 export default function Education() {
     const params = useParams();
     var user = params.username;
-    const dbRef = ref(getDatabase());
+    const dbRef = ref(database);
     const [InstitutionPlaceHolder, setInstitutionPlaceholder] = React.useState([]);
     const [ProgramPlaceHolder, setProgramPlaceholder] = React.useState([]);
     const [YearOfPassingPlaceHolder, setYearOfPassingPlaceholder] = React.useState([]);
