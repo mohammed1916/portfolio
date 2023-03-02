@@ -9,11 +9,11 @@ export const galleryschema = {
                 "description": "Please enter link to the image"
             },
             "1": {
-                "title": "Sample Image 1",
+                "title": "Sample Image 2",
                 "type": "string",
             },
             "2": {
-                "title": "Sample Image 2",
+                "title": "Sample Image 3",
                 "type": "string",
             }
         },
@@ -31,6 +31,7 @@ export const galleryuischema = {
         {
             "type": "Control",
             "scope": "#/properties/gallery",
+            "label": "Project Screenshots (One Project per row)",
             "options": {
                 "detail": {
                     "type": "VerticalLayout",
