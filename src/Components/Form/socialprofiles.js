@@ -43,7 +43,7 @@ export const socialprofilesuischema = {
                     "type": "Control",
                     "scope": "#/properties/profiles",
                     "options": {
-                        "elementLabelProp": "name",
+                        "label": "#/properties/media",
                         "detail": {
                             "type": "VerticalLayout",
                             "elements": [

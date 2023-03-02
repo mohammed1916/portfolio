@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { JsonForms } from '@jsonforms/react';
+import { originallinkedininitialdata, linkedinschema, linkedinuischema, linkedininitialdata } from './linkedin';
 import { originalinformationinitialdata, informationschema, informationuischema, informationinitialdata } from './information';
 import { originalsocialprofilesinitialdata, socialprofilesschema, socialprofilesuischema, socialprofilesinitialdata } from './socialprofiles';
 import { originaleducationinitialdata, educationschema, educationuischema, educationinitialdata } from './education';
@@ -19,6 +20,7 @@ import FormNav from '../Navbar/FormNav';
 import { setReadonly } from '@jsonforms/core';
 import { database } from '../../firebase-config';
 
+var originallinkedindata = originallinkedininitialdata;
 var originalinformationdata = originalinformationinitialdata;
 var originalsocialprofilesdata = originalsocialprofilesinitialdata;
 var originaleducationdata = originaleducationinitialdata;
@@ -29,24 +31,6 @@ var originalprojectsdata = originalprojectsinitialdata;
 var originalgallerydata = originalgalleryinitialdata;
 
 var user;
-
-var infoFlag = false;
-var socialFlag = false;
-var educationFlag = false;
-var workFlag = false;
-var skillsFlag = false;
-var projectsFlag = false;
-var certificatesFlag = false;
-var galleryFlag = false;
-
-var infoData;
-var socialData;
-var educationData;
-var workData;
-var skillsData;
-var projectsData;
-var certificatesData;
-var galleryData;
 class Form extends React.Component {
 
     constructor(props) {
@@ -54,6 +38,7 @@ class Form extends React.Component {
         console.log("this.props.userID", this.props.userID);
         user = this.props.userID;
         this.initializeData = this.initializeData.bind(this);
+        this.fillData = this.fillData.bind(this);
         this.state = {
             /**
              * informationinitialdata can be used later to cache data, for now it is static
@@ -67,7 +52,8 @@ class Form extends React.Component {
             certificatesdata: (originalcertificatesdata !== undefined) ? originalcertificatesinitialdata : certificatesinitialdata,
             projectsdata: (originalprojectsdata !== undefined) ? originalprojectsinitialdata : projectsinitialdata,
             gallerydata: (originalgallerydata !== undefined) ? originalgalleryinitialdata : galleryinitialdata,
-            read: false
+            read: false,
+            linkedindata: (originallinkedindata !== undefined) ? originallinkedininitialdata : linkedininitialdata,
         };
     }
 
@@ -75,69 +61,69 @@ class Form extends React.Component {
         this.initializeData()
     }
     initializeData() {
-        // console.log('Initialize data');
-
         const dbRef = ref(database);
+        get(child(dbRef, `${user}/linkedin/linkedin/`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                this.setState({ linkedindata: snapshot.val() });
+            }
+        });
         get(child(dbRef, `${user}/information/`)).then((snapshot) => {
             // console.log("infoBegin", snapshot);
             if (snapshot.exists()) {
                 console.log("Initialize informationdata", this.state.informationdata);
                 this.setState({ informationdata: snapshot.val() });
-                infoData = snapshot.val();
-                infoFlag = true;
             }
         });
         get(child(dbRef, `${user}/socialmediaprofilesinfo/`)).then((snapshot) => {
             if (snapshot.exists()) {
                 this.setState({ socialprofilesdata: snapshot.val() });
-                socialData = snapshot.val();
-                socialFlag = true;
             }
         });
         get(child(dbRef, `${user}/educationinfo/`)).then((snapshot) => {
             if (snapshot.exists()) {
                 this.setState({ educationdata: snapshot.val() });
-                educationData = snapshot.val();
-                educationFlag = true;
             }
         });
         get(child(dbRef, `${user}/workinfo/`)).then((snapshot) => {
             if (snapshot.exists()) {
                 this.setState({ workdata: snapshot.val() });
-                workData = snapshot.val();
-                workFlag = true;
             }
         });
         get(child(dbRef, `${user}/skillsinfo/`)).then((snapshot) => {
             if (snapshot.exists()) {
-                this.setState({ skillsinitialdata: snapshot.val() });
-                skillsData = snapshot.val();
-                skillsFlag = true;
+                this.setState({ skillsdata: snapshot.val() });
             }
         });
         get(child(dbRef, `${user}/certificatesinfo/`)).then((snapshot) => {
             if (snapshot.exists()) {
                 this.setState({ certificatesdata: snapshot.val() });
-                certificatesData = snapshot.val();
-                certificatesFlag = true;
             }
         });
         get(child(dbRef, `${user}/projectsinfo/`)).then((snapshot) => {
             if (snapshot.exists()) {
                 this.setState({ projectsdata: snapshot.val() });
-                projectsData = snapshot.val();
-                projectsFlag = true;
             }
         });
         get(child(dbRef, `${user}/galleryinfo/`)).then((snapshot) => {
             if (snapshot.exists()) {
                 this.setState({ gallerydata: snapshot.val() });
-                galleryData = snapshot.val();
-                galleryFlag = true;
             }
         });
 
         // if (infoFlag === true && socialFlag === true && educationFlag === true && workFlag === true && skillsFlag === true && projectsFlag === true && certificatesFlag === true && galleryFlag === true) this.state.read = true;
+    }
+    fillData() {
+        this.setState({
+            linkedindata: linkedininitialdata,
+            informationdata: informationinitialdata,
+            socialprofilesdata: socialprofilesinitialdata,
+            educationdata: educationinitialdata,
+            workdata: workinitialdata,
+            skillsdata: skillsinitialdata,
+            certificatesdata: certificatesinitialdata,
+            projectsdata: projectsinitialdata,
+            gallerydata: galleryinitialdata
+        });
     }
 
     update() {
@@ -148,6 +134,9 @@ class Form extends React.Component {
             }
             const db = database;
             console.log("this.props.userID", this.props.userID);
+            set(ref(db, `${this.props.userID}/linkedin`), {
+                linkedin: this.state.linkedindata
+            });
             set(ref(db, `${this.props.userID}/information`), {
                 name: this.state.informationdata["name"],
                 domain: this.state.informationdata["domain"],
@@ -220,7 +209,7 @@ class Form extends React.Component {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2, display: "flex", alignSelf: "center" }}
                                 // onChange={(data) => setInformationData(data)}
-                                onClick={() => this.initializeData()}
+                                onClick={() => this.fillData()}
                             >
                                 Fill Data
                             </Button>
@@ -253,9 +242,29 @@ class Form extends React.Component {
                                         padding: '10px',
                                     }} >
                                     <JsonForms
+                                        schema={linkedinschema}
+                                        uischema={linkedinuischema}
+                                        data={this.state.linkedindata}
+                                        renderers={materialRenderers}
+                                        cells={materialCells}
+                                        onChange={({ _errors, data }) => {
+                                            this.setState({
+                                                linkedindata: data
+                                            })
+                                            console.log("linkedindata", this.state.linkedindata);
+                                        }}
+                                    />
+                                </div >
+                                <div
+                                    className='Form'
+                                    style={{
+                                        margin: 'auto',
+                                        padding: '10px',
+                                    }} >
+                                    <JsonForms
                                         schema={informationschema}
                                         uischema={informationuischema}
-                                        data={infoFlag === true ? infoData : this.state.informationdata}
+                                        data={this.state.informationdata}
                                         renderers={materialRenderers}
                                         cells={materialCells}
                                         onChange={({ _errors, data }) => {
@@ -275,7 +284,7 @@ class Form extends React.Component {
                                     <JsonForms
                                         schema={socialprofilesschema}
                                         uischema={socialprofilesuischema}
-                                        data={socialFlag === true ? socialData : this.state.socialprofilesdata}
+                                        data={this.state.socialprofilesdata}
                                         renderers={materialRenderers}
                                         cells={materialCells}
                                         onChange={({ _errors, data }) => {
@@ -295,7 +304,7 @@ class Form extends React.Component {
                                     <JsonForms
                                         schema={educationschema}
                                         uischema={educationuischema}
-                                        data={educationFlag === true ? educationData : this.state.educationdata}
+                                        data={this.state.educationdata}
                                         renderers={materialRenderers}
                                         cells={materialCells}
                                         onChange={({ _errors, data }) => {
@@ -315,7 +324,7 @@ class Form extends React.Component {
                                     <JsonForms
                                         schema={workschema}
                                         uischema={workuischema}
-                                        data={workFlag === true ? workData : this.state.workdata}
+                                        data={this.state.workdata}
                                         renderers={materialRenderers}
                                         cells={materialCells}
                                         onChange={({ _errors, data }) => {
@@ -335,7 +344,7 @@ class Form extends React.Component {
                                     <JsonForms
                                         schema={skillsschema}
                                         uischema={skillsuischema}
-                                        data={skillsFlag === true ? skillsData : this.state.skillsdata}
+                                        data={this.state.skillsdata}
                                         renderers={materialRenderers}
                                         cells={materialCells}
                                         onChange={({ _errors, data }) => {
@@ -355,7 +364,7 @@ class Form extends React.Component {
                                     <JsonForms
                                         schema={certificatesschema}
                                         uischema={certificatesuischema}
-                                        data={certificatesFlag === true ? certificatesData : this.state.certificatesdata}
+                                        data={this.state.certificatesdata}
                                         renderers={materialRenderers}
                                         cells={materialCells}
                                         onChange={({ _errors, data }) => {
@@ -375,7 +384,7 @@ class Form extends React.Component {
                                     <JsonForms
                                         schema={projectsschema}
                                         uischema={projectsuischema}
-                                        data={projectsFlag === true ? projectsData : this.state.projectsdata}
+                                        data={this.state.projectsdata}
                                         renderers={materialRenderers}
                                         cells={materialCells}
                                         onChange={({ _errors, data }) => {
@@ -395,7 +404,7 @@ class Form extends React.Component {
                                     <JsonForms
                                         schema={galleryschema}
                                         uischema={galleryuischema}
-                                        data={galleryFlag === true ? galleryData : this.state.gallerydata}
+                                        data={this.state.gallerydata}
                                         renderers={materialRenderers}
                                         cells={materialCells}
                                         onChange={({ _errors, data }) => {
