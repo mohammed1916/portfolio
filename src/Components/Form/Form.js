@@ -13,12 +13,23 @@ import {
     materialRenderers,
     materialCells,
 } from '@jsonforms/material-renderers';
-import { Button, Grid, Paper, Typography } from '@mui/material';
+import { Button, Grid, Paper } from '@mui/material';
 import { child, ref, set, get } from "firebase/database";
 import DownloadFooter from '../footer/Download/DownloadFooter';
 import FormNav from '../Navbar/FormNav';
-import { setReadonly } from '@jsonforms/core';
 import { database } from '../../firebase-config';
+// import { LinkedInProfileScraper } from 'linkedin-profile-scraper';
+// import linkedinComponent from './Components/linkedinComponent';
+
+// import socketIO from "socket.io-client";
+// const socket = socketIO.connect("http://localhost:4000");
+
+// {
+// withCredentials: true,
+// extraHeaders: {
+//     "my-custom-header": "http://localhost:4000"
+// }
+// });
 
 var originallinkedindata = originallinkedininitialdata;
 var originalinformationdata = originalinformationinitialdata;
@@ -38,6 +49,9 @@ class Form extends React.Component {
         console.log("this.props.userID", this.props.userID);
         user = this.props.userID;
         this.initializeData = this.initializeData.bind(this);
+        this.handleReqAuthCode = this.handleReqAuthCode.bind(this);
+        this.handleAuthCode = this.handleAuthCode.bind(this);
+        this.handleLinkedinAuth = this.handleLinkedinAuth.bind(this);
         this.fillData = this.fillData.bind(this);
         this.state = {
             /**
@@ -54,12 +68,55 @@ class Form extends React.Component {
             gallerydata: (originalgallerydata !== undefined) ? originalgalleryinitialdata : galleryinitialdata,
             read: false,
             linkedindata: (originallinkedindata !== undefined) ? originallinkedininitialdata : linkedininitialdata,
+            externalPopUp: null,
+            linnkedinAuth: ""
         };
     }
 
     componentDidMount() {
         this.initializeData()
     }
+    componentDidUpdate() {
+        // const callback_url = "http://localhost:3000/form/callback";``
+        // const pollTimer = window.setInterval(() => {
+        //     try {
+        //         if (!this.state.externalPopUp && this.state.externalPopUp.location.href.indexOf(callback_url) !== -1) {
+        //             this.state.externalPopUpdow.clearInterval(pollTimer);
+
+        //             // Get the URL hash with your token in it
+        //             const hash = this.state.externalPopUp.location.hash;
+        //             console.log("hash: ", hash)
+        //             this.state.externalPopUp.close();
+
+        //             // Parse the string hash and convert to object of keys and values
+        //             const result = hash.substring(1)
+        //                 .split('&')
+        //                 .map(i => i.split('='))
+        //                 .reduce((prev, curr) => ({
+        //                     ...prev,
+        //                     [curr[0]]: curr[1],
+        //                 }), {});
+
+        //             // Calculate when the token expires and store in the result object
+        //             result.expires_at = Date.now() + parseInt(hash.expires_in, 10);
+        //             console.log(result);
+        //             //  TODO: Persist result in sessionStorage here
+        //         }
+        //     } catch (err) {
+        //         // do something or nothing if window still not redirected after login
+        //         console.log("err: ", err);
+        //     }
+        // }, 300);
+        this.handleReqAuthCode()
+
+        // let url = this.state.linkedindata;
+        // if (this.state.linkedindata.linkedin !== '') {
+        //     socket.emit("browse", {
+        //         url
+        //     });
+        // }
+    }
+
     initializeData() {
         const dbRef = ref(database);
         get(child(dbRef, `${user}/linkedin/linkedin/`)).then((snapshot) => {
@@ -68,9 +125,7 @@ class Form extends React.Component {
             }
         });
         get(child(dbRef, `${user}/information/`)).then((snapshot) => {
-            // console.log("infoBegin", snapshot);
             if (snapshot.exists()) {
-                console.log("Initialize informationdata", this.state.informationdata);
                 this.setState({ informationdata: snapshot.val() });
             }
         });
@@ -186,6 +241,89 @@ class Form extends React.Component {
             return;
         }
     }
+    async handleLinkedinAuth() {
+        const client_id = "863yjvgqsfyyvq";
+        const callback_url = "http://localhost:3000/form/callback";
+        const url = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${client_id}&redirect_uri=${callback_url}&state=foo1123&scope=email%20profile`;
+        // fetch(url,
+        //     {
+        //         method: "GET",
+        //         // mode: 'same-origin',
+        //         // redirect: "follow",
+        //         // credentials: 'same-origin'
+        //     }).then((res) => console.log(res));
+        // // .then((data) => console.log(data));
+
+        const win = window.open(url, 'name', 'height=600,width=450');
+        if (win) {
+            win.focus();
+            this.setState({ externalPopUp: win })
+        }
+        console.log("hash: ", win.location.hash)
+        console.log("win: ", win)
+        // const pollTimer = window.setInterval(() => {
+        //     try {
+        //         if (!win && win.location.href.indexOf(callback_url) !== -1) {
+        //             window.clearInterval(pollTimer);
+
+        //             // Get the URL hash with your token in it
+        //             const hash = win.location.hash;
+        //             console.log("hash: ", hash)
+        //             win.close();
+
+        //             // Parse the string hash and convert to object of keys and values
+        //             const result = hash.substring(1)
+        //                 .split('&')
+        //                 .map(i => i.split('='))
+        //                 .reduce((prev, curr) => ({
+        //                     ...prev,
+        //                     [curr[0]]: curr[1],
+        //                 }), {});
+
+        //             // Calculate when the token expires and store in the result object
+        //             result.expires_at = Date.now() + parseInt(hash.expires_in, 10);
+        //             console.log(result);
+        //             //  TODO: Persist result in sessionStorage here
+        //         }
+        //     } catch (err) {
+        //         // do something or nothing if window still not redirected after login
+        //         console.log("err: ", err);
+        //     }
+        // }, 300);
+        console.log("pressed")
+    }
+    handleReqAuthCode() {
+        console.log("this.state.externalPopUp", this.state.externalPopUp)
+        if (!this.state.externalPopUp) return;
+        const timerhandler = setInterval(() => {
+            if (!this.state.externalPopUp) {
+                timerhandler && clearInterval(timerhandler);
+                return;
+            }
+            const curURL = window.location.href;
+            if (!curURL) return;
+            const searchParams = new URL(curURL).searchParams;
+            const code = searchParams.get('code');
+            try {
+                if (code) {
+                    this.setState({ linkedinAuth: code })
+                    this.state.externalPopUp.close();
+                    console.log("URL: ", this.state.linkedinAuth)
+                    this.handleAuthCode(this.state.linkedinAuth)
+                }
+            } catch (err) {
+
+            } finally {
+                // this.state.externalPopUp.close();
+                this.setState({ externalPopUp: null });
+                timerhandler && clearInterval(timerhandler);
+            }
+        });
+    }
+
+    handleAuthCode(code) {
+
+    }
 
     // handleChange(data) {
     //     this.setState({ git: })
@@ -235,6 +373,18 @@ class Form extends React.Component {
                         }}>
                             <Grid
                                 item sm={11}>
+
+                                <div
+                                    className='Form'
+                                    style={{
+                                        margin: 'auto',
+                                        padding: '10px',
+                                    }} >
+                                    <Button
+                                        variant="contained"
+                                        sx={{ mt: 3, mb: 2, display: "flex", alignSelf: "center" }}
+                                        onClick={() => this.handleLinkedinAuth()} >Linkedin Authorization</Button>
+                                </div >
                                 <div
                                     className='Form'
                                     style={{
