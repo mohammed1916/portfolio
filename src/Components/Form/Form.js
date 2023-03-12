@@ -18,18 +18,6 @@ import { child, ref, set, get } from "firebase/database";
 import DownloadFooter from '../footer/Download/DownloadFooter';
 import FormNav from '../Navbar/FormNav';
 import { database } from '../../firebase-config';
-// import { LinkedInProfileScraper } from 'linkedin-profile-scraper';
-// import linkedinComponent from './Components/linkedinComponent';
-
-// import socketIO from "socket.io-client";
-// const socket = socketIO.connect("http://localhost:4000");
-
-// {
-// withCredentials: true,
-// extraHeaders: {
-//     "my-custom-header": "http://localhost:4000"
-// }
-// });
 
 var originallinkedindata = originallinkedininitialdata;
 var originalinformationdata = originalinformationinitialdata;
@@ -69,7 +57,7 @@ class Form extends React.Component {
             read: false,
             linkedindata: (originallinkedindata !== undefined) ? originallinkedininitialdata : linkedininitialdata,
             externalPopUp: null,
-            linnkedinAuth: ""
+            linkedinAuth: ""
         };
     }
 
@@ -77,44 +65,7 @@ class Form extends React.Component {
         this.initializeData()
     }
     componentDidUpdate() {
-        // const callback_url = "http://localhost:3000/form/callback";``
-        // const pollTimer = window.setInterval(() => {
-        //     try {
-        //         if (!this.state.externalPopUp && this.state.externalPopUp.location.href.indexOf(callback_url) !== -1) {
-        //             this.state.externalPopUpdow.clearInterval(pollTimer);
 
-        //             // Get the URL hash with your token in it
-        //             const hash = this.state.externalPopUp.location.hash;
-        //             console.log("hash: ", hash)
-        //             this.state.externalPopUp.close();
-
-        //             // Parse the string hash and convert to object of keys and values
-        //             const result = hash.substring(1)
-        //                 .split('&')
-        //                 .map(i => i.split('='))
-        //                 .reduce((prev, curr) => ({
-        //                     ...prev,
-        //                     [curr[0]]: curr[1],
-        //                 }), {});
-
-        //             // Calculate when the token expires and store in the result object
-        //             result.expires_at = Date.now() + parseInt(hash.expires_in, 10);
-        //             console.log(result);
-        //             //  TODO: Persist result in sessionStorage here
-        //         }
-        //     } catch (err) {
-        //         // do something or nothing if window still not redirected after login
-        //         console.log("err: ", err);
-        //     }
-        // }, 300);
-        this.handleReqAuthCode()
-
-        // let url = this.state.linkedindata;
-        // if (this.state.linkedindata.linkedin !== '') {
-        //     socket.emit("browse", {
-        //         url
-        //     });
-        // }
     }
 
     initializeData() {
@@ -164,8 +115,6 @@ class Form extends React.Component {
                 this.setState({ gallerydata: snapshot.val() });
             }
         });
-
-        // if (infoFlag === true && socialFlag === true && educationFlag === true && workFlag === true && skillsFlag === true && projectsFlag === true && certificatesFlag === true && galleryFlag === true) this.state.read = true;
     }
     fillData() {
         this.setState({
@@ -201,8 +150,6 @@ class Form extends React.Component {
                 description: this.state.informationdata["description"],
                 location: this.state.informationdata["location"],
             });
-            // console.log(this.state.socialprofilesdata.profiles.length);
-            // console.log(this.state.socialprofilesdata.profiles[0]["media"]);
             set(ref(db, `${this.props.userID}/socialmediaprofilesinfo`), {
                 profiles: this.state.socialprofilesdata["profiles"],
             });
@@ -245,52 +192,14 @@ class Form extends React.Component {
         const client_id = "863yjvgqsfyyvq";
         const callback_url = "http://localhost:3000/form/callback";
         const url = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${client_id}&redirect_uri=${callback_url}&state=foo1123&scope=email%20profile`;
-        // fetch(url,
-        //     {
-        //         method: "GET",
-        //         // mode: 'same-origin',
-        //         // redirect: "follow",
-        //         // credentials: 'same-origin'
-        //     }).then((res) => console.log(res));
-        // // .then((data) => console.log(data));
 
         const win = window.open(url, 'name', 'height=600,width=450');
         if (win) {
             win.focus();
             this.setState({ externalPopUp: win })
         }
-        console.log("hash: ", win.location.hash)
-        console.log("win: ", win)
-        // const pollTimer = window.setInterval(() => {
-        //     try {
-        //         if (!win && win.location.href.indexOf(callback_url) !== -1) {
-        //             window.clearInterval(pollTimer);
-
-        //             // Get the URL hash with your token in it
-        //             const hash = win.location.hash;
-        //             console.log("hash: ", hash)
-        //             win.close();
-
-        //             // Parse the string hash and convert to object of keys and values
-        //             const result = hash.substring(1)
-        //                 .split('&')
-        //                 .map(i => i.split('='))
-        //                 .reduce((prev, curr) => ({
-        //                     ...prev,
-        //                     [curr[0]]: curr[1],
-        //                 }), {});
-
-        //             // Calculate when the token expires and store in the result object
-        //             result.expires_at = Date.now() + parseInt(hash.expires_in, 10);
-        //             console.log(result);
-        //             //  TODO: Persist result in sessionStorage here
-        //         }
-        //     } catch (err) {
-        //         // do something or nothing if window still not redirected after login
-        //         console.log("err: ", err);
-        //     }
-        // }, 300);
         console.log("pressed")
+        this.handleReqAuthCode()
     }
     handleReqAuthCode() {
         console.log("this.state.externalPopUp", this.state.externalPopUp)
@@ -309,13 +218,18 @@ class Form extends React.Component {
                     this.setState({ linkedinAuth: code })
                     this.state.externalPopUp.close();
                     console.log("URL: ", this.state.linkedinAuth)
-                    this.handleAuthCode(this.state.linkedinAuth)
+
                 }
             } catch (err) {
-
+                console.log(err);
             } finally {
                 // this.state.externalPopUp.close();
-                this.setState({ externalPopUp: null });
+                this.setState({
+                    externalPopUp: null,
+                    linkedinAuth: localStorage.getItem('linkedinAuthCode')
+                });
+                console.log("URL1: ", this.state.linkedinAuth)
+                this.handleAuthCode(this.state.linkedinAuth)
                 timerhandler && clearInterval(timerhandler);
             }
         });

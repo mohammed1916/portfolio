@@ -15,6 +15,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Home from './Components/Home/Home';
 import Form from './Components/Form/Form';
 import Register from './Components/Register/Register';
+import CallbackHandler from './Components/Callback/CallbackHandler';
 
 var emailOfUser = '';
 function App() {
@@ -46,7 +47,7 @@ function App() {
 
   function getUsername(name) {
     const n = email.indexOf('.');
-    return (n != -1) ? email.substring(0, n) : email
+    return (n !== -1) ? email.substring(0, n) : email
   }
 
   //Handle Form Events
@@ -94,7 +95,7 @@ function App() {
       .catch(function (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
-        if (errorCode == 'auth/weak-password') {
+        if (errorCode === 'auth/weak-password') {
           alert('The password is too weak.');
         } else {
           alert(errorMessage);
@@ -136,6 +137,12 @@ function App() {
           <Form
             userID={emailOfUser}
             navigate={navigate}
+          />}
+        />
+        <Route path='/form/callback' element={
+          <CallbackHandler
+          // userID={emailOfUser}
+          // navigate={navigate}
           />}
         />
 
