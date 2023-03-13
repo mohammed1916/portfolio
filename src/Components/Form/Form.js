@@ -38,7 +38,6 @@ class Form extends React.Component {
         user = this.props.userID;
         this.initializeData = this.initializeData.bind(this);
         this.handleReqAuthCode = this.handleReqAuthCode.bind(this);
-        this.handleAuthCode = this.handleAuthCode.bind(this);
         this.handleLinkedinAuth = this.handleLinkedinAuth.bind(this);
         this.fillData = this.fillData.bind(this);
         this.state = {
@@ -211,13 +210,6 @@ class Form extends React.Component {
         console.log("URL1: ", this.state.linkedinAuth)
     }
 
-    handleAuthCode() {
-        this.state.externalPopUp.close();
-        this.setState({
-            linkedinAccess: localStorage.getItem('linkedinAuthCode')
-        });
-        console.log("linkedinAuthCode: ", this.state.linkedinAuthCode);
-    }
 
     // handleChange(data) {
     //     this.setState({ git: })
@@ -225,7 +217,6 @@ class Form extends React.Component {
 
     render() {
         return (
-            // (this.state.read === true) ?
             <>
                 <FormNav />
                 <Fragment>
@@ -473,12 +464,6 @@ class Form extends React.Component {
                     <DownloadFooter />
                 </Fragment>
             </>
-            // :
-            // <>
-            //     <Typography>
-            //         Loading
-            //     </Typography>
-            // </>
 
 
         );
