@@ -146,12 +146,6 @@ function App() {
           // navigate={navigate}
           />}
         />
-        <Route path='/oauth/v2' element={
-          <OauthCallbackHandler
-          // userID={emailOfUser}
-          // navigate={navigate}
-          />}
-        />
 
       </Routes>
       <Snackbar
