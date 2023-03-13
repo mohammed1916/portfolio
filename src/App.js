@@ -16,7 +16,6 @@ import Home from './Components/Home/Home';
 import Form from './Components/Form/Form';
 import Register from './Components/Register/Register';
 import CallbackHandler from './Components/Callback/CallbackHandler';
-import OauthCallbackHandler from './Components/Callback/OauthCallbackHandler';
 
 var emailOfUser = '';
 function App() {
@@ -141,10 +140,7 @@ function App() {
           />}
         />
         <Route path='/form/callback' element={
-          <CallbackHandler
-          // userID={emailOfUser}
-          // navigate={navigate}
-          />}
+          <CallbackHandler />}
         />
 
       </Routes>
