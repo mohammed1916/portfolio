@@ -57,7 +57,8 @@ class Form extends React.Component {
             read: false,
             linkedindata: (originallinkedindata !== undefined) ? originallinkedininitialdata : linkedininitialdata,
             externalPopUp: null,
-            linkedinAuth: ""
+            linkedinAuth: "",
+            linkedinAccess: "",
         };
     }
 
@@ -65,7 +66,8 @@ class Form extends React.Component {
         this.initializeData()
     }
     componentDidUpdate() {
-
+        console.log("linkedinAuthCode ", localStorage.getItem('linkedinAuthCode'))
+        console.log("linkedinAccessCode ", localStorage.getItem('linkedinAccessCode'))
     }
 
     initializeData() {
@@ -203,40 +205,18 @@ class Form extends React.Component {
     }
     handleReqAuthCode() {
         console.log("this.state.externalPopUp", this.state.externalPopUp)
-        if (!this.state.externalPopUp) return;
-        const timerhandler = setInterval(() => {
-            if (!this.state.externalPopUp) {
-                timerhandler && clearInterval(timerhandler);
-                return;
-            }
-            const curURL = window.location.href;
-            if (!curURL) return;
-            const searchParams = new URL(curURL).searchParams;
-            const code = searchParams.get('code');
-            try {
-                if (code) {
-                    this.setState({ linkedinAuth: code })
-                    this.state.externalPopUp.close();
-                    console.log("URL: ", this.state.linkedinAuth)
-
-                }
-            } catch (err) {
-                console.log(err);
-            } finally {
-                // this.state.externalPopUp.close();
-                this.setState({
-                    externalPopUp: null,
-                    linkedinAuth: localStorage.getItem('linkedinAuthCode')
-                });
-                console.log("URL1: ", this.state.linkedinAuth)
-                this.handleAuthCode(this.state.linkedinAuth)
-                timerhandler && clearInterval(timerhandler);
-            }
+        this.setState({
+            linkedinAuth: localStorage.getItem('linkedinAuthCode')
         });
+        console.log("URL1: ", this.state.linkedinAuth)
     }
 
-    handleAuthCode(code) {
-
+    handleAuthCode() {
+        this.state.externalPopUp.close();
+        this.setState({
+            linkedinAccess: localStorage.getItem('linkedinAuthCode')
+        });
+        console.log("linkedinAuthCode: ", this.state.linkedinAuthCode);
     }
 
     // handleChange(data) {
