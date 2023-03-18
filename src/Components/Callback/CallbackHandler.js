@@ -7,7 +7,7 @@ export default function CallbackHandler() {
 
     localStorage.setItem('linkedinAuthCode', auth);
     let code = "";
-    const url1 = `http://localhost:8080/${auth}`;
+    const url1 = `http://localhost:8080/auth/${auth}`;
     if (code !== undefined || code !== "") {
         try {
             fetch(url1, { mode: 'cors' })

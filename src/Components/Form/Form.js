@@ -37,9 +37,9 @@ class Form extends React.Component {
         console.log("this.props.userID", this.props.userID);
         user = this.props.userID;
         this.initializeData = this.initializeData.bind(this);
-        this.handleReqAuthCode = this.handleReqAuthCode.bind(this);
         this.handleLinkedinAuth = this.handleLinkedinAuth.bind(this);
         this.fillData = this.fillData.bind(this);
+        this.fillSampleData = this.fillSampleData.bind(this);
         this.state = {
             /**
              * informationinitialdata can be used later to cache data, for now it is static
@@ -118,6 +118,39 @@ class Form extends React.Component {
         });
     }
     fillData() {
+        // const linkedin_key = this.state.linkedinAccess;
+        let linkedin_key = localStorage.getItem('linkedinAccess');
+        const url = `https://api.linkedin.com/v2/me?oauth2_access_token=${linkedin_key}`;
+        const fetchOptions = {
+            method: 'POST',
+            headers: {
+                "description": "Dynamic Personal Website Generator",
+                "name": "Dynamic Personal Website Generator",
+                "uniqueForeignId": "07d5284a-d0a1-45a3-93c0-ac69c9c78",
+            }
+        }
+        const win = window.open(url, 'name', 'height=600,width=450');
+        if (win) {
+            win.focus();
+            this.setState({
+                externalPopUp: win,
+                linkedinAccess: localStorage.getItem('linkedinAccess')
+            })
+        }
+        win.fetch(url, fetchOptions).then((data) => { data.json() }).then((res) => { console.log("res:::", res) })
+        // this.setState({
+        //     linkedindata: linkedininitialdata,
+        //     informationdata: informationinitialdata,
+        //     socialprofilesdata: socialprofilesinitialdata,
+        //     educationdata: educationinitialdata,
+        //     workdata: workinitialdata,
+        //     skillsdata: skillsinitialdata,
+        //     certificatesdata: certificatesinitialdata,
+        //     projectsdata: projectsinitialdata,
+        //     gallerydata: galleryinitialdata
+        // });
+    }
+    fillSampleData() {
         this.setState({
             linkedindata: linkedininitialdata,
             informationdata: informationinitialdata,
@@ -197,19 +230,13 @@ class Form extends React.Component {
         const win = window.open(url, 'name', 'height=600,width=450');
         if (win) {
             win.focus();
-            this.setState({ externalPopUp: win })
+            this.setState({
+                externalPopUp: win,
+                linkedinAuth: localStorage.getItem('linkedinAuthCode')
+            })
         }
-        console.log("pressed")
-        this.handleReqAuthCode()
+        console.log("linkedinAuthCode:::", this.state.linkedinAuthCode);
     }
-    handleReqAuthCode() {
-        console.log("this.state.externalPopUp", this.state.externalPopUp)
-        this.setState({
-            linkedinAuth: localStorage.getItem('linkedinAuthCode')
-        });
-        console.log("URL1: ", this.state.linkedinAuth)
-    }
-
 
     // handleChange(data) {
     //     this.setState({ git: })
@@ -235,6 +262,15 @@ class Form extends React.Component {
                                 onClick={() => this.fillData()}
                             >
                                 Fill Data
+                            </Button>
+                            <div style={{ height: "10px" }}></div>
+                            <Button
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2, display: "flex", alignSelf: "center" }}
+                                // onChange={(data) => setInformationData(data)}
+                                onClick={() => this.fillSampleData()}
+                            >
+                                Fill Sample Data
                             </Button>
                         </header>
                     </div>
