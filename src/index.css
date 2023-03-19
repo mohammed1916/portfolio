@@ -7,3 +7,23 @@ body {
     sans-serif;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.popup {
+	width: 80%;
+	height: 500px;
+	background: black;
+	border-radius: 20px;
+	padding: 20px;
+	overflow: auto;
+}
+.popup-ref {
+	background: white;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.popup-ref img {
+	top: 0;
+	position: sticky;
+	width: 100%;
+}

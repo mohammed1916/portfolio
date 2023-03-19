@@ -86,6 +86,7 @@ export const data = {
             "type": "Android",
             "thumbnail": require('./Components/Projects/Images/0/3.jpeg'),
             "link": "https://play.google.com/store/apps/details?id=org.greenelite.memorize",
+            "gitlink": "https://github.com/mohammed1916/Memorize#readme",
             "description": "Train yourself to memorize and remember by matching color pairs.",
             "gallery": [
                 require('./Components/Projects/Images/0/1.jpeg'),
@@ -98,6 +99,7 @@ export const data = {
             "type": "Website",
             "thumbnail": require('./Components/Projects/Images/1/1.jpeg'),
             "link": "https://mohammedabdullah.pages.dev/",
+            "gitlink": "https://github.com/mohammed1916/portfolio#readme",
             "description": "Made a portfolio template using reactjs library.",
             "gallery": [
                 require('./Components/Projects/Images/1/1.jpeg'),

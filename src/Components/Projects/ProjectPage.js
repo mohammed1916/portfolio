@@ -11,6 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Button, CardActionArea } from '@mui/material';
 import { database } from '../../firebase-config';
+import Modal from './Modal';
 
 var projectItems = [];
 var projectGalleryItems = [];
@@ -24,6 +25,7 @@ export default function ProjectPage() {
     const [titlePlaceHolder, settitlePlaceholder] = React.useState([]);
     const [typePlaceHolder, settypePlaceholder] = React.useState([]);
     const [linkPlaceHolder, setlinkPlaceholder] = React.useState([]);
+    const [gitlinkPlaceHolder, setgitlinkPlaceholder] = React.useState([]);
     const [thumbnailPlaceHolder, setthumbnailPlaceholder] = React.useState([]);
     const [descriptionPlaceHolder, setdescriptionPlaceholder] = React.useState([]);
     const [galleryPlaceHolder, setgalleryPlaceholder] = React.useState([]);
@@ -87,6 +89,7 @@ export default function ProjectPage() {
         settitlePlaceholder(oldArray => [...oldArray, projectItems[i]["title"]]);
         settypePlaceholder(oldArray => [...oldArray, projectItems[i]["type"]]);
         setlinkPlaceholder(oldArray => [...oldArray, projectItems[i]["link"]]);
+        setgitlinkPlaceholder(oldArray => [...oldArray, projectItems[i]["gitlink"]]);
         setthumbnailPlaceholder(oldArray => [...oldArray, projectItems[i]["thumbnail"]]);
         setdescriptionPlaceholder(oldArray => [...oldArray, projectItems[i]["description"]]);
         setgalleryPlaceholder(oldArray => [...oldArray, projectItems[i]["gallery"]]);
@@ -126,6 +129,16 @@ export default function ProjectPage() {
                             <a href={linkPlaceHolder[params.i]}>
                                 <Typography color={'black'} gutterBottom variant="h6" component="div"  >
                                     {`${linkPlaceHolder[params.i]}`}
+                                </Typography>
+                            </a>
+                        </Box>
+                        <Box display={'flex'} flexDirection={'row'} >
+                            <Typography color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
+                                {`Project Link: `}
+                            </Typography>
+                            <a href={gitlinkPlaceHolder[params.i]}>
+                                <Typography color={'black'} gutterBottom variant="h6" component="div"  >
+                                    {`${gitlinkPlaceHolder[params.i]}`}
                                 </Typography>
                             </a>
                         </Box>
@@ -174,6 +187,12 @@ export default function ProjectPage() {
                             ))}
                         </Box>
 
+                    </Box>
+                    <Box key={`${linkPlaceHolder[params.i]}`}>
+                        {linkPlaceHolder[params.i] !== undefined && <Modal origin={"http://localhost:4000"} url={linkPlaceHolder[params.i]} />}
+                    </Box>
+                    <Box key={`${gitlinkPlaceHolder[params.i]}`}>
+                        {gitlinkPlaceHolder[params.i] !== undefined && <Modal origin={"http://localhost:5000"} url={gitlinkPlaceHolder[params.i]} />}
                     </Box>
                 </Container>
             </Box>

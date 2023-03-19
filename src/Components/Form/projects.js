@@ -19,6 +19,9 @@ export const projectsschema = {
             "link": {
                 "type": "string",
             },
+            "gitlink": {
+                "type": "string",
+            },
             "description": {
                 "type": "string",
             },
@@ -31,6 +34,7 @@ export const projectsschema = {
             "type",
             "thumbnail",
             "link",
+            "gitlink",
             "description",
             "gallery"
         ]
@@ -66,6 +70,10 @@ export const projectsuischema = {
                         },
                         {
                             "type": "Control",
+                            "scope": "#/properties/gitlink"
+                        },
+                        {
+                            "type": "Control",
                             "scope": "#/properties/description"
                         },
                     ]
@@ -82,6 +90,7 @@ export const projectsinitialdata = {
             "type": "Android",
             "thumbnail": require('../../Components/Projects/Images/0/3.jpeg'),
             "link": "https://play.google.com/store/apps/details?id=org.greenelite.memorize",
+            "gitlink": "https://github.com/mohammed1916/Memorize#readme",
             "description": "Train yourself to memorize and remember by matching color pairs.",
         },
         {
@@ -89,6 +98,7 @@ export const projectsinitialdata = {
             "type": "Website",
             "thumbnail": require('../../Components/Projects/Images/1/1.jpeg'),
             "link": "https://mohammedabdullah.pages.dev",
+            "gitlink": "https://github.com/mohammed1916/portfolio#readme",
             "description": "Made a portfolio template using reactjs library.",
         }
     ]
@@ -100,6 +110,7 @@ export const originalprojectsinitialdata = {
             "type": "",
             "thumbnail": '',
             "link": "",
+            "gitlink": "",
             "description": "",
         },
     ]
