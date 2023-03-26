@@ -117,7 +117,20 @@ class Form extends React.Component {
             }
         });
     }
-    fillData() {
+    async openWin(url, localStorageItem, setDataVal) {
+        const win = window.open(url, 'name', 'height=600,width=450');
+        if (win) {
+            win.focus();
+            await fetch(url).then((data) => data.json()).then((res) => {
+                // win.close()
+                this.setState({ [`${setDataVal}`]: res });
+                // localStorage.setItem(localStorageItem, res)
+                return res;
+            })
+
+        }
+    }
+    async fillData() {
         // const linkedin_key = this.state.linkedinAccess;
         let linkedin_key = localStorage.getItem('linkedinAccess');
         const url = `https://api.linkedin.com/v2/me?oauth2_access_token=${linkedin_key}`;
@@ -129,25 +142,51 @@ class Form extends React.Component {
                 "uniqueForeignId": "07d5284a-d0a1-45a3-93c0-ac69c9c78",
             }
         }
-        const win = window.open(url, 'name', 'height=600,width=450');
-        if (win) {
-            win.focus();
-            this.setState({
-                externalPopUp: win,
-                linkedinAccess: localStorage.getItem('linkedinAccess')
-            })
-        }
-        win.fetch(url, fetchOptions).then((data) => { data.json() }).then((res) => { console.log("res:::", res) })
+        await this.openWin('http://localhost:8080/skills', 'resSkills', "skillsdata")
+        await this.openWin('http://localhost:8080/certificates', 'resCert', "certificatesdata")
+        // await this.openWin('http://localhost:8080/data', 'resData')
+
+        // const resCert = localStorage.getItem('resCert');
+        // const resSkills = localStorage.getItem('resSkills');
+        // const resData = localStorage.getItem('resData');
+        // console.log('resCert', resCert)
+        // console.log('resSkills', resSkills)
+        // console.log('resData', resData)
+
+        // win.fetch(url, fetchOptions).then((data) => { data.json() }).then((res) => { console.log("res:::", res) })
+        // const resCert = await fetch("http://localhost:8080/certificates").then((res) => {
+        //     console.log("cert:::", res);
+        //     // resCert = res;
+        //     return res;
+        // })
+        // const resSkills = await fetch("http://localhost:8080/skills").then((res) => {
+        //     console.log("skills:::", res);
+        //     // resSkills = res;
+        //     return res;
+        // })
+        // const resData = await fetch("http://localhost:8080/data").then((res) => {
+        //     console.log("data:::", res);
+        //     // resData = res;
+        // win.close()
+
+        //     return res;
+        // })
+        // Promise.all([
+        //     resCert,
+        //     resSkills,
+        //     resData
+        // ])
+
         // this.setState({
-        //     linkedindata: linkedininitialdata,
-        //     informationdata: informationinitialdata,
-        //     socialprofilesdata: socialprofilesinitialdata,
-        //     educationdata: educationinitialdata,
-        //     workdata: workinitialdata,
-        //     skillsdata: skillsinitialdata,
-        //     certificatesdata: certificatesinitialdata,
-        //     projectsdata: projectsinitialdata,
-        //     gallerydata: galleryinitialdata
+        //     //     linkedindata: linkedininitialdata,
+        //     //     informationdata: informationinitialdata,
+        //     //     socialprofilesdata: socialprofilesinitialdata,
+        //     //     educationdata: educationinitialdata,
+        //     //     workdata: workinitialdata,
+        //     skillsdata: resSkills,
+        //     certificatesdata: resCert,
+        //     //     projectsdata: projectsinitialdata,
+        //     //     gallerydata: galleryinitialdata
         // });
     }
     fillSampleData() {
