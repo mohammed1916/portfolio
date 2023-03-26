@@ -146,36 +146,8 @@ class Form extends React.Component {
         await this.openWin('http://localhost:8080/certificates', 'resCert', "certificatesdata")
         // await this.openWin('http://localhost:8080/data', 'resData')
 
-        // const resCert = localStorage.getItem('resCert');
-        // const resSkills = localStorage.getItem('resSkills');
-        // const resData = localStorage.getItem('resData');
-        // console.log('resCert', resCert)
-        // console.log('resSkills', resSkills)
-        // console.log('resData', resData)
 
-        // win.fetch(url, fetchOptions).then((data) => { data.json() }).then((res) => { console.log("res:::", res) })
-        // const resCert = await fetch("http://localhost:8080/certificates").then((res) => {
-        //     console.log("cert:::", res);
-        //     // resCert = res;
-        //     return res;
-        // })
-        // const resSkills = await fetch("http://localhost:8080/skills").then((res) => {
-        //     console.log("skills:::", res);
-        //     // resSkills = res;
-        //     return res;
-        // })
-        // const resData = await fetch("http://localhost:8080/data").then((res) => {
-        //     console.log("data:::", res);
-        //     // resData = res;
-        // win.close()
 
-        //     return res;
-        // })
-        // Promise.all([
-        //     resCert,
-        //     resSkills,
-        //     resData
-        // ])
 
         // this.setState({
         //     //     linkedindata: linkedininitialdata,
