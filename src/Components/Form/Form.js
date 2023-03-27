@@ -124,9 +124,13 @@ class Form extends React.Component {
             win.focus();
             if (isInfo) {
                 await fetch(url).then((data) => data.json()).then((res) => {
+                    const socialData = {
+                        "profiles": res["information"]["profiles"]
+                    }
+                    console.log("socialprofilesdata: res[\"information\"][\"profiles\"]", socialData)
                     this.setState({
                         informationdata: res["information"],
-                        socialprofilesdata: res["information"]["profiles"]
+                        socialprofilesdata: socialData
                     });
                 })
             } else {
