@@ -149,7 +149,7 @@ class Form extends React.Component {
                 "uniqueForeignId": "07d5284a-d0a1-45a3-93c0-ac69c9c78",
             }
         }
-        if (this.linkedindata == undefined)
+        if (this.state.linkedindata.linkedin == undefined || this.state.linkedindata.linkedin == '')
             alert('Please Enter Linkedin URL')
         else {
             const url = "https://localhost:3000"
