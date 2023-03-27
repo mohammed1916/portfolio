@@ -8,6 +8,10 @@ export const projectsschema = {
                 "type": "string",
                 "description": "Please enter title for this project"
             },
+            "dates": {
+                "type": "string",
+                "description": "Duration of Project"
+            },
             "type": {
                 "title": "Domain of Project",
                 "type": "string",
@@ -55,6 +59,10 @@ export const projectsuischema = {
                         {
                             "type": "Control",
                             "scope": "#/properties/title"
+                        },
+                        {
+                            "type": "Control",
+                            "scope": "#/properties/dates"
                         },
                         {
                             "type": "Control",
@@ -107,6 +115,7 @@ export const originalprojectsinitialdata = {
     "projects": [
         {
             "title": "",
+            "dates": "",
             "type": "",
             "thumbnail": '',
             "link": "",
