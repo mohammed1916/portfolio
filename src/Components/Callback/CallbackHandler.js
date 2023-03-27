@@ -20,10 +20,9 @@ export default function CallbackHandler() {
                         }
                         else {
                             localStorage.setItem('linkedinAccessCode', res)
-                            window.close();
                         }
                     })
-                })
+                }).then((data) => window.close())
         } catch (err) {
             setError(errorCode);
             console.log(error + err)
@@ -31,9 +30,20 @@ export default function CallbackHandler() {
     } else {
         console.log("skip")
     }
+    const info = <>
+        <center>
+            <div>
+                Redirecting
+            </div>
+            <br />
+            <div>
+                This window will close automatically
+            </div>
+        </center>
+    </>
     return (
         <>
-            {error !== errorCode ? "Redirecting" : errorCode}
+            {error !== errorCode ? info : errorCode}
         </>
     );
 }

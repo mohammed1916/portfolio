@@ -40,6 +40,7 @@ class Form extends React.Component {
         this.handleLinkedinAuth = this.handleLinkedinAuth.bind(this);
         this.fillData = this.fillData.bind(this);
         this.fillSampleData = this.fillSampleData.bind(this);
+        this.updateDataFromLinkedIn = this.updateDataFromLinkedIn.bind(this);
         this.state = {
             /**
              * informationinitialdata can be used later to cache data, for now it is static
@@ -117,23 +118,29 @@ class Form extends React.Component {
             }
         });
     }
-    async openWin(url, localStorageItem, setDataVal) {
+    async openWin(url, isInfo, setDataVal) {
         const win = window.open(url, 'name', 'height=600,width=450');
         if (win) {
             win.focus();
-            await fetch(url).then((data) => data.json()).then((res) => {
-                // win.close()
-                this.setState({ [`${setDataVal}`]: res });
-                // localStorage.setItem(localStorageItem, res)
-                return res;
-            })
+            if (isInfo) {
+                await fetch(url).then((data) => data.json()).then((res) => {
+                    this.setState({
+                        informationdata: res["information"],
+                        socialprofilesdata: res["information"]["profiles"]
+                    });
+                })
+            } else {
+                await fetch(url).then((data) => data.json()).then((res) => {
+                    this.setState({ [`${setDataVal}`]: res });
+                })
+            }
 
         }
     }
     async fillData() {
         // const linkedin_key = this.state.linkedinAccess;
         let linkedin_key = localStorage.getItem('linkedinAccess');
-        const url = `https://api.linkedin.com/v2/me?oauth2_access_token=${linkedin_key}`;
+        const urlAccess = `https://api.linkedin.com/v2/me?oauth2_access_token=${linkedin_key}`;
         const fetchOptions = {
             method: 'POST',
             headers: {
@@ -142,24 +149,17 @@ class Form extends React.Component {
                 "uniqueForeignId": "07d5284a-d0a1-45a3-93c0-ac69c9c78",
             }
         }
-        await this.openWin('http://localhost:8080/skills', 'resSkills', "skillsdata")
-        await this.openWin('http://localhost:8080/certificates', 'resCert', "certificatesdata")
-        // await this.openWin('http://localhost:8080/data', 'resData')
-
-
-
-
-        // this.setState({
-        //     //     linkedindata: linkedininitialdata,
-        //     //     informationdata: informationinitialdata,
-        //     //     socialprofilesdata: socialprofilesinitialdata,
-        //     //     educationdata: educationinitialdata,
-        //     //     workdata: workinitialdata,
-        //     skillsdata: resSkills,
-        //     certificatesdata: resCert,
-        //     //     projectsdata: projectsinitialdata,
-        //     //     gallerydata: galleryinitialdata
-        // });
+        if (this.linkedindata == undefined)
+            alert('Please Enter Linkedin URL')
+        else {
+            const url = "https://localhost:3000"
+            await this.openWin(`${url}/skills`, false, "skillsdata")
+            await this.openWin(`${url}/certificates`, false, "certificatesdata")
+            await this.openWin(`${url}/projects`, false, "projectsdata")
+            await this.openWin(`${url}/education`, false, "educationdata")
+            await this.openWin(`${url}/work`, false, "workdata")
+            await this.openWin(`${url}/data`, true, '')
+        }
     }
     fillSampleData() {
         this.setState({
@@ -173,6 +173,37 @@ class Form extends React.Component {
             projectsdata: projectsinitialdata,
             gallerydata: galleryinitialdata
         });
+    }
+    async updateDataFromLinkedIn() {
+        console.log("this.state.linkedindata", this.state.linkedindata)
+        let data = this.state.linkedindata.linkedin;
+        data = data.split('/')[4];
+        console.log("data ", data)
+        if (data == undefined || data == '') {
+            alert("Enter Proper URL")
+        }
+        // if (this.state.linkedindata.linkedin === '')
+        //     alert("Please Enter Linkedin URL")
+        else {
+            const getLinkedinWin = window.open("http://localhost:8080/getLinkedInData", 'name', 'height=600,width=450');
+            if (getLinkedinWin) {
+                getLinkedinWin.focus();
+
+                // else {
+                console.log("this.state.linkedindata.linkedin", data)
+                await fetch(`http://localhost:8080/getLinkedInData/${data}`,
+                    // {
+                    //     method: 'POST',
+                    //     headers: {
+                    //         'Content-Type': "application/json",
+                    //     },
+                    //     body: JSON.stringify(this.state.linkedindata.linkedin)
+                    // }
+                )
+                // .then((data) => getLinkedinWin.close())
+                // }
+            }
+        }
     }
 
     update() {
@@ -316,6 +347,17 @@ class Form extends React.Component {
                                         variant="contained"
                                         sx={{ mt: 3, mb: 2, display: "flex", alignSelf: "center" }}
                                         onClick={() => this.handleLinkedinAuth()} >Linkedin Authorization</Button>
+                                </div >
+                                <div
+                                    className='Form'
+                                    style={{
+                                        margin: 'auto',
+                                        padding: '10px',
+                                    }} >
+                                    <Button
+                                        variant="contained"
+                                        sx={{ mb: 2, display: "flex", alignSelf: "center" }}
+                                        onClick={() => this.updateDataFromLinkedIn()} >Update Linkedin Data in Server</Button>
                                 </div >
                                 <div
                                     className='Form'
