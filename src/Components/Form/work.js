@@ -11,7 +11,7 @@ export const workschema = {
                 "type": "string",
             },
             "title": {
-                "title": "Year of Passing",
+                "title": "Title",
                 "type": "string",
             },
             "thumbnail": {
