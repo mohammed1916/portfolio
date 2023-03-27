@@ -152,7 +152,7 @@ class Form extends React.Component {
         if (this.state.linkedindata.linkedin == undefined || this.state.linkedindata.linkedin == '')
             alert('Please Enter Linkedin URL')
         else {
-            const url = "https://localhost:3000"
+            const url = "http://localhost:8080"
             await this.openWin(`${url}/skills`, false, "skillsdata")
             await this.openWin(`${url}/certificates`, false, "certificatesdata")
             await this.openWin(`${url}/projects`, false, "projectsdata")
