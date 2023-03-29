@@ -11,6 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Button, CardActionArea } from '@mui/material';
 import { database } from '../../firebase-config';
+import noImageAvailable from '../../img/icons/noImageAvailable.jpeg'
 import Modal from './Modal';
 
 var projectItems = [];
@@ -150,9 +151,9 @@ export default function ProjectPage() {
                                 {`${descriptionPlaceHolder[params.i]}`}
                             </Typography>
                         </Box>
-                        <Typography color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
+                        {projectGalleryItems.length !== 0 && <Typography color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                             Sample Images:
-                        </Typography>
+                        </Typography>}
                         <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                             {projectGalleryItems.map((item, index) => (
                                 <Box display={'flex'} flexWrap={'wrap'} justifyContent='center' >
@@ -161,7 +162,7 @@ export default function ProjectPage() {
                                             <CardMedia
                                                 component="img"
                                                 height="480"
-                                                image={item[0]}
+                                                image={item[0] ? item[0] : noImageAvailable}
                                             />
                                         </CardActionArea>
                                     </Card>
@@ -170,7 +171,7 @@ export default function ProjectPage() {
                                             <CardMedia
                                                 component="img"
                                                 height="480"
-                                                image={item[1]}
+                                                image={item[1] ? item[1] : noImageAvailable}
                                             />
                                         </CardActionArea>
                                     </Card>
@@ -179,7 +180,7 @@ export default function ProjectPage() {
                                             <CardMedia
                                                 component="img"
                                                 height="480"
-                                                image={item[2]}
+                                                image={item[2] ? item[2] : noImageAvailable}
                                             />
                                         </CardActionArea>
                                     </Card>
@@ -188,12 +189,16 @@ export default function ProjectPage() {
                         </Box>
 
                     </Box>
-                    <Box key={`${linkPlaceHolder[params.i]}`}>
-                        {linkPlaceHolder[params.i] !== undefined && <Modal origin={"http://localhost:4000"} url={linkPlaceHolder[params.i]} />}
-                    </Box>
-                    <Box key={`${gitlinkPlaceHolder[params.i]}`}>
-                        {gitlinkPlaceHolder[params.i] !== undefined && <Modal origin={"http://localhost:5000"} url={gitlinkPlaceHolder[params.i]} />}
-                    </Box>
+                    {linkPlaceHolder[params.i] &&
+                        <Box key={`${linkPlaceHolder[params.i]}`}>
+                            <Modal key={linkPlaceHolder[params.i]} origin={"http://localhost:4000"} url={linkPlaceHolder[params.i]} />
+                        </Box>
+                    }
+                    {gitlinkPlaceHolder[params.i] &&
+                        <Box key={`${gitlinkPlaceHolder[params.i]}`}>
+                            <Modal key={gitlinkPlaceHolder[params.i]} origin={"http://localhost:4001"} url={gitlinkPlaceHolder[params.i]} />
+                        </Box>
+                    }
                 </Container>
             </Box>
         </>

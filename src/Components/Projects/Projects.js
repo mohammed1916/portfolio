@@ -9,6 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { Button, CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box'
 import { ref, child, get } from "firebase/database";
+import noImageAvailable from '../../img/icons/noImageAvailable.jpeg'
 
 import {
     useNavigate
@@ -88,7 +89,7 @@ export default function Projects() {
                                     <CardMedia
                                         component="img"
                                         height="200"
-                                        image={item.thumbnail}
+                                        image={item.thumbnail ? item.thumbnail : noImageAvailable}
                                     />
                                     <CardContent>
                                         <Typography color={'black'} gutterBottom variant="h6" component="div" textAlign={'center'}>
