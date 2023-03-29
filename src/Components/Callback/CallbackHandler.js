@@ -19,10 +19,23 @@ export default function CallbackHandler() {
                             console.log("🛠️ code: ", code, "---", error)
                         }
                         else {
-                            localStorage.setItem('linkedinAccessCode', res)
+                            localStorage.setItem('linkedinAccessCode', res);
+                            let win = window.open(`https://api.linkedin.com/v2/userinfo?oauth2_access_token=${res}`, "name", 'height=600,width=450');
+                            if (win)
+                                win.focus()
+                            // fetch("https://api.linkedin.com/v2/me?oauth2_access_token=${res}", {
+                            //     "headers": {
+                            //         'Authorization': `Bearer ${res}`
+                            //     }
+                            // }).then(((data) => {
+                            //     localStorage.setItem('linkedinAccessCode', data);
+                            //     setError(data);
+                            // }
+                            // ))
                         }
                     })
-                }).then((data) => window.close())
+                })
+            // .then((data) => window.close())
         } catch (err) {
             setError(errorCode);
             console.log(error + err)
@@ -38,6 +51,7 @@ export default function CallbackHandler() {
             <br />
             <div>
                 This window will close automatically
+                {error}
             </div>
         </center>
     </>

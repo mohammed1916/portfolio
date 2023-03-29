@@ -41,6 +41,7 @@ class Form extends React.Component {
         this.fillData = this.fillData.bind(this);
         this.fillSampleData = this.fillSampleData.bind(this);
         this.updateDataFromLinkedIn = this.updateDataFromLinkedIn.bind(this);
+        this.signInLinkedIn = this.signInLinkedIn.bind(this);
         this.state = {
             /**
              * informationinitialdata can be used later to cache data, for now it is static
@@ -186,8 +187,18 @@ class Form extends React.Component {
         if (data == undefined || data == '') {
             alert("Enter Proper URL")
         }
-        // if (this.state.linkedindata.linkedin === '')
-        //     alert("Please Enter Linkedin URL")
+        else {
+            await fetch(`http://localhost:8080/getLinkedInData/${data}`);
+        }
+    }
+    async signInLinkedIn() {
+        console.log("this.state.linkedindata", this.state.linkedindata)
+        let data = this.state.linkedindata.linkedin;
+        data = data.split('/')[4];
+        console.log("data ", data)
+        if (data == undefined || data == '') {
+            alert("Enter Proper URL")
+        }
         else {
             // const getLinkedinWin = window.open(`http://localhost:8080/getLinkedInData/${data}`, 'name', 'height=600,width=450');
             // if (getLinkedinWin) {
@@ -271,7 +282,8 @@ class Form extends React.Component {
     async handleLinkedinAuth() {
         const client_id = "863yjvgqsfyyvq";
         const callback_url = "http://localhost:3000/form/callback";
-        const url = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${client_id}&redirect_uri=${callback_url}&state=foo1123&scope=email%20profile`;
+        // const url = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${client_id}&redirect_uri=${callback_url}&state=foo1123&scope=openid%20profile%20email`;
+        const url = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${client_id}&redirect_uri=${callback_url}&state=foo1123&scope=openid%20profile%20email`;
 
         const win = window.open(url, 'name', 'height=600,width=450');
         if (win) {
@@ -351,6 +363,17 @@ class Form extends React.Component {
                                         variant="contained"
                                         sx={{ mt: 3, mb: 2, display: "flex", alignSelf: "center" }}
                                         onClick={() => this.handleLinkedinAuth()} >Linkedin Authorization</Button>
+                                </div >
+                                <div
+                                    className='Form'
+                                    style={{
+                                        margin: 'auto',
+                                        padding: '10px',
+                                    }} >
+                                    <Button
+                                        variant="contained"
+                                        sx={{ mb: 2, display: "flex", alignSelf: "center" }}
+                                        onClick={() => this.signInLinkedIn()} >Signin into Linkedin</Button>
                                 </div >
                                 <div
                                     className='Form'
