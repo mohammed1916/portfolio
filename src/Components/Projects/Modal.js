@@ -2,13 +2,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import socketIO from "socket.io-client";
 
 const Modal = ({ origin, url }) => {
-    const socket = socketIO.connect(origin);
     const ref = useRef(null);
+    const [currSocket, setCurrSocket] = useState(null);
     const [image, setImage] = useState('');
     const [cursor, setCursor] = useState('');
     const [fullHeight, setFullHeight] = useState('');
 
     useEffect(() => {
+        const socket = socketIO.connect(origin);
+        setCurrSocket(socket);
         socket.emit('browse', {
             url
         });
@@ -21,13 +23,15 @@ const Modal = ({ origin, url }) => {
         socket.on("cursor", (cur) => {
             setCursor(cur);
         });
-    }, []);
+
+        return () => socket.disconnect();
+    }, [setCurrSocket]);
 
     const mouseMove = useCallback((event) => {
         const position = event.currentTarget.getBoundingClientRect();
         const widthChange = 1255 / position.width;
         const heightChange = 800 / position.height;
-        socket.emit('mouseMove', {
+        currSocket.emit('mouseMove', {
             x: widthChange * (event.pageX - position.left),
             y: heightChange * (event.pageY - position.top - document.documentElement.scrollTop),
         });
@@ -37,7 +41,7 @@ const Modal = ({ origin, url }) => {
         const position = event.currentTarget.getBoundingClientRect();
         const widthChange = 1255 / position.width;
         const heightChange = 800 / position.height;
-        socket.emit('mouseClick', {
+        currSocket.emit('mouseClick', {
             x: widthChange * (event.pageX - position.left),
             y: heightChange * (event.pageY - position.top - document.documentElement.scrollTop),
         });
@@ -45,7 +49,7 @@ const Modal = ({ origin, url }) => {
 
     const mouseScroll = useCallback((event) => {
         const position = event.currentTarget.scrollTop;
-        socket.emit('scroll', {
+        currSocket.emit('scroll', {
             position
         });
     }, []);

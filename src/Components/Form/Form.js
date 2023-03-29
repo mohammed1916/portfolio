@@ -189,24 +189,24 @@ class Form extends React.Component {
         // if (this.state.linkedindata.linkedin === '')
         //     alert("Please Enter Linkedin URL")
         else {
-            const getLinkedinWin = window.open("http://localhost:8080/getLinkedInData", 'name', 'height=600,width=450');
-            if (getLinkedinWin) {
-                getLinkedinWin.focus();
+            // const getLinkedinWin = window.open(`http://localhost:8080/getLinkedInData/${data}`, 'name', 'height=600,width=450');
+            // if (getLinkedinWin) {
+            //     getLinkedinWin.focus();
 
-                // else {
-                console.log("this.state.linkedindata.linkedin", data)
-                await fetch(`http://localhost:8080/getLinkedInData/${data}`,
-                    // {
-                    //     method: 'POST',
-                    //     headers: {
-                    //         'Content-Type': "application/json",
-                    //     },
-                    //     body: JSON.stringify(this.state.linkedindata.linkedin)
-                    // }
-                )
-                // .then((data) => getLinkedinWin.close())
-                // }
-            }
+            //     // else {
+            //     console.log("this.state.linkedindata.linkedin", data)
+            await fetch(`http://localhost:8080/getLinkedInData/${data}`);
+            // {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': "application/json",
+            //     },
+            //     body: JSON.stringify(this.state.linkedindata.linkedin)
+            // }
+            // )
+            // .then((data) => getLinkedinWin.close())
+            // }
+            // }
         }
     }
 
