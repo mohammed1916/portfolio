@@ -206,7 +206,7 @@ class Form extends React.Component {
 
             //     // else {
             //     console.log("this.state.linkedindata.linkedin", data)
-            await fetch(`http://localhost:8080/getLinkedInData/${data}`);
+            await fetch(`http://localhost:8080/signInLinkedIn/${data}`);
             // {
             //     method: 'POST',
             //     headers: {
