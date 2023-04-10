@@ -157,13 +157,15 @@ class Form extends React.Component {
         if (this.state.linkedindata.linkedin == undefined || this.state.linkedindata.linkedin == '')
             alert('Please Enter Linkedin URL')
         else {
-            const url = "http://localhost:8080"
-            await this.openWin(`${url}/skills`, false, "skillsdata")
-            await this.openWin(`${url}/certificates`, false, "certificatesdata")
-            await this.openWin(`${url}/projects`, false, "projectsdata")
-            await this.openWin(`${url}/education`, false, "educationdata")
-            await this.openWin(`${url}/work`, false, "workdata")
-            await this.openWin(`${url}/data`, true, '')
+            const url = "http://localhost:8080";
+            let data = this.state.linkedindata.linkedin;
+            data = data.split('/')[4];
+            await this.openWin(`${url}/skills/${data}`, false, "skillsdata")
+            await this.openWin(`${url}/certificates/${data}`, false, "certificatesdata")
+            await this.openWin(`${url}/projects/${data}`, false, "projectsdata")
+            await this.openWin(`${url}/education/${data}`, false, "educationdata")
+            await this.openWin(`${url}/work/${data}`, false, "workdata")
+            await this.openWin(`${url}/data/${data}`, true, '')
         }
     }
     fillSampleData() {
