@@ -25,9 +25,6 @@ export default function About() {
                         {data.information.whoami}
                     </Typography>
                     <Typography paddingBottom={'10px'}>
-                        {`Domain: ${data.information.domain}`}
-                    </Typography>
-                    <Typography paddingBottom={'10px'}>
                         {data.information.description}
                     </Typography>
                 </Box>

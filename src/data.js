@@ -1,10 +1,9 @@
 export const data = {
     "information": {
         "name": "Mohammed Abdullah",
-        "domain": "Front End and Mobile Application Developer",
         "image": require('./img/Design/design.png'),
-        "email": "curiousabdullah@gmail.com",
-        "whoami": "I am Mohammed Abdullah. An aspiring front end developer who likes to learn explore new front end frameworks.",
+        "email": "developermohammed01@gmail.com",
+        "whoami": "I am Mohammed Abdullah. An aspiring software developer who likes to learn and explore new frameworks.",
         "description": "Currently I am pursuing my bachelor's degree in Computer Science and Engineering. I love creating user-centric applications. I have explored the domain of mobile application development and created apps for native android and also a hybrid mobile application using flutter. I have also worked with Godot engine, using which I designed a memory game for android.",
         "location": "Chennai",
         "profiles": [
@@ -44,7 +43,7 @@ export const data = {
             "Institution": "Panimalar Engineering College, Chennai",
             "Type": "Undergraduate - Computer Science and Engineering",
             "Year of Passing": "2023",
-            "Grade": "9.48 C.G.P.A",
+            "Grade": "9.4 C.G.P.A",
             "website": "https://panimalar.ac.in/"
         }
     ],
