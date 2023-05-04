@@ -14,12 +14,12 @@ export const data = {
             },
             {
                 "media": "Linkedin",
-                "url": "https://www.linkedin.com/in/mohammed-abdullah-a103311a6/",
+                "url": "https://www.linkedin.com/in/curious-mohammed-abdullah/",
                 "icon": require('./img/icons/media/linkedin.png')
             },
             {
                 "media": "Blogs",
-                "url": "https://comprehendingknowledge.blogspot.com/",
+                "url": "https://medium.com/@curiousabdullah",
                 "icon": require('./img/icons/media/post-outline.png')
             }
         ]
