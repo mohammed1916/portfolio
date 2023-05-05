@@ -25,7 +25,7 @@ export default function CertificatePage() {
                         <Typography color={'black'} gutterBottom variant="h5" component="div" textAlign={'center'} paddingBottom={'8px'}>
                             {data.certifications[params.i].title}
                         </Typography>
-                        <img src={data.certifications[params.i].thumbnail} />
+                        <img src={data.certifications[params.i].thumbnail} alt="" />
                         <Box display={'flex'} flexDirection={'row'} >
                             <Typography color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {"Date: "}

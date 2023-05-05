@@ -19,7 +19,7 @@ export default function WorkPage() {
                 <Container sx={{ width: '100%' }}>
                     <Typography textAlign="center" fontFamily={'Righteous'} fontSize={'40px'} color={'black'} pt={{ xs: 1, sm: 2 }}>Work Experience</Typography>
                     <Box display={'flex'} flexDirection={'column'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
-                        <img src={data.work[params.i].thumbnail} />
+                        <img src={data.work[params.i].thumbnail} alt="" />
                         <Box display={'flex'} flexDirection={'row'} >
                             <Typography color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {"Job: "}

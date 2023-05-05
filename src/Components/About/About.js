@@ -14,18 +14,15 @@ export default function About() {
                 display={'flex'} flexWrap={'wrap'} flexDirection={'row'} justifyContent='space-evenly'
             >
                 <Box padding={'10px'} alignItems={'center'}>
-                    <img src={data.information.image} />
+                    <img src={data.information.image} alt="" />
                 </Box>
 
                 <Box maxWidth={'500px'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                     <Typography paddingBottom={'10px'}>
-                        Hello There!
+                        Hi There!
                     </Typography>
                     <Typography paddingBottom={'10px'}>
                         {data.information.whoami}
-                    </Typography>
-                    <Typography paddingBottom={'10px'}>
-                        {`Domain: ${data.information.domain}`}
                     </Typography>
                     <Typography paddingBottom={'10px'}>
                         {data.information.description}

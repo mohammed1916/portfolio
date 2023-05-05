@@ -9,3 +9,14 @@ body {
     sans-serif;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.bgimg{
+  background-image: url("img/Design/redTriangles.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.link{
+  color: inherit;
+  word-break: break-all;
+}
