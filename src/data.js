@@ -49,8 +49,8 @@ export const data = {
         {
             "Institution": "Anna University, Chennai",
             "Type": "Post graduate - M.Tech IT (Spln. in AI & DS)",
-            "Year of Passing": "2023",
-            "Grade": "9.51 C.G.P.A",
+            "Year of Passing": "2025",
+            "Grade": "",
             "website": "https://www.annauniv.edu/"
         }
     ],
