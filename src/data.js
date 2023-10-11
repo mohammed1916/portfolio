@@ -45,7 +45,7 @@ export const data = {
             "Year of Passing": "2023",
             "Grade": "9.51 C.G.P.A",
             "website": "https://panimalar.ac.in/"
-        }
+        },
         {
             "Institution": "Anna University, Chennai",
             "Type": "Post graduate - M.Tech IT (Spln. in AI & DS)",
