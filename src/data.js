@@ -73,7 +73,7 @@ export const data = {
         }
         ,
         {
-            "type": "Framworks And Libraries",
+            "type": "Frameworks And Libraries",
             "Knowledge in Advance Topics": "Reactjs, NextJS 13",
             "Knowledge in Main Concepts": "Flutter",
             "Beginner": "Flask",
