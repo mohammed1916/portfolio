@@ -1,10 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&display=swap'); */
+
+@font-face {
+  font-family: 'Gilroy Light';
+  src: url('./fonts/Gilroy-Light.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Gilroy Bold';
+  src: url('./fonts/Gilroy-ExtraBold.otf') format('opentype');
+}
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Gilroy Light', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -moz-osx-font-smoothing: grayscale;
