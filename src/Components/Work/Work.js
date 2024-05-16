@@ -4,14 +4,14 @@ import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import { Button, CardActionArea } from '@mui/material';
+import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
 import { data } from '../../data';
 
 import
-    {
-        useNavigate
-    } from "react-router-dom";
+{
+    useNavigate
+} from "react-router-dom";
 
 
 
