@@ -61,7 +61,7 @@ export const data = {
             "title": "Intern",
             "thumbnail": require('./Components/Certifications/Images/Internship~The Sparks Foundation~Hybrid Mobile App.png'),
             "dates": "Sept - Oct 2021",
-            "description": "Worked on creating a Hybrid Mobile App using Flutter.\nCreated several models in databse.\nPerformed CRUD oprations"
+            "description": "Worked on creating a Hybrid Mobile App using Flutter.\nCreated several models in database.\nPerformed CRUD operations"
         }
     ],
     "skills": [
@@ -74,7 +74,7 @@ export const data = {
         ,
         {
             "type": "Frameworks And Libraries",
-            "Knowledge in Advance Topics": "Reactjs, NextJS 13",
+            "Knowledge in Advance Topics": "ReactJs, NextJS 13",
             "Knowledge in Main Concepts": "Flutter",
             "Beginner": "Flask",
         },
@@ -113,7 +113,7 @@ export const data = {
             "type": "Website",
             "thumbnail": require('./Components/Projects/Images/2/1.jpeg'),
             "link": "https://mohammedabdullah.pages.dev/",
-            "description": "Made a portfolio template using reactjs library.",
+            "description": "Made a portfolio template using ReactJs library.",
             "gallery": [
                 {
                     original: require('./Components/Projects/Images/2/1.jpeg'),
@@ -201,10 +201,10 @@ export const data = {
             "description": "Got a chance to learn topics of Data Cleaning, Accounting for Class Imbalance, Training a Two-Class Boosted Decision Tree Model and Hyperparameter Tuning, Scoring and Evaluating the Models, Publishing the Trained Model as a Web Service for Inference"
         },
         {
-            "title": "Git and Github For Biginners",
+            "title": "Git and Github For Beginners",
             "date": "Sept 10, 2021",
             "Institution": "Udemy",
-            "thumbnail": require('./Components/Certifications/Images/Course~Udemy~Git and Github For Biginners.jpeg'),
+            "thumbnail": require('./Components/Certifications/Images/Course~Udemy~Git and Github For Beginners.jpeg'),
             "description": "Learned about version control systems, git commands, branches and performed pushing projects through git"
         },
         {
