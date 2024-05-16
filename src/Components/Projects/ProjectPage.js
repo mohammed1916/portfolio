@@ -1,20 +1,21 @@
 
 import * as React from 'react';
-import Container from '@mui/material/Container'
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box'
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
-import noImageAvailable from '../../img/icons/noImageAvailable.jpeg'
+import noImageAvailable from '../../img/icons/noImageAvailable.jpeg';
 
 
-import { data } from '../../data'
+import { data } from '../../data';
 
 import { useParams } from "react-router-dom";
 
 
-export default function ProjectPage() {
+export default function ProjectPage()
+{
     let params = useParams();
 
     return (

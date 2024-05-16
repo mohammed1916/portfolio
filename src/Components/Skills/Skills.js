@@ -63,7 +63,7 @@ export default function Skills()
                 bgcolor={'white'}
                 color={'white'} >
                 <Container sx={{ width: '100%' }}>
-                    <Typography textAlign="center" fontFamily={'Righteous'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Skills</Typography>
+                    <Typography textAlign="center" fontFamily={'Gilroy Bold'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Skills</Typography>
                     <Box bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         {data.skills.map((object, index) => (
                             <Accordion key={index + object} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
