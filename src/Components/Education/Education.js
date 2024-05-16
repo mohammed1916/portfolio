@@ -5,10 +5,10 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
-import { data } from '../../data'
+import { data } from '../../data';
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -46,10 +46,12 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
-export default function Education() {
+export default function Education()
+{
     const [expanded, setExpanded] = React.useState('panel1');
 
-    const handleChange = (panel) => (event, newExpanded) => {
+    const handleChange = (panel) => (event, newExpanded) =>
+    {
         setExpanded(newExpanded ? panel : false);
     };
 
@@ -61,21 +63,21 @@ export default function Education() {
                 bgcolor={'white'}
                 color={'white'} >
                 <Container sx={{ width: '100%' }}>
-                    <Typography textAlign="center" fontFamily={'Righteous'} fontSize={'40px'} color={'black'} pt={{ xs: 1, sm: 2 }}>Education</Typography>
+                    <Typography textAlign="center" fontFamily={'Gilroy Bold'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Education</Typography>
                     <Box bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         {data.education.map((object, index) => (
                             <Accordion key={object + index * 5} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
                                 <AccordionSummary aria-controls={`panel${index}d-content`} id={`panel${index}d-header`}>
-                                    <Typography>{object.Type}</Typography>
+                                    <Typography fontFamily={'Gilroy Bold'}>{object.Type}</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <Typography>
+                                    <Typography fontFamily={'Gilroy Light'}>
                                         {`Institution: ${object.Institution}`}
                                     </Typography>
-                                    <Typography>
+                                    <Typography fontFamily={'Gilroy Light'}>
                                         {`Grade: ${object.Grade}`}
                                     </Typography>
-                                    <Typography>
+                                    <Typography fontFamily={'Gilroy Light'}>
                                         {`Year of Passing: ${object['Year of Passing']}`}
                                     </Typography>
                                 </AccordionDetails>
