@@ -64,30 +64,12 @@ export default function ProjectPage()
                         <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                             {data.projects[params.i].gallery.map((item, index) => (
                                 <Box display={'flex'} flexWrap={'wrap'} justifyContent='center' >
-                                    <Card key={item[0]} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3) " }} >
+                                    <Card key={item.thumbnail} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3) " }} >
                                         <CardActionArea>
                                             <CardMedia
                                                 component="img"
                                                 height="480"
-                                                image={item[0] ? item[0] : noImageAvailable}
-                                            />
-                                        </CardActionArea>
-                                    </Card>
-                                    <Card key={item[1]} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3) " }} >
-                                        <CardActionArea>
-                                            <CardMedia
-                                                component="img"
-                                                height="480"
-                                                image={item[1] ? item[1] : noImageAvailable}
-                                            />
-                                        </CardActionArea>
-                                    </Card>
-                                    <Card key={item[2]} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3) " }} >
-                                        <CardActionArea>
-                                            <CardMedia
-                                                component="img"
-                                                height="480"
-                                                image={item[2] ? item[2] : noImageAvailable}
+                                                image={item ? item.thumbnail : noImageAvailable}
                                             />
                                         </CardActionArea>
                                     </Card>
