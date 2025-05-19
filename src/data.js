@@ -195,6 +195,27 @@ export const data = {
             "description": "Learned concepts of Nullability, Functional Programming, Properties, OOP, Conventions in Kotin"
         },
         {
+            "title": "Fundamentals of Accelerated Computing with CUDA C/C++",
+            "date": "October 20, 2024 - expires on March 16, 2026",
+            "Institution": "Nvidia",
+            "thumbnail": require('./Components/Certifications/Images/Course~Nvidia~C++Cuda.png'),
+            "description": "Obtained Certificate of Competency for CUDA C/C++ \n Credential: https://learn.nvidia.com/certificates?id=p837-4HkR1mmR-5G-QROOA \nI gained a solid foundation in GPU programming using CUDA. The course began with an introduction and setup, where I registered on the NVIDIA platform to access course materials. I then learned the essential CUDA syntax and concepts required to write, compile, and run GPU-enabled C/C++ applications. This included understanding thread hierarchies, and how to allocate and manage GPU memory. \n Further, I explored memory management techniques using CUDA-managed (unified) memory. I learned to profile CUDA applications using the command-line profiler and gained insights into optimizing memory behavior based on profiling results. The course also covered asynchronous execution with CUDA streams and how to use NVIDIA Nsight Systems for visual profiling, which helped me identify opportunities for overlapping data transfers and computation. \n Finally, I reviewed all key learnings and completed an assessment to earn a certificate. This course significantly strengthened my ability to develop and optimize GPU-accelerated applications using CUDA C/C++."
+        },
+        {
+            "title": "Fundamentals of Accelerated Computing with CUDA Python",
+            "date": "October 23, 2024",
+            "Institution": "Nvidia",
+            "thumbnail": require('./Components/Certifications/Images/Course~Nvidia~PythonCuda.png'),
+            "description": "Obtained Certificate of Competency for CUDA C/C++ \n Credential: https://learn.nvidia.com/certificates?id=fV0VTTEgRMqkL7nJ4oDgSQ \nThe course began with a brief introduction and setup via the NVIDIA Learning platform. I was then introduced to the Numba compiler and learned how to use Numba decorators to GPU-accelerate numerical Python functions. Additionally, I explored best practices for optimizing memory transfers between the host (CPU) and device (GPU). \n In the next phase, I learned how to write and launch custom CUDA kernels in Python. This included understanding CUDA’s parallel thread hierarchy and utilizing atomic operations to prevent race conditions during parallel execution. \n The course also covered the use of multidimensional grids and shared memory in CUDA Python. I applied these concepts to work efficiently on 2D matrices, leveraging shared memory to enhance performance through memory coalescing. \n Finally, I reviewed all the core concepts covered in the course, completed an assessment, and earned a certificate of completion. This workshop significantly enhanced my ability to build and optimize GPU-accelerated Python applications using Numba and CUDA."
+        },
+        {
+            "title": "10-Day GPU Accelerated Computing and Codeathon",
+            "date": "October 28, 2024",
+            "Institution": "KPR Institute of Engineering and Technology",
+            "thumbnail": require('./Components/Certifications/Images/Course~ACM~GP Accelerated Computing Codeathon.png'),
+            "description": "Participated in 10-day GPU Accelerated Computing and Codeathon, powered by Nvidia Instructors and IEEE Computational Intelligence Society and collaboration with ACM"
+        },
+        {
             "title": "Machine Learning Piplines with Azure ML Studio",
             "date": "July 19, 2021",
             "Institution": "Coursera",
