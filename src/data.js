@@ -91,7 +91,8 @@ export const data = {
             "title": "Memory Game",
             "type": "Android",
             "thumbnail": require('./Components/Projects/Images/1/3.jpeg'),
-            "link": "https://play.google.com/store/apps/details?id=org.greenelite.memorize",
+            // "link": "https://play.google.com/store/apps/details?id=org.greenelite.memorize",
+            "link": "https://github.com/mohammed1916/Memorize",
             "description": "Train yourself to memorize and remember by matching color pairs.",
             "gallery": [
                 {
