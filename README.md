@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). The following is a brief documentation on how to update this project. To host the site refer to https://create-react-app.dev/docs/deployment/ . 
 
-## Example Project:
+## Hosting of the Project:
 My portfolio: https://mohammedabdullah.pages.dev/
 
 ## Edit src/data.js file

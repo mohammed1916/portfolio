@@ -48,8 +48,8 @@ export default function CertificatePage()
                             <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {`Description: `}
                             </Typography>
-                            <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${data.certifications[params.i].description}`}
+                            <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  
+                             dangerouslySetInnerHTML={{ __html: data.certifications[params.i].description }}>
                             </Typography>
                         </Box>
                     </Box>
