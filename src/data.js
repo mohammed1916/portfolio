@@ -61,7 +61,7 @@ export const data = {
             "title": "Intern",
             "thumbnail": require('./Components/Certifications/Images/Internship~The Sparks Foundation~Hybrid Mobile App.png'),
             "dates": "Sept - Oct 2021",
-            "description": "Worked on creating a Hybrid Mobile App using Flutter.<br >Created several models in database.<br >Performed CRUD operations"
+            "description": "Worked on creating a Hybrid Mobile App using Flutter.<br >Created several models in database for bank transaction simulation.<br >Performed CRUD operations"
         }
     ],
     "skills": [
@@ -87,13 +87,37 @@ export const data = {
     ]
     ,
     "projects": [
+        
+        {
+            "title": "Dynamic Portfolio generator",
+            "type": "Single Page Web App",
+            "thumbnail": require('./Components/Projects/Images/2/1.jpeg'),
+            "link": " https://mohammedabdullahportfolio.web.app/",
+            "description": `Employed REST API's to perform 3-legged authentication for linkedIn.
+            Scraped data from LinkedIn and Github using Puppeteer.
+            Used socket programming to send the scrapped data between middleware server and client. Project can be found at https://github.com/mohammed1916/portfolio/tree/FirebaseWebsite`,
+            "gallery": [
+                {
+                    original: require('./Components/Projects/Images/2/1.jpeg'),
+                    thumbnail: require('./Components/Projects/Images/2/1.jpeg'),
+                },
+                {
+                    original: require('./Components/Projects/Images/2/2.jpeg'),
+                    thumbnail: require('./Components/Projects/Images/2/2.jpeg'),
+                },
+                {
+                    original: require('./Components/Projects/Images/2/3.jpeg'),
+                    thumbnail: require('./Components/Projects/Images/2/3.jpeg'),
+                },
+            ]
+        },
         {
             "title": "Memory Game",
             "type": "Android",
             "thumbnail": require('./Components/Projects/Images/1/3.jpeg'),
             // "link": "https://play.google.com/store/apps/details?id=org.greenelite.memorize",
             "link": "https://github.com/mohammed1916/Memorize",
-            "description": "Train yourself to memorize and remember by matching color pairs.",
+            "description": "This game was created to Train yourself to memorize and remember by matching color pairs. <br > It was made using Godot game engine and GDScript. <br >This game was targetted for Android. <br > The game has a score counter, and the player can choose the difficulty level by selecting the number of cards to be matched. <br > The game is designed to improve memory and concentration skills, and it is suitable for all ages.",
             "gallery": [
                 {
                     original: require('./Components/Projects/Images/1/1.jpeg'),
@@ -131,26 +155,21 @@ export const data = {
             ]
         },
         {
-            "title": "Dynamic Portfolio generator",
-            "type": "Single Page Web App",
-            "thumbnail": require('./Components/Projects/Images/2/1.jpeg'),
-            "link": " https://mohammedabdullahportfolio.web.app/",
-            "description": `Employed REST API's to perform 3-legged authentication for linkedIn.
-            Scraped data from LinkedIn and Github using Puppeteer.
-            Used socket programming to send the scrapped data between middleware server and client. Project can be found at https://github.com/mohammed1916/portfolio/tree/FirebaseWebsite`,
+            "title": "GAZAL CAPITAL",
+            "type": "Website",
+            "thumbnail": require('./Components/Projects/Images/3/1.png'),
+            "link": "https://github.com/mohammed1916/gazalcapital",
+            "description":  "A website for startup company, Gazal Capital. Built using ReactJS in javascript styled partially with MUI and tailwindcss. <br > Deployed Application <br >This website is hosted using firebase here: https://gazal-capital.web.app/ <br> Leveraged Firebase for NoSQL storage and Google Apps Script to process web queries and export data to Google Sheets.",
             "gallery": [
                 {
-                    original: require('./Components/Projects/Images/2/1.jpeg'),
-                    thumbnail: require('./Components/Projects/Images/2/1.jpeg'),
+                    original: require('./Components/Projects/Images/3/1.png'),
+                    thumbnail: require('./Components/Projects/Images/3/1.png'),
                 },
                 {
-                    original: require('./Components/Projects/Images/2/2.jpeg'),
-                    thumbnail: require('./Components/Projects/Images/2/2.jpeg'),
+                    original: require('./Components/Projects/Images/3/2.png'),
+                    thumbnail: require('./Components/Projects/Images/3/2.png'),
                 },
-                {
-                    original: require('./Components/Projects/Images/2/3.jpeg'),
-                    thumbnail: require('./Components/Projects/Images/2/3.jpeg'),
-                },
+
             ]
         },
     ],

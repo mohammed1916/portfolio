@@ -55,8 +55,8 @@ export default function ProjectPage()
                             <Typography fontFamily={'Gilroy Bold'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {`Description: `}
                             </Typography>
-                            <Typography fontFamily={'Gilroy Light'} gutterBottom variant="h6" component="div"  >
-                                {`${data.projects[params.i].description}`}
+                            <Typography fontFamily={'Gilroy Light'} gutterBottom variant="h6" component="div"  
+                            dangerouslySetInnerHTML={{ __html: data.projects[params.i].description }}>
                             </Typography>
                         </Box>
                         <Typography fontFamily={'Gilroy Bold'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} paddingTop={'30px'}>
