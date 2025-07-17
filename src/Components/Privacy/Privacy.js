@@ -149,7 +149,18 @@ export default function Privacy() {
                         </Typography>
                         <Box sx={{ mt: 2 }}>
                             <Typography variant="body1" fontFamily={'Gilroy Light'}>
-                                <strong>Email:</strong> {data.information.email} or contactgreenelitedeveloper@gmail.com
+                                <strong>Email:</strong>{' '}
+                                <Box 
+                                    component="span" 
+                                    sx={{ 
+                                        wordBreak: 'break-all',
+                                        overflowWrap: 'break-word',
+                                        display: 'inline-block',
+                                        maxWidth: '100%'
+                                    }}
+                                >
+                                    {data.information.email} or contactgreenelitedeveloper@gmail.com
+                                </Box>
                             </Typography>
                             <Typography variant="body1" fontFamily={'Gilroy Light'}>
                                 <strong>LinkedIn:</strong>{' '}
