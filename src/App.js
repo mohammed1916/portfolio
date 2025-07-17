@@ -16,6 +16,7 @@ import Projects from './Components/Projects/Projects';
 import CertificatePage from "./Components/Certifications/CertificatePage";
 import ProjectPage from "./Components/Projects/ProjectPage";
 import WorkPage from "./Components/Work/WorkPage";
+import Privacy from "./Components/Privacy/Privacy";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='/projects' element={<Projects />} />
         <Route path='/certifications' element={<Certifications />} />
         <Route path='/work' element={<Work />} />
+        <Route path='/privacy' element={<Privacy />} />
         <Route path="workpage/:i" element={<WorkPage />} />
         <Route path="projectpage/:i" element={<ProjectPage />} />
         <Route path="certificatepage/:i" element={<CertificatePage />} />
