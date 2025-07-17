@@ -26,10 +26,10 @@ import account from '../../img/icons/logo192.png'
 const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work Experience'];
 const pages_link = ['/', '/Education', '/Skills', '/Projects', '/Certifications', '/Work'];
 
-// Styled components for 3D effects
+// Styled components for violet purple theme
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-	background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
-	boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+	background: 'linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #8e24aa 100%)',
+	boxShadow: '0 8px 32px rgba(74, 20, 140, 0.4)',
 	backdropFilter: 'blur(10px)',
 	borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
 	position: 'relative',
@@ -51,23 +51,42 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 	},
 }));
 
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+	minHeight: '70px !important',
+	alignItems: 'center',
+	justifyContent: 'space-between',
+	[theme.breakpoints.down('md')]: {
+		minHeight: '64px !important',
+		paddingLeft: theme.spacing(1),
+		paddingRight: theme.spacing(1),
+	},
+}));
+
 const NavButton = styled(motion.div)(({ theme, active }) => ({
 	position: 'relative',
-	margin: '0 8px',
+	margin: '0 4px',
+	[theme.breakpoints.up('lg')]: {
+		margin: '0 8px',
+	},
 	'& .nav-button': {
-		color: active ? '#ffd700' : '#ffffff',
-		padding: '12px 24px',
+		color: active ? '#e1bee7' : '#ffffff',
+		padding: '10px 16px',
 		borderRadius: '12px',
 		background: active 
-			? 'linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%)'
+			? 'linear-gradient(135deg, rgba(225, 190, 231, 0.2) 0%, rgba(225, 190, 231, 0.1) 100%)'
 			: 'transparent',
-		border: active ? '1px solid rgba(255, 215, 0, 0.3)' : '1px solid transparent',
+		border: active ? '1px solid rgba(225, 190, 231, 0.4)' : '1px solid transparent',
 		transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
 		textTransform: 'none',
 		fontWeight: active ? 600 : 400,
-		fontSize: '0.95rem',
+		fontSize: '0.85rem',
+		minWidth: 'auto',
 		position: 'relative',
 		overflow: 'hidden',
+		[theme.breakpoints.up('lg')]: {
+			padding: '12px 20px',
+			fontSize: '0.95rem',
+		},
 		'&::before': {
 			content: '""',
 			position: 'absolute',
@@ -79,11 +98,11 @@ const NavButton = styled(motion.div)(({ theme, active }) => ({
 			transition: 'left 0.5s',
 		},
 		'&:hover': {
-			background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%)',
-			border: '1px solid rgba(255, 215, 0, 0.4)',
-			color: '#ffd700',
+			background: 'linear-gradient(135deg, rgba(225, 190, 231, 0.15) 0%, rgba(225, 190, 231, 0.05) 100%)',
+			border: '1px solid rgba(225, 190, 231, 0.5)',
+			color: '#e1bee7',
 			transform: 'translateY(-2px)',
-			boxShadow: '0 8px 25px rgba(255, 215, 0, 0.3)',
+			boxShadow: '0 8px 25px rgba(225, 190, 231, 0.3)',
 			'&::before': {
 				left: '100%',
 			},
@@ -95,16 +114,21 @@ const NavButton = styled(motion.div)(({ theme, active }) => ({
 }));
 
 const Logo = styled(motion.div)(({ theme }) => ({
+	display: 'flex',
+	alignItems: 'center',
 	'& .logo-text': {
-		background: 'linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%)',
+		background: 'linear-gradient(135deg, #e1bee7 0%, #f3e5f5 50%, #e1bee7 100%)',
 		backgroundClip: 'text',
 		WebkitBackgroundClip: 'text',
 		WebkitTextFillColor: 'transparent',
 		fontFamily: 'Cinzel Decorative',
-		fontSize: '1.5rem',
+		fontSize: '1.2rem',
 		fontWeight: 'bold',
-		textShadow: '0 0 20px rgba(255, 215, 0, 0.5)',
+		textShadow: '0 0 20px rgba(225, 190, 231, 0.5)',
 		position: 'relative',
+		[theme.breakpoints.up('md')]: {
+			fontSize: '1.5rem',
+		},
 		'&::after': {
 			content: '""',
 			position: 'absolute',
@@ -112,22 +136,28 @@ const Logo = styled(motion.div)(({ theme }) => ({
 			left: '0',
 			width: '100%',
 			height: '2px',
-			background: 'linear-gradient(90deg, transparent, #ffd700, transparent)',
+			background: 'linear-gradient(90deg, transparent, #e1bee7, transparent)',
 			borderRadius: '1px',
 		},
 	},
 }));
 
 const ContactAvatar = styled(motion.div)(({ theme }) => ({
+	display: 'flex',
+	alignItems: 'center',
 	'& .avatar': {
-		width: 45,
-		height: 45,
-		border: '2px solid rgba(255, 215, 0, 0.5)',
-		boxShadow: '0 0 20px rgba(255, 215, 0, 0.3)',
+		width: 40,
+		height: 40,
+		border: '2px solid rgba(225, 190, 231, 0.5)',
+		boxShadow: '0 0 20px rgba(225, 190, 231, 0.3)',
 		transition: 'all 0.3s ease',
+		[theme.breakpoints.up('md')]: {
+			width: 45,
+			height: 45,
+		},
 		'&:hover': {
-			border: '2px solid #ffd700',
-			boxShadow: '0 0 30px rgba(255, 215, 0, 0.6)',
+			border: '2px solid #e1bee7',
+			boxShadow: '0 0 30px rgba(225, 190, 231, 0.6)',
 			transform: 'scale(1.1)',
 		},
 	},
@@ -135,7 +165,7 @@ const ContactAvatar = styled(motion.div)(({ theme }) => ({
 
 const MobileMenu = styled(motion.div)(({ theme }) => ({
 	'& .mobile-menu': {
-		background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+		background: 'linear-gradient(135deg, #4a148c 0%, #6a1b9a 100%)',
 		backdropFilter: 'blur(20px)',
 		border: '1px solid rgba(255, 255, 255, 0.1)',
 		borderRadius: '12px',
@@ -147,11 +177,31 @@ const MobileMenu = styled(motion.div)(({ theme }) => ({
 			margin: '4px 8px',
 			transition: 'all 0.3s ease',
 			'&:hover': {
-				background: 'rgba(255, 215, 0, 0.1)',
-				color: '#ffd700',
+				background: 'rgba(225, 190, 231, 0.1)',
+				color: '#e1bee7',
 				transform: 'translateX(8px)',
 			},
 		},
+	},
+}));
+
+const NavContainer = styled(Box)(({ theme }) => ({
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	flexGrow: 1,
+	height: '100%',
+	paddingTop: '4px', // Align with logo and avatar
+	[theme.breakpoints.down('md')]: {
+		display: 'none',
+	},
+}));
+
+const MobileMenuButton = styled(motion.div)(({ theme }) => ({
+	display: 'flex',
+	alignItems: 'center',
+	[theme.breakpoints.up('md')]: {
+		display: 'none',
 	},
 }));
 
@@ -189,19 +239,25 @@ const ResponsiveAppBar = () => {
 	return (
 		<StyledAppBar position="static">
 			<Container maxWidth="xl">
-				<Toolbar disableGutters>
+				<StyledToolbar disableGutters>
+					{/* Desktop Logo */}
 					<Logo
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, ease: "easeOut" }}
-						sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}
+						sx={{ 
+							mr: { xs: 2, md: 4 }, 
+							display: { xs: 'none', md: 'flex' },
+							minWidth: 'fit-content'
+						}}
 					>
 						<Typography className="logo-text" variant="h6" noWrap component="div">
 							{data.information.name}
 						</Typography>
 					</Logo>
 
-					<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+					{/* Mobile Menu Button */}
+					<MobileMenuButton>
 						<motion.div
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.95 }}
@@ -213,72 +269,80 @@ const ResponsiveAppBar = () => {
 								aria-haspopup="true"
 								onClick={handleOpenNavMenu}
 								sx={{ 
-									color: '#ffd700',
+									color: '#e1bee7',
 									'&:hover': {
-										background: 'rgba(255, 215, 0, 0.1)',
+										background: 'rgba(225, 190, 231, 0.1)',
 									}
 								}}
 							>
 								<MenuIcon />
 							</IconButton>
 						</motion.div>
-						<AnimatePresence>
-							{anchorElNav && (
-								<MobileMenu
-									initial={{ opacity: 0, scale: 0.8, y: -20 }}
-									animate={{ opacity: 1, scale: 1, y: 0 }}
-									exit={{ opacity: 0, scale: 0.8, y: -20 }}
-									transition={{ duration: 0.2 }}
-								>
-									<Menu
-										className="mobile-menu"
-										id="menu-appbar"
-										anchorEl={anchorElNav}
-										anchorOrigin={{
-											vertical: 'bottom',
-											horizontal: 'left',
-										}}
-										keepMounted
-										transformOrigin={{
-											vertical: 'top',
-											horizontal: 'left',
-										}}
-										open={Boolean(anchorElNav)}
-										onClose={() => setAnchorElNav(null)}
-										sx={{
-											display: { xs: 'block', md: 'none' },
-										}}
-									>
-										{pages.map((page, index) => (
-											<motion.div
-												key={page}
-												initial={{ opacity: 0, x: -20 }}
-												animate={{ opacity: 1, x: 0 }}
-												transition={{ delay: index * 0.1 }}
-											>
-												<MenuItem onClick={() => handleCloseNavMenu(pages_link[index])}>
-													<Typography textAlign="center">{page}</Typography>
-												</MenuItem>
-											</motion.div>
-										))}
-									</Menu>
-								</MobileMenu>
-							)}
-						</AnimatePresence>
-					</Box>
+					</MobileMenuButton>
 
+					{/* Mobile Menu */}
+					<AnimatePresence>
+						{anchorElNav && (
+							<MobileMenu
+								initial={{ opacity: 0, scale: 0.8, y: -20 }}
+								animate={{ opacity: 1, scale: 1, y: 0 }}
+								exit={{ opacity: 0, scale: 0.8, y: -20 }}
+								transition={{ duration: 0.2 }}
+							>
+								<Menu
+									className="mobile-menu"
+									id="menu-appbar"
+									anchorEl={anchorElNav}
+									anchorOrigin={{
+										vertical: 'bottom',
+										horizontal: 'left',
+									}}
+									keepMounted
+									transformOrigin={{
+										vertical: 'top',
+										horizontal: 'left',
+									}}
+									open={Boolean(anchorElNav)}
+									onClose={() => setAnchorElNav(null)}
+									sx={{
+										display: { xs: 'block', md: 'none' },
+									}}
+								>
+									{pages.map((page, index) => (
+										<motion.div
+											key={page}
+											initial={{ opacity: 0, x: -20 }}
+											animate={{ opacity: 1, x: 0 }}
+											transition={{ delay: index * 0.1 }}
+										>
+											<MenuItem onClick={() => handleCloseNavMenu(pages_link[index])}>
+												<Typography textAlign="center">{page}</Typography>
+											</MenuItem>
+										</motion.div>
+									))}
+								</Menu>
+							</MobileMenu>
+						)}
+					</AnimatePresence>
+
+					{/* Mobile Logo */}
 					<Logo
 						initial={{ opacity: 0, scale: 0.8 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ duration: 0.6 }}
-						sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+						sx={{ 
+							flexGrow: 1, 
+							display: { xs: 'flex', md: 'none' },
+							justifyContent: 'center'
+						}}
 					>
 						<Typography className="logo-text" variant="h6" noWrap component="div">
 							{data.information.name}
 						</Typography>
 					</Logo>
 
-					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
+					{/* Desktop Navigation */}
+					<NavContainer>
 						{pages.map((page, index) => (
 							<NavButton
 								key={page + index}
@@ -305,8 +369,9 @@ const ResponsiveAppBar = () => {
 								</Button>
 							</NavButton>
 						))}
-					</Box>
+					</NavContainer>
 
+					{/* Contact Avatar */}
 					<ContactAvatar
 						initial={{ opacity: 0, scale: 0 }}
 						animate={{ opacity: 1, scale: 1 }}
@@ -315,7 +380,10 @@ const ResponsiveAppBar = () => {
 							rotateY: 180,
 							transition: { duration: 0.6 }
 						}}
-						sx={{ flexGrow: 0 }}
+						sx={{ 
+							flexGrow: 0,
+							minWidth: 'fit-content'
+						}}
 					>
 						<Tooltip title="Contact Me" arrow>
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -339,7 +407,7 @@ const ResponsiveAppBar = () => {
 										sx={{ 
 											mt: '45px',
 											'& .MuiPaper-root': {
-												background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+												background: 'linear-gradient(135deg, #4a148c 0%, #6a1b9a 100%)',
 												backdropFilter: 'blur(20px)',
 												border: '1px solid rgba(255, 255, 255, 0.1)',
 												borderRadius: '12px',
@@ -371,8 +439,8 @@ const ResponsiveAppBar = () => {
 													<MenuItem sx={{
 														color: '#ffffff',
 														'&:hover': {
-															background: 'rgba(255, 215, 0, 0.1)',
-															color: '#ffd700',
+															background: 'rgba(225, 190, 231, 0.1)',
+															color: '#e1bee7',
 														}
 													}}>
 														<Typography textAlign="center">{object.media}</Typography>
@@ -385,7 +453,7 @@ const ResponsiveAppBar = () => {
 							)}
 						</AnimatePresence>
 					</ContactAvatar>
-				</Toolbar>
+				</StyledToolbar>
 			</Container>
 		</StyledAppBar>
 	);
