@@ -38,8 +38,7 @@ export default function Privacy() {
                         </Typography>
                         <Typography variant="body1" fontFamily={'Gilroy Light'}>
                             Welcome to my portfolio website. I am Mohammed Abdullah, an independent software developer. 
-                            This Privacy Policy explains how I collect, use, and protect your information when you visit 
-                            my portfolio website.
+                            This Privacy Policy explains how I collect, use, and protect your information when you visit or use any of the applications I have built and published.
                         </Typography>
 
                         <Typography variant="h5" fontFamily={'Gilroy Bold'} sx={{ mt: 3, mb: 2 }}>
@@ -150,7 +149,7 @@ export default function Privacy() {
                         </Typography>
                         <Box sx={{ mt: 2 }}>
                             <Typography variant="body1" fontFamily={'Gilroy Light'}>
-                                <strong>Email:</strong> {data.information.email}
+                                <strong>Email:</strong> {data.information.email} or contactgreenelitedeveloper@gmail.com
                             </Typography>
                             <Typography variant="body1" fontFamily={'Gilroy Light'}>
                                 <strong>LinkedIn:</strong>{' '}
