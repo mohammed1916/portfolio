@@ -4,8 +4,8 @@ export const data = {
         "image": require('./img/Design/design.png'),
         "email": "developermohammed01@gmail.com",
         "whoami": "I am Mohammed Abdullah. An aspiring software developer who likes to learn and explore new frameworks.",
-        "description": "Currently I am pursuing my PG in M.Tech IT (Spln. in AI & DS). I love creating user-centric applications. I have developed websites using NextJS. Apart from it, I have also explored the domain of mobile application development and created apps for native android and also a hybrid mobile application using flutter. I have also worked with Godot engine, using which I designed a memory game for android.",
-        "location": "Chennai",
+        "description": "I have completed my PG in M.Tech IT (Spln. in AI & DS) in May 2025 from Anna University, CEG Campus in Tamil Nadu, India. I love creating user-centric applications. I have developed websites using NextJS. Apart from it, I have also explored the domain of mobile application development and created apps for native android and also a hybrid mobile application using flutter. I have also worked with Godot engine, using which I designed a memory game for android.",
+        "location": "Chennai, Tamil Nadu, India",
         "profiles": [
             {
                 "media": "Github",
