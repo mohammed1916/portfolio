@@ -21,6 +21,15 @@ export default function ProjectPage()
     let params = useParams();
     let navigate = useNavigate();
 
+    // Scroll to top when component mounts
+    React.useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }, []);
+
     const goBackToProjects = () => {
         navigate('/', { replace: true });
         // Wait for navigation to complete, then scroll to projects section
