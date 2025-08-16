@@ -18,24 +18,46 @@ import ProjectPage from "./Components/Projects/ProjectPage.jsx";
 import WorkPage from "./Components/Work/WorkPage.jsx";
 import Privacy from "./Components/Privacy/Privacy.jsx";
 
+// Main single-page component
+const MainPage = () => {
+  return (
+    <div style={{ paddingTop: '80px' }}> {/* Offset for fixed navbar */}
+      <section id="about">
+        <About />
+      </section>
+      <section id="education">
+        <Education />
+      </section>
+      <section id="skills">
+        <Skills />
+      </section>
+      <section id="projects">
+        <Projects />
+      </section>
+      <section id="certifications">
+        <Certifications />
+      </section>
+      <section id="work">
+        <Work />
+      </section>
+      <Contact />
+      <Footer />
+    </div>
+  );
+};
+
 function App() {
   return (
     <Router>
       <ResponsiveAppBar />
       <Routes>
-        <Route path='/' element={<About />} />
-        <Route path='/education' element={<Education />} />
-        <Route path='/skills' element={<Skills />} />
-        <Route path='/projects' element={<Projects />} />
-        <Route path='/certifications' element={<Certifications />} />
-        <Route path='/work' element={<Work />} />
+        <Route path='/' element={<MainPage />} />
         <Route path='/privacy' element={<Privacy />} />
+        {/* Deep navigation routes for detailed views */}
         <Route path="workpage/:i" element={<WorkPage />} />
         <Route path="projectpage/:i" element={<ProjectPage />} />
         <Route path="certificatepage/:i" element={<CertificatePage />} />
       </Routes>
-      <Contact />
-      <Footer />
     </Router>
   );
 }

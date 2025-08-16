@@ -24,7 +24,7 @@ import {
 import account from '../../img/icons/logo192.png'
 
 const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work Experience'];
-const pages_link = ['/', '/education', '/skills', '/projects', '/certifications', '/work'];
+const pages_link = ['about', 'education', 'skills', 'projects', 'certifications', 'work'];
 
 // Styled components for violet purple theme
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
@@ -204,12 +204,77 @@ const ResponsiveAppBar = () => {
 	let navigate = useNavigate();
 	let location = useLocation();
 	
-	const nav = (index) => {
-		navigate(`${index}`)
+	// Smooth scroll function
+	const scrollToSection = (sectionId) => {
+		// If we're not on the main page, navigate to it first
+		if (location.pathname !== '/') {
+			navigate('/');
+			// Wait for navigation to complete, then scroll
+			setTimeout(() => {
+				const element = document.getElementById(sectionId);
+				if (element) {
+					const navbarHeight = 80; // Height of fixed navbar
+					const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+					const offsetPosition = elementPosition - navbarHeight;
+
+					window.scrollTo({
+						top: offsetPosition,
+						behavior: 'smooth'
+					});
+				}
+			}, 100);
+		} else {
+			// We're already on the main page, just scroll
+			const element = document.getElementById(sectionId);
+			if (element) {
+				const navbarHeight = 80; // Height of fixed navbar
+				const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+				const offsetPosition = elementPosition - navbarHeight;
+
+				window.scrollTo({
+					top: offsetPosition,
+					behavior: 'smooth'
+				});
+			}
+		}
+	}
+
+	const nav = (sectionId) => {
+		scrollToSection(sectionId);
 	}
 
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const [activeSection, setActiveSection] = React.useState('about');
+
+	// Intersection Observer to detect which section is currently visible
+	React.useEffect(() => {
+		const observerOptions = {
+			root: null,
+			rootMargin: '-20% 0px -60% 0px',
+			threshold: 0
+		};
+
+		const observerCallback = (entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					setActiveSection(entry.target.id);
+				}
+			});
+		};
+
+		const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+		// Observe all sections
+		pages_link.forEach(sectionId => {
+			const element = document.getElementById(sectionId);
+			if (element) {
+				observer.observe(element);
+			}
+		});
+
+		return () => observer.disconnect();
+	}, [location.pathname]);
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
@@ -218,8 +283,8 @@ const ResponsiveAppBar = () => {
 		setAnchorElUser(event.currentTarget);
 	};
 
-	const handleCloseNavMenu = (index) => {
-		nav(index)
+	const handleCloseNavMenu = (sectionId) => {
+		nav(sectionId)
 		setAnchorElNav(null);
 	};
 
@@ -227,12 +292,18 @@ const ResponsiveAppBar = () => {
 		setAnchorElUser(null);
 	};
 
-	const isActivePage = (path) => {
-		return location.pathname === path;
+	const isActivePage = (sectionId) => {
+		// If we're not on the main page, no section is active
+		if (location.pathname !== '/') return false;
+		return activeSection === sectionId;
 	};
 
 	return (
-		<StyledAppBar position="static">
+		<StyledAppBar position="fixed"
+			sx={{
+				zIndex: (theme) => theme.zIndex.drawer + 1,
+			}}
+		>
 			<Container maxWidth="xl">
 				<StyledToolbar disableGutters>
 					{/* Desktop Logo */}

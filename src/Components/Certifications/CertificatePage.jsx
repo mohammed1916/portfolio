@@ -1,14 +1,35 @@
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { data } from '../../data';
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 export default function CertificatePage()
 {
     let params = useParams();
+    let navigate = useNavigate();
+
+    const goBackToCertifications = () => {
+        navigate('/', { replace: true });
+        // Wait for navigation to complete, then scroll to certifications section
+        setTimeout(() => {
+            const element = document.getElementById('certifications');
+            if (element) {
+                const navbarHeight = 80;
+                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - navbarHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }, 100);
+    };
 
     return (
         <>
@@ -18,6 +39,20 @@ export default function CertificatePage()
                 bgcolor={'white'}
                 color={'white'} >
                 <Container sx={{ width: '100%' }}>
+                    <Box display="flex" alignItems="center" mb={2}>
+                        <Button
+                            startIcon={<ArrowBackIcon />}
+                            onClick={goBackToCertifications}
+                            sx={{
+                                color: '#6a1b9a',
+                                '&:hover': {
+                                    backgroundColor: 'rgba(106, 27, 154, 0.1)',
+                                }
+                            }}
+                        >
+                            Back to Portfolio
+                        </Button>
+                    </Box>
                     <Typography textAlign="center" fontFamily={'Gilroy Bold'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Certificate</Typography>
                     <Box display={'flex'} flexDirection={'column'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
 

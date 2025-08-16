@@ -7,17 +7,37 @@ import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
+import Button from '@mui/material/Button';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import noImageAvailable from '../../img/icons/noImageAvailable.jpeg';
-
 
 import { data } from '../../data';
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 export default function ProjectPage()
 {
     let params = useParams();
+    let navigate = useNavigate();
+
+    const goBackToProjects = () => {
+        navigate('/', { replace: true });
+        // Wait for navigation to complete, then scroll to projects section
+        setTimeout(() => {
+            const element = document.getElementById('projects');
+            if (element) {
+                const navbarHeight = 80;
+                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - navbarHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }, 100);
+    };
 
     return (
         <>
@@ -27,6 +47,20 @@ export default function ProjectPage()
                 bgcolor={'white'}
                 color={'white'} >
                 <Container sx={{ width: '100%' }} fontFamily={'ZCOOL XiaoWei'} >
+                    <Box display="flex" alignItems="center" mb={2}>
+                        <Button
+                            startIcon={<ArrowBackIcon />}
+                            onClick={goBackToProjects}
+                            sx={{
+                                color: '#6a1b9a',
+                                '&:hover': {
+                                    backgroundColor: 'rgba(106, 27, 154, 0.1)',
+                                }
+                            }}
+                        >
+                            Back to Portfolio
+                        </Button>
+                    </Box>
                     <Typography textAlign="center" fontFamily={'Be Vietnam Pro'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>PROJECT</Typography>
                     <Box display={'flex'} flexDirection={'column'} bgcolor={'#333'} borderRadius={'20px'} padding={'20px'} boxShadow={10}>
                         <Typography fontFamily={'ZCOOL XiaoWei'} gutterBottom variant="h3" component="div" textAlign={'center'} paddingBottom={'8px'}>
