@@ -148,6 +148,7 @@ const ContactAvatar = styled(motion.div)(({ theme }) => ({
 	'& .avatar': {
 		width: 40,
 		height: 40,
+		padding: '8px',
 		border: '2px solid rgba(225, 190, 231, 0.5)',
 		boxShadow: '0 0 20px rgba(225, 190, 231, 0.3)',
 		transition: 'all 0.3s ease',
