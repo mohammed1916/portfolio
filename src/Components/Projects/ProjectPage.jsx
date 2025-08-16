@@ -36,7 +36,7 @@ export default function ProjectPage()
         setTimeout(() => {
             const element = document.getElementById('projects');
             if (element) {
-                const navbarHeight = 80;
+                const navbarHeight = 70;
                 const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
                 const offsetPosition = elementPosition - navbarHeight;
 

@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
+import AnimatedSectionHeading from '../common/AnimatedSectionHeading';
 import { data } from '../../data';
 
 import
@@ -31,7 +32,7 @@ export default function Work()
                 bgcolor={'white'}
                 color={'white'} >
                 <Container sx={{ width: '100%' }}>
-                    <Typography textAlign="center" fontFamily={'Gilroy Bold'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Work</Typography>
+                    <AnimatedSectionHeading>Work Experience</AnimatedSectionHeading>
                     <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         {data.work.map((item, index) => (
                             <Card onClick={() => nav(index)} key={index} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3)" }}  >

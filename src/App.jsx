@@ -21,7 +21,7 @@ import Privacy from "./Components/Privacy/Privacy.jsx";
 // Main single-page component
 const MainPage = () => {
   return (
-    <div style={{ paddingTop: '80px' }}> {/* Offset for fixed navbar */}
+    <div style={{ paddingTop: '70px' }}> {/* Reduced padding since compact navbar is shorter */}
       <section id="about">
         <About />
       </section>

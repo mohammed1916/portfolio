@@ -29,7 +29,7 @@ export default function CertificatePage()
         setTimeout(() => {
             const element = document.getElementById('certifications');
             if (element) {
-                const navbarHeight = 80;
+                const navbarHeight = 70;
                 const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
                 const offsetPosition = elementPosition - navbarHeight;
 

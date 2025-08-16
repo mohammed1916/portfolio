@@ -27,13 +27,18 @@ const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Wo
 const pages_link = ['about', 'education', 'skills', 'projects', 'certifications', 'work'];
 
 // Styled components for violet purple theme
-const StyledAppBar = styled(AppBar)(({ theme }) => ({
-	background: 'linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #8e24aa 100%)',
-	boxShadow: '0 8px 32px rgba(74, 20, 140, 0.4)',
-	backdropFilter: 'blur(10px)',
-	borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+const StyledAppBar = styled(AppBar)(({ theme, iscompact }) => ({
+	background: iscompact 
+		? 'rgba(74, 20, 140, 0.85)' 
+		: 'linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #8e24aa 100%)',
+	boxShadow: iscompact 
+		? '0 8px 32px rgba(74, 20, 140, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+		: '0 8px 32px rgba(74, 20, 140, 0.4)',
+	backdropFilter: iscompact ? 'blur(20px) saturate(180%)' : 'blur(10px)',
+	borderBottom: `1px solid rgba(255, 255, 255, ${iscompact ? '0.2' : '0.1'})`,
 	position: 'relative',
 	overflow: 'hidden',
+	transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
 	'&::before': {
 		content: '""',
 		position: 'absolute',
@@ -41,7 +46,9 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 		left: 0,
 		right: 0,
 		bottom: 0,
-		background: 'linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%)',
+		background: iscompact 
+			? 'linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.08) 50%, transparent 70%)'
+			: 'linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%)',
 		transform: 'translateX(-100%)',
 		animation: 'shimmer 3s infinite',
 	},
@@ -51,12 +58,13 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 	},
 }));
 
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-	minHeight: '70px !important',
+const StyledToolbar = styled(Toolbar)(({ theme, iscompact }) => ({
+	minHeight: iscompact ? '60px !important' : '70px !important',
 	alignItems: 'center',
 	justifyContent: 'space-between',
+	transition: 'min-height 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
 	[theme.breakpoints.down('md')]: {
-		minHeight: '64px !important',
+		minHeight: iscompact ? '56px !important' : '64px !important',
 		paddingLeft: theme.spacing(1),
 		paddingRight: theme.spacing(1),
 	},
@@ -180,6 +188,38 @@ const MobileMenu = styled(motion.div)(({ theme }) => ({
 	},
 }));
 
+const CompactNavButton = styled(motion.div)(({ theme, active }) => ({
+	position: 'relative',
+	margin: '0 2px',
+	[theme.breakpoints.up('lg')]: {
+		margin: '0 4px',
+	},
+	'& .compact-nav-button': {
+		color: active ? '#e1bee7' : 'rgba(255, 255, 255, 0.9)',
+		padding: '6px 12px',
+		borderRadius: '8px',
+		background: active 
+			? 'rgba(225, 190, 231, 0.15)' 
+			: 'transparent',
+		border: active ? '1px solid rgba(225, 190, 231, 0.3)' : '1px solid transparent',
+		transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+		textTransform: 'none',
+		fontWeight: active ? 600 : 400,
+		fontSize: '0.75rem',
+		minWidth: 'auto',
+		[theme.breakpoints.up('lg')]: {
+			padding: '8px 16px',
+			fontSize: '0.85rem',
+		},
+		'&:hover': {
+			background: 'rgba(225, 190, 231, 0.1)',
+			border: '1px solid rgba(225, 190, 231, 0.4)',
+			color: '#e1bee7',
+			transform: 'translateY(-1px)',
+		},
+	},
+}));
+
 const NavContainer = styled(Box)(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
@@ -213,7 +253,7 @@ const ResponsiveAppBar = () => {
 			setTimeout(() => {
 				const element = document.getElementById(sectionId);
 				if (element) {
-					const navbarHeight = 80; // Height of fixed navbar
+					const navbarHeight = 70; // Height of navbar
 					const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
 					const offsetPosition = elementPosition - navbarHeight;
 
@@ -227,7 +267,7 @@ const ResponsiveAppBar = () => {
 			// We're already on the main page, just scroll
 			const element = document.getElementById(sectionId);
 			if (element) {
-				const navbarHeight = 80; // Height of fixed navbar
+				const navbarHeight = 70; // Height of navbar
 				const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
 				const offsetPosition = elementPosition - navbarHeight;
 
@@ -246,6 +286,18 @@ const ResponsiveAppBar = () => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 	const [activeSection, setActiveSection] = React.useState('about');
+	const [isScrolled, setIsScrolled] = React.useState(false);
+
+	// Scroll listener to detect when user scrolls
+	React.useEffect(() => {
+		const handleScroll = () => {
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			setIsScrolled(scrollTop > 100); // Show compact navbar after 100px scroll
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
 
 	// Intersection Observer to detect which section is currently visible
 	React.useEffect(() => {
@@ -299,18 +351,24 @@ const ResponsiveAppBar = () => {
 	};
 
 	return (
-		<StyledAppBar position="fixed"
+		<StyledAppBar 
+			position="fixed"
+			iscompact={isScrolled}
 			sx={{
 				zIndex: (theme) => theme.zIndex.drawer + 1,
 			}}
 		>
 			<Container maxWidth="xl">
-				<StyledToolbar disableGutters>
+				<StyledToolbar disableGutters iscompact={isScrolled}>
 					{/* Desktop Logo */}
 					<Logo
 						initial={{ opacity: 0, x: -50 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.8, ease: "easeOut" }}
+						animate={{ 
+							opacity: 1, 
+							x: 0,
+							scale: isScrolled ? 0.9 : 1
+						}}
+						transition={{ duration: 0.3 }}
 						sx={{ 
 							mr: { xs: 2, md: 4 }, 
 							display: { xs: 'none', md: 'flex' },
@@ -409,39 +467,82 @@ const ResponsiveAppBar = () => {
 
 					{/* Desktop Navigation */}
 					<NavContainer>
-						{pages.map((page, index) => (
-							<NavButton
-								key={page + index}
-								active={isActivePage(pages_link[index])}
-								initial={{ opacity: 0, y: -20 }}
-								animate={{ opacity: 1, y: 0 }}
-								transition={{ delay: index * 0.1, duration: 0.6 }}
-								whileHover={{ 
-									scale: 1.05,
-									rotateX: 5,
-									rotateY: 5,
-								}}
-								whileTap={{ scale: 0.95 }}
-								style={{
-									transformStyle: 'preserve-3d',
-									perspective: '1000px',
-								}}
-							>
-								<Button 
-									className="nav-button"
-									onClick={() => handleCloseNavMenu(pages_link[index])}
+						<AnimatePresence mode="wait">
+							{isScrolled ? (
+								// Compact Navigation (when scrolled)
+								<motion.div
+									key="compact"
+									initial={{ opacity: 0, y: -10 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, y: -10 }}
+									transition={{ duration: 0.3 }}
+									style={{ display: 'flex', alignItems: 'center' }}
 								>
-									{page}
-								</Button>
-							</NavButton>
-						))}
+									{pages.map((page, index) => (
+										<CompactNavButton
+											key={`compact-${page}-${index}`}
+											active={isActivePage(pages_link[index])}
+											whileHover={{ scale: 1.02 }}
+											whileTap={{ scale: 0.98 }}
+										>
+											<Button 
+												className="compact-nav-button"
+												onClick={() => handleCloseNavMenu(pages_link[index])}
+											>
+												{page.split(' ')[0]} {/* Show only first word */}
+											</Button>
+										</CompactNavButton>
+									))}
+								</motion.div>
+							) : (
+								// Full Navigation (when at top)
+								<motion.div
+									key="full"
+									initial={{ opacity: 0, y: 10 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, y: 10 }}
+									transition={{ duration: 0.3 }}
+									style={{ display: 'flex', alignItems: 'center' }}
+								>
+									{pages.map((page, index) => (
+										<NavButton
+											key={`full-${page}-${index}`}
+											active={isActivePage(pages_link[index])}
+											initial={{ opacity: 0, y: -20 }}
+											animate={{ opacity: 1, y: 0 }}
+											transition={{ delay: index * 0.1, duration: 0.6 }}
+											whileHover={{ 
+												scale: 1.05,
+												rotateX: 5,
+												rotateY: 5,
+											}}
+											whileTap={{ scale: 0.95 }}
+											style={{
+												transformStyle: 'preserve-3d',
+												perspective: '1000px',
+											}}
+										>
+											<Button 
+												className="nav-button"
+												onClick={() => handleCloseNavMenu(pages_link[index])}
+											>
+												{page}
+											</Button>
+										</NavButton>
+									))}
+								</motion.div>
+							)}
+						</AnimatePresence>
 					</NavContainer>
 
 					{/* Contact Avatar */}
 					<ContactAvatar
 						initial={{ opacity: 0, scale: 0 }}
-						animate={{ opacity: 1, scale: 1 }}
-						transition={{ delay: 0.8, duration: 0.5 }}
+						animate={{ 
+							opacity: 1, 
+							scale: isScrolled ? 0.9 : 1 
+						}}
+						transition={{ duration: 0.3 }}
 						sx={{ 
 							flexGrow: 0,
 							minWidth: 'fit-content'

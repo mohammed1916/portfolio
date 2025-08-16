@@ -7,6 +7,7 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import AnimatedSectionHeading from '../common/AnimatedSectionHeading';
 
 import { data } from '../../data';
 
@@ -63,7 +64,7 @@ export default function Education()
                 bgcolor={'white'}
                 color={'white'} >
                 <Container sx={{ width: '100%' }}>
-                    <Typography textAlign="center" fontFamily={'Gilroy Bold'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Education</Typography>
+                    <AnimatedSectionHeading>Education</AnimatedSectionHeading>
                     <Box bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         {data.education.map((object, index) => (
                             <Accordion key={object + index * 5} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
