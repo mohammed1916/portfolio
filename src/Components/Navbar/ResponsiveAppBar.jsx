@@ -24,7 +24,7 @@ import {
 import account from '../../img/icons/logo192.png'
 
 const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work Experience'];
-const pages_link = ['/', '/Education', '/Skills', '/Projects', '/Certifications', '/Work'];
+const pages_link = ['/', '/education', '/skills', '/projects', '/certifications', '/work'];
 
 // Styled components for violet purple theme
 const StyledAppBar = styled(AppBar)(({ theme }) => ({

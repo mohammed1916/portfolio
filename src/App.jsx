@@ -4,19 +4,19 @@ import {
   Route
 } from "react-router-dom";
 
-import About from './Components/About/About';
-import Work from './Components/Work/Work';
-import Certifications from './Components/Certifications/Certifications';
-import Contact from './Components/Contact/Contact';
-import Education from './Components/Education/Education';
-import Footer from './Components/footer/Footer';
-import ResponsiveAppBar from './Components/Navbar/ResponsiveAppBar';
-import Skills from './Components/Skills/Skills';
-import Projects from './Components/Projects/Projects';
-import CertificatePage from "./Components/Certifications/CertificatePage";
-import ProjectPage from "./Components/Projects/ProjectPage";
-import WorkPage from "./Components/Work/WorkPage";
-import Privacy from "./Components/Privacy/Privacy";
+import About from './Components/About/About.jsx';
+import Work from './Components/Work/Work.jsx';
+import Certifications from './Components/Certifications/Certifications.jsx';
+import Contact from './Components/Contact/Contact.jsx';
+import Education from './Components/Education/Education.jsx';
+import Footer from './Components/footer/Footer.jsx';
+import ResponsiveAppBar from './Components/Navbar/ResponsiveAppBar.jsx';
+import Skills from './Components/Skills/Skills.jsx';
+import Projects from './Components/Projects/Projects.jsx';
+import CertificatePage from "./Components/Certifications/CertificatePage.jsx";
+import ProjectPage from "./Components/Projects/ProjectPage.jsx";
+import WorkPage from "./Components/Work/WorkPage.jsx";
+import Privacy from "./Components/Privacy/Privacy.jsx";
 
 function App() {
   return (
