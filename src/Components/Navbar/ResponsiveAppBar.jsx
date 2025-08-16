@@ -151,15 +151,9 @@ const ContactAvatar = styled(motion.div)(({ theme }) => ({
 		padding: '8px',
 		border: '2px solid rgba(225, 190, 231, 0.5)',
 		boxShadow: '0 0 20px rgba(225, 190, 231, 0.3)',
-		transition: 'all 0.3s ease',
 		[theme.breakpoints.up('md')]: {
 			width: 45,
 			height: 45,
-		},
-		'&:hover': {
-			border: '2px solid #e1bee7',
-			boxShadow: '0 0 30px rgba(225, 190, 231, 0.6)',
-			transform: 'scale(1.1)',
 		},
 	},
 }));
@@ -377,24 +371,37 @@ const ResponsiveAppBar = () => {
 						initial={{ opacity: 0, scale: 0 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ delay: 0.8, duration: 0.5 }}
-						whileHover={{ 
-							rotateY: 180,
-							transition: { duration: 0.6 }
-						}}
 						sx={{ 
 							flexGrow: 0,
 							minWidth: 'fit-content'
 						}}
 					>
 						<Tooltip title="Contact Me" arrow>
-							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-								<Avatar 
-									className="avatar"
-									alt="Contact" 
-									src={account} 
-									variant="square" 
-								/>
-							</IconButton>
+							<motion.div
+								whileHover={{
+									scale: 1.1,
+									boxShadow: '0 0 30px rgba(225, 190, 231, 0.6)',
+									borderColor: '#e1bee7',
+								}}
+								transition={{ 
+									type: "spring", 
+									stiffness: 100, 
+									damping: 10 
+								}}
+							>
+								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+									<Avatar 
+										className="avatar"
+										alt="Contact" 
+										src={account} 
+										variant="square" 
+										sx={{
+											border: '2px solid rgba(225, 190, 231, 0.5)',
+											boxShadow: '0 0 20px rgba(225, 190, 231, 0.3)',
+										}}
+									/>
+								</IconButton>
+							</motion.div>
 						</Tooltip>
 						<AnimatePresence>
 							{anchorElUser && (
