@@ -1,7 +1,7 @@
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
-import Grid from '@mui/material/Grid'
+import { Grid } from '@mui/material' // Standard MUI Grid import
 import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
@@ -21,7 +21,7 @@ export default function Footer() {
             <Container sx={{ width: '100%' }}>
                 <Divider pt={{ xs: 1, sm: 2 }}><Chip label="Mohammed Abdullah" /></Divider>
                 <Grid container spacing={5} pt={{ xs: 2, sm: 4 }}>
-                    <Grid item xs={12} sm={4} pb={{ xs: 2, sm: 4 }}>
+                    <Grid xs={12} sm={4} pb={{ xs: 2, sm: 4 }}>
                         <Box borderBottom={2}>Useful Links</Box>
                         {data.education.map((object, index) => (
                             <Box key={object.Type + index * 3} pt={{ xs: 2, sm: 4 }}>
@@ -31,7 +31,7 @@ export default function Footer() {
                             </Box>
                         ))}
                     </Grid>
-                    <Grid item xs={12} sm={4}>
+                    <Grid xs={12} sm={4}>
                         <Box borderBottom={2}>Contact</Box>
                         {data.information.profiles.map((object, index) => (
                             <Box key={object.url + index + 4 * index} pt={{ xs: 2, sm: 4 }}>
@@ -42,7 +42,7 @@ export default function Footer() {
                         ))}
 
                     </Grid>
-                    <Grid item xs={12} sm={4}>
+                    <Grid xs={12} sm={4}>
                         <Box borderBottom={2}>Legal</Box>
                         <Box pt={{ xs: 2, sm: 4 }}>
                             <Link 
