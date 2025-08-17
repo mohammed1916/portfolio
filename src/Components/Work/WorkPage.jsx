@@ -63,7 +63,7 @@ export default function WorkPage()
                             Back to Portfolio
                         </Button>
                     </Box>
-                    <Typography textAlign="center" fontFamily={'Gilroy Light'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Work Experience</Typography>
+                    <Typography textAlign="center" fontFamily={'Gilroy Light'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Work</Typography>
                     <Box display={'flex'} flexDirection={'column'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         <img src={data.work[params.i].thumbnail} alt="" />
                         <Box display={'flex'} flexDirection={'row'} paddingTop={'25px'}>

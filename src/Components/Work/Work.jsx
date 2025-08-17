@@ -47,7 +47,7 @@ export default function Work()
                 }}
             >
                 <Container sx={{ width: '100%', position: 'relative', zIndex: 1 }}>
-                    <AnimatedSectionHeading>Work Experience</AnimatedSectionHeading>
+                    <AnimatedSectionHeading>Work</AnimatedSectionHeading>
                     <Box 
                         display={'flex'} 
                         flexWrap={'wrap'} 

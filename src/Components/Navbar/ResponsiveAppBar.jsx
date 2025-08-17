@@ -248,7 +248,7 @@ const AnimatedAvatar = React.memo(({ src, alt, sx = {} }) => {
 	);
 });
 
-const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work Experience'];
+const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work'];
 const pages_link = ['about', 'education', 'skills', 'projects', 'certifications', 'work'];
 
 // Styled components for violet purple theme
