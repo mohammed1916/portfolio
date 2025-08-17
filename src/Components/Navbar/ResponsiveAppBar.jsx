@@ -69,6 +69,184 @@ const MemoizedAvatar = React.memo(({ alt, className, variant, sx, ...props }) =>
 	);
 });
 
+// Enhanced animated components
+const AnimatedIconButton = React.memo(({ children, onClick, sx = {}, ...props }) => (
+	<motion.div
+		initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+		animate={{ 
+			opacity: 1, 
+			scale: 1, 
+			rotate: 0,
+			transition: {
+				type: "spring",
+				stiffness: 200,
+				damping: 20,
+				delay: 0.2
+			}
+		}}
+		whileHover={{ 
+			scale: 1.15,
+			rotate: 5,
+			boxShadow: '0 0 25px rgba(225, 190, 231, 0.6)',
+			transition: { duration: 0.2 }
+		}}
+		whileTap={{ 
+			scale: 0.9,
+			rotate: -5,
+			transition: { duration: 0.1 }
+		}}
+		style={{
+			borderRadius: '50%',
+			display: 'inline-block',
+		}}
+	>
+		<IconButton 
+			onClick={onClick}
+			sx={{
+				position: 'relative',
+				overflow: 'hidden',
+				'&::before': {
+					content: '""',
+					position: 'absolute',
+					top: '50%',
+					left: '50%',
+					width: 0,
+					height: 0,
+					background: 'radial-gradient(circle, rgba(225, 190, 231, 0.3) 0%, transparent 70%)',
+					borderRadius: '50%',
+					transform: 'translate(-50%, -50%)',
+					transition: 'width 0.6s, height 0.6s',
+				},
+				'&:hover::before': {
+					width: '300px',
+					height: '300px',
+				},
+				...sx
+			}}
+			{...props}
+		>
+			{children}
+		</IconButton>
+	</motion.div>
+));
+
+const AnimatedMenuIcon = React.memo(({ isOpen }) => (
+	<motion.div
+		animate={{
+			rotate: isOpen ? 90 : 0,
+		}}
+		transition={{ duration: 0.3, ease: "easeInOut" }}
+		style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+	>
+		<motion.svg
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<motion.path
+				d="M3 6h18"
+				stroke="currentColor"
+				strokeWidth="2"
+				strokeLinecap="round"
+				animate={{
+					d: isOpen ? "M6 6L18 18" : "M3 6h18"
+				}}
+				transition={{ duration: 0.3 }}
+			/>
+			<motion.path
+				d="M3 12h18"
+				stroke="currentColor"
+				strokeWidth="2"
+				strokeLinecap="round"
+				animate={{
+					opacity: isOpen ? 0 : 1,
+					x: isOpen ? 10 : 0
+				}}
+				transition={{ duration: 0.3 }}
+			/>
+			<motion.path
+				d="M3 18h18"
+				stroke="currentColor"
+				strokeWidth="2"
+				strokeLinecap="round"
+				animate={{
+					d: isOpen ? "M6 18L18 6" : "M3 18h18"
+				}}
+				transition={{ duration: 0.3 }}
+			/>
+		</motion.svg>
+	</motion.div>
+));
+
+const AnimatedAvatar = React.memo(({ src, alt, sx = {} }) => {
+	const cachedImageSrc = useCachedImage(src);
+	
+	return (
+		<motion.div
+			initial={{ opacity: 0, scale: 0, rotate: -180 }}
+			animate={{ 
+				opacity: 1, 
+				scale: 1, 
+				rotate: 0,
+				transition: {
+					type: "spring",
+					stiffness: 200,
+					damping: 15,
+					delay: 0.3
+				}
+			}}
+			whileHover={{ 
+				scale: 1.1,
+				rotate: 10,
+				boxShadow: '0 0 30px rgba(225, 190, 231, 0.8)',
+				transition: { duration: 0.3 }
+			}}
+			whileTap={{ 
+				scale: 0.95,
+				rotate: -5,
+				transition: { duration: 0.1 }
+			}}
+			style={{
+				borderRadius: '12px',
+				display: 'inline-block',
+				position: 'relative',
+			}}
+		>
+			{/* Rotating ring animation */}
+			<motion.div
+				animate={{
+					rotate: 360,
+				}}
+				transition={{
+					duration: 20,
+					repeat: Infinity,
+					ease: "linear"
+				}}
+				style={{
+					position: 'absolute',
+					inset: '-4px',
+					background: 'conic-gradient(from 0deg, transparent, rgba(225, 190, 231, 0.4), transparent)',
+					borderRadius: '16px',
+					zIndex: -1,
+				}}
+			/>
+			
+			<Avatar 
+				alt={alt}
+				src={cachedImageSrc}
+				variant="square"
+				sx={{
+					position: 'relative',
+					zIndex: 1,
+					...sx
+				}}
+			/>
+		</motion.div>
+	);
+});
+
 const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work Experience'];
 const pages_link = ['about', 'education', 'skills', 'projects', 'certifications', 'work'];
 
@@ -80,6 +258,8 @@ const NavbarWrapper = styled('div')(({ theme, iscompact }) => ({
 	right: iscompact ? '100px' : '0',
 	zIndex: 1100,
 	transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+	borderRadius: iscompact ? '16px' : '0',
+	overflow: 'hidden', // Ensure child elements are clipped
 }));
 
 const StyledAppBar = styled(AppBar)(({ theme, iscompact }) => ({
@@ -96,6 +276,11 @@ const StyledAppBar = styled(AppBar)(({ theme, iscompact }) => ({
 	overflow: 'hidden',
 	padding: iscompact ? '8px 0' : '0',
 	transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+	// Ensure all child elements respect the border radius
+	'& .MuiToolbar-root': {
+		borderRadius: iscompact ? '16px' : '0',
+		overflow: 'hidden',
+	},
 	'&::before': {
 		content: '""',
 		position: 'absolute',
@@ -103,11 +288,13 @@ const StyledAppBar = styled(AppBar)(({ theme, iscompact }) => ({
 		left: 0,
 		right: 0,
 		bottom: 0,
+		borderRadius: iscompact ? '16px' : '0',
 		background: iscompact 
 			? 'linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.12) 50%, transparent 70%)'
 			: 'linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%)',
 		transform: 'translateX(-100%)',
 		animation: 'shimmer 4s infinite',
+		zIndex: 1,
 	},
 	'&::after': iscompact ? {
 		content: '""',
@@ -116,8 +303,10 @@ const StyledAppBar = styled(AppBar)(({ theme, iscompact }) => ({
 		left: 0,
 		right: 0,
 		bottom: 0,
+		borderRadius: '16px',
 		background: 'rgba(255, 255, 255, 0.02)',
 		pointerEvents: 'none',
+		zIndex: 0,
 	} : {},
 	'@keyframes shimmer': {
 		'0%': { transform: 'translateX(-100%)' },
@@ -130,6 +319,10 @@ const StyledToolbar = styled(Toolbar)(({ theme, iscompact }) => ({
 	alignItems: 'center',
 	justifyContent: iscompact ? 'center' : 'space-between',
 	transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+	overflow: 'hidden', // Ensure content respects parent border radius
+	borderRadius: iscompact ? '16px' : '0',
+	position: 'relative',
+	zIndex: 2, // Stay above pseudo-elements
 	[theme.breakpoints.down('md')]: {
 		minHeight: iscompact ? '44px !important' : '64px !important',
 		paddingLeft: theme.spacing(1),
@@ -194,6 +387,8 @@ const CustomContainer = styled('div')(({ theme }) => ({
 	maxWidth: '1200px',
 	margin: '0 auto',
 	padding: '0 24px',
+	overflow: 'hidden', // Ensure content respects parent border radius
+	borderRadius: 'inherit', // Inherit border radius from parent
 	[theme.breakpoints.down('sm')]: {
 		padding: '0 16px',
 	},
@@ -471,64 +666,68 @@ const ResponsiveAppBar = () => {
 
 	return (
 		<NavbarWrapper iscompact={isScrolled}>
-			<StyledAppBar 
-				iscompact={isScrolled}
+			<motion.div
+				animate={{
+					y: isScrolled ? [0, -2, 0] : 0,
+					boxShadow: isScrolled 
+						? [
+							'0 4px 24px rgba(74, 20, 140, 0.4)',
+							'0 8px 32px rgba(74, 20, 140, 0.6)',
+							'0 4px 24px rgba(74, 20, 140, 0.4)'
+						] 
+						: '0 8px 32px rgba(74, 20, 140, 0.4)',
+					borderRadius: isScrolled ? '16px' : '0px',
+				}}
+				transition={{
+					y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+					boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+					borderRadius: { duration: 0.4, ease: "easeInOut" }
+				}}
+				style={{
+					overflow: 'hidden', // Clip content to border radius
+					borderRadius: isScrolled ? '16px' : '0px',
+				}}
 			>
+				<StyledAppBar 
+					iscompact={isScrolled}
+				>
 				<CustomContainer>
 				<StyledToolbar disableGutters iscompact={isScrolled}>
-					{/* Desktop Logo - Hidden when scrolled */}
-					<AnimatePresence>
-						{!isScrolled && (
-							<Logo
-								initial={{ opacity: 0, x: -50, scale: 0.8 }}
-								animate={{ 
-									opacity: 1, 
-									x: 0,
-									scale: 1
-								}}
-								exit={{ 
-									opacity: 0, 
-									x: -50, 
-									scale: 0.8,
-									transition: { duration: 0.3 }
-								}}
-								transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
-								sx={{ 
-									mr: { xs: 2, md: 4 }, 
-									display: { xs: 'none', md: 'flex' },
-									minWidth: 'fit-content'
-								}}
-							>
-								<Typography className="logo-text" variant="h6" noWrap component="div">
-									{data.information.name}
-								</Typography>
-							</Logo>
-						)}
-					</AnimatePresence>
+					{/* Desktop Logo - Always mounted, opacity animated */}
+					<Logo
+						animate={{ 
+							opacity: isScrolled ? 0 : 1,
+							x: isScrolled ? -50 : 0,
+							scale: isScrolled ? 0.8 : 1,
+							pointerEvents: isScrolled ? 'none' : 'auto'
+						}}
+						transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
+						sx={{ 
+							mr: { xs: 2, md: 4 }, 
+							display: { xs: 'none', md: 'flex' },
+							minWidth: 'fit-content'
+						}}
+					>
+						<Typography className="logo-text" variant="h6" noWrap component="div">
+							{data.information.name}
+						</Typography>
+					</Logo>
 
-					{/* Mobile Menu Button */}
-					<MobileMenuButton>
-						<motion.div
-							whileHover={{ scale: 1.1 }}
-							whileTap={{ scale: 0.95 }}
+					{/* Enhanced Mobile Menu Button */}
+					<Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+						<AnimatedIconButton
+							onClick={handleOpenNavMenu}
+							aria-label="menu"
+							sx={{
+								color: '#e1bee7',
+								'&:hover': {
+									backgroundColor: 'rgba(225, 190, 231, 0.1)',
+								}
+							}}
 						>
-							<IconButton
-								size="large"
-								aria-label="account of current user"
-								aria-controls="menu-appbar"
-								aria-haspopup="true"
-								onClick={handleOpenNavMenu}
-								sx={{ 
-									color: '#e1bee7',
-									'&:hover': {
-										background: 'rgba(225, 190, 231, 0.1)',
-									}
-								}}
-							>
-								<MenuIcon />
-							</IconButton>
-						</motion.div>
-					</MobileMenuButton>
+							<AnimatedMenuIcon isOpen={anchorElNav} />
+						</AnimatedIconButton>
+					</Box>
 
 					{/* Mobile Menu */}
 					<AnimatePresence>
@@ -592,126 +791,122 @@ const ResponsiveAppBar = () => {
 					</Logo>
 
 					{/* Desktop Navigation */}
-					<NavContainer sx={{ justifyContent: isScrolled ? 'center' : 'center' }}>
-						<AnimatePresence mode="wait">
-							{isScrolled ? (
-								// Compact Navigation (when scrolled)
-								<motion.div
-									key="compact"
-									initial={{ opacity: 0, y: -20, scale: 0.9 }}
-									animate={{ opacity: 1, y: 0, scale: 1 }}
-									exit={{ opacity: 0, y: -20, scale: 0.9 }}
-									transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
-									style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+					<NavContainer sx={{ justifyContent: 'center' }}>
+						{/* Compact Navigation (always mounted) */}
+						<motion.div
+							animate={{ 
+								opacity: isScrolled ? 1 : 0,
+								y: isScrolled ? 0 : -20,
+								scale: isScrolled ? 1 : 0.9,
+								pointerEvents: isScrolled ? 'auto' : 'none'
+							}}
+							transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
+							style={{ 
+								display: 'flex', 
+								alignItems: 'center', 
+								justifyContent: 'center',
+								position: isScrolled ? 'relative' : 'absolute'
+							}}
+						>
+							{pages.map((page, index) => (
+								<CompactNavButton
+									key={`compact-${page}-${index}`}
+									active={isActivePage(pages_link[index])}
+									animate={{ 
+										opacity: isScrolled ? 1 : 0,
+										y: isScrolled ? 0 : -10
+									}}
+									transition={{ delay: isScrolled ? index * 0.05 : 0, duration: 0.3 }}
+									whileHover={{ scale: 1.05 }}
+									whileTap={{ scale: 0.95 }}
 								>
-									{pages.map((page, index) => (
-										<CompactNavButton
-											key={`compact-${page}-${index}`}
-											active={isActivePage(pages_link[index])}
-											initial={{ opacity: 0, y: -10 }}
-											animate={{ opacity: 1, y: 0 }}
-											transition={{ delay: index * 0.05, duration: 0.3 }}
-											whileHover={{ scale: 1.05 }}
-											whileTap={{ scale: 0.95 }}
-										>
-											<Button 
-												className="compact-nav-button"
-												onClick={() => handleCloseNavMenu(pages_link[index])}
-											>
-												{page.split(' ')[0]} {/* Show only first word */}
-											</Button>
-										</CompactNavButton>
-									))}
-								</motion.div>
-							) : (
-								// Full Navigation (when at top)
-								<motion.div
-									key="full"
-									initial={{ opacity: 0, y: 20, scale: 0.9 }}
-									animate={{ opacity: 1, y: 0, scale: 1 }}
-									exit={{ opacity: 0, y: 20, scale: 0.9 }}
-									transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
-									style={{ display: 'flex', alignItems: 'center' }}
+									<Button 
+										className="compact-nav-button"
+										onClick={() => handleCloseNavMenu(pages_link[index])}
+									>
+										{page.split(' ')[0]} {/* Show only first word */}
+									</Button>
+								</CompactNavButton>
+							))}
+						</motion.div>
+
+						{/* Full Navigation (always mounted) */}
+						<motion.div
+							animate={{ 
+								opacity: !isScrolled ? 1 : 0,
+								y: !isScrolled ? 0 : 20,
+								scale: !isScrolled ? 1 : 0.9,
+								pointerEvents: !isScrolled ? 'auto' : 'none'
+							}}
+							transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
+							style={{ 
+								display: 'flex', 
+								alignItems: 'center',
+								position: !isScrolled ? 'relative' : 'absolute'
+							}}
+						>
+							{pages.map((page, index) => (
+								<NavButton
+									key={`full-${page}-${index}`}
+									active={isActivePage(pages_link[index])}
+									animate={{ 
+										opacity: !isScrolled ? 1 : 0,
+										y: !isScrolled ? 0 : -30
+									}}
+									transition={{ delay: !isScrolled ? index * 0.08 : 0, duration: 0.5, type: "spring" }}
+									whileHover={{ 
+										scale: 1.05,
+										rotateX: 5,
+										rotateY: 5,
+									}}
+									whileTap={{ scale: 0.95 }}
+									style={{
+										transformStyle: 'preserve-3d',
+										perspective: '1000px',
+									}}
 								>
-									{pages.map((page, index) => (
-										<NavButton
-											key={`full-${page}-${index}`}
-											active={isActivePage(pages_link[index])}
-											initial={{ opacity: 0, y: -30 }}
-											animate={{ opacity: 1, y: 0 }}
-											transition={{ delay: index * 0.08, duration: 0.5, type: "spring" }}
-											whileHover={{ 
-												scale: 1.05,
-												rotateX: 5,
-												rotateY: 5,
-											}}
-											whileTap={{ scale: 0.95 }}
-											style={{
-												transformStyle: 'preserve-3d',
-												perspective: '1000px',
-											}}
-										>
-											<Button 
-												className="nav-button"
-												onClick={() => handleCloseNavMenu(pages_link[index])}
-											>
-												{page}
-											</Button>
-										</NavButton>
-									))}
-								</motion.div>
-							)}
-						</AnimatePresence>
+									<Button 
+										className="nav-button"
+										onClick={() => handleCloseNavMenu(pages_link[index])}
+									>
+										{page}
+									</Button>
+								</NavButton>
+							))}
+						</motion.div>
 					</NavContainer>
 
-					{/* Contact Avatar - Hidden when scrolled */}
-					<AnimatePresence>
-						{!isScrolled && (
-							<ContactAvatar
-								initial={{ opacity: 0, scale: 0, x: 50 }}
-								animate={{ 
-									opacity: 1, 
-									scale: 1,
-									x: 0
-								}}
-								exit={{ 
-									opacity: 0, 
-									scale: 0,
-									x: 50,
-									transition: { duration: 0.3 }
-								}}
-								transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
-								sx={{ 
-									flexGrow: 0,
-									minWidth: 'fit-content'
-								}}
+					{/* Contact Avatar - Always mounted, opacity animated */}
+					<ContactAvatar
+						animate={{ 
+							opacity: isScrolled ? 0 : 1,
+							scale: isScrolled ? 0 : 1,
+							x: isScrolled ? 50 : 0,
+							pointerEvents: isScrolled ? 'none' : 'auto'
+						}}
+						transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
+						sx={{ 
+							flexGrow: 0,
+							minWidth: 'fit-content'
+						}}
+					>
+						<Tooltip title="Contact Me" arrow placement="bottom">
+							<AnimatedIconButton
+								onClick={handleOpenUserMenu}
+								sx={{ p: 0 }}
 							>
-								<Tooltip title="Contact Me" arrow>
-									<motion.div
-										whileHover={{
-											scale: 1.1,
-											boxShadow: '0 0 30px rgba(225, 190, 231, 0.6)',
-											borderColor: '#e1bee7',
-										}}
-										transition={{ 
-											type: "spring", 
-											stiffness: 100, 
-											damping: 10 
-										}}
-									>
-										<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-											<MemoizedAvatar 
-												className="avatar"
-												alt="Contact" 
-												variant="square"
-												sx={{
-													border: '2px solid rgba(225, 190, 231, 0.5)',
-													boxShadow: '0 0 20px rgba(225, 190, 231, 0.3)',
-												}}
-											/>
-										</IconButton>
-									</motion.div>
-								</Tooltip>
+								<AnimatedAvatar 
+									src={accountImageUrl}
+									alt="Contact"
+									sx={{
+										width: 44,
+										height: 44,
+										border: '2px solid rgba(225, 190, 231, 0.5)',
+										boxShadow: '0 0 20px rgba(225, 190, 231, 0.3)',
+									}}
+								/>
+							</AnimatedIconButton>
+						</Tooltip>
 								<AnimatePresence>
 									{anchorElUser && (
 										<motion.div
@@ -769,12 +964,11 @@ const ResponsiveAppBar = () => {
 										</motion.div>
 									)}
 								</AnimatePresence>
-							</ContactAvatar>
-						)}
-					</AnimatePresence>
+					</ContactAvatar>
 				</StyledToolbar>
 			</CustomContainer>
 		</StyledAppBar>
+		</motion.div>
 		</NavbarWrapper>
 	);
 };
