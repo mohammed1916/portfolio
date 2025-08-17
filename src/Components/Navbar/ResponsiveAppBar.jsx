@@ -20,7 +20,54 @@ import {
 	useLocation
 } from "react-router-dom";
 
-import account from '../../img/icons/logo192.png'
+// Use static image URL that browsers cache better
+const accountImageUrl = '/logo192.png';
+
+// Image cache to prevent repeated requests
+const imageCache = new Map();
+
+// Custom hook for cached image loading
+const useCachedImage = (src) => {
+	const [imageSrc, setImageSrc] = React.useState(src);
+	
+	React.useEffect(() => {
+		if (imageCache.has(src)) {
+			setImageSrc(imageCache.get(src));
+			return;
+		}
+		
+		const img = new Image();
+		img.onload = () => {
+			// Cache the successful URL
+			imageCache.set(src, src);
+			setImageSrc(src);
+		};
+		img.onerror = () => {
+			// Cache the fallback
+			imageCache.set(src, src);
+			setImageSrc(src);
+		};
+		img.src = src;
+	}, [src]);
+	
+	return imageSrc;
+};
+
+// Simple memoized Avatar component with caching
+const MemoizedAvatar = React.memo(({ alt, className, variant, sx, ...props }) => {
+	const cachedImageSrc = useCachedImage(accountImageUrl);
+	
+	return (
+		<Avatar 
+			className={className}
+			alt={alt}
+			src={cachedImageSrc}
+			variant={variant}
+			sx={sx}
+			{...props}
+		/>
+	);
+});
 
 const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work Experience'];
 const pages_link = ['about', 'education', 'skills', 'projects', 'certifications', 'work'];
@@ -276,6 +323,45 @@ const MobileMenuButton = styled(motion.div)(({ theme }) => ({
 const ResponsiveAppBar = () => {
 	let navigate = useNavigate();
 	let location = useLocation();
+	
+	// Aggressive image preloading strategy
+	React.useEffect(() => {
+		// Create multiple cached references
+		const preloadStrategies = [
+			// Strategy 1: Simple Image preload
+			() => {
+				const img = new Image();
+				img.src = accountImageUrl;
+				return img;
+			},
+			// Strategy 2: Fetch with cache
+			() => {
+				fetch(accountImageUrl, {
+					cache: 'force-cache',
+					mode: 'cors'
+				}).catch(() => {});
+			},
+			// Strategy 3: Create object URL and cache it
+			() => {
+				fetch(accountImageUrl)
+					.then(response => response.blob())
+					.then(blob => {
+						const objectUrl = URL.createObjectURL(blob);
+						imageCache.set(accountImageUrl + '_blob', objectUrl);
+					})
+					.catch(() => {});
+			}
+		];
+		
+		// Execute all strategies
+		preloadStrategies.forEach(strategy => {
+			try {
+				strategy();
+			} catch (e) {
+				console.log('Preload strategy failed:', e);
+			}
+		});
+	}, []);
 	
 	// Smooth scroll function
 	const scrollToSection = (sectionId) => {
@@ -614,11 +700,10 @@ const ResponsiveAppBar = () => {
 										}}
 									>
 										<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-											<Avatar 
+											<MemoizedAvatar 
 												className="avatar"
 												alt="Contact" 
-												src={account} 
-												variant="square" 
+												variant="square"
 												sx={{
 													border: '2px solid rgba(225, 190, 231, 0.5)',
 													boxShadow: '0 0 20px rgba(225, 190, 231, 0.3)',
