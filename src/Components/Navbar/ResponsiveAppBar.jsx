@@ -794,15 +794,18 @@ const ResponsiveAppBar = () => {
 											animate={{ opacity: 1, x: 0 }}
 											transition={{ delay: (pages.length + index + 1) * 0.1 }}
 										>
-											<a href={object.url} className='link' style={{ textDecoration: 'none' }}>
+											<a href={object.url} className='link' style={{ textDecoration: 'none', color: 'inherit' }}>
 												<MenuItem onClick={() => setAnchorElNav(null)} sx={{
-													color: '#ffffff',
+													color: '#000',
 													'&:hover': {
 														background: 'rgba(225, 190, 231, 0.1)',
 														color: '#e1bee7',
+													},
+													'& a': {
+														color: 'inherit',
 													}
 												}}>
-													<Typography textAlign="center">{object.media}</Typography>
+													<Typography textAlign="center" sx={{ color: 'inherit' }}>{object.media}</Typography>
 												</MenuItem>
 											</a>
 										</motion.div>
