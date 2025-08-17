@@ -701,7 +701,7 @@ const ResponsiveAppBar = () => {
 				<CustomContainer>
 				<StyledToolbar disableGutters iscompact={isScrolled}>
 					{/* Desktop Logo - Always mounted, opacity animated */}
-					<Logo
+					{/* <Logo
 						animate={{ 
 							opacity: isScrolled ? 0 : 1,
 							x: isScrolled ? -50 : 0,
@@ -718,7 +718,7 @@ const ResponsiveAppBar = () => {
 						<Typography className="logo-text" variant="h6" noWrap component="div">
 							{data.information.name}
 						</Typography>
-					</Logo>
+					</Logo> */}
 
 					{/* Enhanced Mobile Menu Button */}
 					<Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -805,6 +805,7 @@ const ResponsiveAppBar = () => {
 								opacity: isScrolled ? 1 : 0,
 								y: isScrolled ? 0 : -20,
 								scale: isScrolled ? 1 : 0.9,
+								x: '-50%', // Always centered
 								pointerEvents: isScrolled ? 'auto' : 'none'
 							}}
 							transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
@@ -814,7 +815,6 @@ const ResponsiveAppBar = () => {
 								justifyContent: 'center',
 								position: 'absolute',
 								left: '50%',
-								transform: 'translateX(-50%)',
 								width: 'auto'
 							}}
 						>
@@ -846,6 +846,7 @@ const ResponsiveAppBar = () => {
 								opacity: !isScrolled ? 1 : 0,
 								y: !isScrolled ? 0 : 20,
 								scale: !isScrolled ? 1 : 0.9,
+								x: '-50%', // Always centered
 								pointerEvents: !isScrolled ? 'auto' : 'none'
 							}}
 							transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
@@ -855,7 +856,6 @@ const ResponsiveAppBar = () => {
 								justifyContent: 'center',
 								position: 'absolute',
 								left: '50%',
-								transform: 'translateX(-50%)',
 								width: 'auto'
 							}}
 						>
