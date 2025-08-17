@@ -1,3 +1,21 @@
+/*
+ * Portfolio Website - Mohammed Abdullah's Personal portfolio showcasing projects and skills.
+ * Copyright (C) 2025 MOHAMMED ABDULLAH
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -21,7 +39,11 @@ import Privacy from "./Components/Privacy/Privacy.jsx";
 // Main single-page component
 const MainPage = () => {
   return (
-    <div style={{ paddingTop: '70px' }}> {/* Reduced padding since compact navbar is shorter */}
+    <div style={{ 
+      paddingTop: '70px',
+      background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
+      minHeight: 'auto'
+    }}>
       <section id="about">
         <About />
       </section>

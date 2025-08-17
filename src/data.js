@@ -1,5 +1,6 @@
 // Import all the images
-import designImage from './img/Design/design.png';
+import designImage from './img/Design/merit.png';
+import designImage2 from './img/Design/close_up.jpg';
 import githubIcon from './img/icons/media/github.png';
 import linkedinIcon from './img/icons/media/linkedin.png';
 import postOutlineIcon from './img/icons/media/post-outline.png';
@@ -27,14 +28,22 @@ import project1_2 from './Components/Projects/Images/1/2.jpeg';
 import project1_3 from './Components/Projects/Images/1/3.jpeg';
 import project3_1 from './Components/Projects/Images/3/1.png';
 import project3_2 from './Components/Projects/Images/3/2.png';
+import project4_1 from './Components/Projects/Images/4/1.png';
+import project4_2 from './Components/Projects/Images/4/2.png';
+import project4_3 from './Components/Projects/Images/4/3.png';
+import project4_4 from './Components/Projects/Images/4/4.png';
+import project4_5 from './Components/Projects/Images/4/5.png';
+import project4_6 from './Components/Projects/Images/4/6.png';
+import project4_7 from './Components/Projects/Images/4/7.png';
 
 export const data = {
     "information": {
         "name": "Mohammed Abdullah",
         "image": designImage,
+        "image2": designImage2,
         "email": "developermohammed01@gmail.com",
         "whoami": "I am Mohammed Abdullah. An aspiring software developer who likes to learn and explore new frameworks.",
-        "description": "I have completed my PG in M.Tech IT (Spln. in AI & DS) in May 2025 from Anna University, CEG Campus in Tamil Nadu, India. I love creating user-centric applications. I have developed websites using NextJS. Apart from it, I have also explored the domain of mobile application development and created apps for native android and also a hybrid mobile application using flutter. I have also worked with Godot engine, using which I designed a memory game for android.",
+        "description": "I have completed my PG in M.Tech IT (Spln. in AI & DS) in May 2025 from Anna University (CEG Campus) in Tamil Nadu, India, and B.E CSE from PEC (Affiliated to Anna University), chennai - 2023. I love creating user-centric applications. I have developed websites using NextJS. Apart from it, I have also explored the domain of mobile application development and created apps for native android and also a hybrid mobile application using flutter. I have also worked with Godot engine, using which I designed a memory game for android.",
         "location": "Chennai, Tamil Nadu, India",
         "profiles": [
             {
@@ -98,26 +107,77 @@ export const data = {
         {
             "type": "Programming Languages",
             "Knowledge in Advance Topics": "Javascript, Python, C",
-            "Knowledge in Main Concepts": "Java",
-            "Beginner": "C++, GDScript"
+            "Knowledge in Main Concepts": "TypeScript, Java",
+            "Can do with Documentation": "C++, GDScript, Dart, Kotlin, C#"
         }
         ,
         {
-            "type": "Frameworks And Libraries",
-            "Knowledge in Advance Topics": "ReactJs, NextJS 13",
-            "Knowledge in Main Concepts": "Flutter",
-            "Beginner": "Flask",
+            "type": "Web Frameworks And Libraries",
+            "Knowledge in Advance Topics": "ReactJs, NextJS 13 and NextJS 15",
+            "Knowledge in Main Concepts": "Flask,MongoDB, MySQL, Firebase, NodeJS, ExpressJS, Socket.io",
+            "Can do with Documentation": "Flutter, Django",
+        },
+        {
+            "type": "AI Frameworks And Libraries",
+            "Knowledge in Advance Topics": "Pytorch, Keras, Pandas, Numpy, Matplotlib, Seaborn",
+            "Knowledge in Main Concepts": "Tensorflow, Scikit-learn",
+            "Can do with Documentation": "OpenCV, NLTK, Spacy",
         },
         {
             "type": "Tools and IDE's",
-            "Knowledge in Advance Topics": "Inkscape, VS code",
-            "Knowledge in Main Concepts": "Git VCS, Godot Game Engine, Android Studio",
-            "Beginner": "Gimp",
+            "Mostly": "Docker, Windows Subsytem for Linux (WSL), VS code, Git VCS, Postman",
+            "If required": "Godot Game Engine, Android Studio",
+            "Beginner": "Unity",
         }
     ]
     ,
     "projects": [
         
+        {
+            "title": "Adobe Express Addon",
+            "type": " React, TypeScript, Redux Toolkit, Adobe Express APIs",
+            "thumbnail": project4_2,
+            "link": " https://adobesparkpost.app.link/TR9Mb7TXFLb?addOnId=w96k0hi74",
+            "description": `
+            • Developed an Adobe Express add-on with Typescript for managing and inserting custom SVG, GIF, and raster
+            graphics (JPG, PNG), with validation and user feedback for unsupported formats.
+            • Implemented Redux-based state management for symbol inventory, tagging, and selection using Agile methodology
+            by creating basic working structure first and adding other features like multi-select tagging later.
+            • Built SVG parsers to extract viewBox, dimensions, and aspect ratio for accurate rendering.
+            • Integrated Adobe Express APIs for seamless insertion and persistent inventory across sessions.
+            • [Live Add-on https://adobesparkpost.app.link/TR9Mb7TXFLb?addOnId=w96k0hi74 ]. Verifiable via my
+            portfolio link under Help and Support section links.`,
+            "gallery": [
+                {
+                    original: project4_1,
+                    thumbnail: project4_1,
+                },
+                {
+                    original: project4_2,
+                    thumbnail: project4_2,
+                },
+                {
+                    original: project4_3,
+                    thumbnail: project4_3,
+                },
+                {
+                    original: project4_7,
+                    thumbnail: project4_7,
+                },
+                {
+                    original: project4_4,
+                    thumbnail: project4_4,
+                },
+                {
+                    original: project4_5,
+                    thumbnail: project4_5,
+                },
+                {
+                    original: project4_6,
+                    thumbnail: project4_6,
+                },
+            ]
+        },
         {
             "title": "Dynamic Portfolio generator",
             "type": "Single Page Web App",

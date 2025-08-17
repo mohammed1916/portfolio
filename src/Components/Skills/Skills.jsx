@@ -62,25 +62,61 @@ export default function Skills()
                 px={{ xs: 3, sm: 10 }}
                 py={{ xs: 5, sm: 10 }}
                 bgcolor={'white'}
-                color={'white'} >
-                <Container sx={{ width: '100%' }}>
+                color={'white'}
+                sx={{
+                    background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
+                    position: 'relative',
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'rgba(74, 20, 140, 0.05)',
+                        zIndex: 0,
+                    },
+                }}
+            >
+                <Container sx={{ width: '100%', position: 'relative', zIndex: 1 }}>
                     <AnimatedSectionHeading>Skills</AnimatedSectionHeading>
-                    <Box bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
+                    <Box 
+                        bgcolor={'rgba(255, 255, 255, 0.8)'} 
+                        borderRadius={'20px'} 
+                        padding={'10px'}
+                        sx={{
+                            background: 'linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(225,190,231,0.3) 100%)',
+                            backdropFilter: 'blur(10px)',
+                            border: '1px solid rgba(225, 190, 231, 0.3)',
+                            boxShadow: '0 8px 32px rgba(74, 20, 140, 0.1)',
+                        }}
+                    >
                         {data.skills.map((object, index) => (
-                            <Accordion key={index + object} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
-                                <AccordionSummary aria-controls={`panel${index}d-content`} id={`panel${index}d-header`}>
+                            <Accordion 
+                                key={index + object} 
+                                expanded={expanded === `panel${index}`} 
+                                onChange={handleChange(`panel${index}`)}
+                                className="skills-item"
+                            >
+                                <AccordionSummary 
+                                    aria-controls={`panel${index}d-content`} 
+                                    id={`panel${index}d-header`}
+                                    className="expandable skills-accordion-header"
+                                >
                                     <Typography fontFamily={'Gilroy Bold'}>{object.type}</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <Typography fontFamily={'Gilroy Light'}>
-                                        {`Knowledge in Advance Topics: ${object['Knowledge in Advance Topics']}`}
-                                    </Typography>
-                                    <Typography fontFamily={'Gilroy Light'}>
-                                        {`Knowledge in Main Concepts: ${object['Knowledge in Main Concepts']}`}
-                                    </Typography>
-                                    <Typography fontFamily={'Gilroy Light'}>
-                                        {`Beginner: ${object['Beginner']}`}
-                                    </Typography>
+                                    {/* Dynamically render all skill level categories */}
+                                    {Object.entries(object).map(([key, value]) => {
+                                        // Skip the 'type' key as it's used for the header
+                                        if (key === 'type') return null;
+                                        
+                                        return (
+                                            <Typography key={key} fontFamily={'Gilroy Light'} sx={{ mb: 1 }}>
+                                                {`${key}: ${value}`}
+                                            </Typography>
+                                        );
+                                    })}
                                 </AccordionDetails>
                             </Accordion>
                         ))}

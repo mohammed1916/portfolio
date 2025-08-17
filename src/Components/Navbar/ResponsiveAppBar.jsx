@@ -130,7 +130,7 @@ const AnimatedIconButton = React.memo(({ children, onClick, sx = {}, ...props })
 	</motion.div>
 ));
 
-const AnimatedMenuIcon = React.memo(({ isOpen }) => (
+const AnimatedMenuIcon = React.memo(({ isOpen = false }) => (
 	<motion.div
 		animate={{
 			rotate: isOpen ? 90 : 0,
@@ -146,17 +146,16 @@ const AnimatedMenuIcon = React.memo(({ isOpen }) => (
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<motion.path
-				d="M3 6h18"
 				stroke="currentColor"
 				strokeWidth="2"
 				strokeLinecap="round"
 				animate={{
 					d: isOpen ? "M6 6L18 18" : "M3 6h18"
 				}}
+				initial={{ d: "M3 6h18" }}
 				transition={{ duration: 0.3 }}
 			/>
 			<motion.path
-				d="M3 12h18"
 				stroke="currentColor"
 				strokeWidth="2"
 				strokeLinecap="round"
@@ -164,16 +163,18 @@ const AnimatedMenuIcon = React.memo(({ isOpen }) => (
 					opacity: isOpen ? 0 : 1,
 					x: isOpen ? 10 : 0
 				}}
+				initial={{ opacity: 1, x: 0, d: "M3 12h18" }}
+				d="M3 12h18"
 				transition={{ duration: 0.3 }}
 			/>
 			<motion.path
-				d="M3 18h18"
 				stroke="currentColor"
 				strokeWidth="2"
 				strokeLinecap="round"
 				animate={{
 					d: isOpen ? "M6 18L18 6" : "M3 18h18"
 				}}
+				initial={{ d: "M3 18h18" }}
 				transition={{ duration: 0.3 }}
 			/>
 		</motion.svg>
@@ -251,18 +252,22 @@ const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Wo
 const pages_link = ['about', 'education', 'skills', 'projects', 'certifications', 'work'];
 
 // Styled components for violet purple theme
-const NavbarWrapper = styled('div')(({ theme, iscompact }) => ({
+const NavbarWrapper = styled('div', {
+	shouldForwardProp: (prop) => prop !== 'iscompact'
+})(({ theme, iscompact }) => ({
 	position: 'fixed',
 	top: iscompact ? '20px' : '0',
-	left: iscompact ? '100px' : '0',
-	right: iscompact ? '100px' : '0',
+	left: iscompact ? '300px' : '0',
+	right: iscompact ? '300px' : '0',
 	zIndex: 1100,
 	transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
 	borderRadius: iscompact ? '16px' : '0',
 	overflow: 'hidden', // Ensure child elements are clipped
 }));
 
-const StyledAppBar = styled(AppBar)(({ theme, iscompact }) => ({
+const StyledAppBar = styled(AppBar, {
+	shouldForwardProp: (prop) => prop !== 'iscompact'
+})(({ theme, iscompact }) => ({
 	background: iscompact 
 		? 'rgba(74, 20, 140, 0.65)' 
 		: 'linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #8e24aa 100%)',
@@ -314,7 +319,9 @@ const StyledAppBar = styled(AppBar)(({ theme, iscompact }) => ({
 	},
 }));
 
-const StyledToolbar = styled(Toolbar)(({ theme, iscompact }) => ({
+const StyledToolbar = styled(Toolbar, {
+	shouldForwardProp: (prop) => prop !== 'iscompact'
+})(({ theme, iscompact }) => ({
 	minHeight: iscompact ? '48px !important' : '70px !important',
 	alignItems: 'center',
 	justifyContent: iscompact ? 'center' : 'space-between', // Space between for desktop to place contact icon on right
@@ -787,15 +794,18 @@ const ResponsiveAppBar = () => {
 											animate={{ opacity: 1, x: 0 }}
 											transition={{ delay: (pages.length + index + 1) * 0.1 }}
 										>
-											<a href={object.url} className='link' style={{ textDecoration: 'none' }}>
+											<a href={object.url} className='link' style={{ textDecoration: 'none', color: 'inherit' }}>
 												<MenuItem onClick={() => setAnchorElNav(null)} sx={{
-													color: '#ffffff',
+													color: '#000',
 													'&:hover': {
 														background: 'rgba(225, 190, 231, 0.1)',
 														color: '#e1bee7',
+													},
+													'& a': {
+														color: 'inherit',
 													}
 												}}>
-													<Typography textAlign="center">{object.media}</Typography>
+													<Typography textAlign="center" sx={{ color: 'inherit' }}>{object.media}</Typography>
 												</MenuItem>
 											</a>
 										</motion.div>
@@ -809,6 +819,12 @@ const ResponsiveAppBar = () => {
 					<NavContainer sx={{ justifyContent: 'center' }}>
 						{/* Compact Navigation (always mounted) */}
 						<motion.div
+							initial={{ 
+								opacity: 0,
+								y: -20,
+								scale: 0.9,
+								x: '-50%'
+							}}
 							animate={{ 
 								opacity: isScrolled ? 1 : 0,
 								y: isScrolled ? 0 : -20,
@@ -830,6 +846,10 @@ const ResponsiveAppBar = () => {
 								<CompactNavButton
 									key={`compact-${page}-${index}`}
 									active={isActivePage(pages_link[index])}
+									initial={{ 
+										opacity: 0,
+										y: -10
+									}}
 									animate={{ 
 										opacity: isScrolled ? 1 : 0,
 										y: isScrolled ? 0 : -10
@@ -850,6 +870,12 @@ const ResponsiveAppBar = () => {
 
 						{/* Full Navigation (always mounted) */}
 						<motion.div
+							initial={{ 
+								opacity: 1,
+								y: 0,
+								scale: 1,
+								x: '-50%'
+							}}
 							animate={{ 
 								opacity: !isScrolled ? 1 : 0,
 								y: !isScrolled ? 0 : 20,
@@ -871,6 +897,10 @@ const ResponsiveAppBar = () => {
 								<NavButton
 									key={`full-${page}-${index}`}
 									active={isActivePage(pages_link[index])}
+									initial={{ 
+										opacity: 1,
+										y: 0
+									}}
 									animate={{ 
 										opacity: !isScrolled ? 1 : 0,
 										y: !isScrolled ? 0 : -30
