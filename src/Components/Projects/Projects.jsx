@@ -8,6 +8,8 @@ import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
 import AnimatedSectionHeading from '../common/AnimatedSectionHeading';
 import { data } from '../../data';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 
 import
 {
@@ -17,10 +19,20 @@ import
 export default function Projects()
 {
     let navigate = useNavigate();
+    const [activeTab, setActiveTab] = useState('All');
+    
     const nav = (index) =>
     {
         navigate(`/projectpage/${index}`);
     };
+
+    // Get unique project types for tabs
+    const projectTypes = ['All', ...new Set(data.projects.map(project => project.type))];
+    
+    // Filter projects based on active tab
+    const filteredProjects = activeTab === 'All' 
+        ? data.projects 
+        : data.projects.filter(project => project.type === activeTab);
 
     return (
         <>
@@ -46,42 +58,182 @@ export default function Projects()
             >
                 <Container sx={{ width: '100%', position: 'relative', zIndex: 1 }}>
                     <AnimatedSectionHeading>Projects</AnimatedSectionHeading>
-                    <Box 
-                        display={'flex'} 
-                        flexWrap={'wrap'} 
-                        justifyContent='space-evenly' 
-                        bgcolor={'rgba(255, 255, 255, 0.8)'} 
-                        borderRadius={'20px'} 
-                        padding={'10px'}
+                    
+                    {/* Smooth Tabs */}
+                    <Box
                         sx={{
-                            background: 'linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(225,190,231,0.3) 100%)',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginBottom: '40px',
+                            position: 'relative',
+                            background: 'rgba(255, 255, 255, 0.1)',
                             backdropFilter: 'blur(10px)',
-                            border: '1px solid rgba(225, 190, 231, 0.3)',
+                            borderRadius: '50px',
+                            padding: '8px',
+                            border: '1px solid rgba(255, 255, 255, 0.2)',
                             boxShadow: '0 8px 32px rgba(74, 20, 140, 0.1)',
+                            overflow: 'hidden',
                         }}
                     >
-                        {data.projects.map((item, index) => (
-                            <Card 
-                                onClick={() => nav(index)} 
-                                key={index + item.title} 
-                                sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3)" }} 
-                                className="project-card cursor-view"
+                        {projectTypes.map((type) => (
+                            <Box
+                                key={type}
+                                component={motion.button}
+                                onClick={() => setActiveTab(type)}
+                                sx={{
+                                    position: 'relative',
+                                    padding: '12px 24px',
+                                    margin: '0 4px',
+                                    border: 'none',
+                                    background: 'transparent',
+                                    cursor: 'pointer',
+                                    borderRadius: '25px',
+                                    fontFamily: 'Gilroy Bold',
+                                    fontSize: '14px',
+                                    fontWeight: activeTab === type ? 'bold' : 'normal',
+                                    color: activeTab === type ? '#fff' : '#4a148c',
+                                    transition: 'color 0.3s ease',
+                                    zIndex: 2,
+                                    minWidth: '80px',
+                                    whiteSpace: 'nowrap',
+                                    '&:hover': {
+                                        color: activeTab === type ? '#fff' : '#8a2be2',
+                                    },
+                                }}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
                             >
-                                <CardActionArea>
-                                    <CardMedia
-                                        component="img"
-                                        height="200"
-                                        image={item.thumbnail}
+                                {activeTab === type && (
+                                    <motion.div
+                                        layoutId="activeTab"
+                                        style={{
+                                            position: 'absolute',
+                                            top: 0,
+                                            left: 0,
+                                            right: 0,
+                                            bottom: 0,
+                                            background: 'linear-gradient(135deg, #8a2be2, #dda0dd)',
+                                            borderRadius: '25px',
+                                            zIndex: -1,
+                                            boxShadow: '0 8px 20px rgba(138, 43, 226, 0.3)',
+                                        }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 500,
+                                            damping: 30
+                                        }}
                                     />
-                                    <CardContent>
-                                        <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div" textAlign={'center'}>
-                                            {item.title}
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
+                                )}
+                                {type}
+                            </Box>
                         ))}
                     </Box>
+
+                    {/* Animated Projects Container */}
+                    <motion.div
+                        layout
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                    >
+                        <Box 
+                            display={'flex'} 
+                            flexWrap={'wrap'} 
+                            justifyContent='space-evenly' 
+                            bgcolor={'rgba(255, 255, 255, 0.8)'} 
+                            borderRadius={'20px'} 
+                            padding={'20px'}
+                            sx={{
+                                background: 'linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(225,190,231,0.3) 100%)',
+                                backdropFilter: 'blur(10px)',
+                                border: '1px solid rgba(225, 190, 231, 0.3)',
+                                boxShadow: '0 8px 32px rgba(74, 20, 140, 0.1)',
+                                minHeight: '400px',
+                            }}
+                        >
+                            <AnimatePresence mode="wait">
+                                {filteredProjects.map((item, index) => (
+                                    <motion.div
+                                        key={`${activeTab}-${item.title}`}
+                                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                                        exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                                        transition={{
+                                            duration: 0.3,
+                                            delay: index * 0.1,
+                                            ease: [0.4, 0, 0.2, 1]
+                                        }}
+                                        layout
+                                    >
+                                        <Card 
+                                            onClick={() => nav(data.projects.findIndex(p => p.title === item.title))} 
+                                            sx={{ 
+                                                maxWidth: 280, 
+                                                padding: '15px', 
+                                                margin: '20px', 
+                                                borderRadius: '20px',
+                                                background: 'linear-gradient(145deg, #ffffff, #f0f0f0)',
+                                                border: '1px solid rgba(138, 43, 226, 0.1)',
+                                                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                                ":hover": { 
+                                                    boxShadow: '0 20px 40px rgba(138, 43, 226, 0.2)',
+                                                    transform: 'translateY(-5px)',
+                                                    borderColor: 'rgba(138, 43, 226, 0.3)',
+                                                }
+                                            }} 
+                                            className="project-card cursor-view"
+                                        >
+                                            <CardActionArea sx={{ borderRadius: '15px' }}>
+                                                <CardMedia
+                                                    component="img"
+                                                    height="200"
+                                                    image={item.thumbnail}
+                                                    sx={{ 
+                                                        borderRadius: '15px',
+                                                        transition: 'transform 0.3s ease',
+                                                        '&:hover': {
+                                                            transform: 'scale(1.05)',
+                                                        }
+                                                    }}
+                                                />
+                                                <CardContent sx={{ padding: '20px' }}>
+                                                    <Typography 
+                                                        fontFamily={'Gilroy Bold'} 
+                                                        color={'#4a148c'} 
+                                                        gutterBottom 
+                                                        variant="h6" 
+                                                        component="div" 
+                                                        textAlign={'center'}
+                                                        sx={{ 
+                                                            marginBottom: '8px',
+                                                            fontSize: '1.1rem'
+                                                        }}
+                                                    >
+                                                        {item.title}
+                                                    </Typography>
+                                                    <Box
+                                                        sx={{
+                                                            display: 'inline-block',
+                                                            padding: '4px 12px',
+                                                            borderRadius: '15px',
+                                                            background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(221, 160, 221, 0.1))',
+                                                            border: '1px solid rgba(138, 43, 226, 0.2)',
+                                                            fontSize: '0.8rem',
+                                                            fontFamily: 'Gilroy Light',
+                                                            color: '#8a2be2',
+                                                            margin: '0 auto',
+                                                            display: 'block',
+                                                            width: 'fit-content',
+                                                        }}
+                                                    >
+                                                        {item.type}
+                                                    </Box>
+                                                </CardContent>
+                                            </CardActionArea>
+                                        </Card>
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        </Box>
+                    </motion.div>
                 </Container>
             </Box>
         </>
