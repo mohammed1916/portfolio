@@ -39,7 +39,11 @@ import Privacy from "./Components/Privacy/Privacy.jsx";
 // Main single-page component
 const MainPage = () => {
   return (
-    <div style={{ paddingTop: '70px' }}> {/* Reduced padding since compact navbar is shorter */}
+    <div style={{ 
+      paddingTop: '70px',
+      background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
+      minHeight: 'auto'
+    }}>
       <section id="about">
         <About />
       </section>

@@ -15,6 +15,7 @@ const ParticleField = styled(motion.div)(({ theme }) => ({
     bottom: 0,
     pointerEvents: 'none',
     zIndex: 1,
+    background: 'linear-gradient(135deg, rgba(243, 229, 245, 0.3) 0%, rgba(225, 190, 231, 0.3) 50%, rgba(206, 147, 216, 0.3) 100%)',
 }));
 
 const Particle = styled(motion.div)(({ theme }) => ({
@@ -209,31 +210,40 @@ export default function About() {
     };
 
     return (
-        <>
-            <Box
-                ref={ref}
-                component={motion.div}
-                style={{ y, opacity }}
-                px={{ xs: 3, sm: 10 }}
-                py={{ xs: 5, sm: 10 }}
-                sx={{
+        <Box
+            ref={ref}
+            component={motion.div}
+            style={{ y, opacity }}
+            px={{ xs: 3, sm: 10 }}
+            py={{ xs: 5, sm: 10 }}
+            sx={{
+                background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
+                position: 'relative',
+                minHeight: 'auto',
+                overflow: 'hidden',
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
                     background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
-                    position: 'relative',
-                    minHeight: '100vh',
-                    overflow: 'hidden',
-                    '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(138, 43, 226, 0.1) 0%, transparent 50%)`,
-                        zIndex: 0,
-                        transition: 'background 0.3s ease',
-                    },
-                }}
-            >
+                    zIndex: -1,
+                },
+                '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(138, 43, 226, 0.1) 0%, transparent 50%)`,
+                    zIndex: 0,
+                    transition: 'background 0.3s ease',
+                },
+            }}
+        >
                 {/* Particle Field */}
                 <ParticleField>
                     {particles.map((particle) => (
@@ -655,6 +665,5 @@ export default function About() {
                     </motion.div>
                 </Container>
             </Box>
-        </>
     );
 }
