@@ -62,10 +62,35 @@ export default function Education()
                 px={{ xs: 3, sm: 10 }}
                 py={{ xs: 5, sm: 10 }}
                 bgcolor={'white'}
-                color={'white'} >
-                <Container sx={{ width: '100%' }}>
+                color={'white'}
+                sx={{
+                    background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
+                    position: 'relative',
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'rgba(74, 20, 140, 0.05)',
+                        zIndex: 0,
+                    },
+                }}
+            >
+                <Container sx={{ width: '100%', position: 'relative', zIndex: 1 }}>
                     <AnimatedSectionHeading>Education</AnimatedSectionHeading>
-                    <Box bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
+                    <Box 
+                        bgcolor={'rgba(255, 255, 255, 0.8)'} 
+                        borderRadius={'20px'} 
+                        padding={'10px'}
+                        sx={{
+                            background: 'linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(225,190,231,0.3) 100%)',
+                            backdropFilter: 'blur(10px)',
+                            border: '1px solid rgba(225, 190, 231, 0.3)',
+                            boxShadow: '0 8px 32px rgba(74, 20, 140, 0.1)',
+                        }}
+                    >
                         {data.education.map((object, index) => (
                             <Accordion 
                                 key={object + index * 5} 

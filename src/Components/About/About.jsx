@@ -189,8 +189,22 @@ export default function About()
                 py={{ xs: 5, sm: 10 }}
                 bgcolor={'white'}
                 color={'white'}
+                sx={{
+                    background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
+                    position: 'relative',
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'rgba(74, 20, 140, 0.05)',
+                        zIndex: 0,
+                    },
+                }}
             >
-                <Container sx={{ width: '100%' }}>
+                <Container sx={{ width: '100%', position: 'relative', zIndex: 1 }}>
                     {/* Prominent Logo */}
                     <AboutLogo
                         initial={{ opacity: 0, scale: 0.5, y: -50 }}

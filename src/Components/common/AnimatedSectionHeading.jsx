@@ -25,12 +25,12 @@ const AnimatedSectionHeading = ({ children, ...props }) => {
                 fontFamily="Gilroy Bold"
                 fontSize="40px"
                 color="black"
-                bgcolor="white"
                 pt={{ xs: 1, sm: 2 }}
                 {...props}
                 style={{
                     display: 'inline-block',
                     position: 'relative',
+                    background: 'transparent',
                 }}
             >
                 {characters.map((char, index) => (
