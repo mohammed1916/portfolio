@@ -35,7 +35,12 @@ export default function Work()
                     <AnimatedSectionHeading>Work Experience</AnimatedSectionHeading>
                     <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         {data.work.map((item, index) => (
-                            <Card onClick={() => nav(index)} key={index} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3)" }}  >
+                            <Card 
+                                onClick={() => nav(index)} 
+                                key={index} 
+                                sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3)" }} 
+                                className="work-card cursor-expand"
+                            >
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"

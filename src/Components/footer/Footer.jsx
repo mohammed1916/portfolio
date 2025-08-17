@@ -25,7 +25,7 @@ export default function Footer() {
                         <Box borderBottom={2}>Useful Links</Box>
                         {data.education.map((object, index) => (
                             <Box key={object.Type + index * 3} pt={{ xs: 2, sm: 4 }}>
-                                <Link href={object.website} color="inherit" underline="hover">
+                                <Link href={object.website} color="inherit" underline="hover" className="footer-link">
                                     {object.Type}
                                 </Link>
                             </Box>
@@ -35,7 +35,7 @@ export default function Footer() {
                         <Box borderBottom={2}>Contact</Box>
                         {data.information.profiles.map((object, index) => (
                             <Box key={object.url + index + 4 * index} pt={{ xs: 2, sm: 4 }}>
-                                <Link href={object.url} color="inherit" underline="hover">
+                                <Link href={object.url} color="inherit" underline="hover" className="social-link">
                                     {object.media}
                                 </Link>
                             </Box>
@@ -50,6 +50,7 @@ export default function Footer() {
                                 color="inherit" 
                                 underline="hover"
                                 sx={{ cursor: 'pointer' }}
+                                className="footer-link"
                             >
                                 Privacy Policy
                             </Link>

@@ -12,11 +12,11 @@ export default function Contact() {
             <Divider sx={{ margin: "20px" }} />
             <Box marginBottom={'20px'} display={'flex'} flexWrap={'wrap'} justifyContent='center'>
                 {data.information.profiles.map((object, index) => (
-                    <Box key={object.url + 1 * index} margin={'10px'} bgcolor={'#eee'} borderRadius={'13px'} padding={'10px'} boxShadow={5}>
-                        <a href={object.url} className='link'>
+                    <Box key={object.url + 1 * index} margin={'10px'} bgcolor={'#eee'} borderRadius={'13px'} padding={'10px'} boxShadow={5} className="interactive-card">
+                        <a href={object.url} className='link social-link cursor-contact'>
                             <CardHeader
                                 avatar={
-                                    <Avatar src={object.icon} />
+                                    <Avatar src={object.icon} className="social-icon" />
 
                                 }
                                 title={object.media}

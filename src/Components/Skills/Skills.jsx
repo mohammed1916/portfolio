@@ -67,8 +67,17 @@ export default function Skills()
                     <AnimatedSectionHeading>Skills</AnimatedSectionHeading>
                     <Box bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         {data.skills.map((object, index) => (
-                            <Accordion key={index + object} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
-                                <AccordionSummary aria-controls={`panel${index}d-content`} id={`panel${index}d-header`}>
+                            <Accordion 
+                                key={index + object} 
+                                expanded={expanded === `panel${index}`} 
+                                onChange={handleChange(`panel${index}`)}
+                                className="skills-item"
+                            >
+                                <AccordionSummary 
+                                    aria-controls={`panel${index}d-content`} 
+                                    id={`panel${index}d-header`}
+                                    className="expandable"
+                                >
                                     <Typography fontFamily={'Gilroy Bold'}>{object.type}</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
