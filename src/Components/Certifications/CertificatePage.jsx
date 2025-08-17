@@ -1,0 +1,105 @@
+import * as React from 'react';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { data } from '../../data';
+
+import { useParams, useNavigate } from "react-router-dom";
+
+
+export default function CertificatePage()
+{
+    let params = useParams();
+    let navigate = useNavigate();
+
+    // Scroll to top when component mounts
+    React.useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }, []);
+
+    const goBackToCertifications = () => {
+        navigate('/', { replace: true });
+        // Wait for navigation to complete, then scroll to certifications section
+        setTimeout(() => {
+            const element = document.getElementById('certifications');
+            if (element) {
+                const navbarHeight = 70;
+                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - navbarHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }, 100);
+    };
+
+    return (
+        <>
+            <Box
+                px={{ xs: 3, sm: 10 }}
+                py={{ xs: 5, sm: 10 }}
+                bgcolor={'white'}
+                color={'white'} >
+                <Container sx={{ width: '100%' }}>
+                    <Box display="flex" alignItems="center" mb={2}>
+                        <Button
+                            startIcon={<ArrowBackIcon />}
+                            onClick={goBackToCertifications}
+                            sx={{
+                                color: '#6a1b9a',
+                                '&:hover': {
+                                    backgroundColor: 'rgba(106, 27, 154, 0.1)',
+                                }
+                            }}
+                        >
+                            Back to Portfolio
+                        </Button>
+                    </Box>
+                    <Typography textAlign="center" fontFamily={'Gilroy Bold'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Certificate</Typography>
+                    <Box display={'flex'} flexDirection={'column'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
+
+
+
+                        <Typography fontFamily={'Cinzel Decorative'} color={'black'} gutterBottom variant="h5" component="div" textAlign={'center'} paddingBottom={'8px'}>
+                            {data.certifications[params.i].title}
+                        </Typography>
+                        <img src={data.certifications[params.i].thumbnail} alt="" />
+                        <Box display={'flex'} flexDirection={'row'} paddingTop={'25px'}>
+                            <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} >
+                                {"Date: "}
+                            </Typography>
+                            <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  >
+                                {`${data.certifications[params.i].date}`}
+                            </Typography>
+                        </Box>
+
+                        <Box display={'flex'} flexDirection={'row'} >
+                            <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
+                                {`Institution:`}
+                            </Typography>
+                            <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  >
+                                {`${data.certifications[params.i].Institution}`}
+                            </Typography>
+                        </Box>
+                        <Box display={'flex'} flexDirection={'row'} >
+                            <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
+                                {`Description: `}
+                            </Typography>
+                            <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  
+                             dangerouslySetInnerHTML={{ __html: data.certifications[params.i].description }}>
+                            </Typography>
+                        </Box>
+                    </Box>
+                </Container>
+            </Box>
+        </>
+    );
+}
