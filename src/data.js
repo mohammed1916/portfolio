@@ -28,6 +28,13 @@ import project1_2 from './Components/Projects/Images/1/2.jpeg';
 import project1_3 from './Components/Projects/Images/1/3.jpeg';
 import project3_1 from './Components/Projects/Images/3/1.png';
 import project3_2 from './Components/Projects/Images/3/2.png';
+import project4_1 from './Components/Projects/Images/4/1.png';
+import project4_2 from './Components/Projects/Images/4/2.png';
+import project4_3 from './Components/Projects/Images/4/3.png';
+import project4_4 from './Components/Projects/Images/4/4.png';
+import project4_5 from './Components/Projects/Images/4/5.png';
+import project4_6 from './Components/Projects/Images/4/6.png';
+import project4_7 from './Components/Projects/Images/4/7.png';
 
 export const data = {
     "information": {
@@ -126,6 +133,51 @@ export const data = {
     ,
     "projects": [
         
+        {
+            "title": "Adobe Express Addon",
+            "type": " React, TypeScript, Redux Toolkit, Adobe Express APIs",
+            "thumbnail": project4_2,
+            "link": " https://adobesparkpost.app.link/TR9Mb7TXFLb?addOnId=w96k0hi74",
+            "description": `
+            • Developed an Adobe Express add-on with Typescript for managing and inserting custom SVG, GIF, and raster
+            graphics (JPG, PNG), with validation and user feedback for unsupported formats.
+            • Implemented Redux-based state management for symbol inventory, tagging, and selection using Agile methodology
+            by creating basic working structure first and adding other features like multi-select tagging later.
+            • Built SVG parsers to extract viewBox, dimensions, and aspect ratio for accurate rendering.
+            • Integrated Adobe Express APIs for seamless insertion and persistent inventory across sessions.
+            • [Live Add-on https://adobesparkpost.app.link/TR9Mb7TXFLb?addOnId=w96k0hi74 ]. Verifiable via my
+            portfolio link under Help and Support section links.`,
+            "gallery": [
+                {
+                    original: project4_1,
+                    thumbnail: project4_1,
+                },
+                {
+                    original: project4_2,
+                    thumbnail: project4_2,
+                },
+                {
+                    original: project4_3,
+                    thumbnail: project4_3,
+                },
+                {
+                    original: project4_7,
+                    thumbnail: project4_7,
+                },
+                {
+                    original: project4_4,
+                    thumbnail: project4_4,
+                },
+                {
+                    original: project4_5,
+                    thumbnail: project4_5,
+                },
+                {
+                    original: project4_6,
+                    thumbnail: project4_6,
+                },
+            ]
+        },
         {
             "title": "Dynamic Portfolio generator",
             "type": "Single Page Web App",
