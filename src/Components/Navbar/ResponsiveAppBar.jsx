@@ -331,8 +331,8 @@ const StyledToolbar = styled(Toolbar)(({ theme, iscompact }) => ({
 	}),
 	[theme.breakpoints.down('md')]: {
 		minHeight: iscompact ? '44px !important' : '64px !important',
-		paddingLeft: theme.spacing(1),
-		paddingRight: theme.spacing(1),
+		paddingLeft: theme.spacing(2),
+		paddingRight: theme.spacing(3), // Extra padding for contact icon
 	},
 }));
 
@@ -395,8 +395,11 @@ const CustomContainer = styled('div')(({ theme }) => ({
 	padding: '0 24px',
 	overflow: 'hidden', // Ensure content respects parent border radius
 	borderRadius: 'inherit', // Inherit border radius from parent
+	[theme.breakpoints.down('md')]: {
+		padding: '0 20px', // More padding for medium screens
+	},
 	[theme.breakpoints.down('sm')]: {
-		padding: '0 16px',
+		padding: '0 20px', // Extra padding for mobile to accommodate contact icon
 	},
 }));
 
@@ -432,6 +435,7 @@ const Logo = styled(motion.div)(({ theme }) => ({
 const ContactAvatar = styled(motion.div)(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
+	marginRight: theme.spacing(1), // Add right margin for better spacing
 	'& .avatar': {
 		width: 40,
 		height: 40,
@@ -442,6 +446,10 @@ const ContactAvatar = styled(motion.div)(({ theme }) => ({
 			width: 45,
 			height: 45,
 		},
+	},
+	// Additional spacing for smaller screens
+	[theme.breakpoints.down('md')]: {
+		marginRight: theme.spacing(0.5),
 	},
 }));
 
@@ -699,13 +707,6 @@ const ResponsiveAppBar = () => {
 				>
 				<CustomContainer>
 				<StyledToolbar disableGutters iscompact={isScrolled}>
-					{/* Spacer for balance - Hidden on mobile */}
-					<Box sx={{ 
-						display: { xs: 'none', md: 'flex' },
-						minWidth: '60px', // Same width as contact avatar for balance
-						flexGrow: 0
-					}} />
-
 					{/* Enhanced Mobile Menu Button - Centered */}
 					<Box sx={{ 
 						display: { xs: 'flex', md: 'none' },
@@ -764,6 +765,39 @@ const ResponsiveAppBar = () => {
 											<MenuItem onClick={() => handleCloseNavMenu(pages_link[index])}>
 												<Typography textAlign="center">{page}</Typography>
 											</MenuItem>
+										</motion.div>
+									))}
+									
+									{/* Contact Links for Mobile */}
+									<motion.div
+										key="contact-divider"
+										initial={{ opacity: 0, x: -20 }}
+										animate={{ opacity: 1, x: 0 }}
+										transition={{ delay: pages.length * 0.1 }}
+									>
+										<MenuItem disabled sx={{ opacity: 0.5, borderTop: '1px solid rgba(255,255,255,0.1)', mt: 1 }}>
+											<Typography textAlign="center" variant="caption">Contact</Typography>
+										</MenuItem>
+									</motion.div>
+									
+									{data.information.profiles.map((object, index) => (
+										<motion.div
+											key={`mobile-${object.media}`}
+											initial={{ opacity: 0, x: -20 }}
+											animate={{ opacity: 1, x: 0 }}
+											transition={{ delay: (pages.length + index + 1) * 0.1 }}
+										>
+											<a href={object.url} className='link' style={{ textDecoration: 'none' }}>
+												<MenuItem onClick={() => setAnchorElNav(null)} sx={{
+													color: '#ffffff',
+													'&:hover': {
+														background: 'rgba(225, 190, 231, 0.1)',
+														color: '#e1bee7',
+													}
+												}}>
+													<Typography textAlign="center">{object.media}</Typography>
+												</MenuItem>
+											</a>
 										</motion.div>
 									))}
 								</Menu>
@@ -863,96 +897,6 @@ const ResponsiveAppBar = () => {
 							))}
 						</motion.div>
 					</NavContainer>
-
-					{/* Contact Avatar - Always mounted, opacity animated */}
-					<ContactAvatar
-						animate={{ 
-							opacity: isScrolled ? 0 : 1,
-							scale: isScrolled ? 0 : 1,
-							x: isScrolled ? 50 : 0,
-							pointerEvents: isScrolled ? 'none' : 'auto'
-						}}
-						transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
-						sx={{ 
-							flexGrow: 0,
-							minWidth: 'fit-content'
-						}}
-					>
-						<Tooltip title="Contact Me" arrow placement="bottom">
-							<AnimatedIconButton
-								onClick={handleOpenUserMenu}
-								sx={{ p: 0 }}
-							>
-								<AnimatedAvatar 
-									src={accountImageUrl}
-									alt="Contact"
-									sx={{
-										width: 44,
-										height: 44,
-										border: '2px solid rgba(225, 190, 231, 0.5)',
-										boxShadow: '0 0 20px rgba(225, 190, 231, 0.3)',
-									}}
-								/>
-							</AnimatedIconButton>
-						</Tooltip>
-								<AnimatePresence>
-									{anchorElUser && (
-										<motion.div
-											initial={{ opacity: 0, scale: 0.8, rotateX: -90 }}
-											animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-											exit={{ opacity: 0, scale: 0.8, rotateX: -90 }}
-											transition={{ duration: 0.3 }}
-										>
-											<Menu
-												sx={{ 
-													mt: '45px',
-													'& .MuiPaper-root': {
-														background: 'linear-gradient(135deg, #4a148c 0%, #6a1b9a 100%)',
-														backdropFilter: 'blur(20px)',
-														border: '1px solid rgba(255, 255, 255, 0.1)',
-														borderRadius: '12px',
-													}
-												}}
-												id="menu-appbar"
-												anchorEl={anchorElUser}
-												anchorOrigin={{
-													vertical: 'top',
-													horizontal: 'right',
-												}}
-												keepMounted
-												transformOrigin={{
-													vertical: 'top',
-													horizontal: 'right',
-												}}
-												open={Boolean(anchorElUser)}
-												onClose={handleCloseUserMenu}
-											>
-												{data.information.profiles.map((object, index) => (
-													<motion.div
-														key={object.media}
-														initial={{ opacity: 0, x: 20 }}
-														animate={{ opacity: 1, x: 0 }}
-														transition={{ delay: index * 0.1 }}
-														whileHover={{ x: 8 }}
-													>
-														<a href={object.url} className='link' onClick={handleCloseUserMenu}>
-															<MenuItem sx={{
-																color: '#ffffff',
-																'&:hover': {
-																	background: 'rgba(225, 190, 231, 0.1)',
-																	color: '#e1bee7',
-																}
-															}}>
-																<Typography textAlign="center">{object.media}</Typography>
-															</MenuItem>
-														</a>
-													</motion.div>
-												))}
-											</Menu>
-										</motion.div>
-									)}
-								</AnimatePresence>
-					</ContactAvatar>
 
 				</StyledToolbar>
 			</CustomContainer>
