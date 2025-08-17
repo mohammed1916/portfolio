@@ -171,13 +171,13 @@ button, a, .MuiButton-root, .MuiIconButton-root, .MuiCard-root, [role="button"] 
 
 /* Global cursor animation on page load */
 @keyframes cursorGlow {
-  0% { opacity: 0.7; }
+  0% { opacity: 0.8; }
   50% { opacity: 1; }
-  100% { opacity: 0.7; }
+  100% { opacity: 0.8; }
 }
 
 body {
-  animation: cursorGlow 2s ease-in-out infinite;
+  animation: cursorGlow 4s ease-in-out infinite;
 }
 
 /* ================================ */
