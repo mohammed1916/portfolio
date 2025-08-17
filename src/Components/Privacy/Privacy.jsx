@@ -36,7 +36,7 @@ export default function Privacy() {
                         <Typography variant="h5" fontFamily={'Gilroy Bold'} sx={{ mt: 3, mb: 2 }}>
                             Introduction
                         </Typography>
-                        <Typography variant="body1" fontFamily={'Gilroy Light'}>
+                        <Typography variant="body1" fontFamily={'Gilroy Light'} sx={{ textAlign: 'justify' }}>
                             Welcome to my portfolio website. I am Mohammed Abdullah, an independent software developer. 
                             This Privacy Policy explains how I collect, use, and protect your information when you visit or use any of the applications I have built and published.
                         </Typography>
@@ -44,7 +44,7 @@ export default function Privacy() {
                         <Typography variant="h5" fontFamily={'Gilroy Bold'} sx={{ mt: 3, mb: 2 }}>
                             Information I Collect
                         </Typography>
-                        <Typography variant="body1" fontFamily={'Gilroy Light'}>
+                        <Typography variant="body1" fontFamily={'Gilroy Light'} sx={{ textAlign: 'justify' }}>
                             This portfolio website is primarily informational and does not collect personal data directly. 
                             However, the following may apply:
                         </Typography>
@@ -62,7 +62,7 @@ export default function Privacy() {
                         <Typography variant="h5" fontFamily={'Gilroy Bold'} sx={{ mt: 3, mb: 2 }}>
                             Third-Party Services
                         </Typography>
-                        <Typography variant="body1" fontFamily={'Gilroy Light'}>
+                        <Typography variant="body1" fontFamily={'Gilroy Light'} sx={{ textAlign: 'justify' }}>
                             This portfolio contains links to external platforms and projects:
                         </Typography>
                         <Box component="ul" sx={{ pl: 3 }}>
@@ -91,7 +91,7 @@ export default function Privacy() {
                         <Typography variant="h5" fontFamily={'Gilroy Bold'} sx={{ mt: 3, mb: 2 }}>
                             Data Usage
                         </Typography>
-                        <Typography variant="body1" fontFamily={'Gilroy Light'}>
+                        <Typography variant="body1" fontFamily={'Gilroy Light'} sx={{ textAlign: 'justify' }}>
                             Any information collected is used solely for:
                         </Typography>
                         <Box component="ul" sx={{ pl: 3 }}>
@@ -109,7 +109,7 @@ export default function Privacy() {
                         <Typography variant="h5" fontFamily={'Gilroy Bold'} sx={{ mt: 3, mb: 2 }}>
                             Data Security
                         </Typography>
-                        <Typography variant="body1" fontFamily={'Gilroy Light'}>
+                        <Typography variant="body1" fontFamily={'Gilroy Light'} sx={{ textAlign: 'justify' }}>
                             As an independent developer, I take reasonable measures to protect any information 
                             associated with this website. However, no method of transmission over the internet 
                             is 100% secure.
@@ -118,7 +118,7 @@ export default function Privacy() {
                         <Typography variant="h5" fontFamily={'Gilroy Bold'} sx={{ mt: 3, mb: 2 }}>
                             Cookies
                         </Typography>
-                        <Typography variant="body1" fontFamily={'Gilroy Light'}>
+                        <Typography variant="body1" fontFamily={'Gilroy Light'} sx={{ textAlign: 'justify' }}>
                             This website may use cookies for basic functionality and analytics. You can control 
                             cookie settings through your browser preferences.
                         </Typography>
@@ -126,7 +126,7 @@ export default function Privacy() {
                         <Typography variant="h5" fontFamily={'Gilroy Bold'} sx={{ mt: 3, mb: 2 }}>
                             Your Rights
                         </Typography>
-                        <Typography variant="body1" fontFamily={'Gilroy Light'}>
+                        <Typography variant="body1" fontFamily={'Gilroy Light'} sx={{ textAlign: 'justify' }}>
                             You have the right to:
                         </Typography>
                         <Box component="ul" sx={{ pl: 3 }}>
@@ -144,12 +144,24 @@ export default function Privacy() {
                         <Typography variant="h5" fontFamily={'Gilroy Bold'} sx={{ mt: 3, mb: 2 }}>
                             Contact Information
                         </Typography>
-                        <Typography variant="body1" fontFamily={'Gilroy Light'}>
+                        <Typography variant="body1" fontFamily={'Gilroy Light'} sx={{ textAlign: 'justify' }}>
                             If you have any questions about this Privacy Policy or your data, please contact me:
                         </Typography>
                         <Box sx={{ mt: 2 }}>
                             <Typography variant="body1" fontFamily={'Gilroy Light'}>
-                                <strong>Email:</strong> {data.information.email} or contactgreenelitedeveloper@gmail.com
+                                <strong>Email:</strong>{' '}
+                                <Box 
+                                    component="span" 
+                                    sx={{ 
+                                        textAlign: 'justify',
+                                        wordBreak: 'break-all',
+                                        overflowWrap: 'break-word',
+                                        display: 'inline-block',
+                                        maxWidth: '100%'
+                                    }}
+                                >
+                                    {data.information.email} or contactgreenelitedeveloper@gmail.com
+                                </Box>
                             </Typography>
                             <Typography variant="body1" fontFamily={'Gilroy Light'}>
                                 <strong>LinkedIn:</strong>{' '}
@@ -167,7 +179,7 @@ export default function Privacy() {
                         <Typography variant="h5" fontFamily={'Gilroy Bold'} sx={{ mt: 3, mb: 2 }}>
                             Changes to This Policy
                         </Typography>
-                        <Typography variant="body1" fontFamily={'Gilroy Light'}>
+                        <Typography variant="body1" fontFamily={'Gilroy Light'} sx={{ textAlign: 'justify' }}>
                             I may update this Privacy Policy from time to time. Any changes will be posted on this page 
                             with an updated "Last updated" date.
                         </Typography>
@@ -175,7 +187,7 @@ export default function Privacy() {
                         <Typography variant="h5" fontFamily={'Gilroy Bold'} sx={{ mt: 3, mb: 2 }}>
                             Independent Developer Notice
                         </Typography>
-                        <Typography variant="body1" fontFamily={'Gilroy Light'}>
+                        <Typography variant="body1" fontFamily={'Gilroy Light'} sx={{ textAlign: 'justify' }}>
                             This website is maintained by Mohammed Abdullah as an independent software developer. 
                             This is a personal portfolio website showcasing my work, skills, and professional experience.
                         </Typography>

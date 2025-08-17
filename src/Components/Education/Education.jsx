@@ -7,6 +7,7 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import AnimatedSectionHeading from '../common/AnimatedSectionHeading';
 
 import { data } from '../../data';
 
@@ -46,7 +47,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
-export default function Skills()
+export default function Education()
 {
     const [expanded, setExpanded] = React.useState('panel1');
 
@@ -63,22 +64,22 @@ export default function Skills()
                 bgcolor={'white'}
                 color={'white'} >
                 <Container sx={{ width: '100%' }}>
-                    <Typography textAlign="center" fontFamily={'Gilroy Bold'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Skills</Typography>
+                    <AnimatedSectionHeading>Education</AnimatedSectionHeading>
                     <Box bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
-                        {data.skills.map((object, index) => (
-                            <Accordion key={index + object} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
+                        {data.education.map((object, index) => (
+                            <Accordion key={object + index * 5} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
                                 <AccordionSummary aria-controls={`panel${index}d-content`} id={`panel${index}d-header`}>
-                                    <Typography fontFamily={'Gilroy Bold'}>{object.type}</Typography>
+                                    <Typography fontFamily={'Gilroy Bold'}>{object.Type}</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography fontFamily={'Gilroy Light'}>
-                                        {`Knowledge in Advance Topics: ${object['Knowledge in Advance Topics']}`}
+                                        {`Institution: ${object.Institution}`}
                                     </Typography>
                                     <Typography fontFamily={'Gilroy Light'}>
-                                        {`Knowledge in Main Concepts: ${object['Knowledge in Main Concepts']}`}
+                                        {`Grade: ${object.Grade}`}
                                     </Typography>
                                     <Typography fontFamily={'Gilroy Light'}>
-                                        {`Beginner: ${object['Beginner']}`}
+                                        {`Year of Passing: ${object['Year of Passing']}`}
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
