@@ -176,8 +176,21 @@ button, a, .MuiButton-root, .MuiIconButton-root, .MuiCard-root, [role="button"] 
   100% { opacity: 0.8; }
 }
 
+@keyframes bodyVioletShimmer {
+  0% { 
+    background-color: rgba(138, 43, 226, 0.01);
+  }
+  50% { 
+    background-color: rgba(147, 112, 219, 0.02);
+  }
+  100% { 
+    background-color: rgba(138, 43, 226, 0.01);
+  }
+}
+
 body {
-  animation: cursorGlow 4s ease-in-out infinite;
+  animation: cursorGlow 4s ease-in-out infinite,
+             bodyVioletShimmer 6s ease-in-out infinite;
 }
 
 /* ================================ */
@@ -290,11 +303,308 @@ body {
   50% { transform: scale(1.02); }
 }
 
-/* Apply animations on hover */
+/* Violet shimmer animations */
+@keyframes violetShimmer {
+  0% { 
+    background-position: -200px 0;
+    box-shadow: 0 0 5px rgba(138, 43, 226, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+  }
+  100% { 
+    background-position: 200px 0;
+    box-shadow: 0 0 5px rgba(138, 43, 226, 0.2);
+  }
+}
+
+@keyframes violetGlow {
+  0%, 100% { 
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.4), 
+                0 0 20px rgba(147, 112, 219, 0.3),
+                0 0 30px rgba(186, 134, 252, 0.2);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.7), 
+                0 0 40px rgba(147, 112, 219, 0.5),
+                0 0 60px rgba(186, 134, 252, 0.3);
+  }
+}
+
+@keyframes violetPulse {
+  0%, 100% { 
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.3));
+  }
+  50% { 
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.6));
+  }
+}
+
+/* Apply violet shimmer animations on hover */
 .skills-item:hover {
-  animation: skillGlow 1.5s ease-in-out infinite;
+  animation: violetGlow 1.5s ease-in-out infinite;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(138, 43, 226, 0.1) 25%, 
+    rgba(147, 112, 219, 0.2) 50%, 
+    rgba(186, 134, 252, 0.1) 75%, 
+    transparent 100%);
+  background-size: 200px 100%;
+  animation: violetShimmer 2s infinite;
 }
 
 .project-card:hover {
-  animation: projectPulse 2s ease-in-out infinite;
+  animation: violetPulse 2s ease-in-out infinite;
+}
+
+/* Additional violet shimmer classes for components */
+.work-card:hover,
+.experience-card:hover {
+  animation: violetGlow 1.8s ease-in-out infinite;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(138, 43, 226, 0.08) 30%, 
+    rgba(147, 112, 219, 0.15) 50%, 
+    rgba(186, 134, 252, 0.08) 70%, 
+    transparent 100%);
+  background-size: 300px 300px;
+  animation: violetShimmer 2.5s infinite;
+}
+
+.certificate-card:hover {
+  animation: violetPulse 1.2s ease-in-out infinite;
+}
+
+.social-link:hover,
+.social-icon:hover {
+  animation: violetGlow 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.5));
+}
+
+/* Global shimmer effect for interactive cards */
+.interactive-card:hover {
+  background: linear-gradient(135deg, 
+    transparent 0%, 
+    rgba(138, 43, 226, 0.05) 20%, 
+    rgba(147, 112, 219, 0.1) 40%, 
+    rgba(186, 134, 252, 0.15) 60%, 
+    rgba(147, 112, 219, 0.1) 80%, 
+    transparent 100%);
+  background-size: 400px 400px;
+  animation: violetShimmer 3s infinite;
+}
+
+/* ================================ */
+/* FANCY VIOLET TOOLTIPS           */
+/* ================================ */
+
+/* Tooltip container */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip base styles */
+.fancy-tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, 
+    rgba(138, 43, 226, 0.95) 0%, 
+    rgba(147, 112, 219, 0.9) 50%, 
+    rgba(186, 134, 252, 0.85) 100%);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-family: 'Gilroy Light', sans-serif;
+  white-space: nowrap;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4),
+              0 4px 15px rgba(147, 112, 219, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  animation: tooltipGlow 2s ease-in-out infinite;
+}
+
+/* Tooltip arrow */
+.fancy-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(138, 43, 226, 0.95);
+  filter: drop-shadow(0 2px 4px rgba(138, 43, 226, 0.3));
+}
+
+/* Show tooltip on hover */
+.tooltip-container:hover .fancy-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+/* Tooltip glow animation */
+@keyframes tooltipGlow {
+  0%, 100% { 
+    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4),
+                0 4px 15px rgba(147, 112, 219, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  50% { 
+    box-shadow: 0 12px 35px rgba(138, 43, 226, 0.6),
+                0 6px 20px rgba(147, 112, 219, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Accordion header tooltip styles */
+.accordion-header-tooltip {
+  position: relative;
+  cursor: var(--cursor-expand) !important;
+}
+
+.accordion-header-tooltip::before {
+  content: '👆 Click to expand/collapse';
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, 
+    rgba(138, 43, 226, 0.95) 0%, 
+    rgba(147, 112, 219, 0.9) 100%);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-family: 'Gilroy Light', sans-serif;
+  white-space: nowrap;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+}
+
+.accordion-header-tooltip::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: rgba(138, 43, 226, 0.95);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.accordion-header-tooltip:hover::before,
+.accordion-header-tooltip:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Skills and Education specific tooltips */
+.skills-accordion-header {
+  position: relative;
+}
+
+.skills-accordion-header::before {
+  content: '🔧 Click to view skills details';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, 
+    rgba(138, 43, 226, 0.95) 0%, 
+    rgba(147, 112, 219, 0.9) 50%,
+    rgba(186, 134, 252, 0.85) 100%);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-family: 'Gilroy Light', sans-serif;
+  white-space: nowrap;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.5);
+  animation: skillTooltipShimmer 3s ease-in-out infinite;
+}
+
+.education-accordion-header::before {
+  content: '🎓 Click to view education details';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, 
+    rgba(138, 43, 226, 0.95) 0%, 
+    rgba(147, 112, 219, 0.9) 50%,
+    rgba(186, 134, 252, 0.85) 100%);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-family: 'Gilroy Light', sans-serif;
+  white-space: nowrap;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(138, 43, 226, 0.5);
+  animation: educationTooltipShimmer 3s ease-in-out infinite;
+}
+
+.skills-accordion-header:hover::before,
+.education-accordion-header:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+/* Tooltip shimmer animations */
+@keyframes skillTooltipShimmer {
+  0%, 100% { 
+    background: linear-gradient(135deg, 
+      rgba(138, 43, 226, 0.95) 0%, 
+      rgba(147, 112, 219, 0.9) 50%,
+      rgba(186, 134, 252, 0.85) 100%);
+  }
+  50% { 
+    background: linear-gradient(135deg, 
+      rgba(186, 134, 252, 0.95) 0%, 
+      rgba(138, 43, 226, 0.9) 50%,
+      rgba(147, 112, 219, 0.85) 100%);
+  }
+}
+
+@keyframes educationTooltipShimmer {
+  0%, 100% { 
+    background: linear-gradient(135deg, 
+      rgba(138, 43, 226, 0.95) 0%, 
+      rgba(147, 112, 219, 0.9) 50%,
+      rgba(186, 134, 252, 0.85) 100%);
+  }
+  50% { 
+    background: linear-gradient(135deg, 
+      rgba(147, 112, 219, 0.95) 0%, 
+      rgba(186, 134, 252, 0.9) 50%,
+      rgba(138, 43, 226, 0.85) 100%);
+  }
 }

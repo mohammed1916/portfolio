@@ -67,8 +67,17 @@ export default function Education()
                     <AnimatedSectionHeading>Education</AnimatedSectionHeading>
                     <Box bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
                         {data.education.map((object, index) => (
-                            <Accordion key={object + index * 5} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
-                                <AccordionSummary aria-controls={`panel${index}d-content`} id={`panel${index}d-header`}>
+                            <Accordion 
+                                key={object + index * 5} 
+                                expanded={expanded === `panel${index}`} 
+                                onChange={handleChange(`panel${index}`)}
+                                className="skills-item"
+                            >
+                                <AccordionSummary 
+                                    aria-controls={`panel${index}d-content`} 
+                                    id={`panel${index}d-header`}
+                                    className="expandable education-accordion-header"
+                                >
                                     <Typography fontFamily={'Gilroy Bold'}>{object.Type}</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>

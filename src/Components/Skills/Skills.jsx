@@ -76,7 +76,7 @@ export default function Skills()
                                 <AccordionSummary 
                                     aria-controls={`panel${index}d-content`} 
                                     id={`panel${index}d-header`}
-                                    className="expandable"
+                                    className="expandable skills-accordion-header"
                                 >
                                     <Typography fontFamily={'Gilroy Bold'}>{object.type}</Typography>
                                 </AccordionSummary>
