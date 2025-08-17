@@ -323,6 +323,13 @@ const StyledToolbar = styled(Toolbar)(({ theme, iscompact }) => ({
 	borderRadius: iscompact ? '16px' : '0',
 	position: 'relative',
 	zIndex: 2, // Stay above pseudo-elements
+	// Perfect centering for compact mode
+	...(iscompact && {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		textAlign: 'center',
+	}),
 	[theme.breakpoints.down('md')]: {
 		minHeight: iscompact ? '44px !important' : '64px !important',
 		paddingLeft: theme.spacing(1),
@@ -501,7 +508,7 @@ const NavContainer = styled(Box)(({ theme }) => ({
 	justifyContent: 'center',
 	flexGrow: 1,
 	height: '100%',
-	paddingTop: '4px', // Align with logo and avatar
+	position: 'relative', // For absolute positioning of child elements
 	[theme.breakpoints.down('md')]: {
 		display: 'none',
 	},
@@ -805,7 +812,10 @@ const ResponsiveAppBar = () => {
 								display: 'flex', 
 								alignItems: 'center', 
 								justifyContent: 'center',
-								position: isScrolled ? 'relative' : 'absolute'
+								position: 'absolute',
+								left: '50%',
+								transform: 'translateX(-50%)',
+								width: 'auto'
 							}}
 						>
 							{pages.map((page, index) => (
@@ -842,7 +852,11 @@ const ResponsiveAppBar = () => {
 							style={{ 
 								display: 'flex', 
 								alignItems: 'center',
-								position: !isScrolled ? 'relative' : 'absolute'
+								justifyContent: 'center',
+								position: 'absolute',
+								left: '50%',
+								transform: 'translateX(-50%)',
+								width: 'auto'
 							}}
 						>
 							{pages.map((page, index) => (
