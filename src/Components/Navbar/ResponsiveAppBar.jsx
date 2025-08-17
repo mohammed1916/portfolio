@@ -7,7 +7,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
@@ -27,9 +26,18 @@ const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Wo
 const pages_link = ['about', 'education', 'skills', 'projects', 'certifications', 'work'];
 
 // Styled components for violet purple theme
+const NavbarWrapper = styled('div')(({ theme, iscompact }) => ({
+	position: 'fixed',
+	top: iscompact ? '10px' : '0',
+	left: iscompact ? '100px' : '0',
+	right: iscompact ? '100px' : '0',
+	zIndex: 1100,
+	transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+}));
+
 const StyledAppBar = styled(AppBar)(({ theme, iscompact }) => ({
 	background: iscompact 
-		? 'rgba(74, 20, 140, 0.75)' 
+		? 'rgba(74, 20, 140, 0.65)' 
 		: 'linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #8e24aa 100%)',
 	boxShadow: iscompact 
 		? '0 4px 24px rgba(74, 20, 140, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)'
@@ -37,6 +45,7 @@ const StyledAppBar = styled(AppBar)(({ theme, iscompact }) => ({
 	backdropFilter: iscompact ? 'blur(25px) saturate(200%)' : 'blur(10px)',
 	borderBottom: `1px solid rgba(255, 255, 255, ${iscompact ? '0.25' : '0.1'})`,
 	position: 'relative',
+	borderRadius: iscompact ? '16px' : '0',
 	overflow: 'hidden',
 	transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
 	'&::before': {
@@ -128,6 +137,17 @@ const NavButton = styled(motion.div)(({ theme, active }) => ({
 		'&:active': {
 			transform: 'translateY(0px)',
 		},
+	},
+}));
+
+// Custom container that doesn't interfere with AppBar positioning
+const CustomContainer = styled('div')(({ theme }) => ({
+	width: '100%',
+	maxWidth: '1200px',
+	margin: '0 auto',
+	padding: '0 24px',
+	[theme.breakpoints.down('sm')]: {
+		padding: '0 16px',
 	},
 }));
 
@@ -363,14 +383,11 @@ const ResponsiveAppBar = () => {
 	};
 
 	return (
-		<StyledAppBar 
-			position="fixed"
-			iscompact={isScrolled}
-			sx={{
-				zIndex: (theme) => theme.zIndex.drawer + 1,
-			}}
-		>
-			<Container maxWidth="xl">
+		<NavbarWrapper iscompact={isScrolled}>
+			<StyledAppBar 
+				iscompact={isScrolled}
+			>
+				<CustomContainer>
 				<StyledToolbar disableGutters iscompact={isScrolled}>
 					{/* Desktop Logo - Hidden when scrolled */}
 					<AnimatePresence>
@@ -670,8 +687,9 @@ const ResponsiveAppBar = () => {
 						)}
 					</AnimatePresence>
 				</StyledToolbar>
-			</Container>
+			</CustomContainer>
 		</StyledAppBar>
+		</NavbarWrapper>
 	);
 };
 
