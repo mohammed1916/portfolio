@@ -174,13 +174,10 @@ export default function About() {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
-    const { scrollY } = useScroll();
-    const y = useTransform(scrollY, [0, 1000], [0, -100]);
-    const opacity = useTransform(scrollY, [0, 300, 600], [1, 0.8, 0.6]);
 
     const images = [data.information.image, data.information.image2];
     
-    // Generate particles
+    // Generate simple particles
     const particles = Array.from({ length: 80 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
@@ -212,8 +209,6 @@ export default function About() {
     return (
         <Box
             ref={ref}
-            component={motion.div}
-            style={{ y, opacity }}
             px={{ xs: 3, sm: 10 }}
             py={{ xs: 5, sm: 10 }}
             sx={{
