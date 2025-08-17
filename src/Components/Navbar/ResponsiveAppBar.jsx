@@ -257,8 +257,8 @@ const NavbarWrapper = styled('div', {
 })(({ theme, iscompact }) => ({
 	position: 'fixed',
 	top: iscompact ? '20px' : '0',
-	left: iscompact ? '100px' : '0',
-	right: iscompact ? '100px' : '0',
+	left: iscompact ? '300px' : '0',
+	right: iscompact ? '300px' : '0',
 	zIndex: 1100,
 	transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
 	borderRadius: iscompact ? '16px' : '0',
