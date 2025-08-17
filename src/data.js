@@ -98,21 +98,27 @@ export const data = {
         {
             "type": "Programming Languages",
             "Knowledge in Advance Topics": "Javascript, Python, C",
-            "Knowledge in Main Concepts": "Java",
-            "Beginner": "C++, GDScript"
+            "Knowledge in Main Concepts": "TypeScript, Java",
+            "Can do with Documentation": "C++, GDScript, Dart, Kotlin, C#"
         }
         ,
         {
-            "type": "Frameworks And Libraries",
-            "Knowledge in Advance Topics": "ReactJs, NextJS 13",
-            "Knowledge in Main Concepts": "Flutter",
-            "Beginner": "Flask",
+            "type": "Web Frameworks And Libraries",
+            "Knowledge in Advance Topics": "ReactJs, NextJS 13 and NextJS 15",
+            "Knowledge in Main Concepts": "Flask,MongoDB, MySQL, Firebase, NodeJS, ExpressJS, Socket.io",
+            "Can do with Documentation": "Flutter, Django",
+        },
+        {
+            "type": "AI Frameworks And Libraries",
+            "Knowledge in Advance Topics": "Pytorch, Keras, Pandas, Numpy, Matplotlib, Seaborn",
+            "Knowledge in Main Concepts": "Tensorflow, Scikit-learn",
+            "Can do with Documentation": "OpenCV, NLTK, Spacy",
         },
         {
             "type": "Tools and IDE's",
-            "Knowledge in Advance Topics": "Inkscape, VS code",
-            "Knowledge in Main Concepts": "Git VCS, Godot Game Engine, Android Studio",
-            "Beginner": "Gimp",
+            "Mostly": "Docker, Windows Subsytem for Linux (WSL), VS code, Git VCS, Postman",
+            "If required": "Godot Game Engine, Android Studio",
+            "Beginner": "Unity",
         }
     ]
     ,

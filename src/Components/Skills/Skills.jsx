@@ -72,15 +72,17 @@ export default function Skills()
                                     <Typography fontFamily={'Gilroy Bold'}>{object.type}</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <Typography fontFamily={'Gilroy Light'}>
-                                        {`Knowledge in Advance Topics: ${object['Knowledge in Advance Topics']}`}
-                                    </Typography>
-                                    <Typography fontFamily={'Gilroy Light'}>
-                                        {`Knowledge in Main Concepts: ${object['Knowledge in Main Concepts']}`}
-                                    </Typography>
-                                    <Typography fontFamily={'Gilroy Light'}>
-                                        {`Beginner: ${object['Beginner']}`}
-                                    </Typography>
+                                    {/* Dynamically render all skill level categories */}
+                                    {Object.entries(object).map(([key, value]) => {
+                                        // Skip the 'type' key as it's used for the header
+                                        if (key === 'type') return null;
+                                        
+                                        return (
+                                            <Typography key={key} fontFamily={'Gilroy Light'} sx={{ mb: 1 }}>
+                                                {`${key}: ${value}`}
+                                            </Typography>
+                                        );
+                                    })}
                                 </AccordionDetails>
                             </Accordion>
                         ))}
