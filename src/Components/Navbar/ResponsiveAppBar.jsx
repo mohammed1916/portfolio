@@ -28,7 +28,7 @@ const pages_link = ['about', 'education', 'skills', 'projects', 'certifications'
 // Styled components for violet purple theme
 const NavbarWrapper = styled('div')(({ theme, iscompact }) => ({
 	position: 'fixed',
-	top: iscompact ? '10px' : '0',
+	top: iscompact ? '20px' : '0',
 	left: iscompact ? '100px' : '0',
 	right: iscompact ? '100px' : '0',
 	zIndex: 1100,
@@ -47,6 +47,7 @@ const StyledAppBar = styled(AppBar)(({ theme, iscompact }) => ({
 	position: 'relative',
 	borderRadius: iscompact ? '16px' : '0',
 	overflow: 'hidden',
+	padding: iscompact ? '8px 0' : '0',
 	transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
 	'&::before': {
 		content: '""',
