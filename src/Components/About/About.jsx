@@ -237,6 +237,14 @@ export default function About() {
                     zIndex: 0,
                     transition: 'background 0.3s ease',
                 },
+                // Headings: purple by default, black on hover
+                '& h1, & h4, & h6': {
+                    color: '#8a2be2',
+                    transition: 'color 0.3s',
+                },
+                '& h1:hover, & h4:hover, & h6:hover': {
+                    color: '#222',
+                },
             }}
         >
                 {/* Particle Field */}
@@ -317,10 +325,7 @@ export default function About() {
                             sx={{
                                 fontFamily: 'Cinzel Decorative, Gilroy Bold, serif',
                                 fontSize: { xs: '2.5rem', md: '4rem', lg: '5rem' },
-                                background: 'linear-gradient(135deg, #4a148c 0%, #8a2be2 50%, #dda0dd 100%)',
-                                backgroundClip: 'text',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
+                                color: '#8a2be2',
                                 textShadow: '0 0 40px rgba(138, 43, 226, 0.3)',
                                 position: 'relative',
                                 transformStyle: 'preserve-3d',
@@ -336,6 +341,10 @@ export default function About() {
                                     background: 'linear-gradient(90deg, transparent, #8a2be2, #dda0dd, #8a2be2, transparent)',
                                     borderRadius: '2px',
                                     boxShadow: '0 0 15px rgba(138, 43, 226, 0.5)',
+                                },
+                                transition: 'color 0.3s',
+                                '&:hover': {
+                                    color: '#222',
                                 },
                             }}
                             whileHover={{
@@ -554,21 +563,21 @@ export default function About() {
                                         background: 'rgba(138, 43, 226, 0.9)',
                                         backdropFilter: 'blur(10px)',
                                         borderRadius: '20px',
-                                        padding: '8px 16px',
-                                        fontSize: '14px',
-                                        fontWeight: 'bold',
-                                        color: 'white',
-                                        zIndex: 4,
-                                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                                    }}
-                                    initial={{ opacity: 0, scale: 0 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: 2.5 }}
-                                >
-                                    {currentImageIndex + 1} / {images.length}
-                                </motion.div>
-                            </div>
-                        </ImageContainer3D>
+                                            padding: '8px 16px',
+                                            fontSize: '14px',
+                                            fontWeight: 'bold',
+                                            color: 'white',
+                                            zIndex: 4,
+                                            border: '1px solid rgba(255, 255, 255, 0.2)',
+                                        }}
+                                        initial={{ opacity: 0, scale: 0 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: 2.5 }}
+                                    >
+                                        {currentImageIndex + 1} / {images.length}
+                                    </motion.div>
+                                </div>
+                            </ImageContainer3D>
 
                         {/* Content Section */}
                         <motion.div
@@ -587,9 +596,13 @@ export default function About() {
                                     variant="h4"
                                     sx={{
                                         fontFamily: 'Gilroy Bold',
-                                        color: '#4a148c',
+                                        color: '#8a2be2',
                                         marginBottom: '20px',
-                                        fontSize: { xs: '1.5rem', md: '2rem' }
+                                        fontSize: { xs: '1.5rem', md: '2rem' },
+                                        transition: 'color 0.3s',
+                                        '&:hover': {
+                                            color: '#222',
+                                        },
                                     }}
                                 >
                                     <TypewriterText delay={2000}>Hello, World! 👋</TypewriterText>
@@ -631,8 +644,12 @@ export default function About() {
                                         variant="h6"
                                         sx={{
                                             fontFamily: 'Gilroy Bold',
-                                            color: '#4a148c',
-                                            marginBottom: '15px'
+                                            color: '#8a2be2',
+                                            marginBottom: '15px',
+                                            transition: 'color 0.3s',
+                                            '&:hover': {
+                                                color: '#222',
+                                            },
                                         }}
                                     >
                                         Core Technologies

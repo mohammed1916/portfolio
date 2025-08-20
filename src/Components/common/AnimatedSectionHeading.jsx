@@ -24,7 +24,7 @@ const AnimatedSectionHeading = ({ children, ...props }) => {
                 textAlign="center"
                 fontFamily="Gilroy Bold"
                 fontSize="40px"
-                color="black"
+                color="#6a1b9a"
                 pt={{ xs: 1, sm: 2 }}
                 {...props}
                 style={{
@@ -63,7 +63,7 @@ const AnimatedSectionHeading = ({ children, ...props }) => {
                         }}
                         whileHover={{
                             scale: 1.1,
-                            color: '#6a1b9a',
+                            color: 'black',
                             textShadow: '0 0 8px rgba(106, 27, 154, 0.5)',
                             transition: { duration: 0.2 }
                         }}

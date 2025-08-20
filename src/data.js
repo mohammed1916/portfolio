@@ -180,12 +180,12 @@ export const data = {
         },
         {
             "title": "Dynamic Portfolio generator",
-            "type": "Single Page Web App",
+            "type": "Frontend, MiddleWare, Backend, Socket Programming",
             "thumbnail": project2_1,
             "link": " https://mohammedabdullahportfolio.web.app/",
             "description": `Employed REST API's to perform 3-legged authentication for linkedIn.
             Scraped data from LinkedIn and Github using Puppeteer.
-            Used socket programming to send the scrapped data between middleware server and client. Project can be found at https://github.com/mohammed1916/portfolio/tree/FirebaseWebsite`,
+            Used socket programming to send the scrapped data between middleware server and client. Project can be found at https://github.com/mohammed1916/Dynamic-Portfolio-Generator`,
             "gallery": [
                 {
                     original: project2_1,
@@ -228,7 +228,7 @@ export const data = {
             "type": "Website",
             "thumbnail": project2_1,
             "link": "https://mohammedabdullah.pages.dev/",
-            "description": "Made a portfolio template using ReactJs library.",
+            "description": "Made a portfolio template using ReactJs library + vite + Framer Motion + MUI",
             "gallery": [
                 {
                     original: project2_1,
