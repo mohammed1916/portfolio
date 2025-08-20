@@ -228,7 +228,7 @@ export const data = {
             "type": "Website",
             "thumbnail": project2_1,
             "link": "https://mohammedabdullah.pages.dev/",
-            "description": "Made a portfolio template using ReactJs library.",
+            "description": "Made a portfolio template using ReactJs library + vite + Framer Motion + MUI",
             "gallery": [
                 {
                     original: project2_1,
