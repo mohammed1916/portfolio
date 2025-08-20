@@ -1,3 +1,11 @@
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt for SEO optimization
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap reference for better indexing
+Sitemap: https://mohammedabdullah.pages.dev/sitemap.xml
+
+# Allow important assets
+Allow: /public/
+
+# End of robots.txt
