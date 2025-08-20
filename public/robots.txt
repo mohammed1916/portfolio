@@ -1,3 +1,21 @@
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt for SEO optimization
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap reference for better indexing
+Sitemap: https://mohammedabdullah.pages.dev/sitemapyes
+.xml
+
+# Prevent crawling of sensitive or duplicate files
+Disallow: /private/
+Disallow: /temp/
+Disallow: /admin/
+
+# Allow important assets
+Allow: /public/
+Allow: /src/
+
+# Crawl-delay for bots (optional, uncomment if needed)
+# Crawl-delay: 10
+
+# End of robots.txt
