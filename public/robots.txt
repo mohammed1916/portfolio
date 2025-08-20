@@ -3,19 +3,9 @@ User-agent: *
 Allow: /
 
 # Sitemap reference for better indexing
-Sitemap: https://mohammedabdullah.pages.dev/sitemapyes
-.xml
-
-# Prevent crawling of sensitive or duplicate files
-Disallow: /private/
-Disallow: /temp/
-Disallow: /admin/
+Sitemap: https://mohammedabdullah.pages.dev/sitemap.xml
 
 # Allow important assets
 Allow: /public/
-Allow: /src/
-
-# Crawl-delay for bots (optional, uncomment if needed)
-# Crawl-delay: 10
 
 # End of robots.txt
