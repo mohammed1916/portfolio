@@ -371,7 +371,7 @@ export default function About() {
                         />
                     </motion.div>
                     
-                    <AnimatedSectionHeading>About Me</AnimatedSectionHeading>
+                    {/* <AnimatedSectionHeading>About Me</AnimatedSectionHeading> */}
                     
                     {/* Main Content Grid */}
                     <motion.div
