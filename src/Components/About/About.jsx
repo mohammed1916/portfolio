@@ -323,7 +323,7 @@ export default function About() {
                             variant="h1"
                             component={motion.h1}
                             sx={{
-                                fontFamily: 'Cinzel Decorative, Gilroy Bold, serif',
+                                fontFamily: 'Allura, Gilroy Bold, serif',
                                 fontSize: { xs: '2.5rem', md: '4rem', lg: '5rem' },
                                 color: '#8a2be2',
                                 textShadow: '0 0 40px rgba(138, 43, 226, 0.3)',
