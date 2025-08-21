@@ -87,11 +87,11 @@ export default function ProjectPage()
                     </Box>
                     <Typography textAlign="center" fontFamily="var(--font-gilroy-bold)" fontSize={'2.5rem'} color={'var(--color-heading)'} p={{ xs: 1, sm: 2 }}>PROJECT</Typography>
                     <Box display={'flex'} flexDirection={'column'} bgcolor={'var(--color-card-bg)'} borderRadius={'20px'} padding={'20px'} boxShadow={'0 8px 32px var(--color-particle-shadow)'}>
-                        <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h3" component="div" textAlign={'center'} paddingBottom={'8px'} color={'var(--color-heading)'}>
+                        <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h3" component="div" textTransform={'uppercase'} textAlign={'center'} paddingBottom={'8px'} color={'var(--color-heading-sub)'}>
                             {data.projects[params.i].title}
                         </Typography>
                         <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading)'}>
+                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading-sub)'}>
                                 {`Application Type:`}
                             </Typography>
                             <Typography fontFamily="var(--font-gilroy-light)" gutterBottom variant="h6" component="div" color={'var(--color-text)'}>
@@ -99,7 +99,7 @@ export default function ProjectPage()
                             </Typography>
                         </Box>
                         <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading)'}>
+                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading-sub)'}>
                                 {`Link: `}
                             </Typography>
                             <Link href={data.projects[params.i].link} underline="hover" aria-label="Explore Project">
@@ -109,14 +109,14 @@ export default function ProjectPage()
                             </Link>
                         </Box>
                         <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading)'}>
+                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading-sub)'}>
                                 {`Description: `}
                             </Typography>
                             <Typography fontFamily="var(--font-gilroy-light)" gutterBottom variant="h6" component="div" color={'var(--color-text)'}
                             dangerouslySetInnerHTML={{ __html: data.projects[params.i].description }}>
                             </Typography>
                         </Box>
-                        <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} paddingTop={'30px'} color={'var(--color-heading)'}>
+                        <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} paddingTop={'30px'} color={'var(--color-heading-sub)'}>
                             Sample Images:
                         </Typography>
                         <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'var(--color-card-bg2)'} borderRadius={'20px'} padding={'10px'}>

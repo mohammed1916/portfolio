@@ -64,35 +64,35 @@ export default function CertificatePage()
                             Back to Portfolio
                         </Button>
                     </Box>
-                    <Typography textAlign="center" fontFamily="var(--font-gilroy-bold)" fontSize={'40px'} color={'var(--color-heading)'} p={{ xs: 1, sm: 2 }}>Certificate</Typography>
+                    <Typography textAlign="center" fontFamily="var(--font-gilroy-bold)" fontSize={'40px'} color={'var(--color-heading)'} p={{ xs: 1, sm: 2 }}>CERTIFICATE</Typography>
                     <Box display={'flex'} flexDirection={'column'} bgcolor={'var(--color-card-bg)'} borderRadius={'20px'} padding={'10px'}>
 
-                        <Typography className="font-cinzel" color={'var(--color-heading)'} gutterBottom variant="h5" component="div" textAlign={'center'} paddingBottom={'8px'}>
+                        <Typography fontFamily="var(--font-gilroy-bold)" color={'var(--color-heading-sub)'} gutterBottom variant="h3" component="div" textTransform={'uppercase'} textAlign={'center'} paddingBottom={'8px'}>
                             {data.certifications[params.i].title}
                         </Typography>
                         <img src={data.certifications[params.i].thumbnail} alt="" />
                         <Box display={'flex'} flexDirection={'row'} paddingTop={'25px'}>
-                            <Typography fontFamily="var(--font-gilroy-bold)" color={'var(--color-heading)'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} >
+                            <Typography fontFamily="var(--font-gilroy-bold)" color={'var(--color-heading-sub)'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} >
                                 {"Date: "}
                             </Typography>
-                            <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-heading)'} gutterBottom variant="h6" component="div"  >
+                            <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-heading-sub)'} gutterBottom variant="h6" component="div"  >
                                 {`${data.certifications[params.i].date}`}
                             </Typography>
                         </Box>
 
                         <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily="var(--font-gilroy-bold)" color={'var(--color-heading)'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
+                            <Typography fontFamily="var(--font-gilroy-bold)" color={'var(--color-heading-sub)'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {`Institution:`}
                             </Typography>
-                            <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-heading)'} gutterBottom variant="h6" component="div"  >
+                            <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-heading-sub)'} gutterBottom variant="h6" component="div"  >
                                 {`${data.certifications[params.i].Institution}`}
                             </Typography>
                         </Box>
                         <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily="var(--font-gilroy-bold)" color={'var(--color-heading)'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
+                            <Typography fontFamily="var(--font-gilroy-bold)" color={'var(--color-heading-sub)'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {`Description: `}
                             </Typography>
-                            <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-heading)'} gutterBottom variant="h6" component="div"  
+                            <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-heading-sub)'} gutterBottom variant="h6" component="div"  
                              dangerouslySetInnerHTML={{ __html: data.certifications[params.i].description }}>
                             </Typography>
                         </Box>
