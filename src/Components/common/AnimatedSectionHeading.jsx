@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Typography } from '@mui/material';
 import { motion, useInView } from 'framer-motion';
+import '../../index.css';
 
 const AnimatedSectionHeading = ({ children, ...props }) => {
     const ref = useRef(null);
@@ -22,9 +23,10 @@ const AnimatedSectionHeading = ({ children, ...props }) => {
             <Typography
                 component={motion.div}
                 textAlign="center"
-                fontFamily="Gilroy Bold"
+                textTransform="uppercase"
+                fontFamily="var(--font-gilroy-bold)"
                 fontSize="40px"
-                color="#6a1b9a"
+                color="var(--color-heading)"
                 pt={{ xs: 1, sm: 2 }}
                 {...props}
                 style={{
@@ -63,15 +65,14 @@ const AnimatedSectionHeading = ({ children, ...props }) => {
                         }}
                         whileHover={{
                             scale: 1.1,
-                            color: 'black',
-                            textShadow: '0 0 8px rgba(106, 27, 154, 0.5)',
+                            color: 'var(--color-heading-hover)',
+                            textShadow: '0 0 8px var(--color-secondary)',
                             transition: { duration: 0.2 }
                         }}
                     >
                         {char === ' ' ? '\u00A0' : char}
                     </motion.span>
                 ))}
-                
                 {/* Animated underline */}
                 <motion.div
                     initial={{ width: 0, opacity: 0 }}
@@ -83,9 +84,9 @@ const AnimatedSectionHeading = ({ children, ...props }) => {
                         left: '50%',
                         transform: 'translateX(-50%)',
                         height: '3px',
-                        background: 'linear-gradient(90deg, #6a1b9a, #e1bee7, #6a1b9a)',
+                        background: 'linear-gradient(90deg, var(--color-heading), var(--color-secondary), var(--color-heading))',
                         borderRadius: '2px',
-                        boxShadow: '0 0 10px rgba(106, 27, 154, 0.5)',
+                        boxShadow: '0 0 10px var(--color-secondary)',
                     }}
                 />
             </Typography>

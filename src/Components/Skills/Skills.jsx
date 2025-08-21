@@ -61,10 +61,10 @@ export default function Skills()
             <Box
                 px={{ xs: 3, sm: 10 }}
                 py={{ xs: 5, sm: 10 }}
-                bgcolor={'white'}
-                color={'white'}
+                bgcolor={'var(--color-bg)'}
+                color={'var(--color-heading)'}
                 sx={{
-                    background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
+                    background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                     position: 'relative',
                     '&::before': {
                         content: '""',
@@ -73,7 +73,8 @@ export default function Skills()
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        background: 'rgba(74, 20, 140, 0.05)',
+                        background: 'var(--color-particle-shadow)',
+                        opacity: 0.05,
                         zIndex: 0,
                     },
                 }}
@@ -81,14 +82,14 @@ export default function Skills()
                 <Container sx={{ width: '100%', position: 'relative', zIndex: 1 }}>
                     <AnimatedSectionHeading>Skills</AnimatedSectionHeading>
                     <Box 
-                        bgcolor={'rgba(255, 255, 255, 0.8)'} 
+                        bgcolor={'var(--color-card-bg)'} 
                         borderRadius={'20px'} 
                         padding={'10px'}
                         sx={{
-                            background: 'linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(225,190,231,0.3) 100%)',
+                            background: 'linear-gradient(145deg, var(--color-card-bg) 0%, var(--color-card-bg2) 100%)',
                             backdropFilter: 'blur(10px)',
-                            border: '1px solid rgba(225, 190, 231, 0.3)',
-                            boxShadow: '0 8px 32px rgba(74, 20, 140, 0.1)',
+                            border: '1px solid var(--color-secondary)',
+                            boxShadow: '0 8px 32px var(--color-particle-shadow)',
                         }}
                     >
                         {data.skills.map((object, index) => (
@@ -103,16 +104,15 @@ export default function Skills()
                                     id={`panel${index}d-header`}
                                     className="expandable skills-accordion-header"
                                 >
-                                    <Typography fontFamily={'Gilroy Bold'}>{object.type}</Typography>
+                                    <Typography fontFamily="var(--font-gilroy-bold)" color={'var(--color-accent)'}>{object.type}</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     {/* Dynamically render all skill level categories */}
                                     {Object.entries(object).map(([key, value]) => {
                                         // Skip the 'type' key as it's used for the header
                                         if (key === 'type') return null;
-                                        
                                         return (
-                                            <Typography key={key} fontFamily={'Gilroy Light'} sx={{ mb: 1 }}>
+                                            <Typography key={key} fontFamily="var(--font-gilroy-light)" color={'var(--color-text)'} sx={{ mb: 1 }}>
                                                 {`${key}: ${value}`}
                                             </Typography>
                                         );

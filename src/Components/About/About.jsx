@@ -5,6 +5,7 @@ import { data } from "../../data";
 import AnimatedSectionHeading from "../common/AnimatedSectionHeading";
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { styled } from '@mui/material/styles';
+import '../../index.css';
 
 // Advanced floating particles component
 const ParticleField = styled(motion.div)(({ theme }) => ({
@@ -15,7 +16,7 @@ const ParticleField = styled(motion.div)(({ theme }) => ({
     bottom: 0,
     pointerEvents: 'none',
     zIndex: 1,
-    background: 'linear-gradient(135deg, rgba(243, 229, 245, 0.3) 0%, rgba(225, 190, 231, 0.3) 50%, rgba(206, 147, 216, 0.3) 100%)',
+    background: 'var(--about-particle-bg)',
 }));
 
 const Particle = styled(motion.div)(({ theme }) => ({
@@ -23,8 +24,8 @@ const Particle = styled(motion.div)(({ theme }) => ({
     width: '4px',
     height: '4px',
     borderRadius: '50%',
-    background: 'linear-gradient(45deg, #8a2be2, #dda0dd)',
-    boxShadow: '0 0 10px rgba(138, 43, 226, 0.5)',
+    background: 'var(--about-particle-color)',
+    boxShadow: 'var(--about-particle-shadow)',
 }));
 
 // Morphing blob background
@@ -33,21 +34,21 @@ const MorphingBlob = styled(motion.div)(({ theme }) => ({
     width: '300px',
     height: '300px',
     borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-    background: 'linear-gradient(45deg, rgba(138, 43, 226, 0.1), rgba(221, 160, 221, 0.1))',
-    filter: 'blur(40px)',
+    background: 'var(--about-blob-bg)',
+    filter: 'var(--about-blob-filter)',
     zIndex: 0,
 }));
 
 // Advanced glass card with parallax effect
 const GlassCard = styled(motion.div)(({ theme }) => ({
-    background: 'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 100%)',
+    background: 'linear-gradient(135deg, var(--color-card-bg) 0%, var(--color-card-bg2) 100%)',
     backdropFilter: 'blur(20px)',
-    border: '1px solid rgba(255, 255, 255, 0.2)',
+    border: '1px solid var(--color-secondary)',
     borderRadius: '24px',
     padding: '32px',
     position: 'relative',
     overflow: 'hidden',
-    boxShadow: '0 25px 50px rgba(138, 43, 226, 0.15)',
+    boxShadow: '0 25px 50px var(--color-particle-shadow)',
     '&::before': {
         content: '""',
         position: 'absolute',
@@ -72,8 +73,8 @@ const ImageContainer3D = styled(motion.div)(({ theme }) => ({
         position: 'relative',
         borderRadius: '24px',
         overflow: 'hidden',
-        boxShadow: '0 25px 50px rgba(138, 43, 226, 0.3)',
-        background: 'linear-gradient(145deg, #e6e6e6, #ffffff)',
+        boxShadow: '0 25px 50px var(--color-particle-shadow)',
+        background: 'linear-gradient(145deg, var(--color-bg), var(--color-accent))',
         '&::before': {
             content: '""',
             position: 'absolute',
@@ -81,7 +82,7 @@ const ImageContainer3D = styled(motion.div)(({ theme }) => ({
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'linear-gradient(145deg, rgba(138, 43, 226, 0.1), transparent)',
+            background: 'linear-gradient(145deg, var(--color-secondary) 0.1, transparent)',
             zIndex: 2,
         },
         '&::after': {
@@ -91,7 +92,7 @@ const ImageContainer3D = styled(motion.div)(({ theme }) => ({
             left: '-50%',
             width: '200%',
             height: '200%',
-            background: 'conic-gradient(from 0deg, transparent, rgba(138, 43, 226, 0.1), transparent)',
+            background: 'conic-gradient(from 0deg, transparent, var(--color-secondary) 0.1, transparent)',
             animation: 'rotate 20s linear infinite',
             zIndex: -1,
         },
@@ -152,20 +153,19 @@ const SkillChip = styled(motion.div)(({ theme }) => ({
     display: 'inline-block',
     padding: '8px 16px',
     margin: '4px',
-    borderRadius: '20px',
-    background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(221, 160, 221, 0.1))',
-    border: '1px solid rgba(138, 43, 226, 0.2)',
-    backdropFilter: 'blur(10px)',
-    fontSize: '0.9rem',
-    fontFamily: 'Gilroy Light',
-    color: '#4a148c',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    '&:hover': {
-        background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(221, 160, 221, 0.2))',
-        transform: 'translateY(-2px)',
-        boxShadow: '0 10px 20px rgba(138, 43, 226, 0.2)',
-    },
+        borderRadius: '20px',
+        background: 'var(--about-skillchip-bg)',
+        border: '2px solid var(--color-skillchip)',
+        backdropFilter: 'var(--about-skillchip-blur)',
+        fontSize: '0.9rem',
+        fontFamily: "var(--font-gilroy-light)",
+        color: 'var(--color-skillchip)',
+        cursor: 'pointer',
+        transition: 'var(--about-skillchip-transition)',
+        '&:hover': {
+            background: 'var(--about-skillchip-bg-hover)',
+            boxShadow: 'var(--about-skillchip-shadow-hover)',
+        },
 }));
 
 export default function About() {
@@ -212,41 +212,44 @@ export default function About() {
             px={{ xs: 3, sm: 10 }}
             py={{ xs: 5, sm: 10 }}
             sx={{
-                background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
+                background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                p: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                transition: 'background 0.3s',
                 position: 'relative',
-                minHeight: 'auto',
-                overflow: 'hidden',
-                '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
-                    zIndex: -1,
-                },
-                '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(138, 43, 226, 0.1) 0%, transparent 50%)`,
-                    zIndex: 0,
-                    transition: 'background 0.3s ease',
-                },
-                // Headings: purple by default, black on hover
+                // '&:hover': {
+                //     background: 'var(--color-card-bg2)',
+                //     borderColor: 'var(--color-secondary)',
+                // },
+                // Headings: theme color by default, secondary on hover
                 '& h1, & h4, & h6': {
-                    color: '#8a2be2',
+                    color: 'var(--color-heading-hover)',
                     transition: 'color 0.3s',
                 },
-                '& h1:hover, & h4:hover, & h6:hover': {
-                    color: '#222',
+                '& h1:hover': {
+                    color: 'var(--color-bg)',
+                },
+                '& h4:hover, & h6:hover': {
+                    color: 'var(--color-typewriter-border)',
                 },
             }}
         >
+            {/* Particle Field */}
+            <Box
+                sx={{
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(218, 73, 141, 0.1) 0%, transparent 50%)`,
+                    zIndex: 0,
+                    transition: 'background 0.3s ease',
+                }}
+            />
                 {/* Particle Field */}
                 <ParticleField>
                     {particles.map((particle) => (
@@ -325,7 +328,6 @@ export default function About() {
                             sx={{
                                 fontFamily: 'Allura, Gilroy Bold, serif',
                                 fontSize: { xs: '2.5rem', md: '4rem', lg: '5rem' },
-                                color: '#8a2be2',
                                 textShadow: '0 0 40px rgba(138, 43, 226, 0.3)',
                                 position: 'relative',
                                 transformStyle: 'preserve-3d',
@@ -343,9 +345,6 @@ export default function About() {
                                     boxShadow: '0 0 15px rgba(138, 43, 226, 0.5)',
                                 },
                                 transition: 'color 0.3s',
-                                '&:hover': {
-                                    color: '#222',
-                                },
                             }}
                             whileHover={{
                                 scale: 1.05,
@@ -566,7 +565,7 @@ export default function About() {
                                             padding: '8px 16px',
                                             fontSize: '14px',
                                             fontWeight: 'bold',
-                                            color: 'white',
+                                            color: 'var(--color-card-bg)',
                                             zIndex: 4,
                                             border: '1px solid rgba(255, 255, 255, 0.2)',
                                         }}
@@ -595,14 +594,11 @@ export default function About() {
                                 <Typography 
                                     variant="h4"
                                     sx={{
-                                        fontFamily: 'Gilroy Bold',
-                                        color: '#8a2be2',
+                                        fontFamily: 'var(--font-gilroy-bold)',
                                         marginBottom: '20px',
                                         fontSize: { xs: '1.5rem', md: '2rem' },
                                         transition: 'color 0.3s',
-                                        '&:hover': {
-                                            color: '#222',
-                                        },
+                          
                                     }}
                                 >
                                     <TypewriterText delay={2000}>Hello, World! 👋</TypewriterText>
@@ -610,8 +606,8 @@ export default function About() {
                                 
                                 <Typography 
                                     sx={{
-                                        fontFamily: 'Gilroy Light',
-                                        color: '#333',
+                                        fontFamily: "var(--font-gilroy-light)",
+                                        color: 'var(--color-text)',
                                         fontSize: { xs: '1rem', md: '1.1rem' },
                                         lineHeight: 1.7,
                                         marginBottom: '20px',
@@ -623,8 +619,8 @@ export default function About() {
                                 
                                 <Typography 
                                     sx={{
-                                        fontFamily: 'Gilroy Light',
-                                        color: '#333',
+                                        fontFamily: "var(--font-gilroy-light)",
+                                        color: 'var(--color-text)',
                                         fontSize: { xs: '0.95rem', md: '1rem' },
                                         lineHeight: 1.6,
                                         marginBottom: '30px',
@@ -643,12 +639,12 @@ export default function About() {
                                     <Typography 
                                         variant="h6"
                                         sx={{
-                                            fontFamily: 'Gilroy Bold',
-                                            color: '#8a2be2',
+                                            fontFamily: 'var(--font-gilroy-bold)',
+                                            color: 'var(--color-heading)',
                                             marginBottom: '15px',
                                             transition: 'color 0.3s',
                                             '&:hover': {
-                                                color: '#222',
+                                                color: 'var(--color-heading-hover)',
                                             },
                                         }}
                                     >

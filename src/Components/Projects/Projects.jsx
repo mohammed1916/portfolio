@@ -39,10 +39,10 @@ export default function Projects()
             <Box
                 px={{ xs: 3, sm: 10 }}
                 py={{ xs: 5, sm: 10 }}
-                bgcolor={'white'}
-                color={'white'}
+                // bgcolor={'var(--color-secondary)'}
+                color={'var(--color-heading)'}
                 sx={{
-                    background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
+                    background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                     position: 'relative',
                     '&::before': {
                         content: '""',
@@ -51,7 +51,6 @@ export default function Projects()
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        background: 'rgba(74, 20, 140, 0.05)',
                         zIndex: 0,
                     },
                 }}
@@ -66,12 +65,12 @@ export default function Projects()
                             justifyContent: 'center',
                             marginBottom: '40px',
                             position: 'relative',
-                            background: 'rgba(255, 255, 255, 0.1)',
+                            background: 'var(--color-card-bg)',
                             backdropFilter: 'blur(10px)',
                             borderRadius: '50px',
                             padding: '8px',
-                            border: '1px solid rgba(255, 255, 255, 0.2)',
-                            boxShadow: '0 8px 32px rgba(74, 20, 140, 0.1)',
+                            border: '1px solid var(--color-secondary)',
+                            boxShadow: '0 8px 32px var(--color-particle-shadow)',
                             overflow: 'hidden',
                         }}
                     >
@@ -88,16 +87,16 @@ export default function Projects()
                                     background: 'transparent',
                                     cursor: 'pointer',
                                     borderRadius: '25px',
-                                    fontFamily: 'Gilroy Bold',
+                                    fontFamily: "var(--font-gilroy-bold)",
                                     fontSize: '14px',
                                     fontWeight: activeTab === type ? 'bold' : 'normal',
-                                    color: activeTab === type ? '#fff' : '#4a148c',
+                                    color: activeTab === type ? '#fff' : 'var(--color-heading-hover)',
                                     transition: 'color 0.3s ease',
                                     zIndex: 2,
                                     minWidth: '80px',
                                     whiteSpace: 'nowrap',
                                     '&:hover': {
-                                        color: activeTab === type ? '#fff' : '#8a2be2',
+                                        color: activeTab === type ? 'black' : 'var(--color-heading-hover)',
                                     },
                                 }}
                                 whileHover={{ scale: 1.05 }}
@@ -138,14 +137,15 @@ export default function Projects()
                             display={'flex'} 
                             flexWrap={'wrap'} 
                             justifyContent='space-evenly' 
-                            bgcolor={'rgba(255, 255, 255, 0.8)'} 
+                            bgcolor={'var(--color-bg)'}
+                            color={'var(--color-heading)'}
                             borderRadius={'20px'} 
                             padding={'20px'}
                             sx={{
-                                background: 'linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(225,190,231,0.3) 100%)',
+                                background: 'linear-gradient(145deg, var(--color-card-bg) 0%, var(--color-card-bg2) 100%)',
                                 backdropFilter: 'blur(10px)',
-                                border: '1px solid rgba(225, 190, 231, 0.3)',
-                                boxShadow: '0 8px 32px rgba(74, 20, 140, 0.1)',
+                                border: '1px solid var(--color-secondary)',
+                                boxShadow: '0 8px 32px var(--color-particle-shadow)',
                                 minHeight: '400px',
                             }}
                         >
@@ -170,13 +170,14 @@ export default function Projects()
                                                 padding: '15px', 
                                                 margin: '20px', 
                                                 borderRadius: '20px',
-                                                background: 'linear-gradient(145deg, #ffffff, #f0f0f0)',
-                                                border: '1px solid rgba(138, 43, 226, 0.1)',
+                                                background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                                                border: '1px solid var(--color-secondary)',
+                                                boxShadow: '0 8px 32px var(--color-particle-shadow)',
                                                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                                ":hover": { 
-                                                    boxShadow: '0 20px 40px rgba(138, 43, 226, 0.2)',
+                                                ":hover": {
+                                                    boxShadow: '0 8px 32px var(--color-particle-shadow)',
                                                     transform: 'translateY(-5px)',
-                                                    borderColor: 'rgba(138, 43, 226, 0.3)',
+                                                    borderColor: '1px solid var(--color-accent)',
                                                 }
                                             }} 
                                             className="project-card cursor-view"
@@ -214,13 +215,13 @@ export default function Projects()
                                                             display: 'inline-block',
                                                             padding: '4px 12px',
                                                             borderRadius: '15px',
-                                                            background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(221, 160, 221, 0.1))',
-                                                            border: '1px solid rgba(138, 43, 226, 0.2)',
+                                                            background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                                                            border: '1px solid var(--color-secondary)',
+                                                            boxShadow: '0 8px 32px var(--color-particle-shadow)',
                                                             fontSize: '0.8rem',
-                                                            fontFamily: 'Gilroy Light',
-                                                            color: '#8a2be2',
+                                                            fontFamily: "var(--font-gilroy-light)",
+                                                            color: 'var(--color-heading)',
                                                             margin: '0 auto',
-                                                            display: 'block',
                                                             width: 'fit-content',
                                                         }}
                                                     >

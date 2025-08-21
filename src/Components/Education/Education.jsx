@@ -61,10 +61,10 @@ export default function Education()
             <Box
                 px={{ xs: 3, sm: 10 }}
                 py={{ xs: 5, sm: 10 }}
-                bgcolor={'white'}
-                color={'white'}
+                bgcolor={'var(--color-bg)'}
+                color={'var(--color-heading)'}
                 sx={{
-                    background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
+                    background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                     position: 'relative',
                     '&::before': {
                         content: '""',
@@ -73,7 +73,8 @@ export default function Education()
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        background: 'rgba(74, 20, 140, 0.05)',
+                        background: 'var(--color-primary)',
+                        opacity: 0.05,
                         zIndex: 0,
                     },
                 }}
@@ -81,14 +82,14 @@ export default function Education()
                 <Container sx={{ width: '100%', position: 'relative', zIndex: 1 }}>
                     <AnimatedSectionHeading>Education</AnimatedSectionHeading>
                     <Box 
-                        bgcolor={'rgba(255, 255, 255, 0.8)'} 
+                        bgcolor={'var(--color-card-bg)'} 
                         borderRadius={'20px'} 
                         padding={'10px'}
                         sx={{
-                            background: 'linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(225,190,231,0.3) 100%)',
+                            background: 'linear-gradient(145deg, var(--color-card-bg) 0%, var(--color-accent) 100%)',
                             backdropFilter: 'blur(10px)',
-                            border: '1px solid rgba(225, 190, 231, 0.3)',
-                            boxShadow: '0 8px 32px rgba(74, 20, 140, 0.1)',
+                            border: '1px solid var(--color-secondary)',
+                            boxShadow: '0 8px 32px var(--color-particle-shadow)',
                         }}
                     >
                         {data.education.map((object, index) => (
@@ -103,16 +104,16 @@ export default function Education()
                                     id={`panel${index}d-header`}
                                     className="expandable education-accordion-header"
                                 >
-                                    <Typography fontFamily={'Gilroy Bold'}>{object.Type}</Typography>
+                                    <Typography fontFamily="var(--font-gilroy-bold)" color="var(--color-accent)">{object.Type}</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <Typography fontFamily={'Gilroy Light'}>
+                                    <Typography fontFamily="var(--font-gilroy-light)">
                                         {`Institution: ${object.Institution}`}
                                     </Typography>
-                                    <Typography fontFamily={'Gilroy Light'}>
+                                    <Typography fontFamily="var(--font-gilroy-light)">
                                         {`Grade: ${object.Grade}`}
                                     </Typography>
-                                    <Typography fontFamily={'Gilroy Light'}>
+                                    <Typography fontFamily="var(--font-gilroy-light)">
                                         {`Year of Passing: ${object['Year of Passing']}`}
                                     </Typography>
                                 </AccordionDetails>

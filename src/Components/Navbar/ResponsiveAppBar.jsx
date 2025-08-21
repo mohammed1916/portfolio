@@ -349,49 +349,50 @@ const NavButton = styled(motion.div)(({ theme, active }) => ({
 	[theme.breakpoints.up('lg')]: {
 		margin: '0 8px',
 	},
-	'& .nav-button': {
-		color: active ? '#e1bee7' : '#ffffff',
-		padding: '10px 16px',
-		borderRadius: '12px',
-		background: active 
-			? 'linear-gradient(135deg, rgba(225, 190, 231, 0.2) 0%, rgba(225, 190, 231, 0.1) 100%)'
-			: 'transparent',
-		border: active ? '1px solid rgba(225, 190, 231, 0.4)' : '1px solid transparent',
-		transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-		textTransform: 'none',
-		fontWeight: active ? 600 : 400,
-		fontSize: '0.85rem',
-		minWidth: 'auto',
-		position: 'relative',
-		overflow: 'hidden',
-		[theme.breakpoints.up('lg')]: {
-			padding: '12px 20px',
-			fontSize: '0.95rem',
-		},
-		'&::before': {
-			content: '""',
-			position: 'absolute',
-			top: 0,
-			left: '-100%',
-			width: '100%',
-			height: '100%',
-			background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
-			transition: 'left 0.5s',
-		},
-		'&:hover': {
-			background: 'linear-gradient(135deg, rgba(225, 190, 231, 0.15) 0%, rgba(225, 190, 231, 0.05) 100%)',
-			border: '1px solid rgba(225, 190, 231, 0.5)',
-			color: '#e1bee7',
-			transform: 'translateY(-2px)',
-			boxShadow: '0 8px 25px rgba(225, 190, 231, 0.3)',
-			'&::before': {
-				left: '100%',
-			},
-		},
-		'&:active': {
-			transform: 'translateY(0px)',
-		},
-	},
+	   '& .nav-button': {
+		   color: active ? 'var(--color-secondary)' : 'var(--color-navbar-text)',
+		   padding: '10px 16px',
+		   borderRadius: '12px',
+		   background: active 
+			   ? 'linear-gradient(135deg, var(--color-secondary-bg) 0%, var(--color-secondary-bg-light) 100%)'
+			   : 'transparent',
+		   border: active ? '1px solid var(--color-secondary-border)' : '1px solid transparent',
+		   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+		   textTransform: 'none',
+		   fontWeight: active ? 600 : 400,
+		   fontSize: '0.85rem',
+		   minWidth: 'auto',
+		   position: 'relative',
+		   overflow: 'hidden',
+		   fontFamily: "var(--font-gilroy-bold)",
+		   [theme.breakpoints.up('lg')]: {
+			   padding: '12px 20px',
+			   fontSize: '0.95rem',
+		   },
+		   '&::before': {
+			   content: '""',
+			   position: 'absolute',
+			   top: 0,
+			   left: '-100%',
+			   width: '100%',
+			   height: '100%',
+			   background: 'linear-gradient(90deg, transparent, var(--color-secondary-glow), transparent)',
+			   transition: 'left 0.5s',
+		   },
+		   '&:hover': {
+			   background: 'linear-gradient(135deg, var(--color-secondary-bg-hover) 0%, var(--color-secondary-bg-light) 100%)',
+			   border: '1px solid var(--color-secondary-border-hover)',
+			   color: 'var(--color-secondary)',
+			   transform: 'translateY(-2px)',
+			   boxShadow: '0 8px 25px var(--color-secondary-shadow)',
+			   '&::before': {
+				   left: '100%',
+			   },
+		   },
+		   '&:active': {
+			   transform: 'translateY(0px)',
+		   },
+	   },
 }));
 
 // Custom container that doesn't interfere with AppBar positioning
@@ -413,30 +414,30 @@ const CustomContainer = styled('div')(({ theme }) => ({
 const Logo = styled(motion.div)(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
-	'& .logo-text': {
-		background: 'linear-gradient(135deg, #e1bee7 0%, #f3e5f5 50%, #e1bee7 100%)',
-		backgroundClip: 'text',
-		WebkitBackgroundClip: 'text',
-		WebkitTextFillColor: 'transparent',
-		fontFamily: 'Cinzel Decorative',
-		fontSize: '1.2rem',
-		fontWeight: 'bold',
-		textShadow: '0 0 20px rgba(225, 190, 231, 0.5)',
-		position: 'relative',
-		[theme.breakpoints.up('md')]: {
-			fontSize: '1.5rem',
-		},
-		'&::after': {
-			content: '""',
-			position: 'absolute',
-			bottom: '-2px',
-			left: '0',
-			width: '100%',
-			height: '2px',
-			background: 'linear-gradient(90deg, transparent, #e1bee7, transparent)',
-			borderRadius: '1px',
-		},
-	},
+	   '& .logo-text': {
+		   background: 'linear-gradient(135deg, var(--color-secondary) 0%, var(--color-logo-bg) 50%, var(--color-secondary) 100%)',
+		   backgroundClip: 'text',
+		   WebkitBackgroundClip: 'text',
+		   WebkitTextFillColor: 'transparent',
+		   fontFamily: 'var(--font-cinzel)',
+		   fontSize: '1.2rem',
+		   fontWeight: 'bold',
+		   textShadow: '0 0 20px var(--color-secondary-shadow)',
+		   position: 'relative',
+		   [theme.breakpoints.up('md')]: {
+			   fontSize: '1.5rem',
+		   },
+		   '&::after': {
+			   content: '""',
+			   position: 'absolute',
+			   bottom: '-2px',
+			   left: '0',
+			   width: '100%',
+			   height: '2px',
+			   background: 'linear-gradient(90deg, transparent, var(--color-secondary), transparent)',
+			   borderRadius: '1px',
+		   },
+	   },
 }));
 
 const ContactAvatar = styled(motion.div)(({ theme }) => ({
@@ -461,25 +462,26 @@ const ContactAvatar = styled(motion.div)(({ theme }) => ({
 }));
 
 const MobileMenu = styled(motion.div)(({ theme }) => ({
-	'& .mobile-menu': {
-		background: 'linear-gradient(135deg, #4a148c 0%, #6a1b9a 100%)',
-		backdropFilter: 'blur(20px)',
-		border: '1px solid rgba(255, 255, 255, 0.1)',
-		borderRadius: '12px',
-		marginTop: '8px',
-		'& .MuiMenuItem-root': {
-			color: '#ffffff',
-			padding: '12px 20px',
-			borderRadius: '8px',
-			margin: '4px 8px',
-			transition: 'all 0.3s ease',
-			'&:hover': {
-				background: 'rgba(225, 190, 231, 0.1)',
-				color: '#e1bee7',
-				transform: 'translateX(8px)',
-			},
-		},
-	},
+	   '& .mobile-menu': {
+		   background: 'var(--color-navbar-mobile-bg)',
+		   backdropFilter: 'blur(20px)',
+		   border: '1px solid var(--color-navbar-mobile-border)',
+		   borderRadius: '12px',
+		   marginTop: '8px',
+		   '& .MuiMenuItem-root': {
+			   color: 'var(--color-navbar-mobile-text)',
+			   padding: '12px 20px',
+			   borderRadius: '8px',
+			   margin: '4px 8px',
+			   transition: 'all 0.3s ease',
+			   fontFamily: "var(--font-gilroy-light)",
+			   '&:hover': {
+				   background: 'var(--color-secondary-bg-hover)',
+				   color: 'var(--color-secondary)',
+				   transform: 'translateX(8px)',
+			   },
+		   },
+	   },
 }));
 
 const CompactNavButton = styled(motion.div)(({ theme, active }) => ({
@@ -488,32 +490,33 @@ const CompactNavButton = styled(motion.div)(({ theme, active }) => ({
 	[theme.breakpoints.up('lg')]: {
 		margin: '0 6px',
 	},
-	'& .compact-nav-button': {
-		color: active ? '#e1bee7' : 'rgba(255, 255, 255, 0.95)',
-		padding: '8px 14px',
-		borderRadius: '10px',
-		background: active 
-			? 'rgba(225, 190, 231, 0.2)' 
-			: 'rgba(255, 255, 255, 0.05)',
-		border: active ? '1px solid rgba(225, 190, 231, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
-		transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-		textTransform: 'none',
-		fontWeight: active ? 600 : 500,
-		fontSize: '0.8rem',
-		minWidth: 'auto',
-		backdropFilter: 'blur(10px)',
-		[theme.breakpoints.up('lg')]: {
-			padding: '10px 18px',
-			fontSize: '0.9rem',
-		},
-		'&:hover': {
-			background: 'rgba(225, 190, 231, 0.15)',
-			border: '1px solid rgba(225, 190, 231, 0.5)',
-			color: '#e1bee7',
-			transform: 'translateY(-2px)',
-			boxShadow: '0 6px 20px rgba(225, 190, 231, 0.25)',
-		},
-	},
+	   '& .compact-nav-button': {
+		   color: active ? 'var(--color-secondary)' : 'var(--color-navbar-text)',
+		   padding: '8px 14px',
+		   borderRadius: '10px',
+		   background: active 
+			   ? 'var(--color-secondary-bg)' 
+			   : 'var(--color-navbar-bg)',
+		   border: active ? '1px solid var(--color-secondary-border)' : '1px solid var(--color-navbar-border)',
+		   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+		   textTransform: 'none',
+		   fontWeight: active ? 600 : 500,
+		   fontSize: '0.8rem',
+		   minWidth: 'auto',
+		   backdropFilter: 'blur(10px)',
+		   fontFamily: "var(--font-gilroy-bold)",
+		   [theme.breakpoints.up('lg')]: {
+			   padding: '10px 18px',
+			   fontSize: '0.9rem',
+		   },
+		   '&:hover': {
+			   background: 'var(--color-secondary-bg-hover)',
+			   border: '1px solid var(--color-secondary-border-hover)',
+			   color: 'var(--color-secondary)',
+			   transform: 'translateY(-2px)',
+			   boxShadow: '0 6px 20px var(--color-secondary-shadow)',
+		   },
+	   },
 }));
 
 const NavContainer = styled(Box)(({ theme }) => ({
@@ -796,16 +799,17 @@ const ResponsiveAppBar = () => {
 										>
 											<a href={object.url} className='link' style={{ textDecoration: 'none', color: 'inherit' }}>
 												<MenuItem onClick={() => setAnchorElNav(null)} sx={{
-													color: '#000',
+													color: 'var(--color-navbar-mobile-contact)',
+													fontFamily: "var(--font-gilroy-light)",
 													'&:hover': {
-														background: 'rgba(225, 190, 231, 0.1)',
-														color: '#e1bee7',
+														background: 'var(--color-secondary-bg-hover)',
+														color: 'var(--color-secondary)',
 													},
 													'& a': {
 														color: 'inherit',
 													}
 												}}>
-													<Typography textAlign="center" sx={{ color: 'inherit' }}>{object.media}</Typography>
+													<Typography textAlign="center" sx={{ color: 'inherit', fontFamily: "var(--font-gilroy-light)" }}>{object.media}</Typography>
 												</MenuItem>
 											</a>
 										</motion.div>
