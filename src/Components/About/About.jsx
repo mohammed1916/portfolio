@@ -7,37 +7,6 @@ import { motion, useInView, useScroll, useTransform, AnimatePresence } from "fra
 import { styled } from '@mui/material/styles';
 import '../../index.css';
 
-// Advanced floating particles component
-const ParticleField = styled(motion.div)(({ theme }) => ({
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    pointerEvents: 'none',
-    zIndex: 1,
-    background: 'var(--about-particle-bg)',
-}));
-
-const Particle = styled(motion.div)(({ theme }) => ({
-    position: 'absolute',
-    width: '4px',
-    height: '4px',
-    borderRadius: '50%',
-    background: 'var(--about-particle-color)',
-    boxShadow: 'var(--about-particle-shadow)',
-}));
-
-// Morphing blob background
-const MorphingBlob = styled(motion.div)(({ theme }) => ({
-    position: 'absolute',
-    width: '300px',
-    height: '300px',
-    borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-    background: 'var(--about-blob-bg)',
-    filter: 'var(--about-blob-filter)',
-    zIndex: 0,
-}));
 
 // Advanced glass card with parallax effect
 const GlassCard = styled(motion.div)(({ theme }) => ({
@@ -250,60 +219,6 @@ export default function About() {
                     transition: 'background 0.3s ease',
                 }}
             />
-                {/* Particle Field */}
-                <ParticleField>
-                    {particles.map((particle) => (
-                        <Particle
-                            key={particle.id}
-                            style={{
-                                left: `${particle.x}%`,
-                                top: `${particle.y}%`,
-                                scale: particle.scale,
-                            }}
-                            animate={{
-                                y: [-20, -40, -20],
-                                x: [-10, 10, -10],
-                                opacity: [0, 1, 0],
-                                scale: [particle.scale * 0.5, particle.scale, particle.scale * 0.5],
-                            }}
-                            transition={{
-                                delay: particle.delay,
-                                duration: particle.duration,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
-                        />
-                    ))}
-                </ParticleField>
-
-                {/* Morphing Blobs */}
-                <MorphingBlob
-                    style={{ top: '10%', left: '10%' }}
-                    animate={{
-                        borderRadius: [
-                            "60% 40% 30% 70% / 60% 30% 70% 40%",
-                            "30% 60% 70% 40% / 50% 60% 30% 60%",
-                            "60% 40% 30% 70% / 60% 30% 70% 40%"
-                        ],
-                        x: [0, 50, 0],
-                        y: [0, -30, 0],
-                    }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                />
-
-                <MorphingBlob
-                    style={{ bottom: '10%', right: '10%' }}
-                    animate={{
-                        borderRadius: [
-                            "30% 60% 70% 40% / 50% 60% 30% 60%",
-                            "60% 40% 30% 70% / 60% 30% 70% 40%",
-                            "30% 60% 70% 40% / 50% 60% 30% 60%"
-                        ],
-                        x: [0, -40, 0],
-                        y: [0, 40, 0],
-                    }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                />
 
                 <Container sx={{ position: 'relative', zIndex: 2 }}>
                     {/* Advanced Logo with 3D effect and Custom Font */}

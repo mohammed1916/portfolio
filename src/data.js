@@ -80,6 +80,7 @@ export const data = {
             "Type": "Post graduate - M.Tech IT (Spln. in AI & DS)",
             "Year of Passing": "2025",
             "Grade": "9 C.G.P.A",
+            "percentage": "90%",
             "website": "Current state university of Tamil Nadu and Asia's historical first college, https://ceg.annauniv.edu/"
         },
         {
@@ -87,6 +88,7 @@ export const data = {
             "Type": "Undergraduate - B.E Computer Science and Engineering",
             "Year of Passing": "2023",
             "Grade": "9.51 C.G.P.A",
+            "percentage": "95.1%",
             "website": "https://panimalar.ac.in/"
         },
         {
@@ -94,6 +96,7 @@ export const data = {
             "Type": "12th Standard",
             "Year of Passing": "2019",
             "Grade": "87.3%",
+            "percentage": "87.3%",
             "website": "http://www.unitypublicschool.com/"
         },
         {
@@ -101,6 +104,7 @@ export const data = {
             "Type": "10th Standard",
             "Year of Passing": "2017",
             "Grade": "10 C.G.P.A",
+            "percentage": "95%",
             "website": "http://www.unitypublicschool.com/"
         },
     ],
@@ -146,7 +150,7 @@ export const data = {
         
         {
             "title": "Cryptocurrency Analytics Dashboard",
-            "type": "Full Stack",
+            "type": "Deployed Website",
             "tech": "Next.js 15 \ TS \ Tailwind \ shadcn/ui \ Chart.js \ Framer Motion",
             "thumbnail": project5_3,
             "link": "https://github.com/mohammed1916/crypt",
@@ -188,7 +192,7 @@ export const data = {
         },
         {
             "title": "Adobe Express Addon",
-            "type": " Full Stack",
+            "type": "Deployed Addon",
             "tech": " React \ TypeScript \ Redux Toolkit \ Adobe Express APIs",
             "thumbnail": project4_2,
             "link": " https://adobesparkpost.app.link/TR9Mb7TXFLb?addOnId=w96k0hi74",
@@ -288,7 +292,7 @@ export const data = {
         },
         {
             "title": "Portfolio",
-            "type": "Website",
+            "type": "Deployed Website",
             "tech": "ReactJs library \ vite \ Framer Motion \ MUI",
             "thumbnail": project6_1,
             "link": "https://mohammedabdullah.pages.dev/",
@@ -312,7 +316,7 @@ export const data = {
         },
         {
             "title": "GAZAL CAPITAL",
-            "type": "Website",
+            "type": "Deployed Website",
             "tech": "ReactJS + MUI + Firebase + Google Apps Script + Google Sheets",
             "thumbnail": project3_1,
             "link": "https://github.com/mohammed1916/gazalcapital",

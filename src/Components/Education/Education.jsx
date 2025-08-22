@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import AnimatedSectionHeading from '../common/AnimatedSectionHeading';
+import EducationChart from './EducationChart';
 
 import { data } from '../../data';
 
@@ -92,6 +93,7 @@ export default function Education()
                             boxShadow: '0 8px 32px var(--color-particle-shadow)',
                         }}
                     >
+                        <EducationChart/>
                         {data.education.map((object, index) => (
                             <Accordion 
                                 key={object + index * 5} 
