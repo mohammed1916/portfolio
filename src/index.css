@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Allura&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;900&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&display=swap'); */
-
 /* Import custom cursor styles */
 @import './styles/cursor.css';
 
@@ -14,6 +14,68 @@
   font-family: 'Gilroy Bold';
   src: url('./fonts/Gilroy-ExtraBold.otf') format('opentype');
 }
+/* Theme Colors */
+:root {
+  --font-gilroy-light: 'Gilroy Light', sans-serif;
+  --font-gilroy-bold: 'Gilroy Bold', sans-serif;
+  --font-allura: 'Allura', cursive;
+  /* --color-primary: #7c2472; */
+  --color-primary: #f5afec;
+  /* --color-secondary: #b849da; */
+  --color-secondary: #f4e0fa;
+  --color-accent: #c274c6;
+  --color-bg: #ffa9e2;
+  --color-heading: #ffe8fd;
+  --color-heading-sub: #6530b9;
+  --color-heading-hover: #7337bd;
+  --color-text: #401552;
+  --color-skillchip: #69247C;
+  --color-skillchip-hover: #da49da;
+  --color-skillchip-bg: #FAC67A;
+  --color-skillchip-bg-hover: #F9E6CF;
+  --color-card-bg: #ffffff;
+  --color-card-bg2: #fec3fe;
+  --color-particle1: #69247C;
+  --color-particle2: #DA498D;
+  --color-particle-shadow: rgba(218, 73, 141, 0.5);
+  --color-typewriter: #69247C;
+  --color-typewriter-border: #DA498D;
+
+  --color-contact-bg: #F9E6CF;
+  --color-contact-card-bg: #F9E6CF;
+  --color-contact-dot-bg: #69247C;
+  --color-contact-floating-icon-bg: #DA498D;
+  --color-contact-title-bg: #DA498D;
+  --color-contact-title-shadow: rgba(218, 73, 141, 0.5);
+  --color-contact-title-shadow-hover: rgba(218, 73, 141, 0.7);
+  --color-contact-title-underline: #DA498D;
+  --color-contact-title-underline-shadow: rgba(218, 73, 141, 0.5);
+  --color-contact-card-title: #69247C;
+  --color-contact-card-link: #DA498D;
+
+  --color-footer-bg: #DA498D;
+}
+
+/* Font Families */
+.font-gilroy-light {
+  font-family: var(--font-gilroy-light);
+}
+.font-gilroy-bold {
+  font-family: var(--font-gilroy-bold);
+}
+.font-allura {
+  font-family: var(--font-allura);
+}
+/* .font-cinzel {
+  font-family: 'Cinzel Decorative', serif;
+} */
+/* .font-zcool {
+  font-family: 'ZCOOL XiaoWei', serif;
+}
+.font-vietnam {
+  font-family: 'Be Vietnam Pro', sans-serif;
+} */
+
 
 body {
   margin: 0;
@@ -21,12 +83,12 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%);
+  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%);
   min-height: 100vh;
 }
 
 html {
-  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%);
+  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%);
 }
 
 .link{

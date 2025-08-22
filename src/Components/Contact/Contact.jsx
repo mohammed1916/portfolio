@@ -13,7 +13,7 @@ import { data } from '../../data';
 
 // Styled components with purple theme
 const ContactContainer = styled(motion.div)(({ theme }) => ({
-    background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
+    background: 'var(--color-contact-bg)',
     position: 'relative',
     overflow: 'hidden',
     '&::before': {
@@ -49,7 +49,7 @@ const ContactContainer = styled(motion.div)(({ theme }) => ({
 
 const ContactCard = styled(motion.div)(({ theme }) => ({
     position: 'relative',
-    background: 'linear-gradient(145deg, rgba(255,255,255,0.25) 0%, rgba(225,190,231,0.15) 100%)',
+    background: 'var(--color-contact-card-bg)',
     backdropFilter: 'blur(20px)',
     border: '1px solid rgba(255, 255, 255, 0.3)',
     borderRadius: '20px',
@@ -86,7 +86,7 @@ const FloatingIcon = styled(motion.div)(({ theme }) => ({
     width: '60px',
     height: '60px',
     borderRadius: '50%',
-    background: 'linear-gradient(135deg, #8a2be2, #9932cc)',
+    background: 'var(--color-contact-floating-icon-bg)',
     opacity: 0.1,
     zIndex: 0,
 }));
@@ -96,7 +96,7 @@ const PulsingDot = styled(motion.div)(({ theme }) => ({
     width: '4px',
     height: '4px',
     borderRadius: '50%',
-    background: 'linear-gradient(135deg, #e1bee7, #ce93d8)',
+    background: 'var(--color-contact-dot-bg)',
     zIndex: 0,
 }));
 
@@ -264,20 +264,20 @@ export default function Contact() {
                     <Typography
                         variant="h2"
                         component={motion.h2}
+                        fontFamily="var(--font-gilroy-bold)"
                         sx={{
-                            fontFamily: 'Gilroy Bold',
-                            background: 'linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #8e24aa 100%)',
+                            background: 'var(--color-contact-title-bg)',
                             backgroundClip: 'text',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             textAlign: 'center',
                             mb: 2,
-                            textShadow: '0 0 30px rgba(74, 20, 140, 0.3)',
+                            textShadow: 'var(--color-contact-title-shadow)',
                             fontSize: { xs: '2.5rem', md: '3.5rem' }
                         }}
                         whileHover={{
                             scale: 1.05,
-                            textShadow: '0 0 40px rgba(74, 20, 140, 0.5)',
+                            textShadow: 'var(--color-contact-title-shadow-hover)',
                         }}
                     >
                         Let's Connect
@@ -289,10 +289,10 @@ export default function Contact() {
                         transition={{ delay: 1.2, duration: 0.8 }}
                         style={{
                             height: '4px',
-                            background: 'linear-gradient(90deg, #6a1b9a, #e1bee7, #6a1b9a)',
+                            background: 'var(--color-contact-title-underline)',
                             margin: '0 auto 40px',
                             borderRadius: '2px',
-                            boxShadow: '0 0 15px rgba(106, 27, 154, 0.5)',
+                            boxShadow: 'var(--color-contact-title-underline-shadow)',
                         }}
                     />
                 </motion.div>
@@ -338,9 +338,9 @@ export default function Contact() {
                                         <motion.div variants={textVariants}>
                                             <Typography 
                                                 variant="h6" 
+                                                fontFamily="var(--font-gilroy-bold)"
                                                 sx={{
-                                                    fontFamily: 'Gilroy Bold',
-                                                    color: '#4a148c',
+                                                    color: 'var(--color-contact-card-title)',
                                                     fontSize: '1.3rem'
                                                 }}
                                             >
@@ -352,9 +352,9 @@ export default function Contact() {
                                         <motion.div variants={textVariants}>
                                             <Typography 
                                                 variant="body2" 
+                                                fontFamily="var(--font-gilroy-light)"
                                                 sx={{
-                                                    color: '#6a1b9a',
-                                                    fontFamily: 'Gilroy Light',
+                                                    color: 'var(--color-contact-card-link)',
                                                     wordBreak: 'break-all',
                                                     fontSize: '0.9rem'
                                                 }}
