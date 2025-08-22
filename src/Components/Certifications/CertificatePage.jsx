@@ -54,8 +54,9 @@ export default function CertificatePage()
                             startIcon={<ArrowBackIcon />}
                             onClick={goBackToCertifications}
                             sx={{
-                                color: 'var(--color-primary)',
-                                fontFamily: "var(--font-gilroy-bold)",
+                                color:'var(--color-typewriter-border)',
+                                border: '1px solid var(--color-typewriter-border)',
+                                boxShadow: '0 8px 32px var(--color-particle-shadow)',
                                 '&:hover': {
                                     backgroundColor: 'var(--color-secondary)',
                                 }

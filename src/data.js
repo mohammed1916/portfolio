@@ -35,6 +35,17 @@ import project4_4 from './Components/Projects/Images/4/4.png';
 import project4_5 from './Components/Projects/Images/4/5.png';
 import project4_6 from './Components/Projects/Images/4/6.png';
 import project4_7 from './Components/Projects/Images/4/7.png';
+import project5_1 from './Components/Projects/Images/5/1.png';
+import project5_2 from './Components/Projects/Images/5/2.png';
+import project5_3 from './Components/Projects/Images/5/3.png';
+import project5_4 from './Components/Projects/Images/5/4.png';
+import project5_5 from './Components/Projects/Images/5/5.png';
+import project5_6 from './Components/Projects/Images/5/6.png';
+
+import project6_1 from './Components/Projects/Images/6/1.png';
+import project6_2 from './Components/Projects/Images/6/2.png';
+import project6_3 from './Components/Projects/Images/6/3.png';
+
 
 export const data = {
     "information": {
@@ -65,18 +76,11 @@ export const data = {
     },
     "education": [
         {
-            "Institution": "Unity Public School, Chennai",
-            "Type": "10th Standard",
-            "Year of Passing": "2017",
-            "Grade": "10 C.G.P.A",
-            "website": "http://www.unitypublicschool.com/"
-        },
-        {
-            "Institution": "Unity Public School, Chennai",
-            "Type": "12th Standard",
-            "Year of Passing": "2019",
-            "Grade": "87.3%",
-            "website": "http://www.unitypublicschool.com/"
+            "Institution": "Anna University, CEG campus , Chennai",
+            "Type": "Post graduate - M.Tech IT (Spln. in AI & DS)",
+            "Year of Passing": "2025",
+            "Grade": "9 C.G.P.A",
+            "website": "Current state university of Tamil Nadu and Asia's historical first college, https://ceg.annauniv.edu/"
         },
         {
             "Institution": "Panimalar Engineering College, Chennai",
@@ -86,12 +90,19 @@ export const data = {
             "website": "https://panimalar.ac.in/"
         },
         {
-            "Institution": "Anna University, Chennai",
-            "Type": "Post graduate - M.Tech IT (Spln. in AI & DS)",
-            "Year of Passing": "2025",
-            "Grade": "9 C.G.P.A",
-            "website": "https://www.annauniv.edu/"
-        }
+            "Institution": "Unity Public School, Chennai",
+            "Type": "12th Standard",
+            "Year of Passing": "2019",
+            "Grade": "87.3%",
+            "website": "http://www.unitypublicschool.com/"
+        },
+        {
+            "Institution": "Unity Public School, Chennai",
+            "Type": "10th Standard",
+            "Year of Passing": "2017",
+            "Grade": "10 C.G.P.A",
+            "website": "http://www.unitypublicschool.com/"
+        },
     ],
     "work": [
         {
@@ -134,19 +145,64 @@ export const data = {
     "projects": [
         
         {
+            "title": "Cryptocurrency Analytics Dashboard",
+            "type": "Full Stack",
+            "tech": "Next.js 15 \ TS \ Tailwind \ shadcn/ui \ Chart.js \ Framer Motion",
+            "thumbnail": project5_3,
+            "link": "https://github.com/mohammed1916/crypt",
+            "description": `
+            • Next.js 15, TS, Tailwind, shadcn/ui, Chart.js, Framer Motion
+            – Engineered a real-time crypto dashboard with theme switching (light/dark/acrylic), animated transitions, and responsive UI/UX.
+            – Integrated CoinGecko API with debounced requests, local caching, and backend proxying to prevent
+            API key misuse and ensure reliability.
+            – Implemented multi-coin comparison charts with react-chartjs-2 for side-by-side trend analysis.
+            – Optimized performance and SEO: achieved 1.0s FCP, 1.2s LCP, 150ms TBT, 0.044 CLS on Lighthouse.
+            – Deployed at Live Link — https://github.com/mohammed1916/crypt
+            - Code: https://github.com/mohammed1916/crypt`,
+            "gallery": [
+                {
+                    original: project5_1,
+                    thumbnail: project5_1,
+                },
+                {
+                    original: project5_2,
+                    thumbnail: project5_2,
+                },
+                {
+                    original: project5_3,
+                    thumbnail: project5_3,
+                },
+                {
+                    original: project5_4,
+                    thumbnail: project5_4,
+                },
+                {
+                    original: project5_5,
+                    thumbnail: project5_5,
+                },
+                {
+                    original: project5_6,
+                    thumbnail: project5_6,
+                },
+            ]
+        },
+        {
             "title": "Adobe Express Addon",
-            "type": " React, TypeScript, Redux Toolkit, Adobe Express APIs",
+            "type": " Full Stack",
+            "tech": " React \ TypeScript \ Redux Toolkit \ Adobe Express APIs",
             "thumbnail": project4_2,
             "link": " https://adobesparkpost.app.link/TR9Mb7TXFLb?addOnId=w96k0hi74",
             "description": `
-            • Developed an Adobe Express add-on with Typescript for managing and inserting custom SVG, GIF, and raster
+            • React, TypeScript, Redux Toolkit, Adobe Express APIs
+            - Developed an Adobe Express add-on with Typescript for managing and inserting custom SVG, GIF, and raster
             graphics (JPG, PNG), with validation and user feedback for unsupported formats.
-            • Implemented Redux-based state management for symbol inventory, tagging, and selection using Agile methodology
+            - Implemented Redux-based state management for symbol inventory, tagging, and selection using Agile methodology
             by creating basic working structure first and adding other features like multi-select tagging later.
-            • Built SVG parsers to extract viewBox, dimensions, and aspect ratio for accurate rendering.
-            • Integrated Adobe Express APIs for seamless insertion and persistent inventory across sessions.
-            • [Live Add-on https://adobesparkpost.app.link/TR9Mb7TXFLb?addOnId=w96k0hi74 ]. Verifiable via my
-            portfolio link under Help and Support section links.`,
+            - Built SVG parsers to extract viewBox, dimensions, and aspect ratio for accurate rendering.
+            - Integrated Adobe Express APIs for seamless insertion and persistent inventory across sessions.
+            - [Live Add-on https://adobesparkpost.app.link/TR9Mb7TXFLb?addOnId=w96k0hi74 ]. Verifiable via my
+            portfolio link under Help and Support section links.
+            - Code: https://github.com/mohammed1916/design_mesh`,
             "gallery": [
                 {
                     original: project4_1,
@@ -181,11 +237,17 @@ export const data = {
         {
             "title": "Dynamic Portfolio generator",
             "type": "Frontend, MiddleWare, Backend, Socket Programming",
+            "tech": "Puppeteer + NodeJS + ExpressJS + Socket.io + ReactJS + Linkedin 3-legged API + Pm2 Process Manager",
             "thumbnail": project2_1,
             "link": " https://mohammedabdullahportfolio.web.app/",
             "description": `Employed REST API's to perform 3-legged authentication for linkedIn.
-            Scraped data from LinkedIn and Github using Puppeteer.
-            Used socket programming to send the scrapped data between middleware server and client. Project can be found at https://github.com/mohammed1916/Dynamic-Portfolio-Generator`,
+            - Undertook web scraping to gather user data from LinkedIn and Github profiles using Puppeteer.
+            - Used Agile methodology to develop the project in iterations, starting with a basic working structure and progressively adding features, with my two other team members focusing on frontend and backend development respectively.
+            - Used socket programming to send the scrapped data between middleware server and client. 
+            - Utilized ReactJS for frontend and NodeJS with ExpressJS for backend.
+            - Used Pm2 process manager to keep the middleware server alive.
+            - Project can be found at https://github.com/mohammed1916/Dynamic-Portfolio-Generator
+            - Had published a white paper: Karthikeyan A, Mohammed Abdullah, B Jeevan Akshay & Kevin Christopher A. (in press). "Expediting HR Management Via Dynamic E-Portfolio by Employing Web Scrapper," Journal of Survey in Fisheries Sciences, Vol. 10 No. 4S (2023):(Special Issue 4). http://sifisheriessciences.com/journal/index.php/journal/article/view/1172/1184`,
             "gallery": [
                 {
                     original: project2_1,
@@ -204,6 +266,7 @@ export const data = {
         {
             "title": "Memory Game",
             "type": "Android",
+            "tech": "Godot Game Engine \ GDScript \ Android Java",
             "thumbnail": project1_3,
             // "link": "https://play.google.com/store/apps/details?id=org.greenelite.memorize",
             "link": "https://github.com/mohammed1916/Memorize",
@@ -226,27 +289,31 @@ export const data = {
         {
             "title": "Portfolio",
             "type": "Website",
-            "thumbnail": project2_1,
+            "tech": "ReactJs library \ vite \ Framer Motion \ MUI",
+            "thumbnail": project6_1,
             "link": "https://mohammedabdullah.pages.dev/",
-            "description": "Made a portfolio template using ReactJs library + vite + Framer Motion + MUI",
+            "description": `
+            - Made a portfolio template using ReactJs library + vite + Framer Motion + MUI.
+            - Hosted using Cloudflare Pages.`,
             "gallery": [
                 {
-                    original: project2_1,
-                    thumbnail: project2_1,
+                    original: project6_1,
+                    thumbnail: project6_1,
                 },
                 {
-                    original: project2_2,
-                    thumbnail: project2_2,
+                    original: project6_2,
+                    thumbnail: project6_2,
                 },
                 {
-                    original: project2_3,
-                    thumbnail: project2_3,
+                    original: project6_3,
+                    thumbnail: project6_3,
                 },
             ]
         },
         {
             "title": "GAZAL CAPITAL",
             "type": "Website",
+            "tech": "ReactJS + MUI + Firebase + Google Apps Script + Google Sheets",
             "thumbnail": project3_1,
             "link": "https://github.com/mohammed1916/gazalcapital",
             "description":  "A website for startup company, Gazal Capital. Built using ReactJS in javascript styled partially with MUI and tailwindcss. <br > Deployed Application <br >This website is hosted using firebase here: https://gazal-capital.web.app/ <br> Leveraged Firebase for NoSQL storage and Google Apps Script to process web queries and export data to Google Sheets.",

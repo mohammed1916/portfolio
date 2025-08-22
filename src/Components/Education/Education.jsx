@@ -64,7 +64,7 @@ export default function Education()
                 bgcolor={'var(--color-bg)'}
                 color={'var(--color-heading)'}
                 sx={{
-                    background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                    // background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                     position: 'relative',
                     '&::before': {
                         content: '""',
@@ -80,7 +80,7 @@ export default function Education()
                 }}
             >
                 <Container sx={{ width: '100%', position: 'relative', zIndex: 1 }}>
-                    <AnimatedSectionHeading>Education</AnimatedSectionHeading>
+                    <AnimatedSectionHeading color={'var(--color-typewriter-border)'}>Education</AnimatedSectionHeading>
                     <Box 
                         bgcolor={'var(--color-card-bg)'} 
                         borderRadius={'20px'} 
@@ -107,6 +107,9 @@ export default function Education()
                                     <Typography fontFamily="var(--font-gilroy-bold)" color="var(--color-accent)">{object.Type}</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
+                                    <Typography fontFamily="var(--font-gilroy-light)">
+                                        {`Link: ${object['website']}`}
+                                    </Typography>
                                     <Typography fontFamily="var(--font-gilroy-light)">
                                         {`Institution: ${object.Institution}`}
                                     </Typography>

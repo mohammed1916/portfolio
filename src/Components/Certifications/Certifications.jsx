@@ -30,10 +30,10 @@ export default function Certifications()
             <Box
                 px={{ xs: 3, sm: 10 }}
                 py={{ xs: 5, sm: 10 }}
-                bgcolor={'var(--color-bg)'}
+                bgcolor={'var(--color-footer-bg)'}
                 color={'var(--color-heading)'}
                 sx={{
-                    background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                    // background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                     position: 'relative',
                     '&::before': {
                         content: '""',

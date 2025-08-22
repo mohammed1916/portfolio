@@ -42,7 +42,7 @@ export default function Projects()
                 // bgcolor={'var(--color-secondary)'}
                 color={'var(--color-heading)'}
                 sx={{
-                    background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                    // background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                     position: 'relative',
                     '&::before': {
                         content: '""',
@@ -56,7 +56,7 @@ export default function Projects()
                 }}
             >
                 <Container sx={{ width: '100%', position: 'relative', zIndex: 1 }}>
-                    <AnimatedSectionHeading>Projects</AnimatedSectionHeading>
+                    <AnimatedSectionHeading color={'var(--color-typewriter-border)'}>Projects</AnimatedSectionHeading>
                     
                     {/* Smooth Tabs */}
                     <Box
@@ -170,7 +170,7 @@ export default function Projects()
                                                 padding: '15px', 
                                                 margin: '20px', 
                                                 borderRadius: '20px',
-                                                background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                                                // background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                                                 border: '1px solid var(--color-secondary)',
                                                 boxShadow: '0 8px 32px var(--color-particle-shadow)',
                                                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -215,12 +215,12 @@ export default function Projects()
                                                             display: 'inline-block',
                                                             padding: '4px 12px',
                                                             borderRadius: '15px',
-                                                            background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                                                            // background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                                                             border: '1px solid var(--color-secondary)',
                                                             boxShadow: '0 8px 32px var(--color-particle-shadow)',
                                                             fontSize: '0.8rem',
                                                             fontFamily: "var(--font-gilroy-light)",
-                                                            color: 'var(--color-heading)',
+                                                            color: 'var(--color-typewriter)',
                                                             margin: '0 auto',
                                                             width: 'fit-content',
                                                         }}

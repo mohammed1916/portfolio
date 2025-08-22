@@ -32,7 +32,7 @@ export default function Work()
                 bgcolor={'var(--color-bg)'}
                 color={'var(--color-heading)'}
                 sx={{
-                    background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                    // background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                     position: 'relative',
                     '&::before': {
                         content: '""',
@@ -48,7 +48,7 @@ export default function Work()
                 }}
             >
                 <Container sx={{ width: '100%', position: 'relative', zIndex: 1 }}>
-                    <AnimatedSectionHeading>Work</AnimatedSectionHeading>
+                    <AnimatedSectionHeading color={'var(--color-typewriter-border)'}>Work</AnimatedSectionHeading>
                     <Box 
                         display={'flex'} 
                         flexWrap={'wrap'} 

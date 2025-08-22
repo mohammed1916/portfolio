@@ -212,7 +212,7 @@ export default function About() {
             px={{ xs: 3, sm: 10 }}
             py={{ xs: 5, sm: 10 }}
             sx={{
-                background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                // // background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                 p: 4,
                 display: 'flex',
                 flexDirection: 'column',
@@ -229,7 +229,7 @@ export default function About() {
                     transition: 'color 0.3s',
                 },
                 '& h1:hover': {
-                    color: 'var(--color-bg)',
+                    color: 'var(--color-typewriter-border)',
                 },
                 '& h4:hover, & h6:hover': {
                     color: 'var(--color-typewriter-border)',
@@ -326,7 +326,7 @@ export default function About() {
                             variant="h1"
                             component={motion.h1}
                             sx={{
-                                fontFamily: 'Allura, Gilroy Bold, serif',
+                                fontFamily: 'Cinzel Decorative, Gilroy Bold, serif',
                                 fontSize: { xs: '2.5rem', md: '4rem', lg: '5rem' },
                                 textShadow: '0 0 40px rgba(138, 43, 226, 0.3)',
                                 position: 'relative',

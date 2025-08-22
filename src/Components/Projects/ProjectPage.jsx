@@ -56,7 +56,7 @@ export default function ProjectPage()
                 bgcolor={'var(--color-bg)'}
                 color={'var(--color-heading)'}
                 sx={{
-                    background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                    // background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                     position: 'relative',
                     '&::before': {
                         content: '""',
@@ -76,7 +76,9 @@ export default function ProjectPage()
                             startIcon={<ArrowBackIcon />}
                             onClick={goBackToProjects}
                             sx={{
-                                color: 'var(--color-heading)',
+                                color:'var(--color-typewriter-border)',
+                                border: '1px solid var(--color-typewriter-border)',
+                                boxShadow: '0 8px 32px var(--color-particle-shadow)',
                                 '&:hover': {
                                     backgroundColor: 'var(--color-card-bg2)',
                                 }

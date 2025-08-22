@@ -16,7 +16,7 @@ export default function Footer() {
         <Box
             px={{ xs: 3, sm: 10 }}
             py={{ xs: 5, sm: 10 }}
-            bgcolor={'var(--color-primary)'}
+            bgcolor={'var(--color-footer-bg)'}
             color={'var(--color-bg)'} >
             <Container sx={{ width: '100%' }}>
                 <Divider pt={{ xs: 1, sm: 2 }}><Chip label="Mohammed Abdullah" sx={{ fontFamily: "var(--font-gilroy-bold)", color: 'var(--color-heading)' }} /></Divider>
