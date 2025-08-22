@@ -31,7 +31,7 @@ export default function ProjectPage()
     }, []);
 
     const goBackToProjects = () => {
-        navigate('/', { replace: true });
+        navigate('/#projects', { replace: true });
         // Wait for navigation to complete, then scroll to projects section
         setTimeout(() => {
             const element = document.getElementById('projects');
