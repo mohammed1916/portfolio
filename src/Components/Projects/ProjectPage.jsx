@@ -31,7 +31,7 @@ export default function ProjectPage()
     }, []);
 
     const goBackToProjects = () => {
-        navigate('/', { replace: true });
+        navigate('/#projects', { replace: true });
         // Wait for navigation to complete, then scroll to projects section
         setTimeout(() => {
             const element = document.getElementById('projects');
@@ -53,62 +53,78 @@ export default function ProjectPage()
             <Box
                 px={{ xs: 3, sm: 10 }}
                 py={{ xs: 5, sm: 10 }}
-                bgcolor={'white'}
-                color={'white'} >
-                <Container sx={{ width: '100%' }} fontFamily={'ZCOOL XiaoWei'} >
+                bgcolor={'var(--color-bg)'}
+                color={'var(--color-heading)'}
+                sx={{
+                    // background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                    position: 'relative',
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'var(--color-primary)',
+                        opacity: 0.05,
+                        zIndex: 0,
+                    },
+                }} >
+                <Container sx={{ width: '100%' }}>
                     <Box display="flex" alignItems="center" mb={2}>
                         <Button
                             startIcon={<ArrowBackIcon />}
                             onClick={goBackToProjects}
                             sx={{
-                                color: '#6a1b9a',
+                                color:'var(--color-typewriter-border)',
+                                border: '1px solid var(--color-typewriter-border)',
+                                boxShadow: '0 8px 32px var(--color-particle-shadow)',
                                 '&:hover': {
-                                    backgroundColor: 'rgba(106, 27, 154, 0.1)',
+                                    backgroundColor: 'var(--color-card-bg2)',
                                 }
                             }}
                         >
                             Back to Portfolio
                         </Button>
                     </Box>
-                    <Typography textAlign="center" fontFamily={'Be Vietnam Pro'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>PROJECT</Typography>
-                    <Box display={'flex'} flexDirection={'column'} bgcolor={'#333'} borderRadius={'20px'} padding={'20px'} boxShadow={10}>
-                        <Typography fontFamily={'ZCOOL XiaoWei'} gutterBottom variant="h3" component="div" textAlign={'center'} paddingBottom={'8px'}>
+                    <Typography textAlign="center" fontFamily="var(--font-gilroy-bold)" fontSize={'2.5rem'} color={'var(--color-heading)'} p={{ xs: 1, sm: 2 }}>PROJECT</Typography>
+                    <Box display={'flex'} flexDirection={'column'} bgcolor={'var(--color-card-bg)'} borderRadius={'20px'} padding={'20px'} boxShadow={'0 8px 32px var(--color-particle-shadow)'}>
+                        <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h3" component="div" textTransform={'uppercase'} textAlign={'center'} paddingBottom={'8px'} color={'var(--color-heading-sub)'}>
                             {data.projects[params.i].title}
                         </Typography>
-
                         <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily={'Gilroy Bold'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
+                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading-sub)'}>
                                 {`Application Type:`}
                             </Typography>
-                            <Typography fontFamily={'Gilroy Light'} gutterBottom variant="h6" component="div"  >
+                            <Typography fontFamily="var(--font-gilroy-light)" gutterBottom variant="h6" component="div" color={'var(--color-text)'}>
                                 {`${data.projects[params.i].type}`}
                             </Typography>
                         </Box>
                         <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily={'Gilroy Bold'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
+                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading-sub)'}>
                                 {`Link: `}
                             </Typography>
                             <Link href={data.projects[params.i].link} underline="hover" aria-label="Explore Project">
-                                <Typography fontFamily={'Gilroy Light'} color={'white'} gutterBottom variant="h6" component="div">
+                                <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-text)'} gutterBottom variant="h6" component="div">
                                     {`${data.projects[params.i].link}`}
                                 </Typography>
                             </Link>
                         </Box>
                         <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily={'Gilroy Bold'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
+                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading-sub)'}>
                                 {`Description: `}
                             </Typography>
-                            <Typography fontFamily={'Gilroy Light'} gutterBottom variant="h6" component="div"  
+                            <Typography fontFamily="var(--font-gilroy-light)" gutterBottom variant="h6" component="div" color={'var(--color-text)'}
                             dangerouslySetInnerHTML={{ __html: data.projects[params.i].description }}>
                             </Typography>
                         </Box>
-                        <Typography fontFamily={'Gilroy Bold'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} paddingTop={'30px'}>
+                        <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} paddingTop={'30px'} color={'var(--color-heading-sub)'}>
                             Sample Images:
                         </Typography>
-                        <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
+                        <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'var(--color-card-bg2)'} borderRadius={'20px'} padding={'10px'}>
                             {data.projects[params.i].gallery.map((item, index) => (
                                 <Box display={'flex'} flexWrap={'wrap'} justifyContent='center' >
-                                    <Card key={item.thumbnail} sx={{ maxWidth: 250, padding: '10px', margin: '20px', ":hover": "boxShadow: 0 15px 70px -12px rgba(0,0,0,0.3) " }} >
+                                    <Card key={item.thumbnail} sx={{ maxWidth: 250, padding: '10px', margin: '20px', boxShadow: '0 8px 32px var(--color-particle-shadow)', ':hover': { boxShadow: '0 15px 70px -12px var(--color-particle-shadow)' } }} >
                                         <CardActionArea>
                                             <CardMedia
                                                 component="img"
@@ -120,7 +136,6 @@ export default function ProjectPage()
                                 </Box>
                             ))}
                         </Box>
-
                     </Box>
                 </Container>
             </Box>

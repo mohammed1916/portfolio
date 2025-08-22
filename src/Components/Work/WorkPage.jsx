@@ -54,7 +54,9 @@ export default function WorkPage()
                             startIcon={<ArrowBackIcon />}
                             onClick={goBackToWork}
                             sx={{
-                                color: '#6a1b9a',
+                                color:'var(--color-typewriter-border)',
+                                border: '1px solid var(--color-typewriter-border)',
+                                boxShadow: '0 8px 32px var(--color-particle-shadow)',
                                 '&:hover': {
                                     backgroundColor: 'rgba(106, 27, 154, 0.1)',
                                 }
