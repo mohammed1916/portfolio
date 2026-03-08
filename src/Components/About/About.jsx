@@ -144,7 +144,9 @@ export default function About() {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-    const images = [data.information.image, data.information.image2];
+    const ug_images = [data.information.educationImages.Undergraduate[0], data.information.educationImages.Undergraduate[1]];
+    const pg_images = [data.information.educationImages.Postgraduate[0], data.information.educationImages.Postgraduate[1]];
+    
     
     // Generate simple particles
     const particles = Array.from({ length: 80 }, (_, i) => ({
@@ -168,11 +170,11 @@ export default function About() {
     }, []);
 
     const nextImage = () => {
-        setCurrentImageIndex((prev) => (prev + 1) % images.length);
+        setCurrentImageIndex((prev) => (prev + 1) % ug_images.length);
     };
 
     const prevImage = () => {
-        setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+        setCurrentImageIndex((prev) => (prev - 1 + ug_images.length) % ug_images.length);
     };
 
     return (
@@ -407,7 +409,7 @@ export default function About() {
                                     <motion.img
                                         key={currentImageIndex}
                                         className="main-image"
-                                        src={images[currentImageIndex]}
+                                        src={ug_images[currentImageIndex]}
                                         alt={`${data.information.name} - Image ${currentImageIndex + 1}`}
                                         loading="lazy"
                                         onLoad={() => setIsImageLoaded(true)}
@@ -441,7 +443,7 @@ export default function About() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 2 }}
                                 >
-                                    {images.map((_, index) => (
+                                    {ug_images.map((_, index) => (
                                         <motion.button
                                             key={index}
                                             onClick={() => setCurrentImageIndex(index)}
@@ -488,7 +490,7 @@ export default function About() {
                                         animate={{ opacity: 1, scale: 1 }}
                                         transition={{ delay: 2.5 }}
                                     >
-                                        {currentImageIndex + 1} / {images.length}
+                                        {currentImageIndex + 1} / {ug_images.length}
                                     </motion.div>
                                 </div>
                             </ImageContainer3D>

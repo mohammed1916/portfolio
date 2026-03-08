@@ -1,6 +1,8 @@
 // Import all the images
 import designImage from './img/Design/merit.png';
 import designImage2 from './img/Design/close_up.jpg';
+import designImage3 from './img/Design/first_rank.jpg';
+import designImage4 from './img/Design/ceremony_pg.jpg';
 import githubIcon from './img/icons/media/github.png';
 import linkedinIcon from './img/icons/media/linkedin.png';
 import postOutlineIcon from './img/icons/media/post-outline.png';
@@ -50,8 +52,16 @@ import project6_3 from './Components/Projects/Images/6/3.png';
 export const data = {
     "information": {
         "name": "Mohammed Abdullah",
-        "image": designImage,
-        "image2": designImage2,
+        "educationImages": {
+            "Postgraduate": [
+                designImage3,
+                designImage4
+            ],
+            "Undergraduate": [
+                designImage,
+                designImage2
+            ]
+        },
         "email": "developermohammed01@gmail.com",
         "whoami": "I am Mohammed Abdullah. An aspiring software developer who likes to learn and explore new frameworks.",
         "description": "I have completed my PG in M.Tech IT (Spln. in AI & DS) in May 2025 from Anna University (CEG Campus) in Tamil Nadu, India, and B.E CSE from PEC (Affiliated to Anna University), chennai - 2023. I love creating user-centric applications. I have developed websites using NextJS. Apart from it, I have also explored the domain of mobile application development and created apps for native android and also a hybrid mobile application using flutter. I have also worked with Godot engine, using which I designed a memory game for android.",
@@ -147,7 +157,7 @@ export const data = {
     ]
     ,
     "projects": [
-        
+
         {
             "title": "Cryptocurrency Analytics Dashboard",
             "type": "Deployed Website",
@@ -320,7 +330,7 @@ export const data = {
             "tech": "ReactJS + MUI + Firebase + Google Apps Script + Google Sheets",
             "thumbnail": project3_1,
             "link": "https://github.com/mohammed1916/gazalcapital",
-            "description":  "A website for startup company, Gazal Capital. Built using ReactJS in javascript styled partially with MUI and tailwindcss. <br > Deployed Application <br >This website is hosted using firebase here: https://gazal-capital.web.app/ <br> Leveraged Firebase for NoSQL storage and Google Apps Script to process web queries and export data to Google Sheets.",
+            "description": "A website for startup company, Gazal Capital. Built using ReactJS in javascript styled partially with MUI and tailwindcss. <br > Deployed Application <br >This website is hosted using firebase here: https://gazal-capital.web.app/ <br> Leveraged Firebase for NoSQL storage and Google Apps Script to process web queries and export data to Google Sheets.",
             "gallery": [
                 {
                     original: project3_1,
@@ -335,7 +345,7 @@ export const data = {
         },
     ],
     "certifications": [
-        
+
         {
             "title": "Kotlin For Java Developers",
             "date": "July 22, 2021",
