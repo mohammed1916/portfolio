@@ -13,6 +13,11 @@ export default function WorkPage()
 {
     let params = useParams();
     let navigate = useNavigate();
+    const selectedWork = data.work[params.i];
+
+    if (!selectedWork) {
+        return null;
+    }
 
     // Scroll to top when component mounts
     React.useEffect(() => {
@@ -66,14 +71,24 @@ export default function WorkPage()
                         </Button>
                     </Box>
                     <Typography textAlign="center" fontFamily={'Gilroy Light'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Work</Typography>
-                    <Box display={'flex'} flexDirection={'column'} bgcolor={'#eee'} borderRadius={'20px'} padding={'10px'}>
-                        <img src={data.work[params.i].thumbnail} alt="" />
+                    <Box
+                        display={'flex'}
+                        flexDirection={'column'}
+                        bgcolor={'#eee'}
+                        borderRadius={'20px'}
+                        padding={{ xs: '14px', sm: '20px' }}
+                        sx={{
+                            border: '1px solid rgba(106, 27, 154, 0.2)',
+                            boxShadow: '0 12px 32px rgba(106, 27, 154, 0.12)'
+                        }}
+                    >
+                        <img src={selectedWork.thumbnail} alt={selectedWork.title} />
                         <Box display={'flex'} flexDirection={'row'} paddingTop={'25px'}>
                             <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {"Job: "}
                             </Typography>
                             <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${data.work[params.i].title}`}
+                                {`${selectedWork.title}`}
                             </Typography>
                         </Box>
                         <Box display={'flex'} flexDirection={'row'} >
@@ -81,7 +96,7 @@ export default function WorkPage()
                                 {"Company: "}
                             </Typography>
                             <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${data.work[params.i].company}`}
+                                {`${selectedWork.company}`}
                             </Typography>
                         </Box>
 
@@ -90,7 +105,7 @@ export default function WorkPage()
                                 {`Location:`}
                             </Typography>
                             <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${data.work[params.i].location}`}
+                                {`${selectedWork.location}`}
                             </Typography>
                         </Box>
                         <Box display={'flex'} flexDirection={'row'} >
@@ -98,17 +113,87 @@ export default function WorkPage()
                                 {`Date:`}
                             </Typography>
                             <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${data.work[params.i].dates}`}
+                                {`${selectedWork.dates}`}
                             </Typography>
                         </Box>
+                        {selectedWork.domain && (
+                            <Box display={'flex'} flexDirection={'row'} >
+                                <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
+                                    {`Domain:`}
+                                </Typography>
+                                <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div">
+                                    {selectedWork.domain}
+                                </Typography>
+                            </Box>
+                        )}
                         <Box display={'flex'} flexDirection={'row'} >
                             <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {`Description: `}
                             </Typography>
                             <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  
-                            dangerouslySetInnerHTML={{ __html: data.work[params.i].description }}>
+                            dangerouslySetInnerHTML={{ __html: selectedWork.description }}>
                             </Typography>
                         </Box>
+
+                        {Array.isArray(selectedWork.projects) && selectedWork.projects.length > 0 && (
+                            <Box mt={2}>
+                                <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }}>
+                                    Key Projects
+                                </Typography>
+                                {selectedWork.projects.map((project, index) => (
+                                    <Box
+                                        key={`${project.name}-${index}`}
+                                        sx={{
+                                            mb: 2,
+                                            p: 2,
+                                            borderRadius: '14px',
+                                            background: '#faf7ff',
+                                            border: '1px solid rgba(106, 27, 154, 0.16)'
+                                        }}
+                                    >
+                                        <Typography fontFamily={'Gilroy Bold'} color={'black'} variant="subtitle1">
+                                            {project.name}
+                                        </Typography>
+                                        <Typography fontFamily={'Gilroy Light'} color={'black'} variant="body2" sx={{ mb: 1 }}>
+                                            {project.tech}
+                                        </Typography>
+                                        <Box component="ul" sx={{ mt: 0, mb: 0, pl: 2 }}>
+                                            {project.highlights.map((point, pointIndex) => (
+                                                <Typography key={`${project.name}-point-${pointIndex}`} component="li" fontFamily={'Gilroy Light'} color={'black'} variant="body2" sx={{ mb: 0.6 }}>
+                                                    {point}
+                                                </Typography>
+                                            ))}
+                                        </Box>
+                                    </Box>
+                                ))}
+                            </Box>
+                        )}
+
+                        {Array.isArray(selectedWork.technicalSkills) && selectedWork.technicalSkills.length > 0 && (
+                            <Box mt={1}>
+                                <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }}>
+                                    Technical Skills Used
+                                </Typography>
+                                <Typography fontFamily={'Gilroy Light'} color={'black'} variant="body1">
+                                    {selectedWork.technicalSkills.join(', ')}
+                                </Typography>
+                            </Box>
+                        )}
+
+                        {Array.isArray(selectedWork.achievements) && selectedWork.achievements.length > 0 && (
+                            <Box mt={2}>
+                                <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }}>
+                                    Achievements & Activities
+                                </Typography>
+                                <Box component="ul" sx={{ mt: 0, mb: 0, pl: 2 }}>
+                                    {selectedWork.achievements.map((item, index) => (
+                                        <Typography key={`achievement-${index}`} component="li" fontFamily={'Gilroy Light'} color={'black'} variant="body2" sx={{ mb: 0.6 }}>
+                                            {item}
+                                        </Typography>
+                                    ))}
+                                </Box>
+                            </Box>
+                        )}
                     </Box>
                 </Container>
             </Box>

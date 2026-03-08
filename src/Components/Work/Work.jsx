@@ -80,6 +80,12 @@ export default function Work()
                                         <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-heading)'} gutterBottom variant="h6" component="div" textAlign={'center'}>
                                             {item.title}
                                         </Typography>
+                                        <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-heading)'} variant="body2" textAlign={'center'}>
+                                            {item.company}
+                                        </Typography>
+                                        <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-heading)'} variant="caption" display="block" textAlign={'center'}>
+                                            {item.dates}
+                                        </Typography>
                                     </CardContent>
                                 </CardActionArea>
                             </Card>

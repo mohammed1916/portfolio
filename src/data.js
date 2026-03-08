@@ -120,6 +120,66 @@ export const data = {
     ],
     "work": [
         {
+            "company": "BBBS Pvt. Ltd.",
+            "location": "Chennai, Tamil Nadu, India",
+            "title": "AI Engineer",
+            "thumbnail": designImage4,
+            "dates": "Sep 2025 - Present",
+            "description": "Working on defence technology solutions with geospatial analytics, vision-language systems, and LLM-powered automation.",
+            "domain": "Defence Technology Solutions",
+            "projects": [
+                {
+                    "name": "Marine Anomaly Detection Platform",
+                    "tech": "Python, FastAPI, React, Kafka, Redis, Parquet, Leaflet",
+                    "highlights": [
+                        "Engineered a streaming AIS analytics pipeline using Kafka and Celery + Redis workers for large-scale spatio-temporal analysis across 244M+ AIS records.",
+                        "Developed a geospatial analytics platform with vessel proximity queries, trajectory visualization, and anomaly detection for route deviation and loitering.",
+                        "Implemented vessel trajectory forecasting with Amazon Chronos transformer models, achieving around 2s prediction latency per vessel."
+                    ]
+                },
+                {
+                    "name": "Video-Based Assembly Task Inference System",
+                    "tech": "Python, OpenCV, Vision-Language Models, MediaPipe, FAISS",
+                    "highlights": [
+                        "Contributed to a computer vision pipeline to infer industrial assembly workflows from video streams.",
+                        "Extracted multi-region motion descriptors with MediaPipe landmarks and OpenCV; benchmarked Qwen2-VL, SmolVLM, Jina-VLM, and custom VLMs.",
+                        "Built a FAISS-based CLIP embedding retrieval system, reaching about 78% classification accuracy across assembly task categories."
+                    ]
+                },
+                {
+                    "name": "LLM-powered ERP Data Extraction Pipeline",
+                    "tech": "React, Node.js, SQLite, Gemini API, Ollama, Cheerio, Tesseract.js",
+                    "highlights": [
+                        "Automated ERP product data entry through an LLM-driven extraction pipeline that outputs ERP-ready CSV/JSON schemas.",
+                        "Enabled ingestion from URLs, images, and PDFs with DOM parsing and OCR, then consolidated retrieval context in a vector store.",
+                        "Developed an agentic extraction workflow using Gemini API and local Qwen inference via Ollama, with validation layers and CI/CD deployment."
+                    ]
+                }
+            ],
+            "technicalSkills": [
+                "Python",
+                "TypeScript",
+                "JavaScript",
+                "Kafka",
+                "Redis",
+                "Parquet",
+                "Celery",
+                "FAISS",
+                "PyTorch",
+                "Transformers",
+                "FastAPI",
+                "Flask",
+                "Node.js",
+                "React"
+            ],
+            "achievements": [
+                "Merit Scholarship by Government of Tamil Nadu for securing 91.793 percentile in TANCET.",
+                "Kaggle competitor in Top 7% (14/217 teams) in ESA Trojan Horse Hunt and participant in 8+ ML competitions.",
+                "Participant in NVIDIA GPU Accelerated Computing Codeathon (IEEE CIS + ACM, Oct 2024).",
+                "Participant in multiple hackathons including Google Cloud, AWS, and MongoDB competitions (2024-2026)."
+            ]
+        },
+        {
             "company": "The Sparks Foundation",
             "location": "Online/ Work from Home",
             "title": "Intern",
