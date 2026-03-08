@@ -24,6 +24,7 @@ import {
 
 import About from './Components/About/About.jsx';
 import Work from './Components/Work/Work.jsx';
+import Resume from './Components/Resume/Resume.jsx';
 import Certifications from './Components/Certifications/Certifications.jsx';
 import Contact from './Components/Contact/Contact.jsx';
 import Education from './Components/Education/Education.jsx';
@@ -61,6 +62,9 @@ const MainPage = () => {
       </section>
       <section id="work">
         <Work />
+      </section>
+      <section id="resume">
+        <Resume />
       </section>
       <Contact />
       <Footer />
