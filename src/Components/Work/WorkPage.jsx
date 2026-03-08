@@ -15,6 +15,41 @@ export default function WorkPage()
     let navigate = useNavigate();
     const selectedWork = data.work[params.i];
 
+    const renderBuzzPlaceholder = (title) => (
+        <Box
+            sx={{
+                minHeight: { xs: 220, sm: 300 },
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+                px: 2,
+                background: 'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35), transparent 45%), linear-gradient(135deg, #6a1b9a 0%, #8e24aa 45%, #d81b60 100%)',
+                color: '#fff',
+                position: 'relative',
+                overflow: 'hidden',
+                '&::before': {
+                    content: '"AI • ML • Data • Vision • LLM • NLP • Kafka • FastAPI"',
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.95rem',
+                    opacity: 0.2,
+                    transform: 'rotate(-12deg) scale(1.1)',
+                    letterSpacing: '1.8px',
+                    fontWeight: 700,
+                }
+            }}
+        >
+            <Typography fontFamily={'Gilroy Bold'} variant="h4" sx={{ position: 'relative', zIndex: 1 }}>
+                {title}
+            </Typography>
+        </Box>
+    );
+
     if (!selectedWork) {
         return null;
     }
@@ -82,7 +117,11 @@ export default function WorkPage()
                             boxShadow: '0 12px 32px rgba(106, 27, 154, 0.12)'
                         }}
                     >
-                        <img src={selectedWork.thumbnail} alt={selectedWork.title} />
+                        {selectedWork.thumbnail ? (
+                            <img src={selectedWork.thumbnail} alt={selectedWork.title} />
+                        ) : (
+                            renderBuzzPlaceholder(selectedWork.title)
+                        )}
                         <Box display={'flex'} flexDirection={'row'} paddingTop={'25px'}>
                             <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
                                 {"Job: "}

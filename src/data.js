@@ -123,7 +123,7 @@ export const data = {
             "company": "BBBS Pvt. Ltd.",
             "location": "Chennai, Tamil Nadu, India",
             "title": "AI Engineer",
-            "thumbnail": designImage4,
+            "thumbnail": "",
             "dates": "Sep 2025 - Present",
             "description": "Working on defence technology solutions with geospatial analytics, vision-language systems, and LLM-powered automation.",
             "domain": "Defence Technology Solutions",
