@@ -199,14 +199,14 @@ export const data = {
         {
             "type": "Web Frameworks And Libraries",
             "Knowledge in Advance Topics": "ReactJs, NextJS 13 and NextJS 15",
-            "Knowledge in Main Concepts": "Flask,MongoDB, MySQL, Firebase, NodeJS, ExpressJS, Socket.io",
+            "Knowledge in Main Concepts": "Flask, FastAPI, MongoDB, MySQL, Firebase, NodeJS, ExpressJS, Socket.io, Kafka, Redis, Celery",
             "Can do with Documentation": "Flutter, Django",
         },
         {
             "type": "AI Frameworks And Libraries",
-            "Knowledge in Advance Topics": "Pytorch, Keras, Pandas, Numpy, Matplotlib, Seaborn",
-            "Knowledge in Main Concepts": "Tensorflow, Scikit-learn",
-            "Can do with Documentation": "OpenCV, NLTK, Spacy",
+            "Knowledge in Advance Topics": "Pytorch, Transformers, Keras, Pandas, Numpy, Matplotlib, Seaborn, Vision-Language Models",
+            "Knowledge in Main Concepts": "Tensorflow, Scikit-learn, FAISS, OpenCV",
+            "Can do with Documentation": "OpenCV, NLTK, Spacy, Time-Series Forecasting",
         },
         {
             "type": "Tools and IDE's",
