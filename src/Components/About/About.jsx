@@ -139,6 +139,7 @@ const SkillChip = styled(motion.div)(({ theme }) => ({
 
 export default function About() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [activeEducationTab, setActiveEducationTab] = useState('ug');
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const ref = useRef(null);
@@ -146,6 +147,8 @@ export default function About() {
 
     const ug_images = [data.information.educationImages.Undergraduate[0], data.information.educationImages.Undergraduate[1]];
     const pg_images = [data.information.educationImages.Postgraduate[0], data.information.educationImages.Postgraduate[1]];
+    const currentImages = activeEducationTab === 'ug' ? ug_images : pg_images;
+    const currentLabel = activeEducationTab === 'ug' ? 'Undergraduate' : 'Postgraduate';
     
     
     // Generate simple particles
@@ -170,11 +173,13 @@ export default function About() {
     }, []);
 
     const nextImage = () => {
-        setCurrentImageIndex((prev) => (prev + 1) % ug_images.length);
+        setCurrentImageIndex((prev) => (prev + 1) % currentImages.length);
+        setIsImageLoaded(false);
     };
 
     const prevImage = () => {
-        setCurrentImageIndex((prev) => (prev - 1 + ug_images.length) % ug_images.length);
+        setCurrentImageIndex((prev) => (prev - 1 + currentImages.length) % currentImages.length);
+        setIsImageLoaded(false);
     };
 
     return (
@@ -315,6 +320,60 @@ export default function About() {
                                 transition: { duration: 0.3 } 
                             }}
                         >
+                            <motion.div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    gap: '10px',
+                                    marginBottom: '16px',
+                                    padding: '8px',
+                                    borderRadius: '999px',
+                                    background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.16), rgba(221, 160, 221, 0.12))',
+                                    border: '1px solid rgba(255, 255, 255, 0.25)',
+                                    backdropFilter: 'blur(14px)',
+                                    boxShadow: '0 12px 30px rgba(138, 43, 226, 0.18)',
+                                }}
+                                initial={{ opacity: 0, y: -18 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 1.25, duration: 0.45 }}
+                            >
+                                {[
+                                    { key: 'ug', label: 'Undergraduate' },
+                                    { key: 'pg', label: 'Postgraduate' },
+                                ].map((tab) => (
+                                    <motion.button
+                                        key={tab.key}
+                                        onClick={() => {
+                                            setActiveEducationTab(tab.key);
+                                            setCurrentImageIndex(0);
+                                            setIsImageLoaded(false);
+                                        }}
+                                        style={{
+                                            border: 'none',
+                                            outline: 'none',
+                                            borderRadius: '999px',
+                                            padding: '10px 18px',
+                                            fontFamily: 'var(--font-gilroy-bold)',
+                                            fontSize: '0.9rem',
+                                            cursor: 'pointer',
+                                            color: activeEducationTab === tab.key ? '#ffffff' : 'rgba(255, 255, 255, 0.75)',
+                                            background: activeEducationTab === tab.key
+                                                ? 'linear-gradient(135deg, rgba(138, 43, 226, 0.95), rgba(221, 160, 221, 0.95))'
+                                                : 'rgba(255, 255, 255, 0.12)',
+                                            boxShadow: activeEducationTab === tab.key
+                                                ? '0 10px 20px rgba(138, 43, 226, 0.3)'
+                                                : 'none',
+                                            transition: 'all 0.25s ease',
+                                        }}
+                                        whileHover={{ scale: 1.04 }}
+                                        whileTap={{ scale: 0.97 }}
+                                    >
+                                        {tab.label}
+                                    </motion.button>
+                                ))}
+                            </motion.div>
+
                             <div className="image-wrapper">
                                 {/* Carousel Navigation Arrows */}
                                 <motion.button
@@ -407,10 +466,10 @@ export default function About() {
                                         />
                                     )}
                                     <motion.img
-                                        key={currentImageIndex}
+                                        key={`${activeEducationTab}-${currentImageIndex}`}
                                         className="main-image"
-                                        src={ug_images[currentImageIndex]}
-                                        alt={`${data.information.name} - Image ${currentImageIndex + 1}`}
+                                        src={currentImages[currentImageIndex]}
+                                        alt={`${data.information.name} - ${currentLabel} Image ${currentImageIndex + 1}`}
                                         loading="lazy"
                                         onLoad={() => setIsImageLoaded(true)}
                                         initial={{ opacity: 0, scale: 1.1, rotateY: 90 }}
@@ -443,10 +502,13 @@ export default function About() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 2 }}
                                 >
-                                    {ug_images.map((_, index) => (
+                                    {currentImages.map((_, index) => (
                                         <motion.button
                                             key={index}
-                                            onClick={() => setCurrentImageIndex(index)}
+                                            onClick={() => {
+                                                setCurrentImageIndex(index);
+                                                setIsImageLoaded(false);
+                                            }}
                                             style={{
                                                 width: index === currentImageIndex ? '24px' : '12px',
                                                 height: '12px',
@@ -490,7 +552,7 @@ export default function About() {
                                         animate={{ opacity: 1, scale: 1 }}
                                         transition={{ delay: 2.5 }}
                                     >
-                                        {currentImageIndex + 1} / {ug_images.length}
+                                        {currentLabel} {currentImageIndex + 1} / {currentImages.length}
                                     </motion.div>
                                 </div>
                             </ImageContainer3D>
