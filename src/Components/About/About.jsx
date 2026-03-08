@@ -162,7 +162,7 @@ export default function About() {
     }));
 
     // Skills array (you can customize this based on your data)
-    const skills = ['React', 'JavaScript', 'Python', 'Node.js', 'MongoDB', 'UI/UX', 'Machine Learning'];
+    const skills = ['Pytorch','Tensorboard','React Typescript', 'Python', 'FastAPI'];
 
     useEffect(() => {
         const handleMouseMove = (e) => {
