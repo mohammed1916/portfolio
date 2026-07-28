@@ -3,14 +3,17 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
+import Chip from '@mui/material/Chip';
 import { CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import LaunchIcon from '@mui/icons-material/Launch';
 import noImageAvailable from '../../img/icons/noImageAvailable.jpeg';
 import GradientPlaceholder from '../common/GradientPlaceholder';
+import DetailDescription from '../common/DetailDescription';
+import DetailRow from '../common/DetailRow';
 
 import { data } from '../../data';
 
@@ -54,12 +57,12 @@ export default function ProjectPage()
     return (
         <>
             <Box
-                px={{ xs: 3, sm: 10 }}
-                py={{ xs: 5, sm: 10 }}
+                px={{ xs: 1.5, sm: 6, md: 10 }}
+                py={{ xs: 4, sm: 10 }}
                 bgcolor={'var(--color-bg)'}
                 color={'var(--color-heading)'}
                 sx={{
-                    // background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
+                    overflowX: 'hidden',
                     position: 'relative',
                     '&::before': {
                         content: '""',
@@ -90,50 +93,101 @@ export default function ProjectPage()
                             Back to Portfolio
                         </Button>
                     </Box>
-                    <Typography textAlign="center" fontFamily="var(--font-gilroy-bold)" fontSize={'2.5rem'} color={'var(--color-heading)'} p={{ xs: 1, sm: 2 }}>PROJECT</Typography>
-                    <Box display={'flex'} flexDirection={'column'} bgcolor={'var(--color-card-bg)'} borderRadius={'20px'} padding={'20px'} boxShadow={'0 8px 32px var(--color-particle-shadow)'}>
-                        <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h3" component="div" textTransform={'uppercase'} textAlign={'center'} paddingBottom={'8px'} color={'var(--color-heading-sub)'}>
-                            {data.projects[params.i].title}
+                    <Typography textAlign="center" fontFamily="var(--font-gilroy-bold)" fontSize={{ xs: '1.6rem', sm: '2.5rem' }} color={'var(--color-heading-sub)'} p={{ xs: 1, sm: 2 }}>PROJECT</Typography>
+                    <Box
+                        display={'flex'}
+                        flexDirection={'column'}
+                        bgcolor={'var(--color-card-bg)'}
+                        borderRadius={'20px'}
+                        padding={{ xs: '16px', sm: '24px' }}
+                        boxShadow={'0 8px 32px var(--color-particle-shadow)'}
+                        sx={{ minWidth: 0, overflowWrap: 'anywhere' }}
+                    >
+                        <Typography
+                            fontFamily="var(--font-gilroy-bold)"
+                            gutterBottom
+                            component="div"
+                            textTransform={'uppercase'}
+                            textAlign={'center'}
+                            paddingBottom={'8px'}
+                            color={'var(--color-heading-sub)'}
+                            sx={{
+                                fontSize: { xs: '1.4rem', sm: '2.2rem', md: '2.8rem' },
+                                lineHeight: 1.2,
+                                overflowWrap: 'anywhere',
+                            }}
+                        >
+                            {project.title}
                         </Typography>
-                        <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading-sub)'}>
-                                {`Application Type:`}
+
+                        <DetailRow label="Application Type:" value={project.type} />
+
+                        {project.tech && <DetailRow label="Tech Stack:" value={project.tech} />}
+
+                        <DetailRow label="Link:">
+                            <Chip
+                                icon={<LaunchIcon />}
+                                label="Open project"
+                                component="a"
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                clickable
+                                title={project.link}
+                                sx={{
+                                    fontFamily: 'var(--font-gilroy-bold)',
+                                    color: '#fff',
+                                    background: 'linear-gradient(135deg, #6a1b9a 0%, #8e24aa 60%, #d81b60 100%)',
+                                    boxShadow: '0 6px 16px rgba(106, 27, 154, 0.28)',
+                                    '& .MuiChip-icon': { color: '#fff' },
+                                    '&:hover': {
+                                        background: 'linear-gradient(135deg, #8e24aa 0%, #ad1457 100%)',
+                                    },
+                                }}
+                            />
+                        </DetailRow>
+
+                        <Box sx={{ mt: 1.5, minWidth: 0 }}>
+                            <Typography
+                                sx={{
+                                    fontFamily: 'var(--font-gilroy-bold)',
+                                    color: 'var(--color-heading-sub)',
+                                    fontWeight: 700,
+                                    fontSize: { xs: '0.95rem', sm: '1.05rem' },
+                                    mb: 0.8,
+                                }}
+                            >
+                                Description:
                             </Typography>
-                            <Typography fontFamily="var(--font-gilroy-light)" gutterBottom variant="h6" component="div" color={'var(--color-text)'}>
-                                {`${data.projects[params.i].type}`}
-                            </Typography>
+                            <DetailDescription html={project.description} />
                         </Box>
-                        <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading-sub)'}>
-                                {`Link: `}
-                            </Typography>
-                            <Link href={data.projects[params.i].link} underline="hover" aria-label="Explore Project">
-                                <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-text)'} gutterBottom variant="h6" component="div">
-                                    {`${data.projects[params.i].link}`}
-                                </Typography>
-                            </Link>
-                        </Box>
-                        <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} color={'var(--color-heading-sub)'}>
-                                {`Description: `}
-                            </Typography>
-                            <Typography fontFamily="var(--font-gilroy-light)" gutterBottom variant="h6" component="div" color={'var(--color-text)'}
-                            dangerouslySetInnerHTML={{ __html: data.projects[params.i].description }}>
-                            </Typography>
-                        </Box>
+
                         <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} paddingTop={'30px'} color={'var(--color-heading-sub)'}>
                             Sample Images:
                         </Typography>
                         {gallery.length > 0 ? (
                             <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'var(--color-card-bg2)'} borderRadius={'20px'} padding={'10px'}>
                                 {gallery.map((item, index) => (
-                                    <Box key={`gallery-${index}`} display={'flex'} flexWrap={'wrap'} justifyContent='center' >
-                                        <Card sx={{ maxWidth: 250, padding: '10px', margin: '20px', boxShadow: '0 8px 32px var(--color-particle-shadow)', ':hover': { boxShadow: '0 15px 70px -12px var(--color-particle-shadow)' } }} >
-                                            <CardActionArea>
+                                    <Box key={`gallery-${index}`} display={'flex'} flexWrap={'wrap'} justifyContent='center' sx={{ width: '100%', maxWidth: 250 }}>
+                                        <Card sx={{ width: '100%', padding: '10px', margin: { xs: '10px 0', sm: '20px' }, boxShadow: '0 8px 32px var(--color-particle-shadow)', ':hover': { boxShadow: '0 15px 70px -12px var(--color-particle-shadow)' } }} >
+                                            <CardActionArea
+                                                component="a"
+                                                href={item ? item.original || item.thumbnail : noImageAvailable}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
                                                 <CardMedia
                                                     component="img"
-                                                    height="480"
                                                     image={item ? item.thumbnail : noImageAvailable}
+                                                    alt={`${project.title} screenshot ${index + 1}`}
+                                                    loading="lazy"
+                                                    sx={{
+                                                        width: '100%',
+                                                        height: { xs: 260, sm: 480 },
+                                                        objectFit: 'contain',
+                                                        backgroundColor: '#fff',
+                                                        borderRadius: '8px',
+                                                    }}
                                                 />
                                             </CardActionArea>
                                         </Card>

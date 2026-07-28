@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import GradientPlaceholder from '../common/GradientPlaceholder';
+import DetailDescription from '../common/DetailDescription';
+import DetailRow from '../common/DetailRow';
 import { data } from '../../data';
 
 import { useParams, useNavigate } from "react-router-dom";
@@ -50,11 +52,12 @@ export default function WorkPage()
     return (
         <>
             <Box
-                px={{ xs: 3, sm: 10 }}
-                py={{ xs: 5, sm: 10 }}
+                px={{ xs: 1.5, sm: 6, md: 10 }}
+                py={{ xs: 4, sm: 10 }}
                 bgcolor={'white'}
-                color={'white'} >
-                <Container sx={{ width: '100%' }}>
+                color={'white'}
+                sx={{ overflowX: 'hidden' }} >
+                <Container sx={{ width: '100%', minWidth: 0 }}>
                     <Box display="flex" alignItems="center" mb={2}>
                         <Button
                             startIcon={<ArrowBackIcon />}
@@ -71,7 +74,7 @@ export default function WorkPage()
                             Back to Portfolio
                         </Button>
                     </Box>
-                    <Typography textAlign="center" fontFamily={'Gilroy Light'} fontSize={'40px'} color={'black'} p={{ xs: 1, sm: 2 }}>Work</Typography>
+                    <Typography textAlign="center" fontFamily={'Gilroy Bold'} fontSize={{ xs: '1.6rem', sm: '2.5rem' }} color={'#4a148c'} p={{ xs: 1, sm: 2 }}>Experience</Typography>
                     <Box
                         display={'flex'}
                         flexDirection={'column'}
@@ -118,56 +121,29 @@ export default function WorkPage()
                                 height={300}
                             />
                         )}
-                        <Box display={'flex'} flexDirection={'row'} paddingTop={'25px'}>
-                            <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
-                                {"Job: "}
-                            </Typography>
-                            <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${selectedWork.title}`}
-                            </Typography>
-                        </Box>
-                        <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
-                                {"Company: "}
-                            </Typography>
-                            <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${selectedWork.company}`}
-                            </Typography>
+                        <Box pt={'25px'} sx={{ minWidth: 0 }}>
+                            <DetailRow label="Job:" value={selectedWork.title} color="#4a148c" valueColor="#111" />
+                            <DetailRow label="Company:" value={selectedWork.company} color="#4a148c" valueColor="#111" />
+                            <DetailRow label="Location:" value={selectedWork.location} color="#4a148c" valueColor="#111" />
+                            <DetailRow label="Date:" value={selectedWork.dates} color="#4a148c" valueColor="#111" />
+                            {selectedWork.domain && (
+                                <DetailRow label="Domain:" value={selectedWork.domain} color="#4a148c" valueColor="#111" />
+                            )}
                         </Box>
 
-                        <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
-                                {`Location:`}
+                        <Box sx={{ mt: 1.5, minWidth: 0 }}>
+                            <Typography
+                                sx={{
+                                    fontFamily: 'var(--font-gilroy-bold)',
+                                    color: '#4a148c',
+                                    fontWeight: 700,
+                                    fontSize: { xs: '0.95rem', sm: '1.05rem' },
+                                    mb: 0.8,
+                                }}
+                            >
+                                Description:
                             </Typography>
-                            <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${selectedWork.location}`}
-                            </Typography>
-                        </Box>
-                        <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
-                                {`Date:`}
-                            </Typography>
-                            <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  >
-                                {`${selectedWork.dates}`}
-                            </Typography>
-                        </Box>
-                        {selectedWork.domain && (
-                            <Box display={'flex'} flexDirection={'row'} >
-                                <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
-                                    {`Domain:`}
-                                </Typography>
-                                <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div">
-                                    {selectedWork.domain}
-                                </Typography>
-                            </Box>
-                        )}
-                        <Box display={'flex'} flexDirection={'row'} >
-                            <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
-                                {`Description: `}
-                            </Typography>
-                            <Typography fontFamily={'Gilroy Light'} color={'black'} gutterBottom variant="h6" component="div"  
-                            dangerouslySetInnerHTML={{ __html: selectedWork.description }}>
-                            </Typography>
+                            <DetailDescription html={selectedWork.description} color="#111" linkColor="#4a148c" />
                         </Box>
 
                         {Array.isArray(selectedWork.projects) && selectedWork.projects.length > 0 && (
@@ -180,10 +156,12 @@ export default function WorkPage()
                                         key={`${project.name}-${index}`}
                                         sx={{
                                             mb: 2,
-                                            p: 2,
+                                            p: { xs: 1.5, sm: 2 },
                                             borderRadius: '14px',
                                             background: '#faf7ff',
-                                            border: '1px solid rgba(106, 27, 154, 0.16)'
+                                            border: '1px solid rgba(106, 27, 154, 0.16)',
+                                            minWidth: 0,
+                                            overflowWrap: 'anywhere',
                                         }}
                                     >
                                         <Typography fontFamily={'Gilroy Bold'} color={'black'} variant="subtitle1">
