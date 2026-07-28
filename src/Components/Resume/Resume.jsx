@@ -33,11 +33,14 @@ const outlinedButtonSx = {
     borderRadius: '999px',
     textTransform: 'none',
     fontFamily: 'var(--font-gilroy-bold)',
-    color: 'var(--color-typewriter-border)',
-    borderColor: 'var(--color-typewriter-border)',
+    // Deep purple reads clearly against the light card; the pink accent did not.
+    color: 'var(--color-heading-sub)',
+    borderColor: 'var(--color-heading-sub)',
+    borderWidth: '2px',
     '&:hover': {
-        borderColor: 'var(--color-typewriter-border)',
-        backgroundColor: 'rgba(106, 27, 154, 0.08)',
+        borderColor: 'var(--color-heading-sub)',
+        borderWidth: '2px',
+        backgroundColor: 'rgba(101, 48, 185, 0.1)',
     },
 };
 
@@ -66,7 +69,7 @@ export default function Resume() {
             }}
         >
             <Container sx={{ position: 'relative', zIndex: 1 }}>
-                <AnimatedSectionHeading color={'var(--color-typewriter-border)'}>Resume</AnimatedSectionHeading>
+                <AnimatedSectionHeading color={'var(--color-heading-sub)'}>Resume</AnimatedSectionHeading>
 
                 <Box
                     sx={{
@@ -79,12 +82,15 @@ export default function Resume() {
                         textAlign: 'center',
                     }}
                 >
-                    <DescriptionOutlinedIcon sx={{ fontSize: 44, color: 'var(--color-typewriter-border)', mb: 1 }} />
+                    <DescriptionOutlinedIcon sx={{ fontSize: 44, color: 'var(--color-heading-sub)', mb: 1 }} />
                     <Typography
                         variant="h5"
                         sx={{
                             fontFamily: 'var(--font-gilroy-bold)',
-                            color: 'var(--color-heading)',
+                            // --color-heading is a near-white tone meant for dark
+                            // backgrounds; this card is light, so use the deep purple.
+                            color: 'var(--color-heading-sub)',
+                            fontWeight: 700,
                             mb: 1,
                         }}
                     >
@@ -98,6 +104,7 @@ export default function Resume() {
                             maxWidth: 760,
                             mx: 'auto',
                             mb: 2,
+                            lineHeight: 1.65,
                         }}
                     >
                         {resume.summary}
@@ -109,8 +116,8 @@ export default function Resume() {
                         sx={{
                             mb: 3,
                             fontFamily: 'var(--font-gilroy-light)',
-                            color: 'var(--color-typewriter)',
-                            border: '1px solid var(--color-secondary)',
+                            color: 'var(--color-heading-sub)',
+                            border: '1px solid var(--color-heading-sub)',
                             background: 'transparent',
                         }}
                     />
