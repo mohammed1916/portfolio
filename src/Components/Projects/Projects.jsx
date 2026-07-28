@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
 import AnimatedSectionHeading from '../common/AnimatedSectionHeading';
+import GradientPlaceholder from '../common/GradientPlaceholder';
 import { data } from '../../data';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
@@ -62,16 +63,18 @@ export default function Projects()
                     <Box
                         sx={{
                             display: 'flex',
+                            flexWrap: 'wrap',
                             justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: '8px',
                             marginBottom: '40px',
                             position: 'relative',
                             background: 'var(--color-card-bg)',
                             backdropFilter: 'blur(10px)',
-                            borderRadius: '50px',
-                            padding: '8px',
+                            borderRadius: { xs: '28px', sm: '50px' },
+                            padding: { xs: '10px', sm: '8px' },
                             border: '1px solid var(--color-secondary)',
                             boxShadow: '0 8px 32px var(--color-particle-shadow)',
-                            overflow: 'hidden',
                         }}
                     >
                         {projectTypes.map((type) => (
@@ -81,19 +84,19 @@ export default function Projects()
                                 onClick={() => setActiveTab(type)}
                                 sx={{
                                     position: 'relative',
-                                    padding: '12px 24px',
-                                    margin: '0 4px',
+                                    padding: { xs: '10px 16px', sm: '12px 24px' },
                                     border: 'none',
                                     background: 'transparent',
                                     cursor: 'pointer',
                                     borderRadius: '25px',
                                     fontFamily: "var(--font-gilroy-bold)",
-                                    fontSize: '14px',
+                                    fontSize: { xs: '12px', sm: '14px' },
                                     fontWeight: activeTab === type ? 'bold' : 'normal',
                                     color: activeTab === type ? '#fff' : 'var(--color-heading-hover)',
                                     transition: 'color 0.3s ease',
                                     zIndex: 2,
-                                    minWidth: '80px',
+                                    minWidth: { xs: 'auto', sm: '80px' },
+                                    flexShrink: 0,
                                     whiteSpace: 'nowrap',
                                     '&:hover': {
                                         color: activeTab === type ? 'black' : 'var(--color-heading-hover)',
@@ -140,7 +143,7 @@ export default function Projects()
                             bgcolor={'var(--color-bg)'}
                             color={'var(--color-heading)'}
                             borderRadius={'20px'} 
-                            padding={'20px'}
+                            padding={{ xs: '14px', sm: '20px' }}
                             sx={{
                                 background: 'linear-gradient(145deg, var(--color-card-bg) 0%, var(--color-card-bg2) 100%)',
                                 backdropFilter: 'blur(10px)',
@@ -162,13 +165,15 @@ export default function Projects()
                                             ease: [0.4, 0, 0.2, 1]
                                         }}
                                         layout
+                                        style={{ width: '100%', maxWidth: 280, display: 'flex', justifyContent: 'center' }}
                                     >
-                                        <Card 
+                                        <Card
                                             onClick={() => nav(data.projects.findIndex(p => p.title === item.title))} 
-                                            sx={{ 
-                                                maxWidth: 280, 
-                                                padding: '15px', 
-                                                margin: '20px', 
+                                            sx={{
+                                                width: '100%',
+                                                maxWidth: 280,
+                                                padding: '15px',
+                                                margin: { xs: '12px 0', sm: '20px' },
                                                 borderRadius: '20px',
                                                 // background: 'linear-gradient(135deg, var(--color-bg) 0%, var(--color-accent) 50%, var(--color-secondary) 100%)',
                                                 border: '1px solid var(--color-secondary)',
@@ -183,18 +188,26 @@ export default function Projects()
                                             className="project-card cursor-view"
                                         >
                                             <CardActionArea sx={{ borderRadius: '15px' }}>
-                                                <CardMedia
-                                                    component="img"
-                                                    height="200"
-                                                    image={item.thumbnail}
-                                                    sx={{ 
-                                                        borderRadius: '15px',
-                                                        transition: 'transform 0.3s ease',
-                                                        '&:hover': {
-                                                            transform: 'scale(1.05)',
-                                                        }
-                                                    }}
-                                                />
+                                                {item.thumbnail ? (
+                                                    <CardMedia
+                                                        component="img"
+                                                        height="200"
+                                                        image={item.thumbnail}
+                                                        sx={{
+                                                            borderRadius: '15px',
+                                                            transition: 'transform 0.3s ease',
+                                                            '&:hover': {
+                                                                transform: 'scale(1.05)',
+                                                            }
+                                                        }}
+                                                    />
+                                                ) : (
+                                                    <GradientPlaceholder
+                                                        title={item.title}
+                                                        buzz={item.placeholderTags}
+                                                        height={200}
+                                                    />
+                                                )}
                                                 <CardContent sx={{ padding: '20px' }}>
                                                     <Typography 
                                                         fontFamily={'Gilroy Bold'} 

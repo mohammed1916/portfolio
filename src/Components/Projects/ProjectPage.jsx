@@ -10,6 +10,7 @@ import { CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import noImageAvailable from '../../img/icons/noImageAvailable.jpeg';
+import GradientPlaceholder from '../common/GradientPlaceholder';
 
 import { data } from '../../data';
 
@@ -20,6 +21,8 @@ export default function ProjectPage()
 {
     let params = useParams();
     let navigate = useNavigate();
+    const project = data.projects[params.i];
+    const gallery = Array.isArray(project?.gallery) ? project.gallery : [];
 
     // Scroll to top when component mounts
     React.useEffect(() => {
@@ -121,21 +124,32 @@ export default function ProjectPage()
                         <Typography fontFamily="var(--font-gilroy-bold)" gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'} paddingTop={'30px'} color={'var(--color-heading-sub)'}>
                             Sample Images:
                         </Typography>
-                        <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'var(--color-card-bg2)'} borderRadius={'20px'} padding={'10px'}>
-                            {data.projects[params.i].gallery.map((item, index) => (
-                                <Box display={'flex'} flexWrap={'wrap'} justifyContent='center' >
-                                    <Card key={item.thumbnail} sx={{ maxWidth: 250, padding: '10px', margin: '20px', boxShadow: '0 8px 32px var(--color-particle-shadow)', ':hover': { boxShadow: '0 15px 70px -12px var(--color-particle-shadow)' } }} >
-                                        <CardActionArea>
-                                            <CardMedia
-                                                component="img"
-                                                height="480"
-                                                image={item ? item.thumbnail : noImageAvailable}
-                                            />
-                                        </CardActionArea>
-                                    </Card>
-                                </Box>
-                            ))}
-                        </Box>
+                        {gallery.length > 0 ? (
+                            <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'var(--color-card-bg2)'} borderRadius={'20px'} padding={'10px'}>
+                                {gallery.map((item, index) => (
+                                    <Box key={`gallery-${index}`} display={'flex'} flexWrap={'wrap'} justifyContent='center' >
+                                        <Card sx={{ maxWidth: 250, padding: '10px', margin: '20px', boxShadow: '0 8px 32px var(--color-particle-shadow)', ':hover': { boxShadow: '0 15px 70px -12px var(--color-particle-shadow)' } }} >
+                                            <CardActionArea>
+                                                <CardMedia
+                                                    component="img"
+                                                    height="480"
+                                                    image={item ? item.thumbnail : noImageAvailable}
+                                                />
+                                            </CardActionArea>
+                                        </Card>
+                                    </Box>
+                                ))}
+                            </Box>
+                        ) : (
+                            <Box bgcolor={'var(--color-card-bg2)'} borderRadius={'20px'} padding={'10px'}>
+                                <GradientPlaceholder
+                                    title={project.title}
+                                    subtitle="Screenshots coming soon"
+                                    buzz={project.placeholderTags}
+                                    height={300}
+                                />
+                            </Box>
+                        )}
                     </Box>
                 </Container>
             </Box>

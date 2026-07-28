@@ -162,7 +162,7 @@ export default function About() {
     }));
 
     // Skills array (you can customize this based on your data)
-    const skills = ['Pytorch','Tensorboard','React Typescript', 'Python', 'FastAPI'];
+    const skills = ['Python', 'PyTorch', 'FastAPI', 'Apache Kafka', 'LangGraph', 'Vision-Language Models', 'CUDA', 'React + TypeScript'];
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -291,6 +291,99 @@ export default function About() {
                                 boxShadow: '0 0 20px rgba(138, 43, 226, 0.5)',
                             }}
                         />
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: 1.7, duration: 0.7 }}
+                        >
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    fontFamily: 'var(--font-gilroy-bold)',
+                                    letterSpacing: '3px',
+                                    textTransform: 'uppercase',
+                                    fontSize: { xs: '0.85rem', md: '1.05rem' },
+                                }}
+                            >
+                                {data.information.role}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    fontFamily: 'var(--font-gilroy-light)',
+                                    color: 'var(--color-text)',
+                                    maxWidth: 640,
+                                    mx: 'auto',
+                                    mt: 1,
+                                    fontSize: { xs: '0.95rem', md: '1.05rem' },
+                                }}
+                            >
+                                {data.information.tagline}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    fontFamily: 'var(--font-gilroy-light)',
+                                    color: 'var(--color-text)',
+                                    mt: 1,
+                                    fontSize: '0.9rem',
+                                    opacity: 0.85,
+                                }}
+                            >
+                                {data.information.location}
+                            </Typography>
+                        </motion.div>
+
+                        {/* Headline metrics pulled from the resume */}
+                        <Box
+                            sx={{
+                                display: 'grid',
+                                gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
+                                gap: { xs: 2, md: 3 },
+                                mt: 5,
+                                maxWidth: 980,
+                                mx: 'auto',
+                            }}
+                        >
+                            {data.information.highlights.map((stat, index) => (
+                                <motion.div
+                                    key={stat.value}
+                                    initial={{ opacity: 0, y: 24 }}
+                                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                    transition={{ delay: 2 + index * 0.12, duration: 0.5 }}
+                                    whileHover={{ y: -6 }}
+                                    style={{
+                                        padding: '20px 16px',
+                                        borderRadius: '18px',
+                                        background: 'linear-gradient(135deg, var(--color-card-bg) 0%, var(--color-card-bg2) 100%)',
+                                        border: '1px solid var(--color-secondary)',
+                                        backdropFilter: 'blur(14px)',
+                                        boxShadow: '0 12px 32px var(--color-particle-shadow)',
+                                    }}
+                                >
+                                    <Typography
+                                        sx={{
+                                            fontFamily: 'var(--font-gilroy-bold)',
+                                            fontSize: { xs: '1.5rem', md: '1.9rem' },
+                                            color: 'var(--color-typewriter-border)',
+                                            lineHeight: 1.1,
+                                        }}
+                                    >
+                                        {stat.value}
+                                    </Typography>
+                                    <Typography
+                                        sx={{
+                                            fontFamily: 'var(--font-gilroy-light)',
+                                            fontSize: '0.8rem',
+                                            color: 'var(--color-text)',
+                                            mt: 0.8,
+                                            lineHeight: 1.4,
+                                        }}
+                                    >
+                                        {stat.label}
+                                    </Typography>
+                                </motion.div>
+                            ))}
+                        </Box>
                     </motion.div>
                     
                     {/* <AnimatedSectionHeading>About Me</AnimatedSectionHeading> */}

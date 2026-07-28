@@ -48,6 +48,12 @@ import project6_1 from './Components/Projects/Images/6/1.png';
 import project6_2 from './Components/Projects/Images/6/2.png';
 import project6_3 from './Components/Projects/Images/6/3.png';
 
+// Multi-Agent RAG platform screenshots
+import project7_1 from './Components/Projects/Images/7/1.png';
+
+// Resume PDF served from the bundle so it can be both viewed inline and downloaded.
+import resumePdf from './data/resume/Resume_Abdullah.pdf';
+
 
 export const data = {
     "information": {
@@ -63,8 +69,17 @@ export const data = {
             ]
         },
         "email": "developermohammed01@gmail.com",
-        "whoami": "I am Mohammed Abdullah. An aspiring software developer who likes to learn and explore new frameworks.",
-        "description": "I have completed my PG in M.Tech IT (Spln. in AI & DS) in May 2025 from Anna University (CEG Campus) in Tamil Nadu, India, and B.E CSE from PEC (Affiliated to Anna University), chennai - 2023. I love creating user-centric applications. I have developed websites using NextJS. Apart from it, I have also explored the domain of mobile application development and created apps for native android and also a hybrid mobile application using flutter. I have also worked with Godot engine, using which I designed a memory game for android.",
+        "role": "AI Engineer",
+        "tagline": "Building production AI across distributed streaming analytics, computer vision, and vision-language systems.",
+        "phone": "+91 9150289582",
+        "whoami": "I am Mohammed Abdullah, an AI Engineer working on production and proof-of-concept AI systems across distributed streaming analytics, computer vision, vision-language models, and edge/FPGA acceleration.",
+        "description": "AI Engineer with experience building both production and proof-of-concept AI systems across distributed streaming analytics, computer vision, vision-language models, multimodal AI, and machine learning infrastructure. Experienced with FastAPI, Kafka, PyTorch, and React, with hands-on experience processing hundreds of millions of records and deploying real-time AI systems. I hold an M.Tech IT (Spln. in AI & DS) from Anna University, CEG Campus (First Rank Holder, CGPA 9.0) and a B.E in Computer Science and Engineering from Panimalar Engineering College (Merit Holder, CGPA 9.51).",
+        "highlights": [
+            { "value": "244M+", "label": "AIS records processed in a distributed maritime analytics platform" },
+            { "value": "23-layer", "label": "YOLOv8-Nano network deployed as a custom FPGA accelerator" },
+            { "value": "1st Rank", "label": "M.Tech IT (AI & DS), Anna University CEG Campus" },
+            { "value": "Top 7%", "label": "ESA Trojan Horse Hunt Kaggle competition (14/217 teams)" }
+        ],
         "location": "Chennai, Tamil Nadu, India",
         "profiles": [
             {
@@ -84,6 +99,18 @@ export const data = {
             }
         ]
     },
+    "resume": {
+        "file": resumePdf,
+        "fileName": "Mohammed_Abdullah_Resume.pdf",
+        "updated": "July 2026",
+        "summary": "AI Engineer with experience building production and proof-of-concept AI systems across distributed streaming analytics, computer vision, vision-language models, multimodal AI, and machine learning infrastructure."
+    },
+    "achievements": [
+        "Merit Scholarship awarded by the Government of Tamil Nadu for securing 91.793 percentile in TANCET.",
+        "Kaggle Competitor - Top 7% (14/217 teams) in ESA 'Trojan Horse Hunt in Time Series Forecasting'; participated in 10+ Machine Learning and Deep Learning competitions including NeurIPS Code Golf and ARC Prize.",
+        "Participant in the NVIDIA GPU Accelerated Computing Codeathon organised with IEEE Computational Intelligence Society and ACM (Oct 2024).",
+        "Participated in multiple hackathons including Google Cloud, AWS, and MongoDB developer competitions (2024-2026)."
+    ],
     "education": [
         {
             "Institution": "Anna University, CEG campus , Chennai",
@@ -122,55 +149,100 @@ export const data = {
         {
             "company": "BBBS Pvt. Ltd.",
             "location": "Chennai, Tamil Nadu, India",
-            "title": "AI Engineer",
+            "title": "AI Engineer 1",
             "thumbnail": "",
             "dates": "Sep 2025 - Present",
-            "description": "Working on defence technology solutions with geospatial analytics, vision-language systems, and LLM-powered automation.",
+            "description": "Building production AI for defence technology solutions: distributed streaming analytics, deep-learning anomaly detection, agentic AI, edge/FPGA inference acceleration, vision-language systems, and GPU-optimised 3D reconstruction.",
             "domain": "Defence Technology Solutions",
             "projects": [
                 {
-                    "name": "Marine Anomaly Detection Platform",
-                    "tech": "Python, FastAPI, React, Kafka, Redis, Parquet, Leaflet",
+                    "name": "Maritime Vessel Analytics and Anomaly Detection Platform",
+                    "focus": "Agentic AI + Deep Learning (Anomaly Detection, Time Series) + Synthetic Data Generation + Scalable Distributed Systems",
+                    "tech": "Python, PyTorch, FastAPI, React, LangChain, LangGraph, Kafka, Redis, Celery, RAPIDS cuDF, Docker",
                     "highlights": [
-                        "Engineered a streaming AIS analytics pipeline using Kafka and Celery + Redis workers for large-scale spatio-temporal analysis across 244M+ AIS records.",
-                        "Developed a geospatial analytics platform with vessel proximity queries, trajectory visualization, and anomaly detection for route deviation and loitering.",
-                        "Implemented vessel trajectory forecasting with Amazon Chronos transformer models, achieving around 2s prediction latency per vessel."
+                        "Built a distributed maritime analytics platform processing 244M+ AIS vessel records for vessel tracking, route analysis, and anomaly detection across global shipping traffic.",
+                        "Developed FastAPI services and React dashboards for real-time vessel tracking, trajectory visualization over both stored and live-fetched data, region-based proximity analysis across multiple vessels, operational investigations, and event-driven anomaly alerts using Navtex and Navarea warnings from Hydrobharat feeds.",
+                        "Designed a streaming AIS analytics architecture with Apache Kafka, Redis, Celery, and Docker supporting scalable real-time ingestion, distributed processing, task orchestration, caching, and anomaly-detection workflows.",
+                        "Designed resilient event-driven pipelines with Kafka Dead Letter Queue (DLQ) mechanisms for fault isolation, message replay, and reliable processing during schema evolution and pipeline failures; validated resilience through poison-pill message testing and DLQ-based recovery.",
+                        "Developed multi-step trajectory forecasting predicting up to 10 future AIS positions by encoding locations as Geohash representations and decoding back to coordinates; fine-tuned AutoGluon models achieving an 11% reduction in Haversine position error versus ARIMA and Prophet baselines on the Piraeus AIS dataset.",
+                        "Generated 6.8M+ synthetic AIS spoofing trajectories (2.8% of the 244M-record dataset) using mathematical trajectory models and LLM-guided augmentation to simulate anomalous vessel behaviour for detection training.",
+                        "Designed a GPU-accelerated pipeline using Parquet partitioned datasets, the PyArrow Dataset API for predicate pushdown and selective column loading, and RAPIDS cuDF for GPU joins, aggregations, and geospatial filtering — achieving sub-3-second retrieval of 20K vessel records for user-selected map regions and time ranges.",
+                        "Improved anomaly assessment by correlating vessel telemetry with weather datasets, maritime regulations (NOAA Maritime Zones and Boundaries land domains), and historical movement behaviour to reduce false-positive investigations."
                     ]
                 },
                 {
-                    "name": "Video-Based Assembly Task Inference System",
-                    "tech": "Python, OpenCV, Vision-Language Models, MediaPipe, FAISS",
+                    "name": "Real-Time YOLOv8-Nano FPGA Inference Accelerator for UAV Object Detection",
+                    "focus": "Edge AI + FPGA Accelerator Architecture + RTL Hardware/Software Co-Design",
+                    "tech": "Python, C++, Vitis HLS, Verilog, Vivado, PyTorch, Ultralytics YOLOv8",
                     "highlights": [
-                        "Contributed to a computer vision pipeline to infer industrial assembly workflows from video streams.",
-                        "Extracted multi-region motion descriptors with MediaPipe landmarks and OpenCV; benchmarked Qwen2-VL, SmolVLM, Jina-VLM, and custom VLMs.",
-                        "Built a FAISS-based CLIP embedding retrieval system, reaching about 78% classification accuracy across assembly task categories."
+                        "Designed a reusable weight-stationary FPGA accelerator for the complete 23-layer YOLOv8-Nano network targeting the Xilinx Kria KV260, replacing a monolithic implementation with serialized DDR-backed execution over reusable compute engines.",
+                        "Implemented an end-to-end hardware inference pipeline converting real UAV video into FPGA-ready tensors, running RTL simulation, decoding detection logits, applying confidence filtering and NMS, and validating against the PyTorch YOLOv8 reference.",
+                        "Built an automated PyTorch-to-RTL deployment flow, quantizing 1.88M detection-head parameters to INT8 and reducing weight storage from 6.5 MB to 1.7 MB (74% reduction) while generating synthesizable Verilog with embedded weights.",
+                        "Implemented streaming HLS kernels for Convolution, C2f, Bottleneck, SPPF, Upsample, Concat, and Detect modules with reusable processing elements, shared requantization pipelines, and serialized layer scheduling.",
+                        "Performed 11 FPGA architecture experiments across streaming execution, DDR tiling, compute parallelism, memory hierarchy, RTL timing, and buffer reuse to derive the final architecture.",
+                        "Cut FPGA resource utilization through architectural redesign: BRAM by 99.9% (15,296 → 11), DSP by 95.4% (1348 → 62), LUTs by 60.1% (231K → 92K), and flip-flops by 53.3% (115K → 54K), enabling full deployment on the KV260.",
+                        "Validated RTL with automated regression testing, HLS C simulation, RTL co-simulation, and Python reference comparison, achieving bit-exact layer verification and under 0.2% latency deviation between synthesis estimates and RTL simulation.",
+                        "Generated synthesizable Vivado IP and integrated the accelerator into a Zynq UltraScale+ KV260 block design, completing synthesis, place-and-route, and bitstream generation with timing closure (Worst Negative Slack = 0.00 ns)."
                     ]
                 },
                 {
-                    "name": "LLM-powered ERP Data Extraction Pipeline",
-                    "tech": "React, Node.js, SQLite, Gemini API, Ollama, Cheerio, Tesseract.js",
+                    "name": "POC: Behavior Inference System for Industrial Assembly",
+                    "focus": "Vision-Language + Computer Vision + Activity Recognition + Multimodal AI + Retrieval (FAISS)",
+                    "tech": "Python, VLMs, MediaPipe, YOLO, FAISS, FastAPI, Server-Sent Events",
                     "highlights": [
-                        "Automated ERP product data entry through an LLM-driven extraction pipeline that outputs ERP-ready CSV/JSON schemas.",
-                        "Enabled ingestion from URLs, images, and PDFs with DOM parsing and OCR, then consolidated retrieval context in a vector store.",
-                        "Developed an agentic extraction workflow using Gemini API and local Qwen inference via Ollama, with validation layers and CI/CD deployment."
+                        "Developed a real-time worker activity recognition system for industrial assembly environments using computer vision and multimodal AI pipelines as a proof of concept for an internal application.",
+                        "Benchmarked Qwen2-VL, Florence-2, InternVL, OpenFlamingo, and BLIP on an internal dataset for inference speed, contextual understanding, and deployment constraints.",
+                        "Designed MediaPipe and YOLO-based spatiotemporal feature extraction pipelines modelling worker posture, object interactions, motion patterns, and task progression.",
+                        "Implemented temporal evidence aggregation, task-subtask retrieval, and FAISS-based context retrieval, improving behavioural classification from 78.4% to 86.1% Macro-F1 while reducing spurious frame-level label transitions by 62%.",
+                        "Built FastAPI backend services, Server-Sent Events (SSE) streaming infrastructure, and analytics dashboards for real-time monitoring and behavioural statistics reporting."
+                    ]
+                },
+                {
+                    "name": "Photogrammetry and Gaussian Splatting Research",
+                    "focus": "Computer Vision + GPU Optimization + Profiling",
+                    "tech": "Gaussian Splatting, Nerfstudio, COLMAP, CuBLAS, cuDNN, Nsight Compute",
+                    "highlights": [
+                        "Built and maintained a multi-pipeline 3D reconstruction platform integrating COLMAP (SfM) from Nerfstudio for sparse point-cloud reconstruction — optimising the Cholesky function over covariance matrices of feature-matched points — alongside deep-learning-based dense (MVS) reconstruction.",
+                        "Benchmarked NeRF models, ReSplat, DepthSplat, and Instant-NGP, reaching 25 peak PSNR on an internal dataset with Nerfstudio's splatfacto; also evaluated Meshroom/AliceVision feature matching under AVX and SSE optimizations (and why CUDA is a poor fit there), with RealityCapture as a black-box reference baseline.",
+                        "Used Nsight Compute to identify covariance-computation CUDA kernels as the dominant feature-matching bottleneck, then optimised covariance estimation for Cholesky-based optimization, cutting reconstruction time by 3-5 minutes on multiple 10-second 1080x1920 indoor video sequences.",
+                        "Implemented adaptive GPU memory management with automatic VRAM detection and parameter scaling so reconstruction runs reliably from RTX 4060 (8GB) through RTX 4090 (24GB).",
+                        "Resolved inference OOM failures by reducing peak GPU memory from 9.6GB to 6.3GB through BF16 aggregation, cache-window tuning, and pipeline-level memory management."
+                    ]
+                },
+                {
+                    "name": "Multi-Agent Pursuit-Evasion Simulation",
+                    "focus": "Reinforcement Learning + Visualizations",
+                    "tech": "Unity ML-Agents, PPO, Self-Play, Plotly, MLflow",
+                    "highlights": [
+                        "Contributed to a multi-agent reinforcement learning environment in Unity ML-Agents using PPO, self-play, and curriculum learning; designed reward functions governing pursuit efficiency, evasion behaviour, trajectory planning, agent coordination, and competitive interaction.",
+                        "Ran large-scale experimentation over curiosity rewards, replay-buffer configurations, learning-rate schedules, self-play settings, and PPO hyperparameters, managing runs in MLflow for metric tracking, model versioning, and reproducibility.",
+                        "Developed Plotly analytics dashboards with animated 3D trajectory visualization to analyse policy evolution, plus evaluation pipelines detecting reward hacking, policy regressions, unstable value-function learning, and convergence failures."
                     ]
                 }
             ],
             "technicalSkills": [
                 "Python",
+                "C++",
                 "TypeScript",
-                "JavaScript",
+                "PyTorch",
+                "LangChain",
+                "LangGraph",
                 "Kafka",
                 "Redis",
-                "Parquet",
                 "Celery",
+                "RAPIDS cuDF",
+                "PyArrow / Parquet",
                 "FAISS",
-                "PyTorch",
-                "Transformers",
+                "Milvus",
+                "Vision-Language Models",
+                "YOLO",
+                "MediaPipe",
+                "Vitis HLS",
+                "Verilog / Vivado",
+                "CUDA / Nsight Compute",
                 "FastAPI",
-                "Flask",
-                "Node.js",
-                "React"
+                "React",
+                "Docker"
             ],
             "achievements": [
                 "Merit Scholarship by Government of Tamil Nadu for securing 91.793 percentile in TANCET.",
@@ -185,7 +257,13 @@ export const data = {
             "title": "Intern",
             "thumbnail": sparksFoundationCert,
             "dates": "Sept - Oct 2021",
-            "description": "Worked on creating a Hybrid Mobile App using Flutter.<br >Created several models in database for bank transaction simulation.<br >Performed CRUD operations"
+            "domain": "Mobile Application Development",
+            "description": "Worked on creating a Hybrid Mobile App using Flutter.<br >Created several models in database for bank transaction simulation.<br >Performed CRUD operations",
+            "technicalSkills": [
+                "Flutter",
+                "Dart",
+                "Firebase"
+            ]
         }
     ],
     "skills": [
@@ -204,20 +282,98 @@ export const data = {
         },
         {
             "type": "AI Frameworks And Libraries",
-            "Knowledge in Advance Topics": "Pytorch, Transformers, Keras, Pandas, Numpy, Matplotlib, Seaborn, Vision-Language Models",
-            "Knowledge in Main Concepts": "Tensorflow, Scikit-learn, FAISS, OpenCV",
-            "Can do with Documentation": "OpenCV, NLTK, Spacy, Time-Series Forecasting",
+            "Knowledge in Advance Topics": "PyTorch, Transformers, LangChain, LangGraph, Large Language Models, Vision-Language Models, Pandas, Numpy, Matplotlib, Seaborn",
+            "Knowledge in Main Concepts": "LangSmith, Huggingface TRL, Scikit-learn, MLflow, FAISS, Milvus, Tensorflow, LoRA Fine-Tuning, vLLM",
+            "Can do with Documentation": "NLTK, Spacy, Time-Series Forecasting, AutoGluon, AMD Vitis HLS",
+        },
+        {
+            "type": "Computer Vision",
+            "Knowledge in Advance Topics": "OpenCV, MediaPipe, YOLO, CLIP Embeddings, Object Detection, Pose Estimation",
+            "Knowledge in Main Concepts": "Gaussian Splatting, Photogrammetry, COLMAP / Nerfstudio, Semantic Segmentation",
+            "Can do with Documentation": "Monocular Depth Estimation, NeRF variants",
+        },
+        {
+            "type": "Systems, Data And GPU",
+            "Knowledge in Advance Topics": "Apache Kafka, Redis, Celery, Parquet, PyArrow",
+            "Knowledge in Main Concepts": "RAPIDS cuDF, SQLite, CUDA, Nsight Compute, Tensor Cores, cuDNN",
+            "Can do with Documentation": "Verilog, Vivado, Vitis HLS, FPGA Deployment",
         },
         {
             "type": "Tools and IDE's",
-            "Mostly": "Docker, Windows Subsytem for Linux (WSL), VS code, Git VCS, Postman",
-            "If required": "Godot Game Engine, Android Studio",
+            "Mostly": "Docker, Windows Subsystem for Linux (WSL), VS Code, Git VCS, Postman, Ollama, TensorBoard",
+            "If required": "Godot Game Engine, Android Studio, Unity ML-Agents",
             "Beginner": "Unity",
         }
     ]
     ,
     "projects": [
-
+        {
+            "title": "Curriculum-Aware Multi-Agent RAG Platform",
+            "type": "AI / Research",
+            "tech": "Python \ LangGraph \ Ollama \ Milvus \ SentenceTransformers \ FastAPI \ DOCX Generation",
+            // Add further screenshots to src/Components/Projects/Images/7/ and import them above.
+            "thumbnail": project7_1,
+            "placeholderTags": "LangGraph • RAG • Milvus • Ollama • Multi-Agent",
+            "link": "https://github.com/mohammed1916/RAGmultiAgentRevisableDocGenerator",
+            "description": `Generative AI • Multi-Agent RAG Systems • Educational AI
+            - Built a curriculum-aware multi-agent RAG platform that generates personalized learning plans and structured educational documents for CBSE Class 10/12 and JEE curricula using curriculum-specific vector databases.
+            - Designed a LangGraph-based multi-agent workflow for planning, content generation, review, and document generation using Router, Planner, Writer, and Reviewer agents.
+            - Implemented curriculum-aware retrieval with SentenceTransformer embeddings and Milvus vector search to provide context-specific recommendations from educational knowledge bases.
+            - Developed a state-aware planning framework that extracts and validates student progress, tracks learned topics and timelines, and dynamically adapts learning plans to individual progress.
+            - Built an end-to-end document generation pipeline converting AI-generated content into structured Markdown and Microsoft Word (.docx) files through automated formatting and review workflows.
+            - Built a knowledge-base ingestion workflow supporting both PDF upload and direct text paste, tagging each source with its subject and chapter so retrieval stays curriculum-scoped; ingested content is chunked and embedded for use across search, notes, plan generation, and the roadmap graph.
+            - Built an automated RAG evaluation pipeline measuring retrieval and generation quality: ROUGE-L 0.68, BLEU 0.52, semantic similarity 0.82, groundedness 0.91, context utilization 0.78 across curriculum-specific validation sets.
+            - Code: https://github.com/mohammed1916/RAGmultiAgentRevisableDocGenerator`,
+            "gallery": [
+                {
+                    original: project7_1,
+                    thumbnail: project7_1,
+                },
+            ]
+        },
+        {
+            "title": "Multi-Agent Mouse Behavior Recognition",
+            "type": "AI / Research",
+            "tech": "Python \ LightGBM \ XGBoost \ CatBoost \ Scikit-Learn \ Polars",
+            // Placeholder: add competition/feature-importance plots to src/Components/Projects/Images/8/.
+            "thumbnail": "",
+            "placeholderTags": "Kaggle • Gradient Boosting • Pose Estimation • Polars",
+            "link": "https://www.kaggle.com/competitions",
+            "description": `Computer Vision • ML in Kaggle Competition
+            - Engineered 280+ trajectory, kinematic, interaction, curvature, and temporal features from multi-body-part pose-estimation sequences containing over 12M+ behavioral observations, covering both single-agent and pairwise social-interaction behaviors across datasets with 4-18 tracked body parts.
+            - Trained action-specific ensemble models with LightGBM, XGBoost, and CatBoost, using adaptive thresholding, temporal smoothing, and event segmentation to convert frame-level predictions into behavior intervals optimized for the competition's event-level F-score metric.
+            - Used Pandas and Polars for large-scale feature generation and experimentation, achieving a 0.078 private leaderboard score and 1190th rank in the Kaggle Multi-Agent Mouse Behavior Recognition competition.`,
+            "gallery": []
+        },
+        {
+            "title": "Vision Transformer Research and GPU Optimization",
+            "type": "AI / Research",
+            "tech": "PyTorch \ CUDA \ Nsight Compute \ Tensor Cores \ cuDNN",
+            // Placeholder: add Nsight profiles and segmentation outputs to src/Components/Projects/Images/9/.
+            "thumbnail": "",
+            "placeholderTags": "SegFormer • BF16 • Tensor Cores • Nsight Compute",
+            "link": "https://github.com/mohammed1916/",
+            "description": `Computer Vision • Quantization • Multi-Model Training
+            - Profiled SegFormer-B0 inference on an RTX 4060 with Nsight Compute, identifying memory-bound execution through cache utilization, bandwidth saturation, occupancy analysis, and kernel stall investigation.
+            - Implemented BF16 mixed-precision inference with cuDNN and Tensor Core acceleration, reducing activation memory footprint and improving arithmetic throughput. Cut inference latency from 32.01 ms to 22.04 ms (1.45x speedup) while keeping segmentation quality within 2% mIoU of FP32 on the Cityscapes validation set.
+            - Inspired by SegFormer's Vision Transformer architecture, designed a multi-task model with a shared transformer encoder and dual decoders for semantic segmentation and monocular depth estimation on Cityscapes, incurring only 8% mIoU degradation in segmentation and 11% in depth estimation when training at 256x256 instead of computationally intensive 1024x1024 inputs.`,
+            "gallery": []
+        },
+        {
+            "title": "NVIDIA Nemotron Model Reasoning Challenge",
+            "type": "AI / Research",
+            "tech": "LoRA \ Synthetic Data Generation \ vLLM \ LLM Fine-Tuning",
+            // Placeholder: add training curves and leaderboard captures to src/Components/Projects/Images/10/.
+            "thumbnail": "",
+            "placeholderTags": "LoRA • vLLM • Synthetic Data • Reasoning",
+            "link": "https://www.kaggle.com/competitions",
+            "description": `LLM Finetuning in Kaggle Competition
+            - Constructed a synthetic reasoning dataset by extracting structured mathematical and logical problem patterns from the AIMO and NVIDIA Wonderland datasets, converting implicit reasoning structures into executable problem templates using GPT-based models for programmatic transformation and answer derivation.
+            - Generated augmented training samples from those templates as semantically equivalent reasoning problems with step-consistent solutions in batches of 1000, validated outputs using Claude-based verification, and filtered inconsistent samples before storing the final dataset as structured CSV for fine-tuning.
+            - Maintained class balance across arithmetic, algebraic, combinatorics, physics-inspired reasoning, and logic-based problem types to prevent distribution skew during LoRA training.
+            - Fine-tuned LoRA adapters (ranks from 32 down to 16) on the Nemotron-3-Nano-30B model using vLLM-compatible inference pipelines, improving structured reasoning under constrained parameter-efficient adaptation and achieving a 0.840 Kaggle leaderboard score with 1916th rank.`,
+            "gallery": []
+        },
         {
             "title": "Cryptocurrency Analytics Dashboard",
             "type": "Deployed Website",

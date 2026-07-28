@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
 import AnimatedSectionHeading from '../common/AnimatedSectionHeading';
+import GradientPlaceholder from '../common/GradientPlaceholder';
 import { data } from '../../data';
 
 import
@@ -19,40 +20,6 @@ import
 export default function Work()
 {
     let navigate = useNavigate();
-    const renderBuzzPlaceholder = (title) => (
-        <Box
-            sx={{
-                height: 200,
-                borderRadius: '10px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                px: 2,
-                background: 'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35), transparent 45%), linear-gradient(135deg, #6a1b9a 0%, #8e24aa 45%, #d81b60 100%)',
-                color: '#fff',
-                position: 'relative',
-                overflow: 'hidden',
-                '&::before': {
-                    content: '"AI • ML • Data • Vision • LLM • NLP • Kafka • FastAPI"',
-                    position: 'absolute',
-                    inset: 0,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '0.72rem',
-                    opacity: 0.18,
-                    transform: 'rotate(-15deg) scale(1.15)',
-                    letterSpacing: '1.4px',
-                    fontWeight: 700,
-                }
-            }}
-        >
-            <Typography fontFamily="var(--font-gilroy-bold)" variant="h6" sx={{ position: 'relative', zIndex: 1 }}>
-                {title}
-            </Typography>
-        </Box>
-    );
 
     const nav = (index) =>
     {
@@ -83,7 +50,7 @@ export default function Work()
                 }}
             >
                 <Container sx={{ width: '100%', position: 'relative', zIndex: 1 }}>
-                    <AnimatedSectionHeading color={'var(--color-typewriter-border)'}>Work</AnimatedSectionHeading>
+                    <AnimatedSectionHeading color={'var(--color-typewriter-border)'}>Experience</AnimatedSectionHeading>
                     <Box 
                         display={'flex'} 
                         flexWrap={'wrap'} 
@@ -111,9 +78,20 @@ export default function Work()
                                             component="img"
                                             height="200"
                                             image={item.thumbnail}
+                                            alt={`${item.title} at ${item.company}`}
+                                            sx={{
+                                                objectFit: 'contain',
+                                                backgroundColor: '#fff',
+                                                borderRadius: '10px',
+                                                p: 1,
+                                            }}
                                         />
                                     ) : (
-                                        renderBuzzPlaceholder(item.title)
+                                        <GradientPlaceholder
+                                            title={item.title}
+                                            subtitle={item.company}
+                                            height={200}
+                                        />
                                     )}
                                     <CardContent>
                                         <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-heading)'} gutterBottom variant="h6" component="div" textAlign={'center'}>
@@ -125,6 +103,18 @@ export default function Work()
                                         <Typography fontFamily="var(--font-gilroy-light)" color={'var(--color-heading)'} variant="caption" display="block" textAlign={'center'}>
                                             {item.dates}
                                         </Typography>
+                                        {item.domain && (
+                                            <Typography
+                                                fontFamily="var(--font-gilroy-bold)"
+                                                color={'var(--color-heading)'}
+                                                variant="caption"
+                                                display="block"
+                                                textAlign={'center'}
+                                                sx={{ mt: 1, opacity: 0.8, letterSpacing: '0.4px' }}
+                                            >
+                                                {item.domain}
+                                            </Typography>
+                                        )}
                                     </CardContent>
                                 </CardActionArea>
                             </Card>

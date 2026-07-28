@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import GradientPlaceholder from '../common/GradientPlaceholder';
 import { data } from '../../data';
 
 import { useParams, useNavigate } from "react-router-dom";
@@ -14,41 +15,6 @@ export default function WorkPage()
     let params = useParams();
     let navigate = useNavigate();
     const selectedWork = data.work[params.i];
-
-    const renderBuzzPlaceholder = (title) => (
-        <Box
-            sx={{
-                minHeight: { xs: 220, sm: 300 },
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                px: 2,
-                background: 'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35), transparent 45%), linear-gradient(135deg, #6a1b9a 0%, #8e24aa 45%, #d81b60 100%)',
-                color: '#fff',
-                position: 'relative',
-                overflow: 'hidden',
-                '&::before': {
-                    content: '"AI • ML • Data • Vision • LLM • NLP • Kafka • FastAPI"',
-                    position: 'absolute',
-                    inset: 0,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '0.95rem',
-                    opacity: 0.2,
-                    transform: 'rotate(-12deg) scale(1.1)',
-                    letterSpacing: '1.8px',
-                    fontWeight: 700,
-                }
-            }}
-        >
-            <Typography fontFamily={'Gilroy Bold'} variant="h4" sx={{ position: 'relative', zIndex: 1 }}>
-                {title}
-            </Typography>
-        </Box>
-    );
 
     if (!selectedWork) {
         return null;
@@ -118,9 +84,39 @@ export default function WorkPage()
                         }}
                     >
                         {selectedWork.thumbnail ? (
-                            <img src={selectedWork.thumbnail} alt={selectedWork.title} />
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    p: { xs: 1, sm: 2 },
+                                    borderRadius: '16px',
+                                    background: '#fff',
+                                    border: '1px solid rgba(106, 27, 154, 0.16)',
+                                    overflow: 'hidden',
+                                }}
+                            >
+                                <Box
+                                    component="img"
+                                    src={selectedWork.thumbnail}
+                                    alt={`${selectedWork.title} at ${selectedWork.company}`}
+                                    loading="lazy"
+                                    sx={{
+                                        width: 'auto',
+                                        maxWidth: '100%',
+                                        maxHeight: { xs: 320, sm: 520 },
+                                        objectFit: 'contain',
+                                        display: 'block',
+                                        borderRadius: '10px',
+                                    }}
+                                />
+                            </Box>
                         ) : (
-                            renderBuzzPlaceholder(selectedWork.title)
+                            <GradientPlaceholder
+                                title={selectedWork.title}
+                                subtitle={`${selectedWork.company} • ${selectedWork.dates}`}
+                                height={300}
+                            />
                         )}
                         <Box display={'flex'} flexDirection={'row'} paddingTop={'25px'}>
                             <Typography fontFamily={'Gilroy Bold'} color={'black'} gutterBottom variant="h6" component="div" style={{ fontWeight: 600 }} paddingRight={'5px'}>
@@ -193,7 +189,16 @@ export default function WorkPage()
                                         <Typography fontFamily={'Gilroy Bold'} color={'black'} variant="subtitle1">
                                             {project.name}
                                         </Typography>
-                                        <Typography fontFamily={'Gilroy Light'} color={'black'} variant="body2" sx={{ mb: 1 }}>
+                                        {project.focus && (
+                                            <Typography
+                                                fontFamily={'Gilroy Bold'}
+                                                variant="caption"
+                                                sx={{ display: 'block', color: '#6a1b9a', mb: 0.5, letterSpacing: '0.3px' }}
+                                            >
+                                                {project.focus}
+                                            </Typography>
+                                        )}
+                                        <Typography fontFamily={'Gilroy Light'} color={'#4a148c'} variant="body2" sx={{ mb: 1, fontStyle: 'italic' }}>
                                             {project.tech}
                                         </Typography>
                                         <Box component="ul" sx={{ mt: 0, mb: 0, pl: 2 }}>

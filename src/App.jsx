@@ -32,6 +32,7 @@ import Footer from './Components/footer/Footer.jsx';
 import ResponsiveAppBar from './Components/Navbar/ResponsiveAppBar.jsx';
 import Skills from './Components/Skills/Skills.jsx';
 import Projects from './Components/Projects/Projects.jsx';
+import Achievements from './Components/Achievements/Achievements.jsx';
 import CertificatePage from "./Components/Certifications/CertificatePage.jsx";
 import ProjectPage from "./Components/Projects/ProjectPage.jsx";
 import WorkPage from "./Components/Work/WorkPage.jsx";
@@ -48,20 +49,23 @@ const MainPage = () => {
       <section id="about">
         <About />
       </section>
-      <section id="education">
-        <Education />
-      </section>
-      <section id="skills">
-        <Skills />
+      <section id="work">
+        <Work />
       </section>
       <section id="projects">
         <Projects />
       </section>
+      <section id="skills">
+        <Skills />
+      </section>
+      <section id="education">
+        <Education />
+      </section>
       <section id="certifications">
         <Certifications />
       </section>
-      <section id="work">
-        <Work />
+      <section id="achievements">
+        <Achievements />
       </section>
       <section id="resume">
         <Resume />

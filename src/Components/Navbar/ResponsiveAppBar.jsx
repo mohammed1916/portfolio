@@ -248,8 +248,8 @@ const AnimatedAvatar = React.memo(({ src, alt, sx = {} }) => {
 	);
 });
 
-const pages = ['About', 'Education', 'Skills', 'Projects', 'Certifications', 'Work', 'Resume'];
-const pages_link = ['about', 'education', 'skills', 'projects', 'certifications', 'work', 'resume'];
+const pages = ['About', 'Experience', 'Projects', 'Skills', 'Education', 'Certifications', 'Achievements', 'Resume'];
+const pages_link = ['about', 'work', 'projects', 'skills', 'education', 'certifications', 'achievements', 'resume'];
 
 // Styled components for violet purple theme
 const NavbarWrapper = styled('div', {
