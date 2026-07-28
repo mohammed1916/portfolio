@@ -7,19 +7,21 @@ import githubIcon from './img/icons/media/github.png';
 import linkedinIcon from './img/icons/media/linkedin.png';
 import postOutlineIcon from './img/icons/media/post-outline.png';
 
-// Import certification images
-import sparksFoundationCert from './Components/Certifications/Images/Internship~The Sparks Foundation~Hybrid Mobile App.png';
-import kotlinCert from './Components/Certifications/Images/Course~Coursera~Kotlin For Java Developers.jpg';
-import cudaCppCert from './Components/Certifications/Images/Course~Nvidia~C++Cuda.png';
-import cudaPythonCert from './Components/Certifications/Images/Course~Nvidia~PythonCuda.png';
-import acmCert from './Components/Certifications/Images/Course~ACM~GP Accelerated Computing Codeathon.png';
-import azureCert from './Components/Certifications/Images/Course~Coursera~Machine Learning Piplines with Azure ML Studio.jpg';
-import gitCert from './Components/Certifications/Images/Course~Udemy~Git and Github For Beginners.jpeg';
-import deepLearningCert from './Components/Certifications/Images/Course~NPTEL~Deep Learning.jpg';
-import transformerCert from './Components/Certifications/Images/Course~NVIDIA~Building Transformer-Based Natural Language Processing Applications.jpg';
-import fundamentalsCert from './Components/Certifications/Images/Course~NVIDIA~Fundamentals of Deep Learning.jpg';
-import ibmCert from './Components/Certifications/Images/Course~IBM~HandwrittenDigitRecognition.png';
-import javaCert from './Components/Certifications/Images/Course~Udemy~java Course.jpeg';
+// Import certification images.
+// Filenames are kept lowercase and hyphenated: spaces and '~' in an asset name
+// survive into the built URL, where they break image requests in the browser.
+import sparksFoundationCert from './Components/Certifications/Images/internship-the-sparks-foundation-hybrid-mobile-app.png';
+import kotlinCert from './Components/Certifications/Images/course-coursera-kotlin-for-java-developers.jpg';
+import cudaCppCert from './Components/Certifications/Images/course-nvidia-cpp-cuda.png';
+import cudaPythonCert from './Components/Certifications/Images/course-nvidia-pythoncuda.png';
+import acmCert from './Components/Certifications/Images/course-acm-gp-accelerated-computing-codeathon.png';
+import azureCert from './Components/Certifications/Images/course-coursera-machine-learning-piplines-with-azure-ml-studio.jpg';
+import gitCert from './Components/Certifications/Images/course-udemy-git-and-github-for-beginners.jpeg';
+import deepLearningCert from './Components/Certifications/Images/course-nptel-deep-learning.jpg';
+import transformerCert from './Components/Certifications/Images/course-nvidia-building-transformer-based-natural-language-processing-applications.jpg';
+import fundamentalsCert from './Components/Certifications/Images/course-nvidia-fundamentals-of-deep-learning.jpg';
+import ibmCert from './Components/Certifications/Images/course-ibm-handwrittendigitrecognition.png';
+import javaCert from './Components/Certifications/Images/course-udemy-java-course.jpeg';
 
 // Import project images
 import project2_1 from './Components/Projects/Images/2/1.jpeg';
