@@ -22,66 +22,18 @@ import {
   Route
 } from "react-router-dom";
 
-import About from './Components/About/About.jsx';
-import Work from './Components/Work/Work.jsx';
-import Resume from './Components/Resume/Resume.jsx';
-import Certifications from './Components/Certifications/Certifications.jsx';
-import Contact from './Components/Contact/Contact.jsx';
-import Education from './Components/Education/Education.jsx';
-import Footer from './Components/footer/Footer.jsx';
-import ResponsiveAppBar from './Components/Navbar/ResponsiveAppBar.jsx';
-import Skills from './Components/Skills/Skills.jsx';
-import Projects from './Components/Projects/Projects.jsx';
-import Achievements from './Components/Achievements/Achievements.jsx';
+import Portfolio, { PortfolioNav } from './Components/Portfolio/Portfolio.jsx';
 import CertificatePage from "./Components/Certifications/CertificatePage.jsx";
 import ProjectPage from "./Components/Projects/ProjectPage.jsx";
 import WorkPage from "./Components/Work/WorkPage.jsx";
 import Privacy from "./Components/Privacy/Privacy.jsx";
 
-// Main single-page component
-const MainPage = () => {
-  return (
-    <div style={{ 
-      paddingTop: '70px',
-      background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 50%, #ce93d8 100%)',
-      minHeight: 'auto'
-    }}>
-      <section id="about">
-        <About />
-      </section>
-      <section id="work">
-        <Work />
-      </section>
-      <section id="projects">
-        <Projects />
-      </section>
-      <section id="skills">
-        <Skills />
-      </section>
-      <section id="education">
-        <Education />
-      </section>
-      <section id="certifications">
-        <Certifications />
-      </section>
-      <section id="achievements">
-        <Achievements />
-      </section>
-      <section id="resume">
-        <Resume />
-      </section>
-      <Contact />
-      <Footer />
-    </div>
-  );
-};
-
 function App() {
   return (
     <Router>
-      <ResponsiveAppBar />
+      <PortfolioNav />
       <Routes>
-        <Route path='/' element={<MainPage />} />
+        <Route path='/' element={<Portfolio />} />
         <Route path='/privacy' element={<Privacy />} />
         {/* Deep navigation routes for detailed views */}
         <Route path="workpage/:i" element={<WorkPage />} />

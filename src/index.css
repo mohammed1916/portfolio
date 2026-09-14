@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;900&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&display=swap'); */
 /* Import custom cursor styles */
-@import './styles/cursor.css';
+
 
 @font-face {
   font-family: 'Gilroy Light';
@@ -94,4 +94,29 @@ html {
 .link{
   color: inherit;
   word-break: break-all;
+}
+
+html { scroll-behavior: smooth; background: #131713; }
+body { background: #131713; }
+/* Shared palette for the existing project, work, and certificate detail views. */
+:root {
+  --color-primary: #c4f564;
+  --color-secondary: #e7eadd;
+  --color-accent: #829b63;
+  --color-bg: #e7eadd;
+  --color-heading: #17210c;
+  --color-heading-sub: #344823;
+  --color-heading-hover: #455f2e;
+  --color-text: #26331c;
+  --color-skillchip: #344823;
+  --color-skillchip-hover: #17210c;
+  --color-skillchip-bg: #d8e4c8;
+  --color-skillchip-bg-hover: #c4f564;
+  --color-card-bg: #f7f8f1;
+  --color-card-bg2: #d8e4c8;
+  --color-particle1: #829b63;
+  --color-particle2: #526b36;
+  --color-particle-shadow: rgba(35, 54, 20, .08);
+  --color-typewriter: #344823;
+  --color-typewriter-border: #455f2e;
 }
