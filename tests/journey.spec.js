@@ -55,14 +55,28 @@ test('still mode keeps the chosen chapter and can return to motion', async ({ pa
   await expect(page.locator('.journey-card')).toContainText('Panimalar');
 });
 
-test('reduced motion starts in a compact illustrated journey', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion:'reduce' });
-  await page.goto('/');
-  await expect(page.locator('.journey')).toHaveClass(/journey-still/);
-  await expect(page.locator('.journey-canvas canvas')).toHaveCount(0);
-  await page.getByRole('button',{name:"2025 Master's"}).click();
-  await expect(page.locator('.journey-card')).toContainText('First rank');
-  await expect(page.locator('.journey-fallback')).toBeVisible();
+test('scroll pins and moves the scene even with reduced motion or a short window', async ({ page }) => {
+  for (const [width,height] of [[1440,1000],[844,390]]) {
+    await page.setViewportSize({width,height});
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await openJourney(page);
+    await expect(page.locator('.journey')).not.toHaveClass(/journey-still/);
+    const before = await page.locator('.journey-stage').boundingBox();
+    const sceneBefore = await page.locator('.journey-canvas').screenshot();
+    const distance = await page.locator('.journey').evaluate(section => (section.offsetHeight-section.firstElementChild.offsetHeight)/4);
+    await page.mouse.wheel(0,distance);
+    await expect(page.locator('.journey-card')).toHaveAttribute('aria-label','Chapter 2: Higher secondary');
+    const after = await page.locator('.journey-stage').boundingBox();
+    expect(Math.abs(after.y-before.y)).toBeLessThan(2);
+    expect(after.y+after.height).toBeLessThanOrEqual(height+1);
+    const sceneAfter=await page.locator('.journey-canvas').screenshot();
+    expect(sceneBefore.equals(sceneAfter)).toBe(false);
+    await page.mouse.wheel(0,-distance);
+    await expect(page.locator('.journey-card')).toHaveAttribute('aria-label','Chapter 1: School');
+    await page.getByRole('button',{name:'NOW Experience'}).click();
+    await page.getByRole('button',{name:'Still mode',exact:true}).click();
+    await expect(page.locator('[data-vehicle="car"]')).toBeVisible();
+  }
 });
 
 test('unavailable WebGL leaves the story and chapter navigation usable', async ({ page }) => {
@@ -96,7 +110,7 @@ test('mobile, tablet and landscape retain visible controls without overflow', as
     await page.setViewportSize({width,height});
     await page.goto('/',{waitUntil:'domcontentloaded'});
     await expect(page.getByRole('button',{name:'NOW Experience'})).toBeVisible();
-    if (height >= 600 || width < 761) await expect(page.locator('.journey-canvas canvas')).toBeVisible();
+    await expect(page.locator('.journey-canvas canvas')).toBeVisible();
     await page.getByRole('button',{name:'NOW Experience'}).click();
     await expect(page.locator('.journey-card')).toContainText('244M+');
     expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);

@@ -195,6 +195,30 @@ export function createJourneyScene(host, onUnavailable) {
     box(scooter,'#e4ddc7',[.22,.42,z],[.38,.14,.23]);
   }
 
+  // A blue compact car marks the transition into professional AI engineering.
+  const car = new THREE.Group(); scene.add(car); car.position.set(-4,.12,4);
+  box(car,'#6889aa',[0,.8,0],[4.25,.7,1.75]);
+  box(car,'#7e9db9',[-.25,1.3,0],[2.35,.68,1.6]);
+  box(car,'#90acc3',[-.35,1.67,0],[1.8,.12,1.57]);
+  box(car,'#7e9db9',[1.4,1.1,0],[1.1,.16,1.72]);
+  const windshield=box(car,'#354f5c',[.96,1.43,0],[.055,.5,1.43]); windshield.rotation.z=.2;
+  const rearWindow=box(car,'#354f5c',[-1.44,1.4,0],[.055,.45,1.4]); rearWindow.rotation.z=-.2;
+  for(const z of [-.815,.815]) {
+    box(car,'#354f5c',[-.79,1.43,z],[.83,.43,.025]);
+    box(car,'#354f5c',[.25,1.43,z],[.9,.43,.025]);
+    box(car,'#c4d2d6',[-.24,.96,z*1.085],[.2,.045,.025]);
+    box(car,'#c4d2d6',[-1.16,.96,z*1.085],[.2,.045,.025]);
+    box(car,'#445f76',[.87,1.19,z*1.18],[.24,.13,.16]);
+    box(car,'#3c5364',[0,.53,z],[3.9,.1,.06]);
+  }
+  for(const x of [-1.35,1.35]) for(const z of [-.87,.87]) wheel(car,x,z,.43);
+  box(car,'#354e58',[2.14,.65,0],[.06,.21,1.65]);
+  box(car,'#e2e5d8',[2.18,.68,0],[.02,.13,.43]);
+  for(const z of [-.61,.61]) {
+    box(car,'#fff1c0',[2.15,.99,z],[.04,.16,.32]);
+    box(car,'#b7614e',[-2.15,.93,z],[.04,.18,.25]);
+  }
+
   let progress=0, disposed=false, visible=true, frame=0;
   const smooth = value => {const t=clamp(value);return t*t*(3-2*t);};
   function render() {
@@ -207,8 +231,11 @@ export function createJourneyScene(host, onUnavailable) {
     const swap=smooth((progress-.34)/.12);
     bus.visible=swap<1;
     bus.position.x=-4+swap*27;
-    scooter.visible=swap>0;
-    scooter.position.x=-4-(1-swap)*20;
+    const carSwap=smooth((progress-.82)/.12);
+    scooter.visible=swap>0 && carSwap<1;
+    scooter.position.x=-4-(1-swap)*20+carSwap*27;
+    car.visible=carSwap>0;
+    car.position.x=-4-(1-carSwap)*20;
     bus.position.y=.12+Math.sin(progress*700)*.018;
     scooter.position.y=.1+Math.sin(progress*700)*.012;
     wheels.forEach(w=>w.rotation.z=-progress*210);

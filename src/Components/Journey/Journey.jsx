@@ -67,6 +67,17 @@ function ScenicFallback({ chapter }) {
             <circle cx="38" cy="77" r="19" fill="#26332d" />
             <circle cx="160" cy="77" r="19" fill="#26332d" />
           </>
+        ) : chapter === 4 ? (
+          <g data-vehicle="car">
+            <path d="M0 30H35L60-10H130L165 25L205 35V75H0Z" fill="#708eaf"/>
+            <path d="M47 26L67 0H94V26ZM104 0H126L152 26H104Z" fill="#354e5a"/>
+            <rect x="192" y="40" width="13" height="12" rx="3" fill="#fff1bf"/>
+            <rect x="0" y="43" width="9" height="12" fill="#c4775c"/>
+            <circle cx="40" cy="75" r="20" fill="#26332d"/>
+            <circle cx="164" cy="75" r="20" fill="#26332d"/>
+            <circle cx="40" cy="75" r="10" fill="#d7dfdb"/>
+            <circle cx="164" cy="75" r="10" fill="#d7dfdb"/>
+          </g>
         ) : (
           <>
             <circle cx="50" cy="75" r="20" fill="#26332d" />
@@ -96,35 +107,14 @@ export default function Journey() {
   const sceneRef = useRef(null);
   const progressRef = useRef(0);
   const [progress, setProgress] = useState(0);
-  const [still, setStill] = useState(
-    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
-  const [compact, setCompact] = useState(
-    () =>
-      window.matchMedia("(max-height: 600px) and (min-width: 761px)").matches,
-  );
+  const [still, setStill] = useState(false);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const active = chapterAt(progress);
   const chapter = chapters[active];
 
   useEffect(() => {
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const landscape = window.matchMedia(
-      "(max-height: 600px) and (min-width: 761px)",
-    );
-    const change = () => setStill(preference.matches);
-    const resize = () => setCompact(landscape.matches);
-    landscape.addEventListener("change", resize);
-    preference.addEventListener("change", change);
-    return () => {
-      preference.removeEventListener("change", change);
-      landscape.removeEventListener("change", resize);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (still || failed || compact) return;
+    if (still || failed) return;
     let disposed = false;
     const unavailable = () => {
       if (disposed) return;
@@ -156,10 +146,10 @@ export default function Journey() {
       sceneRef.current = null;
       setReady(false);
     };
-  }, [still, failed, compact]);
+  }, [still, failed]);
 
   useEffect(() => {
-    if (still || failed || compact) return;
+    if (still || failed) return;
     let frame = 0;
     const update = () => {
       frame = 0;
@@ -188,7 +178,7 @@ export default function Journey() {
       window.removeEventListener("scroll", request);
       window.removeEventListener("resize", request);
     };
-  }, [still, failed, compact]);
+  }, [still, failed]);
 
   function toggleMotion() {
     const next = !still;
@@ -198,11 +188,11 @@ export default function Journey() {
       if (!section) return;
       const stage = section.firstElementChild;
       const top =
-        next || failed || compact
+        next || failed
           ? 0
           : parseFloat(getComputedStyle(stage).top) || 0;
       const distance =
-        next || failed || compact
+        next || failed
           ? 0
           : progressRef.current * (section.offsetHeight - stage.offsetHeight);
       const navHeight =
@@ -213,7 +203,7 @@ export default function Journey() {
         top:
           window.scrollY +
           section.getBoundingClientRect().top -
-          (next || failed || compact ? navHeight : top) +
+          (next || failed ? navHeight : top) +
           distance,
         behavior: "instant",
       });
@@ -222,9 +212,10 @@ export default function Journey() {
 
   function goTo(index) {
     const next = index / (chapters.length - 1);
-    if (still || failed || compact) {
+    if (still || failed) {
       progressRef.current = next;
       setProgress(next);
+      sceneRef.current?.update(next);
       return;
     }
     const section = sectionRef.current;
@@ -244,7 +235,7 @@ export default function Journey() {
     <section
       id="home"
       ref={sectionRef}
-      className={`journey ${still || failed || compact ? "journey-still" : ""}`}
+      className={`journey ${still || failed ? "journey-still" : ""}`}
       aria-label="My journey from school to AI engineering"
     >
       <div
@@ -272,11 +263,11 @@ export default function Journey() {
           <span>CHENNAI, INDIA</span>
           <button
             type="button"
-            aria-pressed={still || compact}
-            disabled={compact || failed}
+            aria-pressed={still}
+            disabled={failed}
             onClick={toggleMotion}
           >
-            {compact || failed
+            {failed
               ? "Still view"
               : still
                 ? "Enable motion"
@@ -320,7 +311,7 @@ export default function Journey() {
         <div className="journey-bottom">
           <div className="journey-scroll-hint">
             <span aria-hidden="true">&#8595;</span>
-            {still || failed || compact
+            {still || failed
               ? "CHOOSE A CHAPTER"
               : "SCROLL TO TRAVEL"}
             <small>{failed ? "Illustrated view" : "My journey."}</small>

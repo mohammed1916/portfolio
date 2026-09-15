@@ -133,3 +133,20 @@
 @media (max-height:600px) and (min-width:761px) {
   .journey-still .journey-stage { height: 620px; }
 }
+/* Keep the pinned stage inside the viewport, including short browser windows. */
+.journey-stage { min-height: 0; }
+@media (max-height:600px) and (min-width:761px) {
+  .journey-heading { top:16px; left:24px; }
+  .portfolio .journey h1 { font-size:30px; margin:12px 0; }
+  .journey-subtitle { display:none; }
+  .journey-tools { top:12px; right:20px; }
+  .journey-card { top:48px; right:20px; width:270px; padding:10px 13px; }
+  .portfolio .journey-card h2 { font-size:21px; margin:7px 0; }
+  .journey-card>p { display:none; }
+  .journey-stat { padding-top:6px; }
+  .journey-stat strong { font-size:20px; }
+  .journey-card>a { margin-top:7px; }
+  .journey-canvas,.journey-fallback { top:0; height:100%; }
+  .journey-bottom { padding:10px 24px 12px; }
+  .journey-road-caption { display:none; }
+}
