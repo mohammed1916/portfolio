@@ -24,3 +24,7 @@ yarn-error.log*
 .vs/*
 package-lock.json
 .env
+
+# Browser validation artifacts
+/test-results/
+/playwright-report/

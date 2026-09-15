@@ -1,0 +1,135 @@
+﻿.journey {
+  height: 520svh;
+  position: relative;
+  color: #283d32;
+  background: #e9ebd9;
+  --nav-height: 88px;
+}
+.journey-stage {
+  position: sticky;
+  top: var(--nav-height);
+  height: calc(100svh - var(--nav-height));
+  min-height: 660px;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(180deg, #eeefdf 0%, #e7ebd8 65%, #cfdbb9 100%);
+}
+.journey-canvas, .journey-fallback {
+  position: absolute;
+  left: 0;
+  top: 13%;
+  width: 100%;
+  height: 86%;
+  z-index: -1;
+  pointer-events: none;
+}
+.journey-canvas canvas { width: 100%; height: 100%; display: block; }
+.journey-fallback { z-index: -2; }
+.journey-heading { position: absolute; top: 42px; left: 5.5%; }
+.journey-heading .eyebrow { color: #51634c; font-size: 10px; letter-spacing: 1.7px; }
+.portfolio .journey h1 { font-size: clamp(38px, 4vw, 62px); letter-spacing: -2.7px; line-height: 1.04; margin: 20px 0 18px; color: #283d32; }
+.journey h1 em { font-family: Georgia, serif; font-weight: normal; color: #69814b; }
+.journey-subtitle { font-size: 15px; line-height: 1.6; color: #5d6d52; }
+.journey-skip { font-size: 12px; display: inline-flex; gap: 28px; padding-bottom: 7px; border-bottom: 1px solid #7f8f6b; }
+.journey-tools { position: absolute; top: 29px; right: 5%; display: flex; align-items: center; gap: 20px; font: 9px monospace; letter-spacing: 1px; }
+.journey-tools button { background: transparent; color: #354934; font-size: 11px; border: 1px solid #9ba78a; border-radius: 20px; padding: 7px 13px; }
+.journey-card { position: absolute; top: 85px; right: 5%; width: 320px; padding: 23px; background: #fffff3ed; border: 1px solid #c4cbb2; border-top: 3px solid var(--chapter-accent); box-shadow: 0 12px 32px #4353350c; }
+.journey-card-kicker { display: flex; align-items: center; justify-content: space-between; gap: 12px; font: 8px/1.5 monospace; letter-spacing: .7px; color: #65745b; }
+.journey-card-kicker strong { font-size: 19px; font-weight: normal; color: #344832; }
+.portfolio .journey-card h2 { font-size: 28px; line-height: 1.08; letter-spacing: -.9px; margin: 17px 0 13px; }
+.portfolio .journey-card h3 { font-size: 13px; line-height: 1.5; margin: 0 0 8px; color: #425a39; }
+.journey-card>p { font-size: 12px; line-height: 1.6; color: #617058; margin-bottom: 14px; }
+.journey-stat { display: flex; gap: 12px; align-items: baseline; border-top: 1px solid #d5dcc8; padding-top: 13px; }
+.journey-stat strong { font-family: 'Gilroy Bold', sans-serif; font-size: 26px; letter-spacing: -.7px; }
+.journey-stat>span { font: 9px/1.5 monospace; color: #65745b; }
+.journey-card>a { display: flex; justify-content: space-between; font-size: 11px; margin-top: 15px; }
+.journey-road-caption { position: absolute; left: 5.5%; right: 5%; bottom: 125px; display: flex; justify-content: space-between; font: 9px monospace; color: #eaf0dc; letter-spacing: 2px; text-shadow: 0 1px 3px #1c382a; pointer-events: none; }
+.journey-bottom { position: absolute; bottom: 0; width: 100%; padding: 22px 5.5%; background: #f1f0df; border-top: 1px solid #c0ccb0; display: grid; grid-template-columns: 180px 1fr 140px; align-items: center; gap: 35px; }
+.journey-scroll-hint { font: 9px/1.5 monospace; letter-spacing: .8px; }
+.journey-scroll-hint>span { font-size: 25px; float: left; margin-right: 14px; }
+.journey-scroll-hint small { display: block; font-family: 'Gilroy Light', sans-serif; font-size: 11px; letter-spacing: 0; margin-top: 4px; color: #67765a; }
+.journey-chapters { display: grid; grid-template-columns: repeat(5, 1fr); }
+.journey-chapters button { background: none; color: #65765b; border: 0; text-align: left; padding: 0 3px 0 0; min-width: 0; }
+.chapter-track { display: block; height: 2px; background: #c6ceb7; position: relative; margin: 8px 0 12px; }
+.chapter-track i { width: 8px; height: 8px; position: absolute; top: -3px; border-radius: 50%; background: #c6ceb7; }
+.chapter-reached .chapter-track, .chapter-reached .chapter-track i { background: #637b4b; }
+.journey-chapters [aria-current] .chapter-track i { outline: 1px solid #637b4b; outline-offset: 4px; background: #3f623f; }
+.journey-chapters [aria-current] { color: #1f3e2c; }
+.journey-chapters button:hover { color: #1f3e2c; }
+.journey-chapters small { display: block; font: 10px monospace; margin-bottom: 4px; }
+.journey-chapters strong { font-size: 10px; font-weight: normal; }
+.journey-resume { font-size: 12px; justify-self: end; border-bottom: 1px solid #7f8f6b; padding-bottom: 8px; }
+.journey-resume span { margin-left: 15px; }
+.journey-progress { position: absolute; height: 3px; bottom: 0; left: 0; right: 0; background: #ccd4bd; }
+.journey-progress span { display: block; height: 100%; transform-origin: left; background: #65884a; }
+.journey-accessible-story { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.journey-still { height: auto; }
+.journey-still .journey-stage { position: relative; top: 0; }
+@media (min-width: 1600px) { .journey-heading { top: 60px; } .journey-card { top: 100px; width: 350px; } }
+@media (max-width: 1050px) {
+  .journey-heading { left: 4%; } .portfolio .journey h1 { font-size: 45px; }
+  .journey-card { right: 4%; width: 285px; padding: 19px; }
+  .journey-bottom { gap: 25px; padding-inline: 4%; grid-template-columns: 135px 1fr; }
+  .journey-resume { display: none; }
+}
+@media (max-width: 760px) {
+  .journey { --nav-height: 72px; height: 460svh; }
+  .journey-stage { min-height: 720px; }
+  .journey-heading { top: 20px; left: 20px; }
+  .journey-heading .eyebrow { font-size: 8px; letter-spacing: .8px; }
+  .portfolio .journey h1 { font-size: 36px; letter-spacing: -1.5px; margin-top: 14px; margin-bottom: 9px; }
+  .journey-subtitle { display: none; }
+  .journey-skip { font-size: 11px; gap: 20px; }
+  .journey-tools { top: 17px; right: 16px; }
+  .journey-tools>span { display: none; }
+  .journey-tools button { font-size: 10px; padding: 5px 9px; }
+  .journey-card { top: 175px; left: 20px; right: 20px; width: auto; padding: 14px 16px; }
+  .portfolio .journey-card h2 { font-size: 24px; margin: 7px 0; }
+  .portfolio .journey-card h3 { font-size: 12px; margin-bottom: 4px; }
+  .journey-card>p { font-size: 11px; line-height: 1.45; margin-bottom: 10px; }
+  .journey-card-kicker { font-size: 7px; }
+  .journey-card-kicker strong { font-size: 15px; }
+  .journey-stat { padding-top: 8px; }
+  .journey-stat strong { font-size: 22px; }
+  .journey-card>a { margin-top: 7px; font-size: 10px; }
+  .journey-canvas,.journey-fallback { top: 38%; height: 59%; }
+  .journey-bottom { padding: 15px 20px 17px; display: block; }
+  .journey-scroll-hint { display: none; }
+  .journey-chapters strong { font-size: 9px; }
+  .journey-chapters small { font-size: 9px; }
+  .journey-road-caption { left: 20px; right: 20px; bottom: 105px; font-size: 7px; letter-spacing: 1px; }
+  .journey-still { height: auto; }
+}
+@media (max-height: 740px) and (min-width: 761px) {
+  .journey-stage { min-height: 560px; }
+  .journey-heading { top: 25px; }
+  .portfolio .journey h1 { font-size: 40px; }
+  .journey-card { top: 65px; padding: 16px; width: 290px; }
+  .portfolio .journey-card h2 { font-size: 24px; margin-top: 10px; }
+  .journey-bottom { padding-block: 15px; }
+}
+/* Give the introduction clear sky; keep the models in the lower stage. */
+.journey-canvas, .journey-fallback { top: 28%; height: 72%; }
+.journey-chapters button { align-self: start; }
+@media (max-width:760px) {
+  .journey-stage { min-height: 0; }
+  .journey-canvas, .journey-fallback { top: 38%; height: 59%; }
+  .journey-card { background: #fffff5; }
+}
+@media (max-width:760px) and (max-height:740px) {
+  .journey-heading { top: 14px; }
+  .portfolio .journey h1 { font-size: 29px; margin: 11px 0 7px; }
+  .journey-card { top: 144px; padding: 10px 13px; }
+  .portfolio .journey-card h2 { font-size: 21px; }
+  .journey-card>p { display:none; }
+  .journey-stat { padding-top:5px; }
+  .journey-stat strong { font-size:19px; }
+  .journey-card-kicker { font-size:6px; }
+  .journey-canvas, .journey-fallback { top: 40%; height: 60%; }
+  .journey-bottom { padding: 10px 15px 12px; }
+  .journey-road-caption { bottom: 85px; }
+}
+.journey-canvas { mask-image: linear-gradient(to bottom, transparent, #000 14%); }
+@media (max-height:600px) and (min-width:761px) {
+  .journey-still .journey-stage { height: 620px; }
+}
