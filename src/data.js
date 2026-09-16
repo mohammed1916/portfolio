@@ -52,6 +52,8 @@ import project6_3 from './Components/Projects/Images/6/3.png';
 
 // Multi-Agent RAG platform screenshots
 import project7_1 from './Components/Projects/Images/7/1.png';
+import adaptiveMathPreview from './Components/Projects/Images/adaptive-math.png';
+import algorithmVisualizerPreview from './Components/Projects/Images/algorithm-visualizer.png';
 
 // Resume PDF served from the bundle so it can be both viewed inline and downloaded.
 import resumePdf from './data/resume/Resume_Abdullah.pdf';
@@ -312,20 +314,22 @@ export const data = {
         {
             "title": "Curriculum-Aware Multi-Agent RAG Platform",
             "type": "AI / Research",
-            "tech": "Python \ LangGraph \ Ollama \ Milvus \ SentenceTransformers \ FastAPI \ DOCX Generation",
-            // Add further screenshots to src/Components/Projects/Images/7/ and import them above.
+            "featuredOrder": 0,
+            "summary": "Atlas Study: curriculum-aware learning plans, grounded answers, and educational documents powered by collaborating AI agents.",
+            "tech": "Python, LangGraph, Milvus, SentenceTransformers, FastAPI, Ollama, PostgreSQL, React",
             "thumbnail": project7_1,
-            "placeholderTags": "LangGraph • RAG • Milvus • Ollama • Multi-Agent",
+            "placeholderTags": "LangGraph / RAG / Milvus / Ollama / Multi-Agent",
             "link": "https://github.com/mohammed1916/RAGmultiAgentRevisableDocGenerator",
-            "description": `Generative AI • Multi-Agent RAG Systems • Educational AI
-            - Built a curriculum-aware multi-agent RAG platform that generates personalized learning plans and structured educational documents for CBSE Class 10/12 and JEE curricula using curriculum-specific vector databases.
-            - Designed a LangGraph-based multi-agent workflow for planning, content generation, review, and document generation using Router, Planner, Writer, and Reviewer agents.
-            - Implemented curriculum-aware retrieval with SentenceTransformer embeddings and Milvus vector search to provide context-specific recommendations from educational knowledge bases.
-            - Developed a state-aware planning framework that extracts and validates student progress, tracks learned topics and timelines, and dynamically adapts learning plans to individual progress.
-            - Built an end-to-end document generation pipeline converting AI-generated content into structured Markdown and Microsoft Word (.docx) files through automated formatting and review workflows.
-            - Built a knowledge-base ingestion workflow supporting both PDF upload and direct text paste, tagging each source with its subject and chapter so retrieval stays curriculum-scoped; ingested content is chunked and embedded for use across search, notes, plan generation, and the roadmap graph.
-            - Built an automated RAG evaluation pipeline measuring retrieval and generation quality: ROUGE-L 0.68, BLEU 0.52, semantic similarity 0.82, groundedness 0.91, context utilization 0.78 across curriculum-specific validation sets.
-            - Code: https://github.com/mohammed1916/RAGmultiAgentRevisableDocGenerator`,
+            "github": "https://github.com/mohammed1916/RAGmultiAgentRevisableDocGenerator",
+            "demo": "https://youtu.be/_D9tN47QsNM",
+            "description": `Atlas Study - Curriculum-Aware Multi-Agent RAG Platform
+            - Built a multi-agent RAG platform with Router, Planner, Writer, and Reviewer agents orchestrated through LangGraph to plan, write, review, refine, and export personalized educational documents.
+            - Combined SentenceTransformer embeddings, Milvus vector retrieval, and cross-encoder reranking for curriculum-aware content generation using Ollama-served models.
+            - Designed state-aware workflows that track learner context and adapt study plans and documents to curriculum requirements and individual progress.
+            - Extended the platform with separate learning profiles, a React workspace, and PostgreSQL-backed application state. Profile-scoped retrieval keeps study material tied to the selected learning context.
+            - Supported PDF and text ingestion, Markdown notes, grounded tutoring, and downloadable Word documents.
+            - Added hierarchical task planning, spaced-repetition flashcards, an editable knowledge graph, and activity-based study analytics.
+            - Implemented RAG evaluation using semantic similarity, groundedness, context utilization, ROUGE, and BLEU to assess retrieval and generation quality. The repository also documents retrieval benchmarks using recall, precision, MRR, nDCG, and hit rate.`,
             "gallery": [
                 {
                     original: project7_1,
@@ -560,6 +564,45 @@ export const data = {
                 },
 
             ]
+        },
+        {
+            "title": "Adaptive Math Agent - Personalized Multi-Agent AI Tutor",
+            "type": "AI / Research",
+            "featuredOrder": 1,
+            "summary": "A personalized mathematics tutor that adapts explanations, practice, and SVG visualizations to each learner's progress.",
+            "tech": "Gemini, Google Cloud, Multi-Agent AI, Curriculum-Aware Personalization, SVG",
+            "thumbnail": adaptiveMathPreview,
+            "placeholderTags": "Gemini / Adaptive Learning / Multi-Agent / SVG",
+            "link": "https://automoustutor.vercel.app/",
+            "live": "https://automoustutor.vercel.app/",
+            "github": "https://github.com/mohammed1916/edupoint",
+            "description": `Adaptive Math Agent - Personalized Multi-Agent AI Tutor
+            - Built and deployed a multi-agent AI tutoring application using Gemini and Google Cloud that follows a structured curriculum, tracks learner progress, and adapts explanations and practice toward concepts requiring improvement.
+            - Maintained learner state across sessions to identify topic-level strengths and weaknesses and drive personalized, prompt-guided instructional workflows and follow-up learning activities.
+            - Converted AI-generated mathematical explanations into dynamic SVG visualizations, combining textual reasoning with generated visual representations for interactive concept exploration.
+            - Deployed as Academia.ai, with a self-paced undergraduate Mathematics I curriculum, adaptive difficulty, and visible mastery progress.`,
+            "gallery": [{ original: adaptiveMathPreview, thumbnail: adaptiveMathPreview }]
+        },
+        {
+            "title": "Agentic Algorithm Visualizer",
+            "type": "AI / Research",
+            "featuredOrder": 2,
+            "summary": "An interactive coding playground that traces Python, visualizes data structures, and lets AI agents propose reviewable code changes.",
+            "tech": "React, Python, WebMCP, Pyodide, JavaScript",
+            "thumbnail": algorithmVisualizerPreview,
+            "placeholderTags": "React / Python / WebMCP / Pyodide / Algorithms",
+            "link": "https://codeplaygroundwebmcp.vercel.app/",
+            "live": "https://codeplaygroundwebmcp.vercel.app/",
+            "github": "https://github.com/mohammed1916/codeplayground-webmcp",
+            "demo": "https://www.youtube.com/watch?v=ZDfXHrO67Dc",
+            "description": `Agentic Algorithm Visualizer - Code Playground WebMCP
+            - Built a full-stack AI coding playground for tracing algorithms, visualizing execution, and explaining data-structure and problem-solving steps through an interactive browser interface.
+            - Combined browser-based Python execution with Pyodide, isolated worker runtimes, debugging support, and agent-assisted explanation.
+            - Visualized arrays, heaps, queues, stacks, linked lists, maps, sets, grids, dynamic-programming tables, graphs, and trees from traced Python variables or JavaScript visualization calls.
+            - Integrated six WebMCP tools for workspace inspection, execution, frame inspection, playback control, visual configuration, and Python code/input proposals in compatible browsers.
+            - Staged AI-proposed source and input changes as reviewable diffs; the editor changes only after the user accepts a proposal.
+            - Added play, pause, step, seek, and speed controls to inspect execution and connect runtime state with the visualization.`,
+            "gallery": [{ original: algorithmVisualizerPreview, thumbnail: algorithmVisualizerPreview }]
         },
     ],
     "certifications": [

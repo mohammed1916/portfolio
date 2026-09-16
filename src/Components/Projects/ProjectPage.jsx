@@ -124,27 +124,20 @@ export default function ProjectPage()
 
                         {project.tech && <DetailRow label="Tech Stack:" value={project.tech} />}
 
-                        <DetailRow label="Link:">
-                            <Chip
-                                icon={<LaunchIcon />}
-                                label="Open project"
-                                component="a"
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                clickable
-                                title={project.link}
-                                sx={{
-                                    fontFamily: 'var(--font-gilroy-bold)',
-                                    color: '#fff',
-                                    background: 'linear-gradient(135deg, #6a1b9a 0%, #8e24aa 60%, #d81b60 100%)',
-                                    boxShadow: '0 6px 16px rgba(106, 27, 154, 0.28)',
-                                    '& .MuiChip-icon': { color: '#fff' },
-                                    '&:hover': {
-                                        background: 'linear-gradient(135deg, #8e24aa 0%, #ad1457 100%)',
-                                    },
-                                }}
-                            />
+                        <DetailRow label="Links:">
+                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                                {[
+                                    ...(project.live ? [{ label: 'Live App', url: project.live }] : []),
+                                    ...(project.github ? [{ label: 'GitHub', url: project.github }] : []),
+                                    ...(project.demo ? [{ label: 'Watch Demo', url: project.demo }] : []),
+                                    ...(!project.live && !project.github && project.link ? [{ label: 'Open project', url: project.link }] : []),
+                                ].map(({ label, url }) => (
+                                    <Chip key={label} icon={<LaunchIcon />} label={label}
+                                        component="a" href={url} target="_blank" rel="noopener noreferrer" clickable
+                                        sx={{ fontFamily: 'var(--font-gilroy-bold)', color: '#17210c', background: '#c4f564',
+                                            '& .MuiChip-icon': { color: '#344823' }, '&:hover': { background: '#d5ff8c' } }} />
+                                ))}
+                            </Box>
                         </DetailRow>
 
                         <Box sx={{ mt: 1.5, minWidth: 0 }}>

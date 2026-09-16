@@ -1,4 +1,4 @@
-import{c as _a}from"./index-i73KpAMB.js";/**
+import{c as _a}from"./index-CJprIPGp.js";/**
  * @license
  * Copyright 2010-2025 Three.js Authors
  * SPDX-License-Identifier: MIT
