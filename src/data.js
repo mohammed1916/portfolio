@@ -54,6 +54,7 @@ import project6_3 from './Components/Projects/Images/6/3.png';
 import project7_1 from './Components/Projects/Images/7/1.png';
 import adaptiveMathPreview from './Components/Projects/Images/adaptive-math.png';
 import algorithmVisualizerPreview from './Components/Projects/Images/algorithm-visualizer.png';
+import commercialVisualizerPreview from './Components/Projects/Images/commercial-visualizer.png';
 
 // Resume PDF served from the bundle so it can be both viewed inline and downloaded.
 import resumePdf from './data/resume/Resume_Abdullah.pdf';
@@ -595,14 +596,38 @@ export const data = {
             "live": "https://codeplaygroundwebmcp.vercel.app/",
             "github": "https://github.com/mohammed1916/codeplayground-webmcp",
             "demo": "https://www.youtube.com/watch?v=ZDfXHrO67Dc",
+            "walkthrough": "https://www.youtube.com/watch?v=4DDhY_lC7WI",
+            "submission": "https://devpost.com/software/agentic-algorithm-visualizer",
+            "relatedProject": { "index": 12, "label": "Commercial extension: Visualizer" },
             "description": `Agentic Algorithm Visualizer - Code Playground WebMCP
             - Built a full-stack AI coding playground for tracing algorithms, visualizing execution, and explaining data-structure and problem-solving steps through an interactive browser interface.
             - Combined browser-based Python execution with Pyodide, isolated worker runtimes, debugging support, and agent-assisted explanation.
             - Visualized arrays, heaps, queues, stacks, linked lists, maps, sets, grids, dynamic-programming tables, graphs, and trees from traced Python variables or JavaScript visualization calls.
             - Integrated six WebMCP tools for workspace inspection, execution, frame inspection, playback control, visual configuration, and Python code/input proposals in compatible browsers.
             - Staged AI-proposed source and input changes as reviewable diffs; the editor changes only after the user accepts a proposal.
-            - Added play, pause, step, seek, and speed controls to inspect execution and connect runtime state with the visualization.`,
+            - Added play, pause, step, seek, and speed controls to inspect execution and connect runtime state with the visualization.
+            - Submitted to Devpost as Algorithm Visualizer powered by webMCP. The extended YouTube walkthrough demonstrates workspace inspection, code execution, playback, dynamic visual configuration, and code/input changes proposed for human review.
+            - Extended this project into Visualizer, my commercial initiative under Teem Treat.`,
             "gallery": [{ original: algorithmVisualizerPreview, thumbnail: algorithmVisualizerPreview }]
+        },
+        {
+            "title": "Visualizer",
+            "type": "Commercial Product",
+            "featuredOrder": -1,
+            "summary": "My commercial algorithm-learning platform: interactive visualizations, Razorpay payments, and agentic AI that reviews code and dynamically redesigns the UI.",
+            "tech": "React, Python, Agentic AI, Google Cloud Platform (GCP), Firebase Functions, Razorpay",
+            "thumbnail": commercialVisualizerPreview,
+            "placeholderTags": "Commercial / Agentic AI / GCP / Firebase / Razorpay",
+            "link": "https://visualizer.teemtreat.com/",
+            "live": "https://visualizer.teemtreat.com/",
+            "relatedProject": { "index": 11, "label": "Original Devpost project: Agentic Algorithm Visualizer" },
+            "description": `Visualizer - An independent commercial initiative by Mohammed Abdullah
+            - Created Visualizer under Teem Treat as a commercial extension of Agentic Algorithm Visualizer, bringing interactive algorithm learning and an AI-assisted coding workspace into a product offering.
+            - Integrated Razorpay payments for paid access, with Google Cloud Platform and Firebase Functions supporting backend workflows.
+            - Added agentic AI to review and fix code and dynamically redesign the interface on the go, adapting the coding and visualization workspace as users work.
+            - Combined a searchable problem library, step-by-step execution previews, and a Python/JavaScript playground with free and Pro access.
+            - Built on the algorithm-tracing and visualization foundation of the original WebMCP-enabled project submitted to Devpost.`,
+            "gallery": [{ original: commercialVisualizerPreview, thumbnail: commercialVisualizerPreview }]
         },
     ],
     "certifications": [

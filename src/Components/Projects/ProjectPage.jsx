@@ -17,7 +17,7 @@ import DetailRow from '../common/DetailRow';
 
 import { data } from '../../data';
 
-import { useParams, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useParams, useNavigate } from "react-router-dom";
 
 
 export default function ProjectPage()
@@ -34,7 +34,7 @@ export default function ProjectPage()
             left: 0,
             behavior: 'smooth'
         });
-    }, []);
+    }, [params.i]);
 
     const goBackToProjects = () => {
         navigate('/#projects', { replace: true });
@@ -130,6 +130,8 @@ export default function ProjectPage()
                                     ...(project.live ? [{ label: 'Live App', url: project.live }] : []),
                                     ...(project.github ? [{ label: 'GitHub', url: project.github }] : []),
                                     ...(project.demo ? [{ label: 'Watch Demo', url: project.demo }] : []),
+                                    ...(project.walkthrough ? [{ label: 'YouTube Walkthrough', url: project.walkthrough }] : []),
+                                    ...(project.submission ? [{ label: 'Devpost Submission', url: project.submission }] : []),
                                     ...(!project.live && !project.github && project.link ? [{ label: 'Open project', url: project.link }] : []),
                                 ].map(({ label, url }) => (
                                     <Chip key={label} icon={<LaunchIcon />} label={label}
@@ -139,6 +141,15 @@ export default function ProjectPage()
                                 ))}
                             </Box>
                         </DetailRow>
+
+                        {project.relatedProject && (
+                            <DetailRow label="Related project:">
+                                <Button component={RouterLink} to={`/projectpage/${project.relatedProject.index}`}
+                                    sx={{ textTransform: 'none', color: 'var(--color-heading-sub)', textAlign: 'left' }}>
+                                    {project.relatedProject.label}
+                                </Button>
+                            </DetailRow>
+                        )}
 
                         <Box sx={{ mt: 1.5, minWidth: 0 }}>
                             <Typography

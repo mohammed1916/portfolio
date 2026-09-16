@@ -125,7 +125,7 @@ test('direct work, grades, resume and detail routes remain accessible', async ({
   await openJourney(page);
   await page.getByRole('link',{name:'Skip to selected work'}).click();
   await expect(page.locator('#projects')).toBeInViewport();
-  await expect(page.locator('.project-card')).toHaveCount(12);
+  await expect(page.locator('.project-card')).toHaveCount(13);
   await page.getByRole('button',{name:'AI / Research',exact:true}).click();
   await expect(page.locator('.project-card')).toHaveCount(6);
   await page.locator('.project-card').first().click();
