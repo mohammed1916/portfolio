@@ -47,3 +47,14 @@ The Playwright suite uses installed Google Chrome by default. Set
 uses port 5193. Checks cover forward/reverse scrolling, keyboard chapter jumps,
 scene changes, still mode, reduced motion, missing/lost WebGL, mobile/tablet/
 landscape layouts, and existing project, chart, and PDF access.
+
+## Firebase Hosting
+
+Run from the repository root:
+
+```sh
+firebase deploy --only hosting --project mohammedabdullahportfolio
+```
+
+The predeploy hook builds the Vite app into `dist`. The SPA rewrite keeps
+React Router detail-page URLs working on direct visits and refreshes.
