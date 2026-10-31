@@ -172,7 +172,7 @@ export default function ProjectPage()
                         {gallery.length > 0 ? (
                             <Box display={'flex'} flexWrap={'wrap'} justifyContent='space-evenly' bgcolor={'var(--color-card-bg2)'} borderRadius={'20px'} padding={'10px'}>
                                 {gallery.map((item, index) => (
-                                    <Box key={`gallery-${index}`} display={'flex'} flexWrap={'wrap'} justifyContent='center' sx={{ width: '100%', maxWidth: 250 }}>
+                                    <Box key={`gallery-${index}`} display={'flex'} flexWrap={'wrap'} justifyContent='center' sx={{ width: '100%', maxWidth: item?.landscape ? 560 : 250 }}>
                                         <Card sx={{ width: '100%', padding: '10px', margin: { xs: '10px 0', sm: '20px' }, boxShadow: '0 8px 32px var(--color-particle-shadow)', ':hover': { boxShadow: '0 15px 70px -12px var(--color-particle-shadow)' } }} >
                                             <CardActionArea
                                                 component="a"
@@ -183,17 +183,18 @@ export default function ProjectPage()
                                                 <CardMedia
                                                     component="img"
                                                     image={item ? item.thumbnail : noImageAvailable}
-                                                    alt={`${project.title} screenshot ${index + 1}`}
+                                                    alt={item?.caption || `${project.title} screenshot ${index + 1}`}
                                                     loading="lazy"
                                                     sx={{
                                                         width: '100%',
-                                                        height: { xs: 260, sm: 480 },
+                                                        height: item?.landscape ? 'auto' : { xs: 260, sm: 480 },
                                                         objectFit: 'contain',
                                                         backgroundColor: '#fff',
                                                         borderRadius: '8px',
                                                     }}
                                                 />
                                             </CardActionArea>
+                                            {item?.caption && <Typography variant="body2" sx={{ pt: 1.5, px: 0.5, color: 'text.secondary' }}>{item.caption}</Typography>}
                                         </Card>
                                     </Box>
                                 ))}

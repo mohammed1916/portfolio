@@ -1,3 +1,8 @@
+import relaySelection from './Components/Projects/Images/relay-research/evidence-selection.png';
+import relayGraph from './Components/Projects/Images/relay-research/evidence-graph.png';
+import relayComparisons from './Components/Projects/Images/relay-research/comparisons.png';
+import relayManuscript from './Components/Projects/Images/relay-research/manuscript.png';
+import relayBranches from './Components/Projects/Images/relay-research/execution-branches.png';
 // Import all the images
 import designImage from './img/Design/merit.png';
 import designImage2 from './img/Design/close_up.jpg';
@@ -628,6 +633,33 @@ export const data = {
             - Combined a searchable problem library, step-by-step execution previews, and a Python/JavaScript playground with free and Pro access.
             - Built on the algorithm-tracing and visualization foundation of the original WebMCP-enabled project submitted to Devpost.`,
             "gallery": [{ original: commercialVisualizerPreview, thumbnail: commercialVisualizerPreview }]
+        },
+        {
+            "title": "Relay Research — Check the Comparison",
+            "type": "AI / Research",
+            "featuredOrder": 0,
+            "summary": "A research evidence workspace that uses Nemotron agents and Tavily search to inspect published metrics, challenge comparisons, and draft cited manuscripts for human review.",
+            "tech": "Nebius Token Factory, NVIDIA Nemotron, Tavily, Python, JavaScript, IndexedDB, LaTeX",
+            "thumbnail": relayGraph,
+            "link": "https://relay-research.onrender.com/",
+            "live": "https://relay-research.onrender.com/",
+            "github": "https://github.com/mohammed1916/ai_workflow_manager/",
+            "demo": "https://youtu.be/JsIbI3UMYOw",
+            "submission": "https://devpost.com/software/relay-research-check-the-comparison",
+            "description": `Relay Research — evidence before claims
+            - Built a research workspace for checking whether reported metrics within and across papers support a comparison under the question's experimental conditions.
+            - Integrated NVIDIA Nemotron through Nebius Token Factory for planning, extraction, comparison checks, and manuscript drafting, with Tavily searches for paper discovery and supporting evidence.
+            - Added guided table and row selection, up to two parallel paper workers, source-linked observations, and explicit comparable, incompatible, and insufficient-evidence judgments for human review.
+            - Made investigations inspectable through an evidence graph, focused source checks, reviewable correction proposals, Stop controls, saved checkpoints, and independent branches.
+            - Connected reviewed evidence to LaTeX/BibTeX manuscripts and Overleaf-compatible exports; changed evidence flags affected claims for review. IndexedDB preserves portable browser copies.
+            - Submitted to the Nebius x NVIDIA Global AI Hackathon. Recorded results demonstrate the workflow; model judgments remain provisional rather than independently validated scientific findings.`,
+            "gallery": [
+                { original: relaySelection, thumbnail: relaySelection, landscape: true, caption: "Select source-table rows and supporting context before extraction." },
+                { original: relayComparisons, thumbnail: relayComparisons, landscape: true, caption: "Inspect comparison conditions, source evidence, and unresolved judgments." },
+                { original: relayGraph, thumbnail: relayGraph, landscape: true, caption: "Explore connections between research topics, papers, and evidence." },
+                { original: relayManuscript, thumbnail: relayManuscript, landscape: true, caption: "Edit a cited LaTeX manuscript and review claims affected by evidence changes." },
+                { original: relayBranches, thumbnail: relayBranches, landscape: true, caption: "Inspect execution checkpoints and branch an investigation." }
+            ]
         },
     ],
     "certifications": [
