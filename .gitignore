@@ -32,3 +32,4 @@ package-lock.json
 # Firebase local cache and logs
 .firebase/
 firebase-debug*.log
+._*
