@@ -233,7 +233,7 @@ export default function Journey() {
 
   return (
     <section
-      id="home"
+      id="journey"
       ref={sectionRef}
       className={`journey ${still || failed ? "journey-still" : ""}`}
       aria-label="My journey from school to AI engineering"
@@ -246,10 +246,10 @@ export default function Journey() {
         {!ready && <ScenicFallback chapter={active} />}
         <div className="journey-heading">
           <p className="eyebrow">MOHAMMED ABDULLAH / AI ENGINEER</p>
-          <h1>
+          <h2 className="journey-title">
             A little curiosity.
             <br />A long <em>way to go.</em>
-          </h1>
+          </h2>
           <p className="journey-subtitle">
             From the school run to real-world AI.
             <br />

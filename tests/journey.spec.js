@@ -11,6 +11,7 @@ async function travel(page, progress) {
 async function openJourney(page) {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.journey-canvas canvas')).toBeVisible();
+  await travel(page, 0);
 }
 
 test('native scrolling advances and reverses all five chapters', async ({ page }) => {

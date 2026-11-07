@@ -623,8 +623,8 @@ export const data = {
             "tech": "React, Python, Agentic AI, Google Cloud Platform (GCP), Firebase Functions, Razorpay",
             "thumbnail": commercialVisualizerPreview,
             "placeholderTags": "Commercial / Agentic AI / GCP / Firebase / Razorpay",
-            "link": "https://visualizer.teemtreat.com/",
-            "live": "https://visualizer.teemtreat.com/",
+            "link": "https://visualizer.pro/",
+            "live": "https://visualizer.pro/",
             "relatedProject": { "index": 11, "label": "Original Devpost project: Agentic Algorithm Visualizer" },
             "description": `Visualizer - An independent commercial initiative by Mohammed Abdullah
             - Created Visualizer under Teem Treat as a commercial extension of Agentic Algorithm Visualizer, bringing interactive algorithm learning and an AI-assisted coding workspace into a product offering.
